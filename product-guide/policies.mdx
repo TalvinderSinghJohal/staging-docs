@@ -1,58 +1,108 @@
 ---
 title: Policy Configuration
 description: "Define, configure, and enforce responsible AI policies within your projects"
-icon: "shield-check"
 ---
 
 ## Overview
 
-The Policy Configuration module enables admins and users to set clear AI governance rules and ensure platform compliance with ethical and legal standards.
+The **Policy Configuration** module enables users and administrators to define and manage responsible AI policies across projects. This ensures alignment with compliance, security, and ethical standards using AltrumAI’s flexible and intuitive configuration system.
+
+---
 
 ## Accessing Policy Configuration
 
-1. Navigate to a **Project Details** screen
-2. Click the **Configure Policies** button
-3. You'll be redirected to the **Policy Configuration** screen
+1. From the **Dashboard**, select a project to open the **Project Overview** page.
+2. From here, you can either:
+   - Edit an existing policy from the **Policies Table**, or
+   - Click the **Edit Policies** button to begin configuring new policies.
 
-![Placeholder for policy configuration navigation screenshot]
+This will take you to the **Policy Configuration** screen, which contains three tabs:
+- **Configure Policies**
+- **Configure Response**
+- **Test Policies**
+
+---
 
 ## Configuring a Policy
 
-1. On the Policy Configuration screen, choose a policy category (e.g., **Data Privacy**, **Bias and Fairness**, **Toxic Content**)
-2. Click **Configure** on the selected policy card
-3. In the configuration popup:
-   - **Enable/Disable** the policy
-   - Choose **Monitoring Behavior**:
-     - **Monitor Only** – Log violations
-     - **Monitor and Override** – Log and block AI interactions
-   - Adjust **Sensitivity Thresholds** if available
-   - Select any relevant **Compliance Regulations**
-4. Click **Save** to apply or **Cancel** to discard
+### Step 1: Navigate to the Configure Policies Tab
 
-![Placeholder for policy configuration popup screenshot]
+Within the **Configure Policies** tab, you’ll see a list of policies provided by AltrumAI, such as:
+- Data Privacy
+- Bias & Fairness
+- Toxicity
+- Hallucinations
+- Competitor Mention
+- and more
+
+### Step 2: Select a Policy
+
+- Click on a policy from the list on the left.
+- The selected policy’s configuration options will appear on the right-hand panel.
+
+### Step 3: Configure the Policy
+
+Each policy has its own set of configuration options. Common configuration steps include:
+
+- **Enable the Policy** using the toggle at the top of the panel.
+- Choose an **Enforcement Mode**:
+  - **Log Only** – Log violations without blocking interactions.
+  - **Log and Override** – Block content that violates the policy.
+- Adjust **Sensitivity Thresholds** (if applicable).
+- Select relevant **Topics, Entities, or Regulations** (depending on the policy type).
+
+ _For detailed instructions on each policy type, refer to the **Policy** section of the documentation._
+
+### Step 4: Save the Configuration
+
+- Click **Save Changes** to store your configuration.
+- Your updates will now be associated with the project, but not yet active until applied.
+
+---
+
+## Testing Policies
+
+Once you’ve configured one or more policies, navigate to the **Test Policies** tab.
+
+This is a **sandbox environment** where you can:
+
+- Interact with a test chatbot.
+- See your configured policies in action.
+- Observe how prompts and responses are flagged, modified, or blocked in real time.
+
+This is a valuable step to validate policy behavior before applying changes to a live project.
+
+---
 
 ## Applying Configured Policies
 
-1. Once policies are configured, click **Apply Policies**
-2. Policies will be enforced across the project’s AI application
-3. To review, return to the Policy Configuration screen
+When you're satisfied with your configuration and testing:
 
-![Placeholder for apply policies screenshot]
+1. Return to the **Configure Policies** tab.
+2. Click **Apply Policies** to activate the changes across your project.
+3. You will receive a success message confirming that policies are now enforced.
+
+---
 
 ## Editing or Disabling Policies
 
-1. From the Policy Configuration screen, select the configured policy
-2. Click **Edit** to change the settings
-3. Or toggle **Disable** to deactivate the policy
-4. Click **Save** to confirm changes
+To update or turn off a policy:
 
-![Placeholder for edit/disable policy screenshot]
+1. From the **Configure Policies** tab, click the policy you wish to update.
+2. Modify any settings as needed.
+3. Toggle the **Enable** switch to turn the policy on or off.
+4. Click **Save Changes** to confirm your updates.
+
+---
 
 ## Best Practices
 
-- Start with **Monitor Only** mode to observe trends without impact
-- Periodically review and adjust policy settings based on violation reports
-- Enable strict compliance for sensitive or regulated projects
+- Start with **Log Only** mode to monitor behavior without disruption.
+- Use the **Test Policies** tab to validate before applying changes.
+- Regularly review violation logs and refine configurations as needed.
+- Apply stricter enforcement to regulated or high-risk projects.
+
+---
 
 ## Next Steps
 
