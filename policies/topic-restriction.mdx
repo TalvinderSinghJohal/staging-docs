@@ -1,0 +1,144 @@
+---
+title: Restrict to Topic
+description: "Detailed overview of each AltrumAI policy including purpose, features, and usage guidance."
+---
+
+## Overview
+
+The **Restrict to Topic Policy** empowers organisations to control the types of topics that can be discussed during interactions with a Language Model (LLM). By defining a set of **Valid Topics** (permitted content) and **Invalid Topics** (restricted content), organisations can align AI usage with business objectives, regulatory standards, and ethical practices. This policy helps ensure that AI-generated conversations stay relevant, secure, and compliant.
+
+<CardGroup cols={2}>
+  <Card
+    title="Data Privacy"
+    icon="lock"
+    href="#data-privacy-policy"
+  >
+    Prevents the transmission or exposure of sensitive data in prompts and responses.
+  </Card>
+  <Card
+    title="Bias & Fairness"
+    icon="balance-scale"
+    href="#bias-and-fairness-policy"
+  >
+    (Coming Soon) Ensure equitable AI behavior across demographics.
+  </Card>
+  <Card
+    title="Toxic Content"
+    icon="radiation"
+    href="#toxic-content-policy"
+  >
+    (Coming Soon) Blocks harmful, offensive, or inappropriate outputs.
+  </Card>
+</CardGroup>
+
+---
+
+## What the Policy Does
+
+### Purpose
+
+The primary goal of the Restrict to Topic Policy is to maintain content integrity by allowing only approved topics in AI interactions. Whether used to prevent off-topic discussions or to enforce strict content regulations, this policy enables organisations to:
+
+- Maintain operational and ethical standards.
+- Limit the AI to approved business functions.
+- Prevent misuse or inappropriate use of the model.
+- Ensure compliance with internal and industry regulations.
+
+### Scope
+
+#### Configurable Topic Control
+
+Organisations can manage the AI’s scope of conversation using:
+
+- **Valid Topics**: Topics that are explicitly allowed. These ensure that interactions remain business-focused and on-task.
+- **Invalid Topics**: Topics that are explicitly disallowed. These help prevent discussions that may be sensitive, non-compliant, or irrelevant.
+
+#### Prompt & Response Configuration
+
+The policy can be applied independently to user **prompts (inputs)** and LLM **responses (outputs)**:
+
+- Enable topic filtering on prompts, responses, or both.
+- Apply unique settings for prompts and responses depending on the business context.
+
+#### Operational Modes
+
+- **Log Only**: The system flags and logs non-compliant prompts or responses without blocking them.
+- **Log and Override**: Prompts or responses containing restricted topics are blocked entirely, ensuring that inappropriate content is not transmitted or displayed.
+
+#### Threshold Sensitivity
+
+A detection sensitivity threshold (range: **0.2 to 0.9**) allows fine-tuning of the model’s topic recognition:
+
+- **Lower thresholds** (e.g., 0.2) are more lenient, reducing false positives.
+- **Higher thresholds** (e.g., 0.9) are stricter, capturing more subtle or indirect topic violations.
+
+### Key Features
+
+- **Topic-Based Filtering**: Use allow-lists or block-lists to govern content scope.
+- **Prompt & Response Independence**: Configure controls independently for each direction of interaction.
+- **Flexible Enforcement Options**: Choose between monitoring and full blocking.
+- **Customisable Detection Sensitivity**: Adjust how strictly the AI enforces topic restrictions.
+- **Complete Logging**: All violations are logged for review, analysis, and compliance reporting.
+
+---
+
+## Why Use This Policy?
+
+### Benefits
+
+- Maintains focus on approved business topics.
+- Reduces reputational and regulatory risk.
+- Prevents sensitive, speculative, or irrelevant discussions.
+- Enables automated, scalable topic governance.
+
+---
+
+## Use Case: Financial Services Governance
+
+### Scenario
+
+A global financial services firm uses an LLM-powered assistant internally to generate marketing copy, product comparisons, and training material. The company wants to ensure that content does not reference competitors like Company X, Y, or Z unless authorised.
+
+### Challenge
+
+Employees might unintentionally prompt the AI to mention competitor names or generate content that includes comparisons or references to rival platforms, breaching brand guidelines or legal constraints.
+
+### Solution: Implementing the Restrict to Topic Policy
+
+1. **Topic Configuration**  
+   - **Valid Topics**: Risk analysis, financial compliance, economic forecasting.  
+   - **Invalid Topics**: Client-specific discussions, investment predictions, non-business content.
+
+2. **Prompt & Response Filtering**  
+   - **Prompt Filtering**: Prevents employees from querying the AI about restricted subjects.  
+   - **Response Filtering**: Stops the LLM from generating answers that violate company policy.
+
+3. **Enforcement Mode & Sensitivity**  
+   - Mode set to **Log and Override** for complete control.  
+   - Sensitivity configured at **0.8** to ensure high accuracy in detecting restricted content.
+
+---
+
+## How to Use the Policy
+
+> **Note**: This section will be refined with full step-by-step UI guidance.
+
+### Enabling the Policy
+
+*Placeholder for enabling steps.*
+
+### Configuring Topics
+
+*Placeholder for topic configuration steps, including how to add Valid and Invalid Topics.*
+
+### Setting Behaviour & Threshold
+
+*Placeholder for choosing enforcement mode and adjusting detection sensitivity.*
+
+### Saving and Applying the Policy
+
+*Placeholder for UI walkthrough to save and apply policy settings.*
+
+---
+
+With the **Restrict to Topic Policy**, AltrumAI helps organisations maintain trusted, purposeful, and policy-aligned AI interactions—offering the oversight needed to support ethical AI use in business environments.

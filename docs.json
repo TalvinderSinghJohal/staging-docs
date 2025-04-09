@@ -1,13 +1,13 @@
 {
   "$schema": "https://mintlify.com/docs.json",
   "theme": "mint",
-  "name": "Mint Starter Kit",
+  "name": "AltrumAI Docs",
   "colors": {
-    "primary": "#16A34A",
-    "light": "#07C983",
-    "dark": "#15803D"
+    "primary": "#126FFF",
+    "light": "#126FFF",
+    "dark": "#126FFF"
   },
-  "favicon": "/favicon.svg",
+  "favicon": "/altrum_logo.svg",
   "navigation": {
     "tabs": [
       {
@@ -16,20 +16,32 @@
           {
             "group": "Get Started",
             "pages": [
-              "introduction",
-              "quickstart",
-              "development"
+              "get-started/introduction",
+              "get-started/quickstart"
             ]
           },
           {
-            "group": "Essentials",
+            "group": "Product Guide",
             "pages": [
-              "essentials/markdown",
-              "essentials/code",
-              "essentials/images",
-              "essentials/settings",
-              "essentials/navigation",
-              "essentials/reusable-snippets"
+              "product-guide/user-onboarding",
+              "product-guide/projects",
+              "product-guide/reporting",
+              "product-guide/permissions",
+              "product-guide/policies"
+            ]
+          },
+          {
+            "group": "Policy Overview",
+            "pages": [
+              "policies/data-privacy",
+              "policies/data-privacy-custom",
+              "policies/toxicitiy",
+              "policies/bias&fairness",
+              "policies/competitor-mention",
+              "policies/topic-restriction",
+              "policies/sensitive-topic",
+              "policies/hallucinations",
+              "policies/prompt-injection"
             ]
           }
         ]
@@ -44,12 +56,15 @@
             ]
           },
           {
-            "group": "Endpoint Examples",
+            "group": "Endpoint",
             "pages": [
-              "api-reference/endpoint/get",
-              "api-reference/endpoint/create",
-              "api-reference/endpoint/delete",
-              "api-reference/endpoint/webhook"
+              "api-reference/endpoint/openai",
+              "api-reference/endpoint/bedrock",
+              "api-reference/endpoint/azure-openai",
+              "api-reference/endpoint/azure-studio",
+              "api-reference/endpoint/anthropic",
+              "api-reference/endpoint/watsonx"
+
             ]
           }
         ]
@@ -57,46 +72,31 @@
     ],
     "global": {
       "anchors": [
-        {
-          "anchor": "Documentation",
-          "href": "https://mintlify.com/docs",
-          "icon": "book-open-cover"
-        },
-        {
-          "anchor": "Community",
-          "href": "https://mintlify.com/community",
-          "icon": "slack"
-        },
-        {
-          "anchor": "Blog",
-          "href": "https://mintlify.com/blog",
-          "icon": "newspaper"
-        }
       ]
     }
   },
   "logo": {
-    "light": "/logo/light.svg",
-    "dark": "/logo/dark.svg"
+    "light": "/altrum_logo.svg",
+    "dark": "/altrum_logo.svg"
   },
   "navbar": {
     "links": [
       {
-        "label": "Support",
-        "href": "mailto:hi@mintlify.com"
+        "label": "Contact us",
+        "href": "https://www.altrum.ai/contact-us"
       }
     ],
     "primary": {
       "type": "button",
-      "label": "Dashboard",
-      "href": "https://dashboard.mintlify.com"
+      "label": "Log in",
+      "href": "https://altrum.ai"
     }
   },
   "footer": {
     "socials": {
-      "x": "https://x.com/mintlify",
-      "github": "https://github.com/mintlify",
-      "linkedin": "https://linkedin.com/company/mintlify"
+      "github": "https://github.com/altrumai",
+      "linkedin": "https://www.linkedin.com/company/altrum-ai",
+      "website": "https://www.altrum.ai"
     }
   }
 }

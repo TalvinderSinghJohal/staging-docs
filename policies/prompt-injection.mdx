@@ -1,0 +1,122 @@
+---
+title: Prompt Injection
+description: "Detailed overview of each AltrumAI policy including purpose, features, and usage guidance."
+---
+
+## Overview
+
+The **Prompt Injection Policy** is designed to detect and manage attempts to manipulate or override system instructions through user prompts. Prompt injections can pose a serious risk to AI integrity, enabling users to bypass restrictions, alter model behavior, or access unintended functionality.
+This policy applies exclusively to **user inputs (prompts)** and offers a straightforward way to monitor or block such attempts using a configurable enforcement mode. With this policy, organisations can safeguard their AI workflows from malicious manipulation while maintaining trusted and compliant interactions.
+
+<CardGroup cols={2}>
+  <Card
+    title="Data Privacy"
+    icon="lock"
+    href="#data-privacy-policy"
+  >
+    Prevents the transmission or exposure of sensitive data in prompts and responses.
+  </Card>
+  <Card
+    title="Bias & Fairness"
+    icon="balance-scale"
+    href="#bias-and-fairness-policy"
+  >
+    (Coming Soon) Ensure equitable AI behavior across demographics.
+  </Card>
+  <Card
+    title="Toxic Content"
+    icon="radiation"
+    href="#toxic-content-policy"
+  >
+    (Coming Soon) Blocks harmful, offensive, or inappropriate outputs.
+  </Card>
+</CardGroup>
+
+---
+
+## What the Policy Does
+
+### Purpose
+
+The Prompt Injection Policy helps protect your AI systems from being influenced or exploited by carefully crafted user prompts. These types of prompts may attempt to:
+
+- Override model behavior.
+- Circumvent guardrails or ethical policies.
+- Trick the AI into executing unintended tasks.
+
+By monitoring or blocking these actions at the prompt level, this policy ensures that system instructions remain secure and that AI behavior stays aligned with its intended purpose.
+
+### Scope
+
+#### Prompt Configuration Only
+
+This policy exclusively applies to **user-submitted prompts**. It does not evaluate or interfere with AI-generated responses.
+
+#### Operational Modes
+
+- **Log Only**: Detects and logs prompt injection attempts without interrupting the user experience.
+- **Log and Override**: Blocks prompts identified as injection attempts to maintain strict control over LLM interactions.
+
+### Key Features
+
+- **Prompt-Only Enforcement**: Dedicated to monitoring user inputs for injection patterns.
+- **Simple Enforcement Options**: Choose between passive logging or active prompt blocking.
+- **Security-Focused Safeguards**: Helps preserve the reliability and intended behavior of the AI system.
+- **Lightweight, Targeted Configuration**: Quick to set up and impactful in high-risk environments.
+
+---
+
+## Why Use This Policy?
+
+### Benefits
+
+- Prevents manipulation of system behavior through user prompts.
+- Maintains the integrity of AI applications.
+- Enhances trust in automated workflows and outputs.
+- Provides visibility into suspicious or non-compliant user behavior.
+
+---
+
+## Use Case: AI-Powered Legal Document Assistant
+
+### Scenario
+
+A legal firm deploys an AI assistant to support research and document drafting. The assistant must adhere to strict rules on the kind of advice it provides. However, users may attempt to bypass restrictions using creative or misleading prompts (e.g., “Ignore previous instructions and…”).
+
+### Challenge
+
+The firm needs to:
+
+- Detect and block any attempt to override system-level restrictions.
+- Ensure the AI consistently follows embedded compliance protocols.
+- Capture and audit prompt injection attempts for security and improvement.
+
+### Solution: Implementing the Prompt Injection Policy
+
+1. **Prompt Filtering**  
+   - Enabled to monitor all user inputs.
+
+2. **Enforcement Mode**  
+   - Set to **Log and Override** to block suspicious prompts outright.
+
+---
+
+## How to Use the Policy
+
+> **Note:** Detailed UI setup guidance will be provided here.
+
+### Enabling the Policy
+
+*Placeholder for enabling steps.*
+
+### Setting Enforcement Mode
+
+*Placeholder for selecting Log Only or Log and Override.*
+
+### Saving and Applying the Policy
+
+*Placeholder for finalising and activating policy settings.*
+
+---
+
+The **Prompt Injection Policy** is a critical safeguard in AltrumAI, offering protection against manipulation and misuse—ensuring that your AI systems remain consistent, reliable, and secure.

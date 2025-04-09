@@ -1,0 +1,131 @@
+---
+title: Toxic Content
+description: "Detailed overview of each AltrumAI policy including purpose, features, and usage guidance."
+---
+
+## Overview
+
+The **Toxicity Policy** allows organisations to identify and manage toxic language in both user inputs and AI-generated responses. Designed to promote respectful, inclusive, and professional AI interactions, this policy helps ensure that toxic, abusive, or offensive content is either flagged or blocked before it reaches end users or internal systems.
+Unlike other policies that offer content-specific controls, the Toxicity Policy focuses purely on detecting general language toxicity. It offers a simple yet powerful configuration model that allows teams to monitor and prevent harmful communication patterns in real time.
+
+<CardGroup cols={2}>
+  <Card
+    title="Data Privacy"
+    icon="lock"
+    href="#data-privacy-policy"
+  >
+    Prevents the transmission or exposure of sensitive data in prompts and responses.
+  </Card>
+  <Card
+    title="Bias & Fairness"
+    icon="balance-scale"
+    href="#bias-and-fairness-policy"
+  >
+    (Coming Soon) Ensure equitable AI behavior across demographics.
+  </Card>
+  <Card
+    title="Toxic Content"
+    icon="radiation"
+    href="#toxic-content-policy"
+  >
+    (Coming Soon) Blocks harmful, offensive, or inappropriate outputs.
+  </Card>
+</CardGroup>
+
+---
+
+## What the Policy Does
+
+### Purpose
+
+The primary goal of the Toxicity Policy is to safeguard users from exposure to harmful language while maintaining the integrity and ethical use of AI in professional environments. By enabling this policy, organisations can reduce reputational risk, protect staff and customers, and uphold responsible communication standards across AI-powered interactions.
+
+### Scope
+
+#### Prompt & Response Configuration
+
+The Toxicity Policy applies to both sides of an interaction:
+
+- **Prompts**: Filters user-submitted content before it reaches the LLM.
+- **Responses**: Filters LLM-generated output before it is displayed to users.
+
+Each can be enabled or disabled independently, giving teams control over where monitoring and enforcement are applied.
+
+#### Operational Modes
+
+- **Log Only**: Records the presence of toxic language in prompts or responses, but does not block the content.
+- **Log and Override**: Automatically prevents toxic prompts from being processed or toxic responses from being shown.
+
+#### Threshold Sensitivity
+
+A configurable detection threshold (between **0.2 and 0.9**) allows organisations to calibrate how strictly toxicity is detected:
+
+- **Lower thresholds** (e.g., 0.2) are more permissive, capturing broader language.
+- **Higher thresholds** (e.g., 0.9) apply stricter standards, targeting severe or explicit toxicity.
+
+### Key Features
+
+- **Toxicity Detection in Prompts and Responses**: Covers both ends of user-LLM interactions.
+- **Customisable Sensitivity Threshold**: Fine-tune how sensitive the model is to different degrees of toxicity.
+- **Flexible Enforcement Options**: Choose to log toxic content for review or block it outright.
+- **Simple, Targeted Configuration**: Streamlined setup for focused use cases.
+
+---
+
+## Why Use This Policy?
+
+### Benefits
+
+- Helps prevent offensive, discriminatory, or inappropriate language.
+- Creates safer and more inclusive environments for AI interaction.
+- Reduces risk of reputational damage due to harmful content exposure.
+- Provides accountability through logging and visibility.
+
+---
+
+## Use Case: HR Chatbot in a Global Enterprise
+
+### Scenario
+
+An international company deploys an AI assistant to support HR-related queries and internal communications. It’s critical that the chatbot maintains a professional tone and does not return or respond to toxic, discriminatory, or offensive language.
+
+### Challenge
+
+The organisation must ensure that:
+
+- Users cannot engage the AI in toxic dialogue.
+- The AI does not produce or echo toxic language in its responses.
+- All flagged instances are logged for compliance and investigation.
+
+### Solution: Implementing the Toxicity Policy
+
+1. **Prompt & Response Filtering**  
+   - Enabled for both directions of interaction.
+
+2. **Enforcement Mode**  
+   - Set to **Log and Override** to actively block toxic language.
+
+3. **Threshold Sensitivity**  
+   - Calibrated to **0.75** to capture clear instances of toxicity while reducing false positives.
+
+---
+
+## How to Use the Policy
+
+> **Note:** This section will be finalised with full UI-based configuration instructions.
+
+### Enabling the Policy
+
+*Placeholder for enabling steps.*
+
+### Configuring Behaviour & Threshold
+
+*Placeholder for choosing Log Only or Log and Override, and adjusting sensitivity.*
+
+### Saving and Applying the Policy
+
+*Placeholder for finalising and activating the policy settings.*
+
+---
+
+By using the **Toxicity Policy**, AltrumAI empowers organisations to create respectful and compliant digital experiences—ensuring that AI conversations remain constructive, appropriate, and aligned with company values.
