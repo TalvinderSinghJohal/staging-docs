@@ -15,55 +15,91 @@ Once logged in, you'll be directed to the **Home Page**, the control center of y
 
 ![Placeholder for home page screenshot]
 
-## Creating a New Project
+---
 
-1. On the Home Page, click **Create New Project**
-2. Enter the **project name** and an optional **description**
-3. Click **Create Project**
+## Create and Configure a New Project
 
-![Placeholder for create project screenshot]
+### Step 1: Launch the Project Creation Flow
 
-## Project Setup
+- Click the **Create Project** button in the navigation panel  
+  _or_  
+  Click the small blue **+ icon** in the bottom-right corner of the screen
+- You will be redirected to the **Create Project** page
 
-1. Select a project from the **Project List**
-2. A new tab will open to the **Project Details** screen
+### Step 2: Enter Project Details
 
-![Placeholder for project setup tab screenshot]
+- Fill in the following fields:
+  - **Project Name** (required)
+  - **Project Description** (required)
+  - **Project Tags** (optional)
+  - **Project Owner** (required)
+  - **LLM Service Providers**
+- Click **Create & Continue**
+
+### Step 3: Configure the Project
+
+After creating the project, you’ll be taken to the project setup environment which includes 3 key tabs:
+
+#### • Configure Policies  
+Define the policies for your project. Select from the list of AltrumAI-provided policies. Once a policy is selected:
+- Configuration options will appear on the right-hand side
+- Use the toggle to enable the policy
+- Configure enforcement modes, thresholds, or entities depending on the policy type  
+📘 _To learn more, refer to the [Policy Configuration Guide](/product-guide/configuring-policies-and-settings)._
+
+#### • Configure Response  
+Customise how the AI responds within the context of your project.
+
+#### • Test Policies  
+Use this sandbox chat environment to test configured policies in real time and validate outcomes.
+
+### Step 4: Continue to Integration
+
+- On the **Test Policies** tab, click **Continue to Integration** to move to the integration step
+
+### Step 5: Configure Integration
+
+- Choose an **Integration Type** from the available options
+- Your **API key** will be displayed after selection
+- Click **Continue to Summary**
+
+### Step 6: Review and Publish
+
+- On the **Project Summary** page:
+  - Review your project settings and configuration
+  - Edit previous steps if needed
+- Click **Publish Project**  
+  A success message will confirm your project has been published
+- Click **View Project** to go directly to the Project Dashboard
+
+---
+
+## Project Dashboard
+
+After publishing, the **Project Dashboard** displays all key details and project metrics in a central location.
+
+---
 
 ## Editing Project Details
 
-1. Click the **Edit Project** button
-2. Update the **Project Name** or **Description**
-3. Click **Save Project** or **Cancel** to discard changes
+### Step-by-Step
 
-![Placeholder for editing project details screenshot]
+1. Navigate to the **Dashboard** and locate your project in the **Project Table**
+2. In the **Actions** column, click the **ellipsis (⋮)** icon
+3. Click **View Project** to open the Project Dashboard
+4. In the first section titled **Project Details**, click the **Edit** button
+5. You will be redirected to **Step 1** of the project setup
+6. Make necessary changes and click **Save Changes**
 
-## Checking Connection Status
+---
 
-1. In the Project Details view, locate the **Last Connected** box
-2. If setup is incomplete, it will show **Not Connected** in red
-3. Click **Refresh** to update the status
+## Best Practices
 
-![Placeholder for connection status screenshot]
+- Always test policy configurations in the **Test Policies** tab before publishing
+- Assign appropriate **Project Owners** to maintain oversight
+- Use descriptive tags to improve project search and filtering
 
-## Reviewing Project Stats
-
-View these metrics at the bottom of the **Project Details** screen:
-- Total Policy Violations Detected
-- Number of Prompts Processed
-- Number of Responses Generated
-- Number of Policy Violations Logged
-
-![Placeholder for project stats screenshot]
-
-## Setting Up a Project for Integration
-
-1. Click the **Project Setup** button
-2. Follow the **4-step integration process** in the guide shown
-3. Complete each step to connect AltrumAI with your AI application
-4. Click **Exit** to return to the Project Details screen
-
-![Placeholder for project integration steps screenshot]
+---
 
 ## Next Steps
 
