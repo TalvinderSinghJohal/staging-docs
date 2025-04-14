@@ -9,94 +9,137 @@ icon: "folder-plus"
 Once logged in, you'll be directed to the **Dashboard**, the control center of your AltrumAI experience.
 
 ### The Home Page Includes:
-- **Navigation Panel** – Quick access to Dashboard, Administration, Reporting, Observability, Support, Documentation.
-- **Summary Statistics** – See key stats, charts and graphs on projects, requests, and violations
-- **Project List** – Table view of all projects with management tools
+- **Navigation Panel** – Quick access to Dashboard, Administration, Reporting, Observability, Support, and Documentation.
+- **Summary Statistics** – Key metrics, charts, and graphs on projects, requests, and policy violations.
+- **Project List** – A searchable and filterable table view of all projects with actionable controls.
 
-![Placeholder for home page screenshot]
+![Screenshot: AltrumAI Home Page UI](#)
 
 ---
 
-## Create and Configure a New Project
+## Creating and Configuring a New Project
 
-### Launch the Project Creation Flow
+### Step 1: Launch the Project Creation Flow
 
-- Click the **Create Project** button in the navigation panel  
-  _or_  
-  Click the small blue **+ icon** in the bottom-right corner of the screen
-- You will be redirected to the **Create Project** page
+1. Click the **Create Project** button in the left-hand navigation panel  
+   _or_ click the small blue **+ icon** in the bottom-right corner of the screen.
+2. You will be redirected to the **Create Project** page.
 
-### Enter Project Details
+![Screenshot: Create Project button and icon](#)
 
-- Fill in the following fields:
-  - **Project Name** (required)
-  - **Project Description** (required)
-  - **Project Tags** (optional)
-  - **Project Owner** (required)
-  - **LLM Service Providers**
-- Click **Create & Continue**
+---
 
-### Configure the Project
+### Step 2: Enter Project Details
 
-After creating the project, you’ll be taken to the project setup environment which includes 3 key tabs:
+1. Fill in the required fields:
+   - **Project Name** (required)
+   - **Project Description** (required)
+   - **Project Owner** (required)
+   - **LLM Service Providers** (select one or more)
+2. Optionally, add:
+   - **Project Tags**
+3. Click **Create & Continue**.
 
-#### Configure Policies  
-Define the policies for your project. Select from the list of AltrumAI-provided policies. Once a policy is selected:
-- Configuration options will appear on the right-hand side
-- Use the toggle to enable the policy
-- Configure enforcement modes, thresholds, or entities depending on the policy type
-> **Note:**
-> To learn more, refer to the [Policy Configuration Guide](/product-guide/policies).
+![Screenshot: Create Project form with example fields filled](#)
 
-#### Configure Response  
-Customise how the AI responds within the context of your project.
+---
 
-#### Test Policies  
-Use this sandbox chat environment to test configured policies in real time and validate outcomes.
+### Step 3: Configure the Project
 
-### Continue to Integration
+Upon creation, you'll be redirected to the **Project Setup** environment. This contains three tabs:
 
-- On the **Test Policies** tab, click **Continue to Integration** to move to the integration step
+#### 3.1 Configure Policies
 
-### Configure Integration
+1. Navigate to the **Configure Policies** tab.
+2. From the list of available policies, click to select a policy.
+3. Use the panel on the right to:
+   - Enable or disable the policy
+   - Set enforcement mode (e.g., **Log Only** or **Log and Override**)
+   - Adjust thresholds or select relevant criteria (topics, entities, regulations)
 
-- Choose an **Integration Type** from the available options
-- Your **API key** will be displayed after selection
-- Click **Continue to Summary**
+![Screenshot: Policy configuration interface](#)
 
-### Review and Publish
+> **Note:**  
+> For more detail on individual policies, refer to the [Policy Configuration Guide](/product-guide/policies).
 
-- On the **Project Summary** page:
-  - Review your project settings and configuration
-  - Edit previous steps if needed
-- Click **Publish Project**  
-  A success message will confirm your project has been published
-- Click **View Project** to go directly to the Project Dashboard
+#### 3.2 Configure Response
+
+1. Set response parameters to guide the LLM’s behavior.
+2. These configurations determine tone, scope, or fallback responses depending on your use case.
+
+![Screenshot: Configure Response tab](#)
+
+#### 3.3 Test Policies
+
+1. Use the built-in sandbox environment to:
+   - Interact with a test chatbot
+   - Validate how policies behave in real time
+   - Review flagged prompts and responses
+2. Once satisfied, click **Continue to Integration** to proceed.
+
+![Screenshot: Test Policies interface](#)
+
+---
+
+### Step 4: Configure Integration
+
+1. Select an **Integration Type** from the available options.
+2. Once selected, your **API Key** will be displayed.
+3. Click **Continue to Summary**.
+
+![Screenshot: Integration step with API key display](#)
+
+---
+
+### Step 5: Review and Publish
+
+1. Review your project’s setup on the **Summary Page**.
+2. Use the edit icons to make changes to any step if needed.
+3. Once confirmed, click **Publish Project**.
+4. A confirmation message will appear: _“Project successfully published”_.
+5. Click **View Project** to open the **Project Dashboard**.
+
+![Screenshot: Project Summary screen with Publish Project button](#)
 
 ---
 
 ## Project Dashboard
 
-After publishing, the **Project Dashboard** displays all key details and project metrics in a central location.
+Once a project is published, the **Project Dashboard** becomes the central view for all configuration, activity, and policy enforcement related to that project.
+
+Key sections include:
+- **Project Details**
+- **Connection Status**
+- **Policy Summary**
+- **Integration Details**
+- **Usage and Violation Metrics**
+
+![Screenshot: Project Dashboard overview](#)
 
 ---
 
 ## Editing Project Details
 
-1. Navigate to the **Dashboard** and locate your project in the **Project Table**
-2. In the **Actions** column, click the **ellipsis** icon
-3. Click **View Project** to open the Project Dashboard
-4. In the first section titled **Project Details**, click the **Edit** button
-5. You will be redirected to **Step 1** of the project setup
-6. Make necessary changes and click **Save Changes**
+### To Edit an Existing Project:
+
+1. Navigate to the **Dashboard**.
+2. In the **Project Table**, find your project and click the **ellipsis (⋮)** in the **Actions** column.
+3. Select **View Project**.
+4. On the **Project Dashboard**, locate the **Project Details** quadrant.
+5. Click **Edit** to return to **Step 1** of the setup process.
+6. Modify the necessary fields and click **Save Changes**.
+
+![Screenshot: Editing project from dashboard with ellipsis menu](#)
 
 ---
 
 ## Best Practices
 
-- Always test policy configurations in the **Test Policies** tab before publishing
-- Assign appropriate **Project Owners** to maintain oversight
-- Use descriptive descriptions and relevant tags to improve project information capture
+- Use **Test Policies** to validate behavior before going live.
+- Start with **Log Only** mode to monitor policy performance without disruption.
+- Apply **Log and Override** to sensitive projects for stricter compliance.
+- Regularly review **Project Dashboard metrics** for enforcement insights.
+- Use descriptive names and tags to improve search and reporting.
 
 ---
 
