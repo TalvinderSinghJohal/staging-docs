@@ -23,7 +23,6 @@
           {
             "group": "Product Guide",
             "pages": [
-              "product-guide/user-onboarding",
               "product-guide/projects",
               "product-guide/reporting",
               "product-guide/permissions",
