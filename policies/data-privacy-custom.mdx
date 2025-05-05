@@ -116,24 +116,75 @@ The organisation needs to:
 
 ## How to Use the Policy
 
-> **Note:** UI configuration guidance will be added shortly.
+> **Note:** The steps below guide you through configuring the Data Privacy (Custom) Policy using the policy workflow interface.
 
-### Enabling the Policy
+### Step 1: Navigate to the Policy Workflow
 
-*Placeholder for steps to enable the custom data privacy policy.*
+1. From the **Dashboard**, open the **Project Overview** by selecting your project from the **Project Table**.
+2. In the **Policy** section of the Project Overview, click **Edit Policy** to launch the policy configuration workflow.
 
-### Selecting Custom Entities
-
-*Placeholder for instructions on selecting and managing sensitive entities.*
-
-### Setting Behaviour
-
-*Placeholder for steps to configure Monitor Only or Monitor & Override.*
-
-### Saving and Applying the Policy
-
-*Placeholder for finalising the configuration and applying it to the project.*
+![Screenshot: Enter policy workflow from Project Overview](#)
 
 ---
 
-With the **Data Privacy (Custom) Policy**, AltrumAI gives organisations the flexibility and control needed to manage the most specific and sensitive types of data—empowering truly customised, secure AI usage.
+### Step 2: Select and Enable the Data Privacy (Custom) Policy
+
+1. In the **Configure Policies** tab, a list of available policies will be displayed.
+2. Click on **Data Privacy (Custom)** to view its configuration options on the right-hand side.
+3. Toggle the **Enable Policy** switch to **ON** at the top of the panel to begin editing.
+
+![Screenshot: Selecting and enabling Data Privacy (Custom) policy](#)
+
+---
+
+### Step 3: Select Custom Sensitive Entities
+
+1. Under **Entity Categories**, you'll see a set of expandable groups. Click on any group to reveal its entities:
+   - **Personal Identification & Demographic**
+   - **Government and Legal Identifiers**
+   - **Contact & Online Presence**
+   - **Healthcare & Medical**
+   - **Financial and Banking**
+   - **Access Credentials & Security**
+   - **Organisational & Professional**
+   - **Temporal & Analytical**
+2. Within each expanded category, check the boxes for the specific sensitive entities you want to monitor (e.g., email address, passport number, IP address).
+3. As entities are selected, they will appear as **tags** under the **Selected Entities** section for easy review and removal.
+
+![Screenshot: Expandable entity categories and selected entity tags](#)
+
+---
+
+### Step 4: Set Application Scope
+
+1. Under the **Apply Policy To** section, select where you want the policy enforced:
+   - **Prompt** – User inputs only
+   - **Response** – AI-generated outputs only
+   - **Both** – Full bidirectional coverage
+
+![Screenshot: Prompt / Response / Both scope selection](#)
+
+---
+
+### Step 5: Configure Enforcement Behaviour
+
+1. Under **Behaviour**, choose how the policy should respond to detected sensitive data:
+   - **Log Only** – Capture and log entity violations without interruption.
+   - **Log and Override** – Block the interaction and return a smart, policy-aware response.
+
+![Screenshot: Behaviour settings](#)
+
+---
+
+### Step 6: Save, Test, and Apply the Policy
+
+1. Click **Save Changes** to store your selected entities and configuration.
+2. *(Optional)* Go to the **Test Policies** tab to evaluate how the policy behaves in real time with a chatbot.
+3. Return to the **Configure Policies** tab and click **Apply Policies** to enforce your changes across the project.
+4. A confirmation message will notify you that the policy has been successfully applied.
+
+![Screenshot: Save, test, and apply confirmation](#)
+
+---
+
+The **Data Privacy (Custom) Policy** provides precise, entity-level protection for sensitive information unique to your organisation—ensuring total control over data handling and policy enforcement.

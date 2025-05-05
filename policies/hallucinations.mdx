@@ -103,20 +103,47 @@ The organisation must:
 
 ## How to Use the Policy
 
-> **Note:** This section will be updated with detailed UI setup guidance.
+> **Note:** The following steps explain how to configure the RAG Hallucinations Policy within the policy workflow. This policy applies **only to AI-generated responses** and cannot be applied to prompts.
 
-### Enabling the Policy
+### Step 1: Navigate to the Policy Workflow
 
-*Placeholder for enabling steps.*
+1. From the **Dashboard**, select your project to access the **Project Overview**.
+2. In the **Policy** section, click **Edit Policy** to open the policy configuration workflow.
 
-### Setting Enforcement Mode
-
-*Placeholder for selecting Log Only or Log and Override.*
-
-### Saving and Applying the Policy
-
-*Placeholder for finalising and activating policy settings.*
+![Screenshot: Access policy configuration](#)
 
 ---
 
-With the **Hallucinations Policy**, AltrumAI enables organisations to confidently deliver accurate, verifiable, and responsible AI-generated content—minimising risk and maximising trust.
+### Step 2: Select and Enable the RAG Hallucinations Policy
+
+1. In the **Configure Policies** tab, locate and click on **RAG Hallucinations** from the policy list.
+2. The configuration panel will open on the right.
+3. Toggle the **Enable Policy** switch to **ON** to activate the configuration options.
+
+![Screenshot: Enable RAG Hallucinations Policy](#)
+
+---
+
+### Step 3: Configure Enforcement Behaviour
+
+1. Under **Behaviour**, choose how the system should handle hallucinations:
+   - **Log Only** – Record hallucinated responses for visibility and auditing.
+   - **Log and Override** – Block hallucinated responses and return a smart fallback message to the user.
+
+![Screenshot: Behaviour selection - Log Only or Log and Override](#)
+
+---
+
+### Step 4: Save, Test, and Apply the Policy
+
+1. Click **Save Changes** to store your configuration.
+2. *(Optional)* Navigate to the **Test Policies** tab to simulate responses and validate how hallucinations are detected and managed.
+3. Return to **Configure Policies** and click **Apply Policies** to enforce your settings.
+4. A confirmation message will confirm that the policy has been successfully applied.
+
+![Screenshot: Save, test, and apply flow](#)
+
+---
+
+The **RAG Hallucinations Policy** ensures that AI-generated responses based on retrieval-augmented generation are accurate, grounded, and verifiable—minimising the risk of fabricated or misleading information reaching end users.
+

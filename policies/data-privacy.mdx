@@ -115,35 +115,70 @@ The firm must prevent confidential client information (e.g., case numbers, legal
 
 ## How to Use the Policy
 
-> **Note:** This section will be expanded with detailed UI-based configuration steps.
+> **Note:** The steps below guide you through configuring the Data Privacy Policy using the policy workflow interface.
 
-### Enabling the Policy
+### Step 1: Navigate to the Policy Workflow
 
-1. Open an existing project and ensure it is connected.  
-2. Navigate to the **Policy Configuration** section.  
-3. Locate **Data Privacy** and click **Configure**.  
-4. Enable **Prompt Configuration** using the toggle switch.  
-5. Click **Save** to store temporary changes (policy is not yet applied).  
-6. Click **Apply** at the bottom of the screen to activate the configuration.
+1. From the **Dashboard**, open the **Project Overview** by selecting your project from the **Project Table**.
+2. In the **Policy** section of the Project Overview, click **Edit Policy** to launch the policy configuration workflow.
 
-### Configuring Regulations
-
-1. Under **Data Privacy Compliance**, select a regulation from the dropdown menu.  
-2. Selected regulations will appear as blue tags with an "X" for removal.
-
-### Configuring Behaviour Settings
-
-1. Under **Choose Behaviour**, select one of the following:
-   - **Monitor Only**
-   - **Monitor & Override**
-
-### Saving and Applying the Policy
-
-1. Click **Save** to store your settings temporarily.  
-2. Click **Apply** to enforce the configuration across your project.  
-3. A success message will confirm activation.
+![Screenshot: Enter policy workflow from Project Overview](#)
 
 ---
 
-With the **Data Privacy Policy**, AltrumAI enables organisations to confidently deploy AI while maintaining strict data compliance, privacy, and trust.
+### Step 2: Select and Enable the Data Privacy Policy
 
+1. In the **Configure Policies** tab, a list of available policies will be displayed.
+2. Click on **Data Privacy** to view its configuration options on the right-hand side.
+3. Toggle the **Enable Policy** switch to **ON** at the top of the panel to begin editing.
+
+![Screenshot: Selecting and enabling Data Privacy policy](#)
+
+---
+
+### Step 3: Select Compliance Framework(s)
+
+1. Under the **Compliance Frameworks** section, check the boxes for any applicable standards you wish to enforce:
+   - GDPR
+   - HIPAA
+   - PHI
+   - PII
+2. You may select one or multiple frameworks based on your organisational requirements.
+
+![Screenshot: Compliance framework checkbox options](#)
+
+---
+
+### Step 4: Set Application Scope
+
+1. Under the **Apply Policy To** section, choose one of the following options:
+   - **Prompt** – Apply the policy to user input only.
+   - **Response** – Apply the policy to AI-generated responses only.
+   - **Both** – Enforce the policy on both user inputs and model outputs.
+
+![Screenshot: Scope selection - Prompt, Response, Both](#)
+
+---
+
+### Step 5: Configure Enforcement Behaviour
+
+1. Under **Behaviour**, choose how you want the policy to respond to violations:
+   - **Log Only** – Log violations for visibility without blocking interactions.
+   - **Log and Override** – Block the interaction and return a smart response, based on your response configuration.
+
+![Screenshot: Behaviour configuration options](#)
+
+---
+
+### Step 6: Save, Test, and Apply the Policy
+
+1. Click **Save Changes** to store your current configuration.
+2. *(Optional)* Navigate to the **Test Policies** tab to validate your setup in a sandbox environment with a live chatbot.
+3. When ready, navigate back to the project dashboard to see and enforce your configuration.
+4. A success message will confirm the policy has been successfully applied to the project.
+
+![Screenshot: Save, test, and apply workflow](#)
+
+---
+
+With the **Data Privacy Policy**, AltrumAI empowers your organisation to enforce strong data protection controls that align with leading compliance frameworks—ensuring responsible and secure AI usage.

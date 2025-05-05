@@ -130,24 +130,77 @@ To ensure patient safety and compliance with ethical and regulatory frameworks, 
 
 ## How to Use the Policy
 
-> **Note**: This section will be refined with full step-by-step UI guidance.
+> **Note:** The following steps guide you through configuring the Sensitive Topic Policy using the policy workflow interface.
 
-### Enabling the Policy
+### Step 1: Navigate to the Policy Workflow
 
-*Placeholder for enabling steps.*
+1. From the **Dashboard**, open your project to access the **Project Overview**.
+2. In the **Policy** section, click **Edit Policy** to begin the policy configuration workflow.
 
-### Configuring Sensitive Topics
-
-*Placeholder for steps to define and edit sensitive topics.*
-
-### Setting Behaviour & Threshold
-
-*Placeholder for choosing enforcement mode and adjusting detection sensitivity.*
-
-### Saving and Applying the Policy
-
-*Placeholder for instructions to save and apply settings across your project.*
+![Screenshot: Access Sensitive Topic policy workflow](#)
 
 ---
 
-With the **Sensitive Topic Policy**, AltrumAI offers a practical and effective way to manage complex content areas, giving your organisation peace of mind and full control over how sensitive discussions are handled.
+### Step 2: Select and Enable the Sensitive Topic Policy
+
+1. In the **Configure Policies** tab, click on **Sensitive Topic** from the list.
+2. The configuration panel will appear on the right-hand side.
+3. Toggle **Enable Policy** to **ON** to begin editing.
+
+![Screenshot: Enable Sensitive Topic policy](#)
+
+---
+
+### Step 3: Add Sensitive Topics
+
+1. In the **Sensitive Topics** input field, type the topics you want to monitor (e.g., "self-harm", "terrorism", "bullying").
+2. Press `Enter` after each entry to add it to the list.
+3. Each topic will appear as a tag beneath the field. Tags can be removed by clicking the **X** next to them.
+
+![Screenshot: Sensitive Topic input field and tag display](#)
+
+---
+
+### Step 4: Set Application Scope
+
+1. Under **Apply Policy To**, select where this policy should be enforced:
+   - **Prompt** – Monitor user input only.
+   - **Response** – Monitor AI output only.
+   - **Both** – Enforce across both input and output directions.
+
+![Screenshot: Scope configuration](#)
+
+---
+
+### Step 5: Configure Enforcement Behaviour
+
+1. Under **Behaviour**, choose how violations should be handled:
+   - **Log Only** – Log sensitive topic occurrences without blocking.
+   - **Log and Override** – Block interaction and return a custom smart response.
+
+![Screenshot: Behaviour settings](#)
+
+---
+
+### Step 6: Adjust Detection Threshold
+
+1. Use the **Threshold Slider** to set how strictly the system should identify sensitive topics:
+   - A **lower value** (e.g., `0.2`) allows broader detection.
+   - A **higher value** (e.g., `0.9`) enforces stricter topic matching.
+
+![Screenshot: Threshold configuration](#)
+
+---
+
+### Step 7: Save, Test, and Apply the Policy
+
+1. Click **Save Changes** to store your configuration settings.
+2. *(Optional)* Go to the **Test Policies** tab to evaluate policy performance in a live testing environment.
+3. Return to **Configure Policies** and click **Apply Policies** to activate the policy.
+4. A confirmation message will confirm successful application.
+
+![Screenshot: Save, test, and apply workflow](#)
+
+---
+
+The **Sensitive Topic Policy** helps your organisation proactively detect and manage harmful or inappropriate topics—ensuring responsible AI usage across sensitive subject areas.

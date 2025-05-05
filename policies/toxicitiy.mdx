@@ -112,20 +112,67 @@ The organisation must ensure that:
 
 ## How to Use the Policy
 
-> **Note:** This section will be finalised with full UI-based configuration instructions.
+> **Note:** The following steps walk you through configuring the Toxicity Detection Policy in the policy workflow.
 
-### Enabling the Policy
+### Step 1: Navigate to the Policy Workflow
 
-*Placeholder for enabling steps.*
+1. From the **Dashboard**, select your project to open the **Project Overview**.
+2. In the **Policy** section, click **Edit Policy** to enter the policy configuration workflow.
 
-### Configuring Behaviour & Threshold
-
-*Placeholder for choosing Log Only or Log and Override, and adjusting sensitivity.*
-
-### Saving and Applying the Policy
-
-*Placeholder for finalising and activating the policy settings.*
+![Screenshot: Open Toxicity policy workflow](#)
 
 ---
 
-By using the **Toxicity Policy**, AltrumAI empowers organisations to create respectful and compliant digital experiences—ensuring that AI conversations remain constructive, appropriate, and aligned with company values.
+### Step 2: Select and Enable the Toxicity Detection Policy
+
+1. In the **Configure Policies** tab, click **Toxicity** from the list of policies.
+2. The configuration panel will appear on the right.
+3. Toggle **Enable Policy** to **ON**.
+
+![Screenshot: Enable Toxicity Detection Policy](#)
+
+---
+
+### Step 3: Set Application Scope
+
+1. Under **Apply Policy To**, choose one of the following:
+   - **Prompt** – Monitor user inputs only.
+   - **Response** – Monitor AI outputs only.
+   - **Both** – Monitor both inputs and outputs.
+
+![Screenshot: Scope options](#)
+
+---
+
+### Step 4: Configure Enforcement Behaviour
+
+1. Under **Behaviour**, select:
+   - **Log Only** – Record instances of toxic content without blocking.
+   - **Log and Override** – Block toxic prompts/responses and replace with a smart fallback message.
+
+![Screenshot: Policy behaviour options](#)
+
+---
+
+### Step 5: Adjust Detection Threshold
+
+1. Use the **Threshold Slider** to set detection sensitivity:
+   - Lower thresholds (e.g., `0.2`) catch broader cases, reducing false negatives.
+   - Higher thresholds (e.g., `0.9`) enforce stricter toxicity detection.
+
+![Screenshot: Threshold configuration](#)
+
+---
+
+### Step 6: Save, Test, and Apply
+
+1. Click **Save Changes** to store your configuration.
+2. *(Optional)* Test your policy under the **Test Policies** tab.
+3. Return to **Configure Policies** and click **Apply Policies** to activate it.
+4. A success message will confirm that the policy is live.
+
+![Screenshot: Save and apply confirmation](#)
+
+---
+
+The **Toxicity Detection Policy** helps maintain professional and respectful AI interactions by detecting and managing harmful language with configurable precision.

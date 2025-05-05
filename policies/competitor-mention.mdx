@@ -120,24 +120,79 @@ Employees might unintentionally prompt the AI to mention competitor names or gen
 
 ## How to Use the Policy
 
-> **Note**: This section will be completed with detailed UI configuration steps.
+> **Note:** The following steps guide you through configuring the Competitor Mention Policy using the policy workflow interface.
 
-### Enabling the Policy
+### Step 1: Navigate to the Policy Workflow
 
-*Placeholder for enabling steps.*
+1. From the **Dashboard**, open your project to access the **Project Overview**.
+2. In the **Policy** section, click **Edit Policy** to launch the policy configuration workflow.
 
-### Configuring Competitor Names
-
-*Placeholder for steps to define and edit competitor terms.*
-
-### Setting Behaviour & Threshold
-
-*Placeholder for selecting enforcement mode and adjusting detection sensitivity.*
-
-### Saving and Applying the Policy
-
-*Placeholder for UI guidance to save and apply policy settings.*
+![Screenshot: Access Competitor Mention policy workflow](#)
 
 ---
 
-With the **Competitor Mention Policy**, AltrumAI gives organisations the tools they need to manage brand reputation and regulatory alignment, keeping AI communications on-message and secure.
+### Step 2: Select and Enable the Competitor Mention Policy
+
+1. In the **Configure Policies** tab, click on **Competitor Mention** from the list of available policies.
+2. The configuration panel will appear on the right-hand side of the screen.
+3. Toggle **Enable Policy** to **ON** to activate the configuration options.
+
+![Screenshot: Enable Competitor Mention policy](#)
+
+---
+
+### Step 3: Add Competitor Names and Variations
+
+1. In the **Competitor Names** input field, type the names of competitors or any known variations (e.g., "OpenAI", "Open AI", "OAI").
+2. Press `Enter` after each entry to add it to the list.
+3. Each entry will appear as a tag below the input field. You can remove any entry by clicking the **X** on the tag.
+
+📌 This allows you to detect and manage references to direct competitors across user input and AI output.
+
+![Screenshot: Competitor name input and tag list](#)
+
+---
+
+### Step 4: Set Application Scope
+
+1. Under **Apply Policy To**, choose where the policy will be enforced:
+   - **Prompt** – Detect mentions in user input.
+   - **Response** – Detect mentions in AI output.
+   - **Both** – Monitor both directions.
+
+![Screenshot: Prompt, Response, Both scope options](#)
+
+---
+
+### Step 5: Configure Enforcement Behaviour
+
+1. Under **Behaviour**, choose how the policy should respond:
+   - **Log Only** – Log competitor mentions without interrupting interaction.
+   - **Log and Override** – Block the interaction and return a smart fallback message.
+
+![Screenshot: Behaviour configuration options](#)
+
+---
+
+### Step 6: Adjust Detection Threshold
+
+1. Use the **Threshold Slider** to fine-tune sensitivity:
+   - A **lower threshold** (e.g., `0.2`) is more permissive and detects broader variations.
+   - A **higher threshold** (e.g., `0.9`) applies stricter detection.
+
+![Screenshot: Threshold slider](#)
+
+---
+
+### Step 7: Save, Test, and Apply the Policy
+
+1. Click **Save Changes** to store your configuration.
+2. *(Optional)* Use the **Test Policies** tab to validate policy enforcement in a sandbox environment.
+3. Return to the **Configure Policies** tab and click **Apply Policies** to activate the policy.
+4. A confirmation message will confirm that your policy is live.
+
+![Screenshot: Save and apply actions](#)
+
+---
+
+The **Competitor Mention Policy** helps safeguard your brand and strategy by detecting and controlling references to defined competitors across user and AI interactions—ensuring alignment with internal guidelines and competitive positioning.

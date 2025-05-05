@@ -103,20 +103,46 @@ The firm needs to:
 
 ## How to Use the Policy
 
-> **Note:** Detailed UI setup guidance will be provided here.
+> **Note:** The following steps explain how to configure the Prompt Injection Policy within the policy workflow. This policy applies **only to user-submitted prompts** and cannot be applied to responses.
 
-### Enabling the Policy
+### Step 1: Navigate to the Policy Workflow
 
-*Placeholder for enabling steps.*
+1. From the **Dashboard**, open your project by selecting it from the **Project Table**.
+2. In the **Policy** section, click **Edit Policy** to open the policy configuration workflow.
 
-### Setting Enforcement Mode
-
-*Placeholder for selecting Log Only or Log and Override.*
-
-### Saving and Applying the Policy
-
-*Placeholder for finalising and activating policy settings.*
+![Screenshot: Access Prompt Injection policy workflow](#)
 
 ---
 
-The **Prompt Injection Policy** is a critical safeguard in AltrumAI, offering protection against manipulation and misuse—ensuring that your AI systems remain consistent, reliable, and secure.
+### Step 2: Select and Enable the Prompt Injection Policy
+
+1. In the **Configure Policies** tab, click on **Prompt Injection** from the list of available policies.
+2. The configuration panel will display on the right-hand side.
+3. Toggle the **Enable Policy** switch to **ON** to begin configuration.
+
+![Screenshot: Enable Prompt Injection Policy](#)
+
+---
+
+### Step 3: Configure Enforcement Behaviour
+
+1. Under **Behaviour**, select how the system should handle detected prompt injection attempts:
+   - **Log Only** – Log the violation without blocking the prompt.
+   - **Log and Override** – Block the prompt and return a smart fallback message, preventing manipulation of the system.
+
+![Screenshot: Behaviour configuration - Log Only or Log and Override](#)
+
+---
+
+### Step 4: Save, Test, and Apply the Policy
+
+1. Click **Save Changes** to store your configuration.
+2. *(Optional)* Use the **Test Policies** tab to simulate injection attempts and validate policy behaviour.
+3. Return to the **Configure Policies** tab and click **Apply Policies** to activate the policy.
+4. A success message will confirm your settings have been successfully applied.
+
+![Screenshot: Save and apply configuration](#)
+
+---
+
+The **Prompt Injection Policy** helps protect your AI systems from manipulation and instruction overrides by identifying and blocking prompt-based attempts to interfere with system behaviour.
