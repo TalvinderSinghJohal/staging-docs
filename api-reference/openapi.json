@@ -1,2527 +1,423 @@
 {
   "openapi": "3.1.0",
   "info": {
-      "title": "AltrumAI API",
-      "description": "\n# Introduction\n\n## What is AltrumAI?\n\nAltrumAI aims to empower orgranisations with ethical generative AI by offering a\nplatform that integrates seamlessly with existing business applications. Our solution\nensures compilance with data ethics standards, enabling safe and responsible AI deployment.\n\n<a name=\"initial-setup\"></a>\n\n## Getting started\n\nThe functionalities of the AltrumAI platform will be made available through a comprehensive suite\nof robust APIs. These APIs will offer flexibility and customisation options to address the specific\nneeds of each enterprise.\n\nThe steps in this guide briefly describes how to integrate AltrumAI API with your\napp and backend. To retrieve the results of the analysis follow the next steps:\n\n### 1. Access it by the Project-API-Key\n\nTo initiate your experience with AltrumAI, we kindly request that you submit your\nrequest for platform access through our official website: <a href=\"https://www.altrum.ai/\">AltrumAI</a>. \nThis process ensures that we can effectively manage and assist with your onboarding,\nproviding you with the necessary resources and support to maximise your use of our\nplatform. To get started with AltrumAI, please send your request for using the platform\nvia our official website.\n\n***Note: All API requests should include your Project API Key in request headers as shown:***\n```shell\nProject-API-Key: PROJECT_API_KEY\n```\n\n### 2. Integrate AltrumAI API via SDKs\n\n• You can interact with API via HTTPS using our official ***Python*** client SDK or ***Java*** client SDK.\nThese libraries are not public and will only be provided along with the setup guide.\n\n1. Install and import one of the SDKs in your application\n\n2. Initialise the Client and configure which API you want to use\n\n3. Make the API calls and handle the responses easily\n\n\n### 3. Fetch data from the API\n\nUse the AltrumAI API via our SDKs to retrieve specific data after checking ethical standards.\nYou can find more details on the endpoints and the response models in the API section of the documentation.\n\n",
-      "contact": {
-          "name": "Contact Support",
-          "email": "support@altrum.ai"
-      },
-      "version": "nova.1.1.10",
-      "x-logo": {
-          "url": "/static/logo.svg"
-      }
+    "title": "AltrumAI API",
+    "description": "\n# Introduction\n\nWelcome to the ***AltrumAI API*** – an enterprise-grade unified proxy designed to provide secure, policy-based access to leading\nLarge Language Model (LLM) APIs and AI platforms.\n\nThe AltrumAI API acts as a centralised gateway to services including ***OpenAI, Anthropic, Azure AI Studio, Amazon Bedrock,***\nand ***Google Gemini***. By leveraging advanced guardrails and enforcement mechanisms, it ensures that your organisation can safely\nand responsibly integrate AI capabilities while adhering to internal policies, data privacy regulations, and ethical standards.\n\nBuilt for scale and flexibility, AltrumAI empowers enterprises to:\n\n• ***Control access*** to AI services through dynamic, project-level policies in your organisation.\n\n• ***Enforce compliance*** with data handling, audit, and usage guidelines.\n\n• ***Abstract complexity*** by managing multiple AI providers through a single API interface.\n\nTo begin using the AltrumAI API, you'll need a Project API Key, which must be included in the request headers. \nYou can obtain this key by registering your AI project on the <a href=\"https://platform.altrum.ai/login\">AltrumAI Platform</a>.\n\nThis documentation will guide you through setup, usage, and advanced features of AltrumAI API, ensuring you can use AI responsibly across your organisation at scale.\n",
+    "contact": {
+      "name": "Contact Support",
+      "email": "support@altrum.ai"
+    },
+    "version": "aurora.1.1.4",
+    "x-logo": {
+      "url": "/static/logo.svg"
+    }
   },
   "servers": [
-      {
-          "url": "http://localhost:8000",
-          "description": "Development"
-      },
-      {
-          "url": "https://api.altrum.ai",
-          "description": "Production"
-      }
+    {
+      "url": "https://api.altrum.ai/",
+      "description": "Production"
+    }
   ],
   "paths": {
-      "/v1/openai/chat/completions": {
-          "post": {
-              "tags": [
-                  "OpenAI Proxy"
-              ],
-              "summary": "Chat Completions",
-              "description": "***Acts as an Openai Proxy for the APIs.***",
-              "operationId": "chat_completions_v1_openai_chat_completions_post",
-              "parameters": [
-                  {
-                      "name": "authorization",
-                      "in": "header",
-                      "required": true,
-                      "schema": {
-                          "type": "string",
-                          "description": "*Use OpenAI client sdk along with OpenAI API key to use this API. Use the base url /v1/openai*",
-                          "title": "Authorization"
-                      },
-                      "description": "*Use OpenAI client sdk along with OpenAI API key to use this API. Use the base url /v1/openai*"
-                  }
-              ],
-              "requestBody": {
-                  "required": true,
-                  "content": {
-                      "application/json": {
-                          "schema": {
-                              "$ref": "#/components/schemas/ModelRequest"
-                          }
-                      }
-                  }
-              },
-              "responses": {
-                  "200": {
-                      "description": "Successful Response",
-                      "content": {
-                          "application/json": {
-                              "schema": {
-                                  "$ref": "#/components/schemas/ModelResponse"
-                              }
-                          }
-                      }
-                  },
-                  "401": {
-                      "content": {
-                          "application/json": {
-                              "schema": {
-                                  "$ref": "#/components/schemas/Status401"
-                              }
-                          }
-                      },
-                      "description": "Unauthorized"
-                  },
-                  "422": {
-                      "content": {
-                          "application/json": {
-                              "schema": {
-                                  "$ref": "#/components/schemas/Status422"
-                              }
-                          }
-                      },
-                      "description": "Unprocessable Entity"
-                  },
-                  "500": {
-                      "content": {
-                          "application/json": {
-                              "schema": {
-                                  "$ref": "#/components/schemas/Status500"
-                              }
-                          }
-                      },
-                      "description": "Internal Server Error"
-                  }
-              },
-              "x-codeSamples": [
-                  {
-                      "lang": "Shell",
-                      "source": "curl --location 'https://api.altrum.ai/v1/openai/chat/completions' --header 'Authorization: Bearer OPENAI_API_KEY' --header 'Project-Api-Key: ALTRUMAI_PROJECT_API_KEY' --header 'Content-Type: application/json' --data '{\n    \"model\":\"gpt-4o\",\n    \"messages\": [\n        {\"role\":\"assistant\", \"content\":\"You are a helpful assistant\"},\n        {\"role\":\"user\", \"content\":\"Hello!\"}\n    ],\n    \"stream\":false\n}'\n",
-                      "label": "Shell"
-                  },
-                  {
-                      "lang": "Python",
-                      "source": "import openai\nopenai.api_key = 'OPENAI_API_KEY'\nopenai.base_url = 'https://api.altrum.ai/v1/openai/'\nresponse = openai.chat.completions.create(\n        model='gpt-4o-mini',\n        messages=[\n            {'role': 'assistant', 'content': 'You are a helpful assistant.'},\n            {'role': 'user', 'content': 'Hello!'}\n        ],\n        stream=False,\n        extra_headers={'Project-Api-Key': 'ALTRUMAI_PROJECT_API_KEY'},\n    )\nprint(response.choices[0].message.content)\n",
-                      "label": "Python"
-                  },
-                  {
-                      "lang": "Javascript",
-                      "source": "const { OpenAI } = require(\"openai\");\n\nconst openai = new OpenAI({\n    baseURL: \"https://api.altrum.ai/v1/openai/\",\n    apiKey: \"OPENAI_API_KEY\",\n    defaultHeaders: {\"Project-Api-Key\": \"ALTRUMAI_PROJECT_API_KEY\"}\n    });\n\n(async () => {\nconst completion = await openai.chat.completions.create({\n    model: \"gpt-4o-mini\",\n    messages: [\n    { role: \"assistant\", content: \"You are a helpful assistant\" },\n    { role: \"user\", content: \"Hello!\" }\n    ],\n    stream: false\n});\nconsole.log(completion.choices[0].message.content);\n})();\n",
-                      "label": "Javascript"
-                  }
-              ]
+    "/v1/openai/chat/completions": {
+      "post": {
+        "tags": ["OpenAI Proxy"],
+        "summary": "OpenAI Chat Completions",
+        "description": "Proxy endpoint for OpenAI Chat Completions API",
+        "operationId": "chat_completions_v1_openai_chat_completions_post",
+        "security": [{"APIKeyHeader": []}],
+        "parameters": [
+          {
+            "name": "router_name",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "title": "Router Name"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "description": "OpenAI API key in format 'Bearer sk-...'",
+              "title": "Authorization"
+            },
+            "description": "OpenAI API key in format 'Bearer sk-...'"
           }
-      },
-      "/v1/amazon-bedrock/chat/completions": {
-          "post": {
-              "tags": [
-                  "Amazon Bedrock Proxy"
-              ],
-              "summary": "Chat Completions",
-              "description": "***Acts as an Amazon Bedrock Proxy for the APIs.***",
-              "operationId": "chat_completions_v1_amazon_bedrock_chat_completions_post",
-              "parameters": [
-                  {
-                      "name": "aws-access-key-id",
-                      "in": "header",
-                      "required": true,
-                      "schema": {
-                          "type": "string",
-                          "description": "AWS ACCESS KEY",
-                          "title": "Aws-Access-Key-Id"
-                      },
-                      "description": "AWS ACCESS KEY"
-                  },
-                  {
-                      "name": "aws-secret-access-key",
-                      "in": "header",
-                      "required": true,
-                      "schema": {
-                          "type": "string",
-                          "description": "AWS SECRET ACCESS KEY",
-                          "title": "Aws-Secret-Access-Key"
-                      },
-                      "description": "AWS SECRET ACCESS KEY"
-                  },
-                  {
-                      "name": "aws-region-name",
-                      "in": "header",
-                      "required": true,
-                      "schema": {
-                          "type": "string",
-                          "description": "AWS Region Name",
-                          "title": "Aws-Region-Name"
-                      },
-                      "description": "AWS Region Name"
-                  }
-              ],
-              "requestBody": {
-                  "required": true,
-                  "content": {
-                      "application/json": {
-                          "schema": {
-                              "$ref": "#/components/schemas/AmazonBedrockRequest"
-                          }
-                      }
-                  }
-              },
-              "responses": {
-                  "200": {
-                      "description": "Successful Response",
-                      "content": {
-                          "application/json": {
-                              "schema": {
-                                  "$ref": "#/components/schemas/AmazonBedrockResponse"
-                              }
-                          }
-                      }
-                  },
-                  "401": {
-                      "content": {
-                          "application/json": {
-                              "schema": {
-                                  "$ref": "#/components/schemas/Status401"
-                              }
-                          }
-                      },
-                      "description": "Unauthorized"
-                  },
-                  "422": {
-                      "content": {
-                          "application/json": {
-                              "schema": {
-                                  "$ref": "#/components/schemas/Status422"
-                              }
-                          }
-                      },
-                      "description": "Unprocessable Entity"
-                  },
-                  "500": {
-                      "content": {
-                          "application/json": {
-                              "schema": {
-                                  "$ref": "#/components/schemas/Status500"
-                              }
-                          }
-                      },
-                      "description": "Internal Server Error"
-                  }
-              },
-              "x-codeSamples": [
-                  {
-                      "lang": "Shell",
-                      "source": "curl --location 'https://api.altrum.ai/v1/amazon-bedrock/chat/completions' --header 'Project-Api-Key: ALTRUMAI_PROJECT_API_KEY' --header 'aws-access-key-id: AWS_ACCESS_KEY_ID' --header 'aws-secret-access-key: AWS_SECRET_ACCESS_KEY' --header 'aws-region-name: AWS_REGION_NAME' --header 'Content-Type: application/json' --data '{\n    \"model\": \"meta.llama3-8b-instruct-v1:0\",\n    \"messages\": [\n        {\"role\":\"assistant\", \"content\":\"You are a helpful assistant\"},\n        {\"role\":\"user\", \"content\":\"Hello!\"}\n    ],\n    \"stream\":false\n}'\n",
-                      "label": "Shell"
-                  },
-                  {
-                      "lang": "Python",
-                      "source": "import openai\nimport boto3\nimport os\n\nsession = boto3.Session(aws_access_key_id = os.getenv(\"AWS_ACCESS_KEY_ID\"),\n                        aws_secret_access_key = os.getenv(\"AWS_SECRET_ACCESS_KEY\"),\n                        region_name= os.getenv(\"AWS_REGION\"))\n\nopenai.api_key = \"ANYTHING\"\nopenai.base_url = \"https://api.altrum.ai/v1/amazon-bedrock/\"\naws_access_key_id = os.getenv(\"AWS_ACCESS_KEY_ID\")\naws_secret_access_key = os.getenv(\"AWS_SECRET_ACCESS_KEY\")\naws_region_name = os.getenv(\"AWS_REGION\")\n\nresponse = openai.chat.completions.create(\n    model=\"amazon.titan-text-express-v1\",\n    messages=[\n        {\"role\": \"assistant\", \"content\": \"You are a helpful assistant.\"},\n        {\"role\": \"user\", \"content\": \"Hello\"}\n    ],\n    stream=False,\n    extra_headers = {\"Project-Api-Key\": \"ALTRUMAI_PROJECT_API_KEY\", \n                    \"aws-access-key-id\":aws_access_key_id, \n                    \"aws-secret-access-key\":aws_secret_access_key,\n                    \"aws-region-name\":aws_region_name},\n)\nprint(response.choices[0].message.content)\n",
-                      "label": "Python"
-                  },
-                  {
-                      "lang": "Javascript",
-                      "source": "const { OpenAI } = require(\"openai\");\n\nconst aws_access_key_id = \"AWS_ACCESS_KEY_ID\";\nconst aws_secret_access_key = \"AWS_SECRET_ACCESS_KEY\"; \nconst aws_region_name = \"REGION_NAME\"; \n\n(async () => {\n    const openai = new OpenAI({\n        baseURL: \"https://api.altrum.ai/v1/amazon-bedrock/\",\n        apiKey:\"ANYTHING\",\n        defaultHeaders: {\n            \"Project-Api-Key\": \"ALTRUMAI_PROJECT_API_KEY\",\n            \"aws-access-key-id\": aws_access_key_id,\n            \"aws-secret-access-key\": aws_secret_access_key,\n            \"aws-region-name\": aws_region_name,}\n        });\n    const completion = await openai.chat.completions.create({\n        model: \"amazon.titan-text-express-v1\",\n        messages: [\n        { role: \"assistant\", content: \"You are a helpful assistant\" },\n        { role: \"user\", content: \"Hello\" },\n        ],\n        stream: false,\n    });\n    console.log(completion.choices[0].message.content);\n})();\n",
-                      "label": "Javascript"
-                  }
-              ]
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/OpenAIRequest"
+              }
+            }
           }
-      },
-      "/v1/azure/{endpoint}/openai/deployments/{deployment_id}/chat/completions": {
-          "post": {
-              "tags": [
-                  "Azure OpenAI Proxy"
-              ],
-              "summary": "Chat Completions",
-              "description": "***Acts as an Azure OpenAI Proxy for the APIs.***",
-              "operationId": "chat_completions_v1_azure__endpoint__openai_deployments__deployment_id__chat_completions_post",
-              "parameters": [
-                  {
-                      "name": "endpoint",
-                      "in": "path",
-                      "required": true,
-                      "schema": {
-                          "type": "string",
-                          "description": "The endpoint which consists of the path where Azure OpenAI supports the `Protocol and hostname`",
-                          "title": "Endpoint"
-                      },
-                      "description": "The endpoint which consists of the path where Azure OpenAI supports the `Protocol and hostname`"
-                  },
-                  {
-                      "name": "deployment_id",
-                      "in": "path",
-                      "required": true,
-                      "schema": {
-                          "type": "string",
-                          "description": "Deployment ID is the `Model Name` which was deployed.",
-                          "title": "Deployment Id"
-                      },
-                      "description": "Deployment ID is the `Model Name` which was deployed."
-                  },
-                  {
-                      "name": "api-version",
-                      "in": "query",
-                      "required": true,
-                      "schema": {
-                          "type": "string",
-                          "description": "The latest API version which is present on microsoft official website",
-                          "title": "Api-Version"
-                      },
-                      "description": "The latest API version which is present on microsoft official website"
-                  },
-                  {
-                      "name": "authorization",
-                      "in": "header",
-                      "required": true,
-                      "schema": {
-                          "type": "string",
-                          "description": "Use OpenAI client SDK along with Azure OpenAI API key.",
-                          "title": "Authorization"
-                      },
-                      "description": "Use OpenAI client SDK along with Azure OpenAI API key."
-                  }
-              ],
-              "requestBody": {
-                  "required": true,
-                  "content": {
-                      "application/json": {
-                          "schema": {
-                              "$ref": "#/components/schemas/AzureModelRequest"
-                          }
-                      }
-                  }
-              },
-              "responses": {
-                  "200": {
-                      "description": "Successful Response",
-                      "content": {
-                          "application/json": {
-                              "schema": {
-                                  "$ref": "#/components/schemas/AzureModelResponse"
-                              }
-                          }
-                      }
-                  },
-                  "401": {
-                      "content": {
-                          "application/json": {
-                              "schema": {
-                                  "$ref": "#/components/schemas/Status401"
-                              }
-                          }
-                      },
-                      "description": "Unauthorized"
-                  },
-                  "422": {
-                      "content": {
-                          "application/json": {
-                              "schema": {
-                                  "$ref": "#/components/schemas/Status422"
-                              }
-                          }
-                      },
-                      "description": "Unprocessable Entity"
-                  },
-                  "500": {
-                      "content": {
-                          "application/json": {
-                              "schema": {
-                                  "$ref": "#/components/schemas/Status500"
-                              }
-                          }
-                      },
-                      "description": "Internal Server Error"
-                  }
-              },
-              "x-codeSamples": [
-                  {
-                      "lang": "Shell",
-                      "source": "curl --location 'https://api.altrum.ai/v1/azure/{ENDPOINT}/openai/deployments/{DEPLOYMENT_ID}/chat/completions?api-version=2024-10-21' --header 'Authorization: Bearer AZURE_OPENAI_API_KEY' --header 'Project-Api-Key: ALTRUMAI_PROJECT_API_KEY' --header 'Content-Type: application/json' --data '{\n    \"model\":\"gpt-4o-mini\",\n    \"messages\": [\n        {\"role\":\"assistant\", \"content\":\"You are a helpful assistant\"},\n        {\"role\":\"user\", \"content\":\"Hello!\"}\n    ],\n    \"stream\":false\n}'\n",
-                      "label": "Shell"
-                  },
-                  {
-                      "lang": "Python",
-                      "source": "from openai import AzureOpenAI\n\nclient = AzureOpenAI(\n    azure_endpoint=\"https://api.altrum.ai/v1/azure/{ENDPOINT}\",\n    azure_deployment=DEPLOYMENT_ID,\n    api_key=AZURE_OPENAI_API_KEY,\n    api_version=\"2024-10-21\",\n    default_headers={\"Project-Api-Key\": \"ALTRUMAI_PROJECT_API_KEY\"}\n)\nresponse = client.chat.completions.create(\n    model=DEPLOYMENT_ID,\n    messages= [ \n        {\"role\": \"assistant\", \"content\": \"You are a helpful assistant.\"},\n        {\"role\": \"user\", \"content\": \"Hello\"},\n    ],\n    stream=False,\n)\nprint(response.choices[0].message.content)\n",
-                      "label": "Python"
-                  },
-                  {
-                      "lang": "Javascript",
-                      "source": "const {AzureOpenAI} = require(\"openai\")\n\nconst client = new AzureOpenAI({ \n    endpoint:\"https://api.altrum.ai/v1/azure/{ENDPOINT}\",\n    deployment:DEPLOYMENT_ID, \n    apiVersion:\"2024-10-21\", \n    defaultHeaders:{\"Project-Api-Key\": \"ALTRUMAI_PROJECT_API_KEY\",\n                    \"Authorization\": \"Bearer AZURE_OPENAI_API_KEY\"\n    },\n    apiKey:\"ANYTHING\"},\n);\n\n(async () => {\n    const completion = await client.chat.completions.create({\n        model:DEPLOYMENT_ID,\n        messages: [\n            {role:\"assistant\", content:\"You are a helpful assistant\"},\n            {role:\"user\", content:\"Hello\"}\n        ],\n        stream:false\n    });\n    console.log(completion.choices[0].message.content);\n})();\n",
-                      "label": "Javascript"
-                  }
-              ]
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/OpenAIModelResponse-Input"
+                }
+              }
+            }
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponse401"
+                }
+              }
+            },
+            "description": "Unauthorized"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponse422"
+                }
+              }
+            },
+            "description": "Unprocessable Entity"
+          },
+          "500": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponse500"
+                }
+              }
+            },
+            "description": "Internal Server Error"
           }
-      },
-      "/v1/azure-ai/{endpoint}/chat/completions": {
-          "post": {
-              "tags": [
-                  "Azure AI Studio Proxy"
-              ],
-              "summary": "Chat Completions",
-              "description": "***Acts as an Azure AI Studio Proxy for the APIs.***",
-              "operationId": "chat_completions_v1_azure_ai__endpoint__chat_completions_post",
-              "parameters": [
-                  {
-                      "name": "endpoint",
-                      "in": "path",
-                      "required": true,
-                      "schema": {
-                          "type": "string",
-                          "description": "The endpoint which consists of the path where Azure AI Studio supports the `Protocol and hostname`",
-                          "title": "Endpoint"
-                      },
-                      "description": "The endpoint which consists of the path where Azure AI Studio supports the `Protocol and hostname`"
-                  },
-                  {
-                      "name": "authorization",
-                      "in": "header",
-                      "required": true,
-                      "schema": {
-                          "type": "string",
-                          "description": "Use OpenAI client SDK along with Azure AI Studio `Resource API Key`.",
-                          "title": "Authorization"
-                      },
-                      "description": "Use OpenAI client SDK along with Azure AI Studio `Resource API Key`."
-                  }
-              ],
-              "requestBody": {
-                  "required": true,
-                  "content": {
-                      "application/json": {
-                          "schema": {
-                              "$ref": "#/components/schemas/AzureAIRequest"
-                          }
-                      }
-                  }
-              },
-              "responses": {
-                  "200": {
-                      "description": "Successful Response",
-                      "content": {
-                          "application/json": {
-                              "schema": {
-                                  "$ref": "#/components/schemas/AzureAIResponse"
-                              }
-                          }
-                      }
-                  },
-                  "401": {
-                      "content": {
-                          "application/json": {
-                              "schema": {
-                                  "$ref": "#/components/schemas/Status401"
-                              }
-                          }
-                      },
-                      "description": "Unauthorized"
-                  },
-                  "422": {
-                      "content": {
-                          "application/json": {
-                              "schema": {
-                                  "$ref": "#/components/schemas/Status422"
-                              }
-                          }
-                      },
-                      "description": "Unprocessable Entity"
-                  },
-                  "500": {
-                      "content": {
-                          "application/json": {
-                              "schema": {
-                                  "$ref": "#/components/schemas/Status500"
-                              }
-                          }
-                      },
-                      "description": "Internal Server Error"
-                  }
-              },
-              "x-codeSamples": [
-                  {
-                      "lang": "Shell",
-                      "source": "curl --location 'https://api.altrum.ai/v1/azure-ai/{ENDPOINT}/chat/completions' --header 'Project-Api-Key: ALTRUMAI_PROJECT_API_KEY' --header 'Authorization: Bearer AZURE_AI_STUDIO_API_KEY' --header 'Content-Type: application/json' --data '{\n    \"model\":MODEL_NAME,\n    \"messages\": [\n        {\"role\":\"assistant\", \"content\":\"You are a helpful assistant\"},\n        {\"role\":\"user\", \"content\":\"Hello\"}\n    ],\n    \"stream\":false\n}'\n",
-                      "label": "Shell"
-                  },
-                  {
-                      "lang": "Python",
-                      "source": "from openai import OpenAI\n\nclient = OpenAI(\n    base_url=\"https://api.altrum.ai/v1/azure-ai/{ENDPOINT}\",\n    api_key= AZURE_AI_STUDIO_API_KEY,\n    default_headers={\"Project-Api-Key\": ALTRUMAI_PROJECT_API_KEY},\n)\nresponse = client.chat.completions.create(\n    model= MODEL_NAME,\n    messages= [ \n        {\"role\": \"assistant\", \"content\": \"You are a helpful assistant.\"},\n        {\"role\": \"user\", \"content\": \"Hello\"},\n    ],\n    stream=False,\n)\nprint(response.choices[0].message.content)\n",
-                      "label": "Python"
-                  },
-                  {
-                      "lang": "Javascript",
-                      "source": "const { OpenAI } = require(\"openai\");\n\nconst openai = new OpenAI({\n    baseURL: \"https://api.altrum.ai/v1/azure-ai/{ENDPOINT}\",\n    apiKey: AZURE_AI_STUDIO_API_KEY,\n    defaultHeaders: {\"Project-Api-Key\": ALTRUMAI_PROJECT_API_KEY}\n    });\n\n(async () => {\nconst completion = await openai.chat.completions.create({\n    model: MODEL_NAME,\n    messages: [\n    { role: \"assistant\", content: \"You are a helpful assistant\" },\n    { role: \"user\", content: \"Hello\" }\n    ],\n    stream: false\n});\nconsole.log(completion.choices[0].message.content);\n})();\n",
-                      "label": "Javascript"
-                  }
-              ]
+        },
+        "x-codeSamples": [
+          {
+            "lang": "Shell",
+            "source": "curl --location 'https://api.altrum.ai/v1/openai/chat/completions' --header 'Authorization: Bearer OPENAI_API_KEY' --header 'Project-Api-Key: ALTRUMAI_PROJECT_API_KEY' --header 'Content-Type: application/json' --data '{\n    \"model\":\"gpt-4o\",\n    \"messages\": [\n        {\"role\":\"assistant\", \"content\":\"You are a helpful assistant\"},\n        {\"role\":\"user\", \"content\":\"Hello!\"}\n    ],\n    \"stream\":false\n}'\n",
+            "label": "Shell"
+          },
+          {
+            "lang": "Python",
+            "source": "import openai\nopenai.api_key = 'OPENAI_API_KEY'\nopenai.base_url = 'https://api.altrum.ai/v1/openai/'\nresponse = openai.chat.completions.create(\n        model='gpt-4o-mini',\n        messages=[\n            {'role': 'assistant', 'content': 'You are a helpful assistant.'},\n            {'role': 'user', 'content': 'Hello!'}\n        ],\n        stream=False,\n        extra_headers={'Project-Api-Key': 'ALTRUMAI_PROJECT_API_KEY'},\n    )\nprint(response.choices[0].message.content)\n",
+            "label": "Python"
+          },
+          {
+            "lang": "Javascript",
+            "source": "const { OpenAI } = require(\"openai\");\n\nconst openai = new OpenAI({\n    baseURL: \"https://api.altrum.ai/v1/openai/\",\n    apiKey: \"OPENAI_API_KEY\",\n    defaultHeaders: {\"Project-Api-Key\": \"ALTRUMAI_PROJECT_API_KEY\"}\n    });\n\n(async () => {\nconst completion = await openai.chat.completions.create({\n    model: \"gpt-4o-mini\",\n    messages: [\n    { role: \"assistant\", content: \"You are a helpful assistant\" },\n    { role: \"user\", content: \"Hello!\" }\n    ],\n    stream: false\n});\nconsole.log(completion.choices[0].message.content);\n})();\n",
+            "label": "Javascript"
           }
-      },
-      "/v1/anthropic/chat/completions": {
-          "post": {
-              "tags": [
-                  "Anthropic Proxy"
-              ],
-              "summary": "Chat Completions",
-              "description": "***Acts as an Anthropic Proxy for the APIs.***",
-              "operationId": "chat_completions_v1_anthropic_chat_completions_post",
-              "parameters": [
-                  {
-                      "name": "authorization",
-                      "in": "header",
-                      "required": true,
-                      "schema": {
-                          "type": "string",
-                          "description": "*Use Anthropic client sdk along with OpenAI API key to use this API.*",
-                          "title": "Authorization"
-                      },
-                      "description": "*Use Anthropic client sdk along with OpenAI API key to use this API.*"
-                  }
-              ],
-              "requestBody": {
-                  "required": true,
-                  "content": {
-                      "application/json": {
-                          "schema": {
-                              "$ref": "#/components/schemas/AnthropicRequest"
-                          }
-                      }
-                  }
-              },
-              "responses": {
-                  "200": {
-                      "description": "Successful Response",
-                      "content": {
-                          "application/json": {
-                              "schema": {
-                                  "$ref": "#/components/schemas/AnthropicResponse"
-                              }
-                          }
-                      }
-                  },
-                  "401": {
-                      "content": {
-                          "application/json": {
-                              "schema": {
-                                  "$ref": "#/components/schemas/Status401"
-                              }
-                          }
-                      },
-                      "description": "Unauthorized"
-                  },
-                  "422": {
-                      "content": {
-                          "application/json": {
-                              "schema": {
-                                  "$ref": "#/components/schemas/Status422"
-                              }
-                          }
-                      },
-                      "description": "Unprocessable Entity"
-                  },
-                  "500": {
-                      "content": {
-                          "application/json": {
-                              "schema": {
-                                  "$ref": "#/components/schemas/Status500"
-                              }
-                          }
-                      },
-                      "description": "Internal Server Error"
-                  }
-              },
-              "x-codeSamples": [
-                  {
-                      "lang": "Shell",
-                      "source": "curl --location 'https://api.altrum.ai/v1/anthropic/chat/completions' --header 'Authorization: ANTHROPIC_API_KEY' --header 'Project-Api-Key: ALTRUMAI_PROJECT_API_KEY' --header 'Content-Type: application/json' --data '{\n    \"model\":\"claude-3-opus-20240229\",\n    \"messages\": [\n        {\"role\":\"user\", \"content\":\"Hello\"},\n        {\"role\":\"system\", \"content\":\"You are a helpful assistant\"}\n    ],\n    \"stream\":false\n}'\n",
-                      "label": "Shell"
-                  },
-                  {
-                      "lang": "Python",
-                      "source": "from openai import OpenAI\nclient = OpenAI(\n    api_key=\"anything\",\n    base_url=\"https://api.altrum.ai/v1/anthropic/\")\n\nresponse = client.chat.completions.create(\n    model=\"claude-3-opus-20240229\", \n    messages=[\n                {\"role\":\"system\", \"content\": \"You are a helpful assistant\"},\n                {\"role\": \"user\", \"content\": \"Hello\"},\n            ],\n    stream=False,\n    extra_headers={\"Project-Api-Key\":\"ALTRUMAI_PROJECT_API_KEY\",\n                    \"Authorization\":\"ANTHROPIC_API_KEY\"})\nprint(response.choices[0].message.content)\n",
-                      "label": "Python"
-                  },
-                  {
-                      "lang": "Javascript",
-                      "source": "const { OpenAI } = require(\"openai\");\n\nconst openai = new OpenAI({\n    baseURL: \"http://ec2-13-234-244-55.ap-south-1.compute.amazonaws.com:3003/v1/anthropic/\",\n    defaultHeaders: {\n        \"Project-Api-Key\": \"YOUR_PROJECT_API_KEY\",\n        \"Authorization\":\"YOUR_AUTHORIZATION_HEADER\"},\n    apiKey: \"anything\"\n});\n\n(async () => {\n        const response = await openai.chat.completions.create({\n            model: \"claude-3-opus-20240229\",\n            messages: [\n                { role: \"system\", content: \"You are a helpful assistant\" },\n                { role: \"user\", content: \"Hello\" }\n            ],\n            stream: false\n        });\n        console.log(response.choices[0].message.content);\n}\n)();\n\n",
-                      "label": "Javascript"
-                  }
-              ]
-          }
-      },
-      "/v1/watsonx-ai/{model_id}/{model_name}/chat/completions": {
-          "post": {
-              "tags": [
-                  "IBM Watsonx.ai Proxy"
-              ],
-              "summary": "Chat Completions",
-              "description": "***Acts as an IBM Watsonx.ai Proxy for the APIs.***",
-              "operationId": "chat_completions_v1_watsonx_ai__model_id___model_name__chat_completions_post",
-              "parameters": [
-                  {
-                      "name": "model_id",
-                      "in": "path",
-                      "required": true,
-                      "schema": {
-                          "type": "string",
-                          "description": "The model service provider",
-                          "title": "Model Id"
-                      },
-                      "description": "The model service provider"
-                  },
-                  {
-                      "name": "model_name",
-                      "in": "path",
-                      "required": true,
-                      "schema": {
-                          "type": "string",
-                          "description": "The name of the model",
-                          "title": "Model Name"
-                      },
-                      "description": "The name of the model"
-                  },
-                  {
-                      "name": "WATSONX_APIKEY",
-                      "in": "header",
-                      "required": true,
-                      "schema": {
-                          "type": "string",
-                          "description": "WATSONX-AI API KEY",
-                          "title": "Watsonx Apikey"
-                      },
-                      "description": "WATSONX-AI API KEY"
-                  },
-                  {
-                      "name": "WATSONX_URL",
-                      "in": "header",
-                      "required": true,
-                      "schema": {
-                          "type": "string",
-                          "description": "WATSONX-AI URL",
-                          "title": "Watsonx Url"
-                      },
-                      "description": "WATSONX-AI URL"
-                  },
-                  {
-                      "name": "WATSONX_PROJECT_ID",
-                      "in": "header",
-                      "required": true,
-                      "schema": {
-                          "type": "string",
-                          "description": "WATSONX-AI PROJECT ID",
-                          "title": "Watsonx Project Id"
-                      },
-                      "description": "WATSONX-AI PROJECT ID"
-                  }
-              ],
-              "requestBody": {
-                  "required": true,
-                  "content": {
-                      "application/json": {
-                          "schema": {
-                              "$ref": "#/components/schemas/WatsonxRequest"
-                          }
-                      }
-                  }
-              },
-              "responses": {
-                  "200": {
-                      "description": "Successful Response",
-                      "content": {
-                          "application/json": {
-                              "schema": {
-                                  "$ref": "#/components/schemas/WatsonxResponse"
-                              }
-                          }
-                      }
-                  },
-                  "401": {
-                      "content": {
-                          "application/json": {
-                              "schema": {
-                                  "$ref": "#/components/schemas/Status401"
-                              }
-                          }
-                      },
-                      "description": "Unauthorized"
-                  },
-                  "422": {
-                      "content": {
-                          "application/json": {
-                              "schema": {
-                                  "$ref": "#/components/schemas/Status422"
-                              }
-                          }
-                      },
-                      "description": "Unprocessable Entity"
-                  },
-                  "500": {
-                      "content": {
-                          "application/json": {
-                              "schema": {
-                                  "$ref": "#/components/schemas/Status500"
-                              }
-                          }
-                      },
-                      "description": "Internal Server Error"
-                  }
-              },
-              "x-codeSamples": [
-                  {
-                      "lang": "Shell",
-                      "source": "curl --location 'https://api.altrum.ai/v1/watsonx-ai/{model_id}/{model_name}/chat/completions' --header 'Project-Api-Key: ALTRUMAI_PROJECT_API_KEY' --header 'WATSONX_APIKEY: WATSONX_API_KEY' --header 'WATSONX_URL: WATSONX_URL' --header 'WATSONX_PROJECT_ID: WATSONX_PROJECT_ID' --header 'Content-Type: application/json' --data '{\n    \"model\": \"{model_id}/{model_name}\",\n    \"messages\": [\n                    {\"role\":\"system\", \"content\": \"You are a helpful assistant\"},\n                    {\"role\": \"user\", \"content\": \"I will kill you\"}\n                ],\n    \"stream\":false\n}'\n",
-                      "label": "Shell"
-                  },
-                  {
-                      "lang": "Python",
-                      "source": "from openai import OpenAI\n\nclient = OpenAI(\n    api_key=\"anything\",\n    base_url=\"https://api.altrum.ai/v1/watsonx-ai/{model_id}/{model_name}/\",\n)\n\nresponse = client.chat.completions.create(\n    model=\"{model_id}/{model_name}\",\n    messages=[\n        {\"role\": \"user\", \"content\": \"Hello\"},\n        {\"role\": \"assistant\", \"content\": \"You are a helpful assistant\"}\n    ],\n    stream=False,\n    extra_headers={\n        \"Project-Api-Key\": \"ALTRUMAI_PROJECT_API_KEY\",\n        \"WATSONX_APIKEY\": \"WATSONX_APIKEY\",\n        \"WATSONX_URL\": \"WATSONX_URL\",\n        \"WATSONX_PROJECT_ID\": \"WATSONX_PROJECT_ID\",\n    }\n)\nprint(response.choices[0].message.content)\n",
-                      "label": "Python"
-                  },
-                  {
-                      "lang": "Javascript",
-                      "source": "const { OpenAI } = require(\"openai\");\n\nconst openai = new OpenAI({\n    baseURL: \"https://api.altrum.ai/v1/watsonx-ai/{model_id}/{model_name}/\",\n    defaultHeaders: {\n        \"Project-Api-Key\": \"ALTRUMAI_PROJECT_API_KEY\",\n        \"WATSONX_APIKEY\": \"WATSONX_APIKEY\",\n        \"WATSONX_URL\": \"WATSONX_URL\",\n        \"WATSONX_PROJECT_ID\": \"WATSONX_PROJECT_ID\",\n    },\n    apiKey: \"anything\"\n});\n\n(async () => {\n        const response = await openai.chat.completions.create({\n            model: \"{model_id}/{model_name}\",\n            messages: [\n                { role: \"system\", content: \"You are a helpful assistant\" },\n                { role: \"user\", content: \"Hello\" }\n            ],\n            stream: false\n        });\n        console.log(response.choices[0].message.content);\n}\n)();\n",
-                      "label": "Javascript"
-                  }
-              ]
-          }
+        ]
       }
+    }
   },
   "components": {
-      "schemas": {
-          "AmazonBedrockRequest": {
-              "properties": {
-                  "model": {
-                      "type": "string",
-                      "enum": [
-                          "amazon.titan-text-express-v1",
-                          "anthropic.claude-3-sonnet-20240229-v1:0",
-                          "anthropic.claude-3-haiku-20240307-v1:0",
-                          "anthropic.claude-3-5-sonnet-20240620-v1:0",
-                          "meta.llama3-8b-instruct-v1:0",
-                          "meta.llama3-70b-instruct-v1:0",
-                          "mistral.mistral-7b-instruct-v0:2",
-                          "mistral.mixtral-8x7b-instruct-v0:1",
-                          "mistral.mistral-large-2402-v1:0"
-                      ],
-                      "maxLength": 30000,
-                      "minLength": 1,
-                      "title": "Model",
-                      "description": "The model used for the chat completion"
-                  },
-                  "messages": {
-                      "items": {
-                          "$ref": "#/components/schemas/Message"
-                      },
-                      "type": "array",
-                      "title": "Messages",
-                      "description": "A list of messages comprising the conversation."
-                  },
-                  "temperature": {
-                      "anyOf": [
-                          {
-                              "type": "number",
-                              "maximum": 2.0,
-                              "minimum": 0.0
-                          },
-                          {
-                              "type": "null"
-                          }
-                      ],
-                      "title": "Temperature",
-                      "description": "What sampling temperature to use. Higher values means the model will take more risks.",
-                      "default": 1.0
-                  },
-                  "top_p": {
-                      "anyOf": [
-                          {
-                              "type": "number",
-                              "maximum": 1.0,
-                              "minimum": 0.0
-                          },
-                          {
-                              "type": "null"
-                          }
-                      ],
-                      "title": "Top P",
-                      "description": "Nucleus sampling, where the model considers the results of the tokens with top_p probability mass. We generally recommend altering this or temperature but not both.",
-                      "default": 1.0
-                  },
-                  "stream": {
-                      "anyOf": [
-                          {
-                              "type": "boolean"
-                          },
-                          {
-                              "type": "null"
-                          }
-                      ],
-                      "title": "Stream",
-                      "description": "If set, partial message deltas will be sent. Tokens will be sent as data-only server-sent events as they become available.",
-                      "default": false
-                  },
-                  "stream_options": {
-                      "anyOf": [
-                          {
-                              "type": "object"
-                          },
-                          {
-                              "type": "null"
-                          }
-                      ],
-                      "title": "Stream Options",
-                      "description": "If stream is true, this include the stream usage functionality and make it include_usage function true.",
-                      "default": false
-                  },
-                  "stop": {
-                      "anyOf": [
-                          {
-                              "items": {
-                                  "type": "string"
-                              },
-                              "type": "array"
-                          },
-                          {
-                              "type": "null"
-                          }
-                      ],
-                      "title": "Stop",
-                      "description": "Specifies up to 4 sequences where the API should stop generating tokens."
-                  },
-                  "max_tokens": {
-                      "anyOf": [
-                          {
-                              "type": "integer",
-                              "exclusiveMinimum": 0.0
-                          },
-                          {
-                              "type": "null"
-                          }
-                      ],
-                      "title": "Max Tokens",
-                      "description": "The token count of your prompt plus max_tokens can't exceed the model's context length.",
-                      "default": 16
-                  },
-                  "logit_bias": {
-                      "anyOf": [
-                          {
-                              "type": "object"
-                          },
-                          {
-                              "type": "null"
-                          }
-                      ],
-                      "title": "Logit Bias",
-                      "description": "Modifies likelihood of specified tokens with bias values."
-                  },
-                  "tools": {
-                      "anyOf": [
-                          {
-                              "items": {
-                                  "type": "string"
-                              },
-                              "type": "array"
-                          },
-                          {
-                              "type": "null"
-                          }
-                      ],
-                      "title": "Tools",
-                      "description": "A list of tools that can be used during the process."
-                  },
-                  "tool_choice": {
-                      "anyOf": [
-                          {
-                              "type": "string"
-                          },
-                          {
-                              "type": "null"
-                          }
-                      ],
-                      "title": "Tool Choice",
-                      "description": "Which tool to use from the available tools."
-                  }
+    "schemas": {
+      "OpenAIRequest": {
+        "properties": {
+          "model": {
+            "type": "string",
+            "enum": ["gpt-4o", "gpt-4o-mini", "gpt-4-turbo", "gpt-4", "gpt-4-32k", "gpt-3.5-turbo", "gpt-3.5-turbo-16k"],
+            "minLength": 1,
+            "title": "Model",
+            "description": "The model used for the chat completion"
+          },
+          "messages": {
+            "items": {
+              "$ref": "#/components/schemas/Message"
+            },
+            "type": "array",
+            "title": "Messages",
+            "description": "A list of messages comprising the conversation"
+          },
+          "stream": {
+            "anyOf": [
+              {
+                "type": "boolean"
               },
-              "type": "object",
-              "required": [
-                  "model",
-                  "messages"
-              ],
-              "title": "AmazonBedrockRequest",
-              "example": {
-                  "max_tokens": 60,
-                  "messages": [
-                      {
-                          "content": "You are a helpful assistant",
-                          "role": "assistant"
-                      },
-                      {
-                          "content": "Tell me something about GDPR",
-                          "role": "user"
-                      }
-                  ],
-                  "model": "meta.llama3-8b-instruct-v1:0",
-                  "stream": false,
-                  "temperature": 0.8,
-                  "top_p": 0.7
+              {
+                "type": "null"
               }
+            ],
+            "title": "Stream",
+            "description": "If set, partial message deltas will be sent",
+            "default": false
           },
-          "AmazonBedrockResponse": {
-              "properties": {
-                  "data": {
-                      "items": {
-                          "$ref": "#/components/schemas/ModelItem"
-                      },
-                      "type": "array",
-                      "title": "Data",
-                      "description": "A list of model objects"
-                  }
+          "stream_options": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/StreamOptions"
               },
-              "type": "object",
-              "required": [
-                  "data"
-              ],
-              "title": "AmazonBedrockResponse",
-              "example": {
-                  "choices": [
-                      {
-                          "finish_reason": "stop",
-                          "index": 0,
-                          "message": {
-                              "content": "The General Data Protection Regulation (GDPR)!\n\nThe GDPR is a European Union (EU) regulation that went into effect on May 25, 2018, aiming to strengthen and unify data protection for individuals within the EU. It applies to any organization that processes personal data of EU residents, ",
-                              "role": "assistant"
-                          }
-                      }
-                  ],
-                  "created": 1734505842,
-                  "id": "chatcmpl-002ac263-5f89-49fb-a1c1-61a84caace1b",
-                  "model": "meta.llama3-8b-instruct-v1:0",
-                  "object": "chat.completion",
-                  "usage": {
-                      "completion_tokens": 60,
-                      "prompt_tokens": 25,
-                      "total_tokens": 85
-                  }
+              {
+                "type": "null"
               }
+            ]
           },
-          "AnthropicRequest": {
-              "properties": {
-                  "model": {
-                      "type": "string",
-                      "enum": [
-                          "claude-3.5",
-                          "claude-3-5-sonnet-20240620",
-                          "claude-3",
-                          "claude-3-haiku-20240307",
-                          "claude-3-opus-20240229",
-                          "claude-3-sonnet-20240229",
-                          "claude-2",
-                          "claude-2.1",
-                          "claude-instant-1.2"
-                      ],
-                      "maxLength": 30000,
-                      "minLength": 1,
-                      "title": "Model",
-                      "description": "The model used for the chat completion"
-                  },
-                  "messages": {
-                      "items": {
-                          "$ref": "#/components/schemas/Message"
-                      },
-                      "type": "array",
-                      "title": "Messages",
-                      "description": "A list of messages comprising the conversation."
-                  },
-                  "stream": {
-                      "anyOf": [
-                          {
-                              "type": "boolean"
-                          },
-                          {
-                              "type": "null"
-                          }
-                      ],
-                      "title": "Stream",
-                      "description": "If set, partial message deltas will be sent. Tokens will be sent as data-only server-sent events as they become available.",
-                      "default": false
-                  },
-                  "max_tokens": {
-                      "anyOf": [
-                          {
-                              "type": "integer"
-                          },
-                          {
-                              "type": "null"
-                          }
-                      ],
-                      "title": "Max Tokens",
-                      "description": "Sets the maximum number of generated tokens in chat completion. Context Window: 16,385 tokens, Max output: 4096 tokens"
-                  },
-                  "response_format": {
-                      "anyOf": [
-                          {
-                              "type": "string"
-                          },
-                          {
-                              "type": "null"
-                          }
-                      ],
-                      "title": "Response Format",
-                      "description": "Specifies the output format, e.g., JSON mode."
-                  },
-                  "stop": {
-                      "anyOf": [
-                          {
-                              "items": {
-                                  "type": "string"
-                              },
-                              "type": "array"
-                          },
-                          {
-                              "type": "null"
-                          }
-                      ],
-                      "title": "Stop",
-                      "description": "Specifies up to 4 sequences where the API should stop generating tokens."
-                  },
-                  "temperature": {
-                      "anyOf": [
-                          {
-                              "type": "number",
-                              "maximum": 2.0,
-                              "minimum": 0.0
-                          },
-                          {
-                              "type": "null"
-                          }
-                      ],
-                      "title": "Temperature",
-                      "description": "Sets the sampling temperature between 0 and 2.",
-                      "default": 1.0
-                  },
-                  "top_p": {
-                      "anyOf": [
-                          {
-                              "type": "number",
-                              "maximum": 1.0,
-                              "minimum": 0.0
-                          },
-                          {
-                              "type": "null"
-                          }
-                      ],
-                      "title": "Top P",
-                      "description": "Nucleus sampling, where the model considers the results of the tokens with top_p probability mass. We generally recommend altering this or temperature but not both.",
-                      "default": 1.0
-                  },
-                  "extra_headers": {
-                      "anyOf": [
-                          {
-                              "items": {
-                                  "type": "string"
-                              },
-                              "type": "array"
-                          },
-                          {
-                              "type": "null"
-                          }
-                      ],
-                      "title": "Extra Headers",
-                      "description": "Passing Extra Headers to Anthropic API",
-                      "default": []
-                  },
-                  "tools": {
-                      "anyOf": [
-                          {
-                              "items": {
-                                  "type": "string"
-                              },
-                              "type": "array"
-                          },
-                          {
-                              "type": "null"
-                          }
-                      ],
-                      "title": "Tools",
-                      "description": "Lists functions the model may call. A max of 128 functions are supported.",
-                      "default": []
-                  },
-                  "tool_choice": {
-                      "anyOf": [
-                          {
-                              "type": "string",
-                              "enum": [
-                                  "none",
-                                  "auto",
-                                  "required"
-                              ]
-                          },
-                          {
-                              "type": "null"
-                          }
-                      ],
-                      "title": "Tool Choice",
-                      "description": "Controls which (if any) tool is called by the model.none means the model will not call any tool and instead generates a message.auto means the model can pick between generating a message or calling one or more tools.required means the model must call one or more tools.\nnone is the default when no tools are present. auto is the default if tools are present."
-                  },
-                  "parallel_tool_calls": {
-                      "anyOf": [
-                          {
-                              "type": "boolean"
-                          },
-                          {
-                              "type": "null"
-                          }
-                      ],
-                      "title": "Parallel Tool Calls",
-                      "description": "Whether to enable parallel function calling during tool use.",
-                      "default": true
-                  },
-                  "user": {
-                      "anyOf": [
-                          {
-                              "type": "string"
-                          },
-                          {
-                              "type": "null"
-                          }
-                      ],
-                      "title": "User",
-                      "description": "A unique identifier representing your end-user, which can help OpenAI to monitor and detect abuse",
-                      "default": ""
-                  }
+          "timeout": {
+            "anyOf": [
+              {
+                "type": "integer"
               },
-              "type": "object",
-              "required": [
-                  "model",
-                  "messages"
-              ],
-              "title": "AnthropicRequest",
-              "example": {
-                  "messages": [
-                      {
-                          "content": "Hello",
-                          "role": "user"
-                      },
-                      {
-                          "content": "You are a helpful assistant",
-                          "role": "system"
-                      }
-                  ],
-                  "model": "claude-3-opus-20240229",
-                  "stream": false
+              {
+                "type": "null"
               }
+            ],
+            "title": "Timeout",
+            "description": "Timeout in seconds for completion requests",
+            "default": 600
           },
-          "AnthropicResponse": {
-              "properties": {
-                  "data": {
-                      "items": {
-                          "$ref": "#/components/schemas/ModelItem"
-                      },
-                      "type": "array",
-                      "title": "Data",
-                      "description": "A list of model objects"
-                  }
+          "frequency_penalty": {
+            "anyOf": [
+              {
+                "type": "number",
+                "maximum": 2.0,
+                "minimum": -2.0
               },
-              "type": "object",
-              "required": [
-                  "data"
-              ],
-              "title": "AnthropicResponse",
-              "example": {
-                  "choices": [
-                      {
-                          "finish_reason": "stop",
-                          "index": 0,
-                          "message": {
-                              "content": "Hello! How can I assist you today?",
-                              "role": "assistant"
-                          }
-                      }
-                  ],
-                  "created": 1739866771,
-                  "id": "chatcmpl-39a86c29-a8d0-4d97-b1a3-a522daac1d08",
-                  "model": "claude-3-opus-20240229",
-                  "object": "chat.completion",
-                  "usage": {
-                      "cache_creation_input_tokens": 0,
-                      "cache_read_input_tokens": 0,
-                      "completion_tokens": 12,
-                      "prompt_tokens": 13,
-                      "prompt_tokens_details": {
-                          "cached_tokens": 0
-                      },
-                      "total_tokens": 25
-                  }
+              {
+                "type": "null"
               }
+            ],
+            "title": "Frequency Penalty",
+            "description": "Frequency penalty",
+            "default": 0
           },
-          "AzureAIRequest": {
-              "properties": {
-                  "model": {
-                      "type": "string",
-                      "enum": [
-                          "Llama-3.2-3B-Instruct",
-                          "Meta-LLama-3-8B-Instruct",
-                          "Meta-LLama-3.1-70B-Instruct",
-                          "Mistral-small",
-                          "mistralai-Mistral-7B-Instruct-v0-2",
-                          "Mistral-large-2407",
-                          "Phi-3-mini-128k-instruct",
-                          "Phi-3-small-128k-instruct",
-                          "Phi-3-medium-128k-instruct",
-                          "Cohere-command-r-08-2024",
-                          "Cohere-command-r-plus-08-2024"
-                      ],
-                      "maxLength": 30000,
-                      "minLength": 1,
-                      "title": "Model",
-                      "description": "The name of the model used for the chat completion"
-                  },
-                  "messages": {
-                      "items": {
-                          "$ref": "#/components/schemas/Message"
-                      },
-                      "type": "array",
-                      "title": "Messages",
-                      "description": "A list of messages comprising the conversation."
-                  },
-                  "temperature": {
-                      "anyOf": [
-                          {
-                              "type": "number",
-                              "maximum": 2.0,
-                              "minimum": 0.0
-                          },
-                          {
-                              "type": "null"
-                          }
-                      ],
-                      "title": "Temperature",
-                      "description": "What sampling temperature to use. Higher values means the model will take more risks.",
-                      "default": 1.0
-                  },
-                  "top_p": {
-                      "anyOf": [
-                          {
-                              "type": "number",
-                              "maximum": 1.0,
-                              "minimum": 0.0
-                          },
-                          {
-                              "type": "null"
-                          }
-                      ],
-                      "title": "Top P",
-                      "description": "Nucleus sampling, where the model considers the results of the tokens with top_p probability mass. We generally recommend altering this or temperature but not both.",
-                      "default": 1.0
-                  },
-                  "n": {
-                      "anyOf": [
-                          {
-                              "type": "integer",
-                              "maximum": 128.0,
-                              "minimum": 1.0
-                          },
-                          {
-                              "type": "null"
-                          }
-                      ],
-                      "title": "N",
-                      "description": "How many completions to generate for each prompt.",
-                      "default": 1
-                  },
-                  "stream": {
-                      "anyOf": [
-                          {
-                              "type": "boolean"
-                          },
-                          {
-                              "type": "null"
-                          }
-                      ],
-                      "title": "Stream",
-                      "description": "If set, partial message deltas will be sent. Tokens will be sent as data-only server-sent events as they become available.",
-                      "default": false
-                  },
-                  "stream_options": {
-                      "anyOf": [
-                          {
-                              "type": "object"
-                          },
-                          {
-                              "type": "null"
-                          }
-                      ],
-                      "title": "Stream Options",
-                      "description": "If stream is true, this include the stream usage functionality and make it include_usage function true.",
-                      "default": false
-                  },
-                  "stop": {
-                      "anyOf": [
-                          {
-                              "items": {
-                                  "type": "string"
-                              },
-                              "type": "array"
-                          },
-                          {
-                              "type": "null"
-                          }
-                      ],
-                      "title": "Stop",
-                      "description": "Specifies up to 4 sequences where the API should stop generating tokens."
-                  },
-                  "max_tokens": {
-                      "anyOf": [
-                          {
-                              "type": "integer",
-                              "exclusiveMinimum": 0.0
-                          },
-                          {
-                              "type": "null"
-                          }
-                      ],
-                      "title": "Max Tokens",
-                      "description": "The token count of your prompt plus max_tokens can't exceed the model's context length.",
-                      "default": 16
-                  },
-                  "presence_penalty": {
-                      "anyOf": [
-                          {
-                              "type": "number",
-                              "maximum": 2.0,
-                              "minimum": -2.0
-                          },
-                          {
-                              "type": "null"
-                          }
-                      ],
-                      "title": "Presence Penalty",
-                      "description": "Presence penalty (between -2 and 2). Default is 0."
-                  },
-                  "frequency_penalty": {
-                      "anyOf": [
-                          {
-                              "type": "number",
-                              "maximum": 2.0,
-                              "minimum": -2.0
-                          },
-                          {
-                              "type": "null"
-                          }
-                      ],
-                      "title": "Frequency Penalty",
-                      "description": "Frequency penalty (between -2 and 2). Default is 0."
-                  },
-                  "logit_bias": {
-                      "anyOf": [
-                          {
-                              "additionalProperties": {
-                                  "type": "number"
-                              },
-                              "type": "object"
-                          },
-                          {
-                              "type": "null"
-                          }
-                      ],
-                      "title": "Logit Bias",
-                      "description": "Logit bias dictionary for fine-tuning responses."
-                  },
-                  "user": {
-                      "anyOf": [
-                          {
-                              "type": "string"
-                          },
-                          {
-                              "type": "null"
-                          }
-                      ],
-                      "title": "User",
-                      "description": "An identifier for the user requesting the completion."
-                  },
-                  "seed": {
-                      "anyOf": [
-                          {
-                              "type": "integer",
-                              "maximum": 1000.0,
-                              "minimum": 1.0
-                          },
-                          {
-                              "type": "null"
-                          }
-                      ],
-                      "title": "Seed",
-                      "description": "Seed for reproducibility in generation."
-                  },
-                  "tools": {
-                      "anyOf": [
-                          {
-                              "items": {
-                                  "type": "string"
-                              },
-                              "type": "array"
-                          },
-                          {
-                              "type": "null"
-                          }
-                      ],
-                      "title": "Tools",
-                      "description": "A list of tools that can be used during the process."
-                  },
-                  "tool_choice": {
-                      "anyOf": [
-                          {
-                              "type": "string"
-                          },
-                          {
-                              "type": "null"
-                          }
-                      ],
-                      "title": "Tool Choice",
-                      "description": "Which tool to use from the available tools."
-                  },
-                  "parallel_tool_calls": {
-                      "anyOf": [
-                          {
-                              "type": "boolean"
-                          },
-                          {
-                              "type": "null"
-                          }
-                      ],
-                      "title": "Parallel Tool Calls",
-                      "description": "Whether to allow parallel tool calls or not."
-                  },
-                  "logprobs": {
-                      "anyOf": [
-                          {
-                              "type": "boolean"
-                          },
-                          {
-                              "type": "null"
-                          }
-                      ],
-                      "title": "Logprobs",
-                      "description": "Whether to include log probabilities in the response."
-                  },
-                  "top_logprobs": {
-                      "anyOf": [
-                          {
-                              "type": "integer",
-                              "maximum": 10.0,
-                              "minimum": 1.0
-                          },
-                          {
-                              "type": "null"
-                          }
-                      ],
-                      "title": "Top Logprobs",
-                      "description": "Number of top logprobs to return."
-                  },
-                  "functions": {
-                      "anyOf": [
-                          {
-                              "items": {
-                                  "type": "object"
-                              },
-                              "type": "array"
-                          },
-                          {
-                              "type": "null"
-                          }
-                      ],
-                      "title": "Functions",
-                      "description": "A list of functions that can be called by the model."
-                  },
-                  "function_call": {
-                      "anyOf": [
-                          {
-                              "type": "string"
-                          },
-                          {
-                              "type": "null"
-                          }
-                      ],
-                      "title": "Function Call",
-                      "description": "Indicates which function to call in the response."
-                  }
+          "logit_bias": {
+            "anyOf": [
+              {
+                "additionalProperties": {
+                  "type": "number"
+                },
+                "type": "object"
               },
-              "type": "object",
-              "required": [
-                  "model",
-                  "messages"
-              ],
-              "title": "AzureAIRequest",
-              "example": {
-                  "max_tokens": 30,
-                  "messages": [
-                      {
-                          "content": "You are a helpful assistant",
-                          "role": "assistant"
-                      },
-                      {
-                          "content": "Tell me about AI in 30 words",
-                          "role": "user"
-                      }
-                  ],
-                  "model": "Meta-LLama-3-8B-Instruct",
-                  "stream": false
+              {
+                "type": "null"
               }
+            ],
+            "title": "Logit Bias"
           },
-          "AzureAIResponse": {
-              "properties": {
-                  "data": {
-                      "items": {
-                          "$ref": "#/components/schemas/ModelItem"
-                      },
-                      "type": "array",
-                      "title": "Data",
-                      "description": "A list of model objects"
-                  }
+          "logprobs": {
+            "anyOf": [
+              {
+                "type": "boolean"
               },
-              "type": "object",
-              "required": [
-                  "data"
-              ],
-              "title": "AzureAIResponse",
-              "example": {
-                  "choices": [
-                      {
-                          "finish_reason": "stop",
-                          "index": 0,
-                          "message": {
-                              "content": "Artificial Intelligence (AI) refers to computer systems that can think, learn, and act like humans, using algorithms and data to solve problems, make decisions, and perform tasks autonomously.",
-                              "role": "assistant",
-                              "tool_calls": []
-                          }
-                      }
-                  ],
-                  "created": 1732103079,
-                  "id": "cmpl-80dc4daf09d64800ac9349ca6302fd0b",
-                  "model": "azure_ai/Meta-Llama-3.1-8B-Instruct",
-                  "object": "chat.completion",
-                  "usage": {
-                      "completion_tokens": 39,
-                      "prompt_tokens": 28,
-                      "total_tokens": 67
-                  }
+              {
+                "type": "null"
               }
+            ],
+            "title": "Logprobs",
+            "description": "Whether to return log probabilities",
+            "default": false
           },
-          "AzureModelRequest": {
-              "properties": {
-                  "model": {
-                      "type": "string",
-                      "maxLength": 30000,
-                      "minLength": 1,
-                      "title": "Model",
-                      "description": "The model used for the chat completion"
-                  },
-                  "messages": {
-                      "items": {
-                          "$ref": "#/components/schemas/Message"
-                      },
-                      "type": "array",
-                      "title": "Messages",
-                      "description": "The prompt(s) to generate completions for, encoded as a string or array of strings. Maximum size of string list is 2048."
-                  },
-                  "max_tokens": {
-                      "anyOf": [
-                          {
-                              "type": "integer",
-                              "exclusiveMinimum": 0.0
-                          },
-                          {
-                              "type": "null"
-                          }
-                      ],
-                      "title": "Max Tokens",
-                      "description": "The token count of your prompt plus max_tokens can't exceed the model's context length.",
-                      "default": 16
-                  },
-                  "temperature": {
-                      "anyOf": [
-                          {
-                              "type": "number",
-                              "maximum": 2.0,
-                              "minimum": 0.0
-                          },
-                          {
-                              "type": "null"
-                          }
-                      ],
-                      "title": "Temperature",
-                      "description": "What sampling temperature to use. Higher values means the model will take more risks.",
-                      "default": 1.0
-                  },
-                  "top_p": {
-                      "anyOf": [
-                          {
-                              "type": "number",
-                              "maximum": 1.0,
-                              "minimum": 0.0
-                          },
-                          {
-                              "type": "null"
-                          }
-                      ],
-                      "title": "Top P",
-                      "description": "An alternative to sampling with temperature, called nucleus sampling.",
-                      "default": 1.0
-                  },
-                  "logit_bias": {
-                      "anyOf": [
-                          {
-                              "additionalProperties": {
-                                  "type": "integer"
-                              },
-                              "type": "object"
-                          },
-                          {
-                              "type": "null"
-                          }
-                      ],
-                      "title": "Logit Bias",
-                      "description": "Modify the likelihood of specified tokens appearing in the completion."
-                  },
-                  "user": {
-                      "anyOf": [
-                          {
-                              "type": "string"
-                          },
-                          {
-                              "type": "null"
-                          }
-                      ],
-                      "title": "User",
-                      "description": "A unique identifier representing your end-user, which can help monitoring and detecting abuse."
-                  },
-                  "n": {
-                      "anyOf": [
-                          {
-                              "type": "integer",
-                              "maximum": 128.0,
-                              "minimum": 1.0
-                          },
-                          {
-                              "type": "null"
-                          }
-                      ],
-                      "title": "N",
-                      "description": "How many completions to generate for each prompt.",
-                      "default": 1
-                  },
-                  "stream": {
-                      "anyOf": [
-                          {
-                              "type": "boolean"
-                          },
-                          {
-                              "type": "null"
-                          }
-                      ],
-                      "title": "Stream",
-                      "description": "Whether to stream back partial progress.",
-                      "default": false
-                  },
-                  "stream_options": {
-                      "anyOf": [
-                          {
-                              "type": "object"
-                          },
-                          {
-                              "type": "null"
-                          }
-                      ],
-                      "title": "Stream Options",
-                      "description": "If stream is true, this include the stream usage functionality and make it include_usage function true.",
-                      "default": false
-                  },
-                  "logprobs": {
-                      "anyOf": [
-                          {
-                              "type": "integer",
-                              "maximum": 5.0,
-                              "minimum": 0.0
-                          },
-                          {
-                              "type": "null"
-                          }
-                      ],
-                      "title": "Logprobs",
-                      "description": "Include the log probabilities on the logprobs most likely tokens."
-                  },
-                  "stop": {
-                      "anyOf": [
-                          {
-                              "type": "string"
-                          },
-                          {
-                              "items": {
-                                  "type": "string"
-                              },
-                              "type": "array"
-                          },
-                          {
-                              "type": "null"
-                          }
-                      ],
-                      "title": "Stop",
-                      "description": "Up to 4 sequences where the API will stop generating further tokens."
-                  },
-                  "presence_penalty": {
-                      "anyOf": [
-                          {
-                              "type": "number",
-                              "maximum": 2.0,
-                              "minimum": -2.0
-                          },
-                          {
-                              "type": "null"
-                          }
-                      ],
-                      "title": "Presence Penalty",
-                      "description": "Positive values penalise new tokens based on whether they appear in the text so far.",
-                      "default": 0.0
-                  },
-                  "frequency_penalty": {
-                      "anyOf": [
-                          {
-                              "type": "number",
-                              "maximum": 2.0,
-                              "minimum": -2.0
-                          },
-                          {
-                              "type": "null"
-                          }
-                      ],
-                      "title": "Frequency Penalty",
-                      "description": "Positive values penalise new tokens based on their existing frequency in the text so far.",
-                      "default": 0.0
-                  }
+          "top_logprobs": {
+            "anyOf": [
+              {
+                "type": "integer",
+                "maximum": 20.0,
+                "minimum": 0.0
               },
-              "type": "object",
-              "required": [
-                  "model",
-                  "messages"
-              ],
-              "title": "AzureModelRequest",
-              "example": {
-                  "messages": [
-                      {
-                          "content": "You are a helpful assistant",
-                          "role": "assistant"
-                      },
-                      {
-                          "content": "Tell me something about United Kingdom",
-                          "role": "user"
-                      }
-                  ],
-                  "model": "azure/gpt-4o-mini",
-                  "stream": false
+              {
+                "type": "null"
               }
+            ],
+            "title": "Top Logprobs",
+            "description": "Number of most likely tokens to return"
           },
-          "AzureModelResponse": {
-              "properties": {
-                  "data": {
-                      "items": {
-                          "$ref": "#/components/schemas/ModelItem"
-                      },
-                      "type": "array",
-                      "title": "Data",
-                      "description": "A list of model objects"
-                  }
+          "max_tokens": {
+            "anyOf": [
+              {
+                "type": "integer"
               },
-              "type": "object",
-              "required": [
-                  "data"
-              ],
-              "title": "AzureModelResponse",
-              "example": {
-                  "choices": [
-                      {
-                          "finish_reason": "stop",
-                          "index": 0,
-                          "message": {
-                              "content": "The United Kingdom (UK) is a country located off the northwestern coast of mainland Europe. It is made up of four constituent countries: England, Scotland, Wales, and Northern Ireland. The capital city is London, which is not only the largest city in the UK but also a major global financial and cultural center.**History**: The UK has a rich history that includes the Roman occupation, the formation of the monarchy, the spread of the British Empire, and significant events like the Industrial Revolution and both World Wars.\n\n2. **Culture**: The UK is renowned for its contributions to literature, music, and the arts. Famous writers such as William Shakespeare, Jane Austen, and Charles Dickens hail from the UK, while it has produced iconic musical acts like The Beatles and The Rolling Stones.",
-                              "role": "assistant"
-                          }
-                      }
-                  ],
-                  "created": 1731996835,
-                  "id": "chatcmpl-AVBmlqDqjlUbqwnW6j7V8FKP36Vbw",
-                  "model": "gpt-4o-mini",
-                  "object": "chat.completion",
-                  "system_fingerprint": "fp_04751d0b65",
-                  "usage": {
-                      "completion_tokens": 401,
-                      "prompt_tokens": 22,
-                      "total_tokens": 423
-                  }
+              {
+                "type": "null"
               }
+            ],
+            "title": "Max Tokens",
+            "description": "Maximum number of tokens to generate"
           },
-          "Message": {
-              "properties": {
-                  "role": {
-                      "$ref": "#/components/schemas/Role"
-                  },
-                  "content": {
-                      "type": "string",
-                      "maxLength": 30000,
-                      "minLength": 1,
-                      "title": "Content"
-                  }
+          "n": {
+            "anyOf": [
+              {
+                "type": "integer"
               },
-              "type": "object",
-              "required": [
-                  "role",
-                  "content"
-              ],
-              "title": "Message"
-          },
-          "ModelItem": {
-              "properties": {
-                  "code": {
-                      "type": "string",
-                      "title": "Code",
-                      "description": "The unique identifier for the model"
-                  },
-                  "name": {
-                      "type": "string",
-                      "title": "Name",
-                      "description": "The name of the model deployed"
-                  },
-                  "description": {
-                      "type": "string",
-                      "title": "Description",
-                      "description": "One line description of the model"
-                  },
-                  "owner": {
-                      "type": "string",
-                      "title": "Owner",
-                      "description": "The owner of the model. Could be Aligne or an external party"
-                  }
-              },
-              "type": "object",
-              "required": [
-                  "code",
-                  "name",
-                  "description",
-                  "owner"
-              ],
-              "title": "ModelItem"
-          },
-          "ModelRequest": {
-              "properties": {
-                  "model": {
-                      "type": "string",
-                      "maxLength": 30000,
-                      "minLength": 1,
-                      "title": "Model",
-                      "description": "The model used for the chat completion"
-                  },
-                  "messages": {
-                      "items": {
-                          "$ref": "#/components/schemas/Message"
-                      },
-                      "type": "array",
-                      "title": "Messages",
-                      "description": "A list of messages comprising the conversation."
-                  },
-                  "stream": {
-                      "anyOf": [
-                          {
-                              "type": "boolean"
-                          },
-                          {
-                              "type": "null"
-                          }
-                      ],
-                      "title": "Stream",
-                      "description": "If set, partial message deltas will be sent. Tokens will be sent as data-only server-sent events as they become available.",
-                      "default": false
-                  },
-                  "stream_options": {
-                      "anyOf": [
-                          {
-                              "type": "object"
-                          },
-                          {
-                              "type": "null"
-                          }
-                      ],
-                      "title": "Stream Options",
-                      "description": "If stream is true, this include the stream usage functionality and make it include_usage function true.",
-                      "default": false
-                  },
-                  "frequency_penalty": {
-                      "anyOf": [
-                          {
-                              "type": "number",
-                              "maximum": 2.0,
-                              "minimum": -2.0
-                          },
-                          {
-                              "type": "null"
-                          }
-                      ],
-                      "title": "Frequency Penalty",
-                      "description": "Number between -2.0 and 2.0. Positive values penalise new tokens based on their existing frequency in the text. Penalises tokens based on their frequency, reducing repetition.",
-                      "default": 0
-                  },
-                  "logit_bias": {
-                      "anyOf": [
-                          {
-                              "type": "object"
-                          },
-                          {
-                              "type": "null"
-                          }
-                      ],
-                      "title": "Logit Bias",
-                      "description": "Modifies likelihood of specified tokens with bias values."
-                  },
-                  "logprobs": {
-                      "anyOf": [
-                          {
-                              "type": "boolean"
-                          },
-                          {
-                              "type": "null"
-                          }
-                      ],
-                      "title": "Logprobs",
-                      "description": "If true, returns log probabilities of output tokens in the content of message",
-                      "default": false
-                  },
-                  "top_logprobs": {
-                      "anyOf": [
-                          {
-                              "type": "integer",
-                              "maximum": 20.0,
-                              "minimum": 0.0
-                          },
-                          {
-                              "type": "null"
-                          }
-                      ],
-                      "title": "Top Logprobs",
-                      "description": "Specifies the number of most likely tokens to return at each position."
-                  },
-                  "max_completion_tokens": {
-                      "anyOf": [
-                          {
-                              "type": "integer"
-                          },
-                          {
-                              "type": "null"
-                          }
-                      ],
-                      "title": "Max Completion Tokens",
-                      "description": "Sets the maximum number of generated tokens in chat completion. Context Window: 16,385 tokens, Max output: 4096 tokens"
-                  },
-                  "n": {
-                      "anyOf": [
-                          {
-                              "type": "integer"
-                          },
-                          {
-                              "type": "null"
-                          }
-                      ],
-                      "title": "N",
-                      "description": "How many chat completion choices to generate for each input message. Note that you will be charged based on the number of generated tokens across all of the choices. Keep n as 1 to minimise costs.",
-                      "default": 1
-                  },
-                  "presence_penalty": {
-                      "anyOf": [
-                          {
-                              "type": "number",
-                              "maximum": 2.0,
-                              "minimum": -2.0
-                          },
-                          {
-                              "type": "null"
-                          }
-                      ],
-                      "title": "Presence Penalty",
-                      "description": "Positive values penalise new tokens based on their prior appearance in the text, encouraging the model to introduce new topics.",
-                      "default": 0
-                  },
-                  "response_format": {
-                      "anyOf": [
-                          {
-                              "type": "string"
-                          },
-                          {
-                              "type": "null"
-                          }
-                      ],
-                      "title": "Response Format",
-                      "description": "Specifies the output format, e.g., JSON mode."
-                  },
-                  "seed": {
-                      "anyOf": [
-                          {
-                              "type": "integer"
-                          },
-                          {
-                              "type": "null"
-                          }
-                      ],
-                      "title": "Seed",
-                      "description": "Ensures deterministic sampling with a specified seed."
-                  },
-                  "service_tier": {
-                      "anyOf": [
-                          {
-                              "type": "string",
-                              "enum": [
-                                  "auto",
-                                  "default"
-                              ]
-                          },
-                          {
-                              "type": "null"
-                          }
-                      ],
-                      "title": "Service Tier",
-                      "description": "Specifies the latency tier to use for processing the request. When this parameter is set, the response body will include the service_tier utilised."
-                  },
-                  "stop": {
-                      "anyOf": [
-                          {
-                              "items": {
-                                  "type": "string"
-                              },
-                              "type": "array"
-                          },
-                          {
-                              "type": "null"
-                          }
-                      ],
-                      "title": "Stop",
-                      "description": "Specifies up to 4 sequences where the API should stop generating tokens."
-                  },
-                  "temperature": {
-                      "anyOf": [
-                          {
-                              "type": "number",
-                              "maximum": 2.0,
-                              "minimum": 0.0
-                          },
-                          {
-                              "type": "null"
-                          }
-                      ],
-                      "title": "Temperature",
-                      "description": "Sets the sampling temperature between 0 and 2.",
-                      "default": 1.0
-                  },
-                  "top_p": {
-                      "anyOf": [
-                          {
-                              "type": "number",
-                              "maximum": 1.0,
-                              "minimum": 0.0
-                          },
-                          {
-                              "type": "null"
-                          }
-                      ],
-                      "title": "Top P",
-                      "description": "Nucleus sampling, where the model considers the results of the tokens with top_p probability mass. We generally recommend altering this or temperature but not both.",
-                      "default": 1.0
-                  },
-                  "tools": {
-                      "anyOf": [
-                          {
-                              "items": {
-                                  "type": "string"
-                              },
-                              "type": "array"
-                          },
-                          {
-                              "type": "null"
-                          }
-                      ],
-                      "title": "Tools",
-                      "description": "Lists functions the model may call. A max of 128 functions are supported.",
-                      "default": []
-                  },
-                  "tool_choice": {
-                      "anyOf": [
-                          {
-                              "type": "string",
-                              "enum": [
-                                  "none",
-                                  "auto",
-                                  "required"
-                              ]
-                          },
-                          {
-                              "type": "null"
-                          }
-                      ],
-                      "title": "Tool Choice",
-                      "description": "Controls which (if any) tool is called by the model.none means the model will not call any tool and instead generates a message.auto means the model can pick between generating a message or calling one or more tools.required means the model must call one or more tools.\nnone is the default when no tools are present. auto is the default if tools are present."
-                  },
-                  "parallel_tool_calls": {
-                      "anyOf": [
-                          {
-                              "type": "boolean"
-                          },
-                          {
-                              "type": "null"
-                          }
-                      ],
-                      "title": "Parallel Tool Calls",
-                      "description": "Whether to enable parallel function calling during tool use.",
-                      "default": true
-                  },
-                  "user": {
-                      "anyOf": [
-                          {
-                              "type": "string"
-                          },
-                          {
-                              "type": "null"
-                          }
-                      ],
-                      "title": "User",
-                      "description": "A unique identifier representing your end-user, which can help OpenAI to monitor and detect abuse",
-                      "default": ""
-                  }
-              },
-              "type": "object",
-              "required": [
-                  "model",
-                  "messages"
-              ],
-              "title": "ModelRequest",
-              "example": {
-                  "messages": [
-                      {
-                          "content": "You are a helpful assistant.",
-                          "role": "assistant"
-                      },
-                      {
-                          "content": "Hello!",
-                          "role": "user"
-                      }
-                  ],
-                  "model": "gpt-3.5-turbo"
+              {
+                "type": "null"
               }
+            ],
+            "title": "N",
+            "description": "Number of completions to generate",
+            "default": 1
           },
-          "ModelResponse": {
-              "properties": {
-                  "data": {
-                      "items": {
-                          "$ref": "#/components/schemas/ModelItem"
-                      },
-                      "type": "array",
-                      "title": "Data",
-                      "description": "A list of model objects"
-                  }
+          "presence_penalty": {
+            "anyOf": [
+              {
+                "type": "number",
+                "maximum": 2.0,
+                "minimum": -2.0
               },
-              "type": "object",
-              "required": [
-                  "data"
-              ],
-              "title": "ModelResponse",
-              "example": {
-                  "choices": [
-                      {
-                          "finish_reason": "stop",
-                          "index": 0,
-                          "message": {
-                              "content": "Hello! How can I help you today?",
-                              "function_call": "null",
-                              "role": "assistant",
-                              "tool_calls": "null"
-                          }
-                      }
-                  ],
-                  "created": 1727783366,
-                  "id": "chatcmpl-ADVfa3yTDasv2SmnBe5DbR2di1Mp2",
-                  "model": "gpt-3.5-turbo-0125",
-                  "object": "chat.completion",
-                  "system_fingerprint": "null",
-                  "usage": {
-                      "completion_tokens": 9,
-                      "prompt_tokens": 19,
-                      "total_tokens": 28
-                  }
+              {
+                "type": "null"
               }
+            ],
+            "title": "Presence Penalty",
+            "description": "Presence penalty",
+            "default": 0
           },
-          "Role": {
-              "type": "string",
-              "enum": [
-                  "system",
-                  "user",
-                  "assistant"
-              ],
-              "title": "Role"
-          },
-          "Status401": {
-              "properties": {
-                  "success": {
-                      "type": "boolean",
-                      "title": "Success",
-                      "default": false
-                  },
-                  "message": {
-                      "type": "string",
-                      "title": "Message",
-                      "default": "Invalid Project API Key"
-                  },
-                  "data": {
-                      "type": "null",
-                      "title": "Data"
-                  }
+          "response_format": {
+            "anyOf": [
+              {
+                "type": "object"
               },
-              "type": "object",
-              "title": "Status401"
-          },
-          "Status422": {
-              "properties": {
-                  "success": {
-                      "type": "boolean",
-                      "title": "Success",
-                      "default": false
-                  },
-                  "message": {
-                      "type": "string",
-                      "title": "Message",
-                      "default": "Invalid input."
-                  }
-              },
-              "type": "object",
-              "title": "Status422"
-          },
-          "Status500": {
-              "properties": {
-                  "success": {
-                      "type": "boolean",
-                      "title": "Success",
-                      "default": false
-                  },
-                  "message": {
-                      "type": "string",
-                      "title": "Message",
-                      "default": "Error occurred."
-                  }
-              },
-              "type": "object",
-              "title": "Status500"
-          },
-          "WatsonxRequest": {
-              "properties": {
-                  "model": {
-                      "type": "string",
-                      "maxLength": 30000,
-                      "minLength": 1,
-                      "title": "Model",
-                      "description": "The model used for the chat completion"
-                  },
-                  "messages": {
-                      "items": {
-                          "$ref": "#/components/schemas/Message"
-                      },
-                      "type": "array",
-                      "title": "Messages",
-                      "description": "A list of messages comprising the conversation."
-                  },
-                  "stream": {
-                      "anyOf": [
-                          {
-                              "type": "boolean"
-                          },
-                          {
-                              "type": "null"
-                          }
-                      ],
-                      "title": "Stream",
-                      "description": "If set, partial message deltas will be sent. Tokens will be sent as data-only server-sent events as they become available.",
-                      "default": false
-                  },
-                  "stream_options": {
-                      "anyOf": [
-                          {
-                              "type": "object"
-                          },
-                          {
-                              "type": "null"
-                          }
-                      ],
-                      "title": "Stream Options",
-                      "description": "If stream is true, this include the stream usage functionality and make it include_usage function true.",
-                      "default": false
-                  },
-                  "temperature": {
-                      "anyOf": [
-                          {
-                              "type": "number",
-                              "maximum": 2.0,
-                              "minimum": 0.0
-                          },
-                          {
-                              "type": "null"
-                          }
-                      ],
-                      "title": "Temperature",
-                      "description": "Sets the sampling temperature between 0 and 2.",
-                      "default": 1.0
-                  },
-                  "max_tokens": {
-                      "anyOf": [
-                          {
-                              "type": "integer"
-                          },
-                          {
-                              "type": "null"
-                          }
-                      ],
-                      "title": "Max Tokens",
-                      "description": "Sets the maximum number of generated tokens in chat completion. Context Window: 16,385 tokens, Max output: 4096 tokens"
-                  },
-                  "frequency_penalty": {
-                      "anyOf": [
-                          {
-                              "type": "number",
-                              "maximum": 2.0,
-                              "minimum": -2.0
-                          },
-                          {
-                              "type": "null"
-                          }
-                      ],
-                      "title": "Frequency Penalty",
-                      "description": "Number between -2.0 and 2.0. Positive values penalise new tokens based on their existing frequency in the text. Penalises tokens based on their frequency, reducing repetition.",
-                      "default": 0
-                  },
-                  "logprobs": {
-                      "anyOf": [
-                          {
-                              "type": "boolean"
-                          },
-                          {
-                              "type": "null"
-                          }
-                      ],
-                      "title": "Logprobs",
-                      "description": "If true, returns log probabilities of output tokens in the content of message",
-                      "default": false
-                  },
-                  "top_logprobs": {
-                      "anyOf": [
-                          {
-                              "type": "integer",
-                              "maximum": 20.0,
-                              "minimum": 0.0
-                          },
-                          {
-                              "type": "null"
-                          }
-                      ],
-                      "title": "Top Logprobs",
-                      "description": "Specifies the number of most likely tokens to return at each position."
-                  },
-                  "n": {
-                      "anyOf": [
-                          {
-                              "type": "integer"
-                          },
-                          {
-                              "type": "null"
-                          }
-                      ],
-                      "title": "N",
-                      "description": "How many chat completion choices to generate for each input message. Note that you will be charged based on the number of generated tokens across all of the choices. Keep n as 1 to minimise costs.",
-                      "default": 1
-                  },
-                  "seed": {
-                      "anyOf": [
-                          {
-                              "type": "integer"
-                          },
-                          {
-                              "type": "null"
-                          }
-                      ],
-                      "title": "Seed",
-                      "description": "Ensures deterministic sampling with a specified seed."
-                  },
-                  "stop": {
-                      "anyOf": [
-                          {
-                              "items": {
-                                  "type": "string"
-                              },
-                              "type": "array"
-                          },
-                          {
-                              "type": "null"
-                          }
-                      ],
-                      "title": "Stop",
-                      "description": "Specifies up to 4 sequences where the API should stop generating tokens."
-                  },
-                  "top_p": {
-                      "anyOf": [
-                          {
-                              "type": "number",
-                              "maximum": 1.0,
-                              "minimum": 0.0
-                          },
-                          {
-                              "type": "null"
-                          }
-                      ],
-                      "title": "Top P",
-                      "description": "Nucleus sampling, where the model considers the results of the tokens with top_p probability mass. We generally recommend altering this or temperature but not both.",
-                      "default": 1.0
-                  },
-                  "tools": {
-                      "anyOf": [
-                          {
-                              "items": {
-                                  "type": "string"
-                              },
-                              "type": "array"
-                          },
-                          {
-                              "type": "null"
-                          }
-                      ],
-                      "title": "Tools",
-                      "description": "Lists functions the model may call. A max of 128 functions are supported.",
-                      "default": []
-                  },
-                  "tool_choice": {
-                      "anyOf": [
-                          {
-                              "type": "string",
-                              "enum": [
-                                  "none",
-                                  "auto",
-                                  "required"
-                              ]
-                          },
-                          {
-                              "type": "null"
-                          }
-                      ],
-                      "title": "Tool Choice",
-                      "description": "Controls which (if any) tool is called by the model.none means the model will not call any tool and instead generates a message.auto means the model can pick between generating a message or calling one or more tools.required means the model must call one or more tools.\nnone is the default when no tools are present. auto is the default if tools are present."
-                  },
-                  "presence_penalty": {
-                      "anyOf": [
-                          {
-                              "type": "number",
-                              "maximum": 2.0,
-                              "minimum": -2.0
-                          },
-                          {
-                              "type": "null"
-                          }
-                      ],
-                      "title": "Presence Penalty",
-                      "description": "Positive values penalise new tokens based on their prior appearance in the text, encouraging the model to introduce new topics.",
-                      "default": 0
-                  },
-                  "response_format": {
-                      "anyOf": [
-                          {
-                              "type": "string"
-                          },
-                          {
-                              "type": "null"
-                          }
-                      ],
-                      "title": "Response Format",
-                      "description": "Specifies the output format, e.g., JSON mode."
-                  }
-              },
-              "type": "object",
-              "required": [
-                  "model",
-                  "messages"
-              ],
-              "title": "WatsonxRequest",
-              "example": {
-                  "messages": [
-                      {
-                          "content": "Hello",
-                          "role": "user"
-                      },
-                      {
-                          "content": "You are a helpful assistant",
-                          "role": "assistant"
-                      }
-                  ],
-                  "model": "mistralai/mistral-large",
-                  "stream": false
+              {
+                "type": "null"
               }
+            ],
+            "title": "Response Format"
           },
-          "WatsonxResponse": {
-              "properties": {
-                  "data": {
-                      "items": {
-                          "$ref": "#/components/schemas/ModelItem"
-                      },
-                      "type": "array",
-                      "title": "Data",
-                      "description": "A list of model objects"
-                  }
+          "seed": {
+            "anyOf": [
+              {
+                "type": "integer"
               },
-              "type": "object",
-              "required": [
-                  "data"
-              ],
-              "title": "WatsonxResponse",
-              "example": {
-                  "choices": [
-                      {
-                          "finish_reason": "stop",
-                          "index": 0,
-                          "message": {
-                              "content": " Hello! How can I assist you today? Let's have a friendly conversation. 😊",
-                              "role": "assistant"
-                          }
-                      }
-                  ],
-                  "created": 1739865626,
-                  "created_at": "2025-02-18T08:00:27.052Z",
-                  "id": "chatcmpl-0b90f5bcc2e3666cfbf1d3790c9d0445",
-                  "model": "watsonx/mistralai/mistral-large",
-                  "model_id": "mistralai/mistral-large",
-                  "model_version": "2.0.0",
-                  "object": "chat.completion",
-                  "system": {
-                      "warnings": [
-                          {
-                              "id": "disclaimer_warning",
-                              "message": "This model is a Non-IBM Product governed by a third-party license that may impose use restrictions and other obligations. By using this model you agree to its terms as identified in the following URL.",
-                              "more_info": "https://dataplatform.cloud.ibm.com/docs/content/wsj/analyze-data/fm-models.html?context=wx"
-                          },
-                          {
-                              "additional_properties": {
-                                  "limit": 0,
-                                  "new_value": 1024,
-                                  "parameter": "max_tokens",
-                                  "value": 0
-                              },
-                              "id": "unspecified_max_token",
-                              "message": "The value of 'max_tokens' for this model was set to value 1024"
-                          }
-                      ]
-                  },
-                  "usage": {
-                      "completion_tokens": 20,
-                      "prompt_tokens": 10,
-                      "total_tokens": 30
-                  }
+              {
+                "type": "null"
               }
+            ],
+            "title": "Seed"
+          },
+          "stop": {
+            "anyOf": [
+              {
+                "items": {
+                  "type": "string"
+                },
+                "type": "array"
+              },
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Stop"
+          },
+          "temperature": {
+            "anyOf": [
+              {
+                "type": "number",
+                "maximum": 2.0,
+                "minimum": 0.0
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Temperature",
+            "description": "Sampling temperature",
+            "default": 1.0
+          },
+          "top_p": {
+            "anyOf": [
+              {
+                "type": "number",
+                "maximum": 1.0,
+                "minimum": 0.0
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Top P",
+            "description": "Nucleus sampling parameter",
+            "default": 1.0
+          },
+          "tools": {
+            "anyOf": [
+              {
+                "items": {
+                  "type": "object"
+                },
+                "type": "array"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Tools"
+          },
+          "tool_choice": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "object"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Tool Choice"
+          },
+          "parallel_tool_calls": {
+            "anyOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Parallel Tool Calls",
+            "default": true
+          },
+          "user": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "User",
+            "default": ""
           }
+        },
+        "type": "object",
+        "required": ["model", "messages"],
+        "title": "OpenAIRequest",
+        "description": "Schema for OpenAI API requests.",
+        "example": {
+          "messages": [
+            {
+              "content": "You are a helpful assistant.",
+              "role": "system"
+            },
+            {
+              "content": "Hello!",
+              "role": "user"
+            }
+          ],
+          "model": "gpt-3.5-turbo"
+        }
       }
+    },
+    "securitySchemes": {
+      "APIKeyHeader": {
+        "type": "apiKey",
+        "in": "header",
+        "name": "Project-Api-Key"
+      }
+    }
   }
 }
