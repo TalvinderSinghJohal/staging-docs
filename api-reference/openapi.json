@@ -118,6 +118,239 @@
           }
         ]
       }
+    },
+    "/v1/anthropic/chat/completions": {
+      "post": {
+        "tags": ["Anthropic Proxy"],
+        "summary": "Anthropic Chat Completions",
+        "description": "Proxy endpoint for Anthropic Claude Chat Completions API",
+        "operationId": "chat_completions_v1_anthropic_chat_completions_post",
+        "security": [{"APIKeyHeader": []}],
+        "parameters": [
+          {
+            "name": "router_name",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "title": "Router Name"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "description": "Anthropic API key",
+              "title": "Authorization"
+            },
+            "description": "Anthropic API key"
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AnthropicRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AnthropicModelResponse-Input"
+                }
+              }
+            }
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponse401"
+                }
+              }
+            },
+            "description": "Unauthorized"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponse422"
+                }
+              }
+            },
+            "description": "Unprocessable Entity"
+          },
+          "500": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponse500"
+                }
+              }
+            },
+            "description": "Internal Server Error"
+          }
+        },
+        "x-codeSamples": [
+          {
+            "lang": "Shell",
+            "source": "curl --location 'https://api.altrum.ai/v1/anthropic/chat/completions' --header 'Authorization: ANTHROPIC_API_KEY' --header 'Project-Api-Key: ALTRUMAI_PROJECT_API_KEY' --header 'Content-Type: application/json' --data '{\n    \"model\":\"claude-3-opus-20240229\",\n    \"messages\": [\n        {\"role\":\"user\", \"content\":\"Hello\"},\n        {\"role\":\"system\", \"content\":\"You are a helpful assistant\"}\n    ],\n    \"stream\":false\n}'\n",
+            "label": "Shell"
+          },
+          {
+            "lang": "Python",
+            "source": "from openai import OpenAI\nclient = OpenAI(\n    api_key=\"anything\",\n    base_url=\"https://api.altrum.ai/v1/anthropic/\")\n\nresponse = client.chat.completions.create(\n    model=\"claude-3-opus-20240229\", \n    messages=[\n                {\"role\":\"system\", \"content\": \"You are a helpful assistant\"},\n                {\"role\": \"user\", \"content\": \"Hello\"},\n            ],\n    stream=False,\n    extra_headers={\"Project-Api-Key\":\"ALTRUMAI_PROJECT_API_KEY\",\n                    \"Authorization\":\"ANTHROPIC_API_KEY\"})\nprint(response.choices[0].message.content)\n",
+            "label": "Python"
+          },
+          {
+            "lang": "Javascript",
+            "source": "const { OpenAI } = require(\"openai\");\n\nconst openai = new OpenAI({\n    baseURL: \"https://api.altrum.ai/v1/anthropic/\",\n    defaultHeaders: {\n        \"Project-Api-Key\": \"ALTRUMAI_PROJECT_API_KEY\",\n        \"Authorization\":\"ANTHROPIC_API_KEY\"},\n    apiKey: \"anything\"\n});\n\n(async () => {\n        const response = await openai.chat.completions.create({\n            model: \"claude-3-opus-20240229\",\n            messages: [\n                { role: \"system\", content: \"You are a helpful assistant\" },\n                { role: \"user\", content: \"Hello\" }\n            ],\n            stream: false\n        });\n        console.log(response.choices[0].message.content);\n}\n)();\n\n",
+            "label": "Javascript"
+          }
+        ]
+      }
+    },
+    "/v1/azure/{endpoint}/openai/deployments/{deployment_id}/chat/completions": {
+      "post": {
+        "tags": ["Azure OpenAI Proxy"],
+        "summary": "Azure OpenAI Chat Completions",
+        "description": "Proxy endpoint for Azure OpenAI Chat Completions API",
+        "operationId": "chat_completions_v1_azure__endpoint__openai_deployments__deployment_id__chat_completions_post",
+        "security": [{"APIKeyHeader": []}],
+        "parameters": [
+          {
+            "name": "endpoint",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "description": "The Azure OpenAI endpoint name",
+              "title": "Endpoint"
+            },
+            "description": "The Azure OpenAI endpoint name"
+          },
+          {
+            "name": "deployment_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "description": "The deployment ID of the model",
+              "title": "Deployment Id"
+            },
+            "description": "The deployment ID of the model"
+          },
+          {
+            "name": "api-version",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "description": "Azure OpenAI API version",
+              "title": "Api-Version"
+            },
+            "description": "Azure OpenAI API version"
+          },
+          {
+            "name": "router_name",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "title": "Router Name"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "description": "Azure OpenAI API key in format 'Bearer {key}'",
+              "title": "Authorization"
+            },
+            "description": "Azure OpenAI API key in format 'Bearer {key}'"
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AzureOpenAIRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AzureOpenAIModelResponse-Input"
+                }
+              }
+            }
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponse401"
+                }
+              }
+            },
+            "description": "Unauthorized"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponse422"
+                }
+              }
+            },
+            "description": "Unprocessable Entity"
+          },
+          "500": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponse500"
+                }
+              }
+            },
+            "description": "Internal Server Error"
+          }
+        },
+        "x-codeSamples": [
+          {
+            "lang": "Shell",
+            "source": "curl --location 'https://api.altrum.ai/v1/azure/{ENDPOINT}/openai/deployments/{DEPLOYMENT_ID}/chat/completions?api-version=2024-10-21' --header 'Authorization: Bearer AZURE_OPENAI_API_KEY' --header 'Project-Api-Key: ALTRUMAI_PROJECT_API_KEY' --header 'Content-Type: application/json' --data '{\n    \"model\":\"gpt-4o-mini\",\n    \"messages\": [\n        {\"role\":\"assistant\", \"content\":\"You are a helpful assistant\"},\n        {\"role\":\"user\", \"content\":\"Hello!\"}\n    ],\n    \"stream\":false\n}'\n",
+            "label": "Shell"
+          },
+          {
+            "lang": "Python",
+            "source": "from openai import AzureOpenAI\n\nclient = AzureOpenAI(\n    azure_endpoint=\"https://api.altrum.ai/v1/azure/{ENDPOINT}\",\n    azure_deployment=DEPLOYMENT_ID,\n    api_key=AZURE_OPENAI_API_KEY,\n    api_version=\"2024-10-21\",\n    default_headers={\"Project-Api-Key\": \"ALTRUMAI_PROJECT_API_KEY\"}\n)\nresponse = client.chat.completions.create(\n    model=DEPLOYMENT_ID,\n    messages= [ \n        {\"role\": \"assistant\", \"content\": \"You are a helpful assistant.\"},\n        {\"role\": \"user\", \"content\": \"Hello\"},\n    ],\n    stream=False,\n)\nprint(response.choices[0].message.content)\n",
+            "label": "Python"
+          },
+          {
+            "lang": "Javascript",
+            "source": "const {AzureOpenAI} = require(\"openai\")\n\nconst client = new AzureOpenAI({ \n    endpoint:\"https://api.altrum.ai/v1/azure/{ENDPOINT}\",\n    deployment:DEPLOYMENT_ID, \n    apiVersion:\"2024-10-21\", \n    defaultHeaders:{\"Project-Api-Key\": \"ALTRUMAI_PROJECT_API_KEY\",\n                    \"Authorization\": \"Bearer AZURE_OPENAI_API_KEY\"\n    },\n    apiKey:\"ANYTHING\"},\n);\n\n(async () => {\n    const completion = await client.chat.completions.create({\n        model:DEPLOYMENT_ID,\n        messages: [\n            {role:\"assistant\", content:\"You are a helpful assistant\"},\n            {role:\"user\", content:\"Hello\"}\n        ],\n        stream:false\n    });\n    console.log(completion.choices[0].message.content);\n})();\n",
+            "label": "Javascript"
+          }
+        ]
+      }
     }
   },
   "components": {
@@ -410,6 +643,697 @@
           ],
           "model": "gpt-3.5-turbo"
         }
+      },
+      "Message": {
+        "properties": {
+          "content": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "items": {
+                  "type": "object"
+                },
+                "type": "array"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Content"
+          },
+          "role": {
+            "type": "string",
+            "enum": ["system", "user", "assistant", "tool"],
+            "title": "Role"
+          },
+          "name": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Name"
+          },
+          "tool_calls": {
+            "anyOf": [
+              {
+                "items": {
+                  "type": "object"
+                },
+                "type": "array"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Tool Calls"
+          },
+          "tool_call_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Tool Call Id"
+          }
+        },
+        "type": "object",
+        "required": ["role"],
+        "title": "Message"
+      },
+      "StreamOptions": {
+        "properties": {
+          "include_usage": {
+            "type": "boolean",
+            "title": "Include Usage",
+            "default": false
+          }
+        },
+        "type": "object",
+        "title": "StreamOptions"
+      },
+      "OpenAIModelResponse-Input": {
+        "properties": {
+          "id": {
+            "type": "string",
+            "title": "Id"
+          },
+          "choices": {
+            "items": {
+              "type": "object"
+            },
+            "type": "array",
+            "title": "Choices"
+          },
+          "created": {
+            "type": "integer",
+            "title": "Created"
+          },
+          "model": {
+            "type": "string",
+            "title": "Model"
+          },
+          "object": {
+            "type": "string",
+            "title": "Object"
+          },
+          "system_fingerprint": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "System Fingerprint"
+          },
+          "usage": {
+            "anyOf": [
+              {
+                "type": "object"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Usage"
+          }
+        },
+        "type": "object",
+        "required": ["id", "choices", "created", "model", "object"],
+        "title": "OpenAIModelResponse-Input"
+      },
+      "AnthropicRequest": {
+        "properties": {
+          "model": {
+            "type": "string",
+            "enum": ["claude-3-opus-20240229", "claude-3-sonnet-20240229", "claude-3-haiku-20240307"],
+            "minLength": 1,
+            "title": "Model",
+            "description": "The model used for the chat completion"
+          },
+          "messages": {
+            "items": {
+              "$ref": "#/components/schemas/Message"
+            },
+            "type": "array",
+            "title": "Messages",
+            "description": "A list of messages comprising the conversation"
+          },
+          "max_tokens": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Max Tokens",
+            "description": "Maximum number of tokens to generate"
+          },
+          "metadata": {
+            "anyOf": [
+              {
+                "type": "object"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Metadata"
+          },
+          "stop_sequences": {
+            "anyOf": [
+              {
+                "items": {
+                  "type": "string"
+                },
+                "type": "array"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Stop Sequences"
+          },
+          "stream": {
+            "anyOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Stream",
+            "description": "If set, partial message deltas will be sent",
+            "default": false
+          },
+          "system": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "System"
+          },
+          "temperature": {
+            "anyOf": [
+              {
+                "type": "number",
+                "maximum": 1.0,
+                "minimum": 0.0
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Temperature",
+            "description": "Sampling temperature",
+            "default": 1.0
+          },
+          "top_k": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Top K"
+          },
+          "top_p": {
+            "anyOf": [
+              {
+                "type": "number",
+                "maximum": 1.0,
+                "minimum": 0.0
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Top P",
+            "description": "Nucleus sampling parameter",
+            "default": 1.0
+          }
+        },
+        "type": "object",
+        "required": ["model", "messages"],
+        "title": "AnthropicRequest",
+        "description": "Schema for Anthropic API requests.",
+        "example": {
+          "messages": [
+            {
+              "content": "You are a helpful assistant.",
+              "role": "system"
+            },
+            {
+              "content": "Hello!",
+              "role": "user"
+            }
+          ],
+          "model": "claude-3-sonnet-20240229"
+        }
+      },
+      "AnthropicModelResponse-Input": {
+        "properties": {
+          "id": {
+            "type": "string",
+            "title": "Id"
+          },
+          "type": {
+            "type": "string",
+            "title": "Type"
+          },
+          "role": {
+            "type": "string",
+            "title": "Role"
+          },
+          "content": {
+            "items": {
+              "type": "object"
+            },
+            "type": "array",
+            "title": "Content"
+          },
+          "model": {
+            "type": "string",
+            "title": "Model"
+          },
+          "stop_reason": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Stop Reason"
+          },
+          "stop_sequence": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Stop Sequence"
+          },
+          "usage": {
+            "type": "object",
+            "title": "Usage"
+          }
+        },
+        "type": "object",
+        "required": ["id", "type", "role", "content", "model", "usage"],
+        "title": "AnthropicModelResponse-Input"
+      },
+      "AzureOpenAIRequest": {
+        "properties": {
+          "messages": {
+            "items": {
+              "$ref": "#/components/schemas/Message"
+            },
+            "type": "array",
+            "title": "Messages",
+            "description": "A list of messages comprising the conversation"
+          },
+          "stream": {
+            "anyOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Stream",
+            "description": "If set, partial message deltas will be sent",
+            "default": false
+          },
+          "stream_options": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/StreamOptions"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "timeout": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Timeout",
+            "description": "Timeout in seconds for completion requests",
+            "default": 600
+          },
+          "frequency_penalty": {
+            "anyOf": [
+              {
+                "type": "number",
+                "maximum": 2.0,
+                "minimum": -2.0
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Frequency Penalty",
+            "description": "Frequency penalty",
+            "default": 0
+          },
+          "logit_bias": {
+            "anyOf": [
+              {
+                "additionalProperties": {
+                  "type": "number"
+                },
+                "type": "object"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Logit Bias"
+          },
+          "logprobs": {
+            "anyOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Logprobs",
+            "description": "Whether to return log probabilities",
+            "default": false
+          },
+          "top_logprobs": {
+            "anyOf": [
+              {
+                "type": "integer",
+                "maximum": 20.0,
+                "minimum": 0.0
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Top Logprobs",
+            "description": "Number of most likely tokens to return"
+          },
+          "max_tokens": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Max Tokens",
+            "description": "Maximum number of tokens to generate"
+          },
+          "n": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "N",
+            "description": "Number of completions to generate",
+            "default": 1
+          },
+          "presence_penalty": {
+            "anyOf": [
+              {
+                "type": "number",
+                "maximum": 2.0,
+                "minimum": -2.0
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Presence Penalty",
+            "description": "Presence penalty",
+            "default": 0
+          },
+          "response_format": {
+            "anyOf": [
+              {
+                "type": "object"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Response Format"
+          },
+          "seed": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Seed"
+          },
+          "stop": {
+            "anyOf": [
+              {
+                "items": {
+                  "type": "string"
+                },
+                "type": "array"
+              },
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Stop"
+          },
+          "temperature": {
+            "anyOf": [
+              {
+                "type": "number",
+                "maximum": 2.0,
+                "minimum": 0.0
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Temperature",
+            "description": "Sampling temperature",
+            "default": 1.0
+          },
+          "top_p": {
+            "anyOf": [
+              {
+                "type": "number",
+                "maximum": 1.0,
+                "minimum": 0.0
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Top P",
+            "description": "Nucleus sampling parameter",
+            "default": 1.0
+          },
+          "tools": {
+            "anyOf": [
+              {
+                "items": {
+                  "type": "object"
+                },
+                "type": "array"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Tools"
+          },
+          "tool_choice": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "object"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Tool Choice"
+          },
+          "parallel_tool_calls": {
+            "anyOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Parallel Tool Calls",
+            "default": true
+          },
+          "user": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "User",
+            "default": ""
+          }
+        },
+        "type": "object",
+        "required": ["messages"],
+        "title": "AzureOpenAIRequest",
+        "description": "Schema for Azure OpenAI API requests.",
+        "example": {
+          "messages": [
+            {
+              "content": "You are a helpful assistant.",
+              "role": "system"
+            },
+            {
+              "content": "Hello!",
+              "role": "user"
+            }
+          ]
+        }
+      },
+      "AzureOpenAIModelResponse-Input": {
+        "properties": {
+          "id": {
+            "type": "string",
+            "title": "Id"
+          },
+          "choices": {
+            "items": {
+              "type": "object"
+            },
+            "type": "array",
+            "title": "Choices"
+          },
+          "created": {
+            "type": "integer",
+            "title": "Created"
+          },
+          "model": {
+            "type": "string",
+            "title": "Model"
+          },
+          "object": {
+            "type": "string",
+            "title": "Object"
+          },
+          "system_fingerprint": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "System Fingerprint"
+          },
+          "usage": {
+            "anyOf": [
+              {
+                "type": "object"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Usage"
+          }
+        },
+        "type": "object",
+        "required": ["id", "choices", "created", "model", "object"],
+        "title": "AzureOpenAIModelResponse-Input"
+      },
+      "ApiResponse401": {
+        "properties": {
+          "detail": {
+            "type": "string",
+            "title": "Detail"
+          }
+        },
+        "type": "object",
+        "required": ["detail"],
+        "title": "ApiResponse401"
+      },
+      "ApiResponse422": {
+        "properties": {
+          "detail": {
+            "items": {
+              "type": "object"
+            },
+            "type": "array",
+            "title": "Detail"
+          }
+        },
+        "type": "object",
+        "required": ["detail"],
+        "title": "ApiResponse422"
+      },
+      "ApiResponse500": {
+        "properties": {
+          "detail": {
+            "type": "string",
+            "title": "Detail"
+          }
+        },
+        "type": "object",
+        "required": ["detail"],
+        "title": "ApiResponse500"
       }
     },
     "securitySchemes": {
