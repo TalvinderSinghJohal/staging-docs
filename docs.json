@@ -60,8 +60,7 @@
               "api-reference/endpoint/bedrock",
               "api-reference/endpoint/azure-openai",
               "api-reference/endpoint/azure-studio",
-              "api-reference/endpoint/anthropic",
-              "api-reference/endpoint/watsonx"
+              "api-reference/endpoint/anthropic"
 
             ]
           }
