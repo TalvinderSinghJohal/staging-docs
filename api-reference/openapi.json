@@ -194,6 +194,9 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ApiResponse500"
+                },
+                "example": {
+                  "detail": "An unexpected error occurred"
                 }
               }
             },
@@ -347,6 +350,268 @@
           {
             "lang": "Javascript",
             "source": "const {AzureOpenAI} = require(\"openai\")\n\nconst client = new AzureOpenAI({ \n    endpoint:\"https://api.altrum.ai/v1/azure/{ENDPOINT}\",\n    deployment:DEPLOYMENT_ID, \n    apiVersion:\"2024-10-21\", \n    defaultHeaders:{\"Project-Api-Key\": \"ALTRUMAI_PROJECT_API_KEY\",\n                    \"Authorization\": \"Bearer AZURE_OPENAI_API_KEY\"\n    },\n    apiKey:\"ANYTHING\"},\n);\n\n(async () => {\n    const completion = await client.chat.completions.create({\n        model:DEPLOYMENT_ID,\n        messages: [\n            {role:\"assistant\", content:\"You are a helpful assistant\"},\n            {role:\"user\", content:\"Hello\"}\n        ],\n        stream:false\n    });\n    console.log(completion.choices[0].message.content);\n})();\n",
+            "label": "Javascript"
+          }
+        ]
+      }
+    },
+    "/v1/bedrock/chat/completions": {
+      "post": {
+        "tags": ["Amazon Bedrock Proxy"],
+        "summary": "Amazon Bedrock Chat Completions",
+        "description": "Proxy endpoint for Amazon Bedrock Chat Completions API",
+        "operationId": "chat_completions_v1_bedrock_chat_completions_post",
+        "security": [{"APIKeyHeader": []}],
+        "parameters": [
+          {
+            "name": "router_name",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "title": "Router Name"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "description": "AWS credentials in format 'AWS4-HMAC-SHA256 Credential=...'",
+              "title": "Authorization"
+            },
+            "description": "AWS credentials in format 'AWS4-HMAC-SHA256 Credential=...'"
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/BedrockRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BedrockModelResponse-Input"
+                },
+                "example": {
+                  "id": "msg_123",
+                  "type": "message",
+                  "role": "assistant",
+                  "content": [
+                    {
+                      "type": "text",
+                      "text": "Hello! How can I help you today?"
+                    }
+                  ],
+                  "model": "anthropic.claude-3-sonnet-20240229-v1:0",
+                  "usage": {
+                    "input_tokens": 9,
+                    "output_tokens": 12
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponse401"
+                },
+                "example": {
+                  "detail": "Invalid AWS credentials"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Unprocessable Entity",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponse422"
+                },
+                "example": {
+                  "detail": [
+                    {
+                      "loc": ["body", "messages"],
+                      "msg": "field required",
+                      "type": "value_error.missing"
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponse500"
+                },
+                "example": {
+                  "detail": "An unexpected error occurred"
+                }
+              }
+            }
+          }
+        },
+        "x-codeSamples": [
+          {
+            "lang": "Shell",
+            "source": "curl --location 'https://api.altrum.ai/v1/bedrock/chat/completions' --header 'Authorization: AWS4-HMAC-SHA256 Credential=...' --header 'Project-Api-Key: ALTRUMAI_PROJECT_API_KEY' --header 'Content-Type: application/json' --data '{\n    \"model\":\"anthropic.claude-3-sonnet-20240229-v1:0\",\n    \"messages\": [\n        {\"role\":\"user\", \"content\":\"Hello\"},\n        {\"role\":\"system\", \"content\":\"You are a helpful assistant\"}\n    ],\n    \"stream\":false\n}'\n",
+            "label": "Shell"
+          },
+          {
+            "lang": "Python",
+            "source": "import boto3\nfrom openai import OpenAI\n\nclient = OpenAI(\n    api_key=\"anything\",\n    base_url=\"https://api.altrum.ai/v1/bedrock/\")\n\nresponse = client.chat.completions.create(\n    model=\"anthropic.claude-3-sonnet-20240229-v1:0\", \n    messages=[\n        {\"role\":\"system\", \"content\": \"You are a helpful assistant\"},\n        {\"role\": \"user\", \"content\": \"Hello\"},\n    ],\n    stream=False,\n    extra_headers={\"Project-Api-Key\":\"ALTRUMAI_PROJECT_API_KEY\",\n                  \"Authorization\":\"AWS4-HMAC-SHA256 Credential=...\"})\nprint(response.choices[0].message.content)\n",
+            "label": "Python"
+          },
+          {
+            "lang": "Javascript",
+            "source": "const { OpenAI } = require(\"openai\");\n\nconst openai = new OpenAI({\n    baseURL: \"https://api.altrum.ai/v1/bedrock/\",\n    defaultHeaders: {\n        \"Project-Api-Key\": \"ALTRUMAI_PROJECT_API_KEY\",\n        \"Authorization\":\"AWS4-HMAC-SHA256 Credential=...\"},\n    apiKey: \"anything\"\n});\n\n(async () => {\n    const response = await openai.chat.completions.create({\n        model: \"anthropic.claude-3-sonnet-20240229-v1:0\",\n        messages: [\n            { role: \"system\", content: \"You are a helpful assistant\" },\n            { role: \"user\", content: \"Hello\" }\n        ],\n        stream: false\n    });\n    console.log(response.choices[0].message.content);\n})();\n",
+            "label": "Javascript"
+          }
+        ]
+      }
+    },
+    "/v1/gemini/chat/completions": {
+      "post": {
+        "tags": ["Google Gemini Proxy"],
+        "summary": "Google Gemini Chat Completions",
+        "description": "Proxy endpoint for Google Gemini Chat Completions API",
+        "operationId": "chat_completions_v1_gemini_chat_completions_post",
+        "security": [{"APIKeyHeader": []}],
+        "parameters": [
+          {
+            "name": "router_name",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "title": "Router Name"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "description": "Google API key",
+              "title": "Authorization"
+            },
+            "description": "Google API key"
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/GeminiRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GeminiModelResponse-Input"
+                },
+                "example": {
+                  "id": "msg_123",
+                  "type": "message",
+                  "role": "assistant",
+                  "content": [
+                    {
+                      "type": "text",
+                      "text": "Hello! How can I help you today?"
+                    }
+                  ],
+                  "model": "gemini-pro",
+                  "usage": {
+                    "input_tokens": 9,
+                    "output_tokens": 12
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponse401"
+                },
+                "example": {
+                  "detail": "Invalid API key"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Unprocessable Entity",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponse422"
+                },
+                "example": {
+                  "detail": [
+                    {
+                      "loc": ["body", "messages"],
+                      "msg": "field required",
+                      "type": "value_error.missing"
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponse500"
+                },
+                "example": {
+                  "detail": "An unexpected error occurred"
+                }
+              }
+            }
+          }
+        },
+        "x-codeSamples": [
+          {
+            "lang": "Shell",
+            "source": "curl --location 'https://api.altrum.ai/v1/gemini/chat/completions' --header 'Authorization: GOOGLE_API_KEY' --header 'Project-Api-Key: ALTRUMAI_PROJECT_API_KEY' --header 'Content-Type: application/json' --data '{\n    \"model\":\"gemini-pro\",\n    \"messages\": [\n        {\"role\":\"user\", \"content\":\"Hello\"},\n        {\"role\":\"system\", \"content\":\"You are a helpful assistant\"}\n    ],\n    \"stream\":false\n}'\n",
+            "label": "Shell"
+          },
+          {
+            "lang": "Python",
+            "source": "from openai import OpenAI\n\nclient = OpenAI(\n    api_key=\"anything\",\n    base_url=\"https://api.altrum.ai/v1/gemini/\")\n\nresponse = client.chat.completions.create(\n    model=\"gemini-pro\", \n    messages=[\n        {\"role\":\"system\", \"content\": \"You are a helpful assistant\"},\n        {\"role\": \"user\", \"content\": \"Hello\"},\n    ],\n    stream=False,\n    extra_headers={\"Project-Api-Key\":\"ALTRUMAI_PROJECT_API_KEY\",\n                  \"Authorization\":\"GOOGLE_API_KEY\"})\nprint(response.choices[0].message.content)\n",
+            "label": "Python"
+          },
+          {
+            "lang": "Javascript",
+            "source": "const { OpenAI } = require(\"openai\");\n\nconst openai = new OpenAI({\n    baseURL: \"https://api.altrum.ai/v1/gemini/\",\n    defaultHeaders: {\n        \"Project-Api-Key\": \"ALTRUMAI_PROJECT_API_KEY\",\n        \"Authorization\":\"GOOGLE_API_KEY\"},\n    apiKey: \"anything\"\n});\n\n(async () => {\n    const response = await openai.chat.completions.create({\n        model: \"gemini-pro\",\n        messages: [\n            { role: \"system\", content: \"You are a helpful assistant\" },\n            { role: \"user\", content: \"Hello\" }\n        ],\n        stream: false\n    });\n    console.log(response.choices[0].message.content);\n})();\n",
             "label": "Javascript"
           }
         ]
@@ -1334,6 +1599,200 @@
         "type": "object",
         "required": ["detail"],
         "title": "ApiResponse500"
+      },
+      "BedrockRequest": {
+        "properties": {
+          "model": {
+            "type": "string",
+            "enum": ["anthropic.claude-3-sonnet-20240229-v1:0", "anthropic.claude-3-haiku-20240307-v1:0", "anthropic.claude-3-opus-20240229-v1:0"],
+            "minLength": 1,
+            "title": "Model",
+            "description": "The model used for the chat completion"
+          },
+          "messages": {
+            "items": {
+              "$ref": "#/components/schemas/Message"
+            },
+            "type": "array",
+            "title": "Messages",
+            "description": "A list of messages comprising the conversation"
+          },
+          "stream": {
+            "anyOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Stream",
+            "description": "If set, partial message deltas will be sent",
+            "default": false
+          },
+          "temperature": {
+            "anyOf": [
+              {
+                "type": "number",
+                "maximum": 1.0,
+                "minimum": 0.0
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Temperature",
+            "description": "Sampling temperature",
+            "default": 1.0
+          },
+          "max_tokens": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Max Tokens",
+            "description": "Maximum number of tokens to generate"
+          }
+        },
+        "type": "object",
+        "required": ["model", "messages"],
+        "title": "BedrockRequest",
+        "description": "Schema for Amazon Bedrock API requests."
+      },
+      "BedrockModelResponse-Input": {
+        "properties": {
+          "id": {
+            "type": "string",
+            "title": "Id"
+          },
+          "type": {
+            "type": "string",
+            "title": "Type"
+          },
+          "role": {
+            "type": "string",
+            "title": "Role"
+          },
+          "content": {
+            "items": {
+              "type": "object"
+            },
+            "type": "array",
+            "title": "Content"
+          },
+          "model": {
+            "type": "string",
+            "title": "Model"
+          },
+          "usage": {
+            "type": "object",
+            "title": "Usage"
+          }
+        },
+        "type": "object",
+        "required": ["id", "type", "role", "content", "model", "usage"],
+        "title": "BedrockModelResponse-Input"
+      },
+      "GeminiRequest": {
+        "properties": {
+          "model": {
+            "type": "string",
+            "enum": ["gemini-pro", "gemini-pro-vision"],
+            "minLength": 1,
+            "title": "Model",
+            "description": "The model used for the chat completion"
+          },
+          "messages": {
+            "items": {
+              "$ref": "#/components/schemas/Message"
+            },
+            "type": "array",
+            "title": "Messages",
+            "description": "A list of messages comprising the conversation"
+          },
+          "stream": {
+            "anyOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Stream",
+            "description": "If set, partial message deltas will be sent",
+            "default": false
+          },
+          "temperature": {
+            "anyOf": [
+              {
+                "type": "number",
+                "maximum": 1.0,
+                "minimum": 0.0
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Temperature",
+            "description": "Sampling temperature",
+            "default": 1.0
+          },
+          "max_tokens": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Max Tokens",
+            "description": "Maximum number of tokens to generate"
+          }
+        },
+        "type": "object",
+        "required": ["model", "messages"],
+        "title": "GeminiRequest",
+        "description": "Schema for Google Gemini API requests."
+      },
+      "GeminiModelResponse-Input": {
+        "properties": {
+          "id": {
+            "type": "string",
+            "title": "Id"
+          },
+          "type": {
+            "type": "string",
+            "title": "Type"
+          },
+          "role": {
+            "type": "string",
+            "title": "Role"
+          },
+          "content": {
+            "items": {
+              "type": "object"
+            },
+            "type": "array",
+            "title": "Content"
+          },
+          "model": {
+            "type": "string",
+            "title": "Model"
+          },
+          "usage": {
+            "type": "object",
+            "title": "Usage"
+          }
+        },
+        "type": "object",
+        "required": ["id", "type", "role", "content", "model", "usage"],
+        "title": "GeminiModelResponse-Input"
       }
     },
     "securitySchemes": {
