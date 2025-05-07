@@ -880,16 +880,6 @@
                  "description":"If set, partial message deltas will be sent",
                  "default":false
               },
-              "stream_options":{
-                 "anyOf":[
-                    {
-                       "$ref":"#/components/schemas/StreamOptions"
-                    },
-                    {
-                       "type":"null"
-                    }
-                 ]
-              },
               "timeout":{
                  "anyOf":[
                     {
@@ -1215,16 +1205,6 @@
                  "title":"Stream",
                  "description":"If set, partial message deltas will be sent",
                  "default":false
-              },
-              "stream_options":{
-                 "anyOf":[
-                    {
-                       "$ref":"#/components/schemas/StreamOptions"
-                    },
-                    {
-                       "type":"null"
-                    }
-                 ]
               },
               "timeout":{
                  "anyOf":[
@@ -2243,16 +2223,6 @@
                  "description":"If set, partial message deltas will be sent",
                  "default":false
               },
-              "stream_options":{
-                 "anyOf":[
-                    {
-                       "$ref":"#/components/schemas/StreamOptions"
-                    },
-                    {
-                       "type":"null"
-                    }
-                 ]
-              },
               "timeout":{
                  "anyOf":[
                     {
@@ -2650,16 +2620,6 @@
                  "title":"Stream",
                  "description":"If set, partial message deltas will be sent",
                  "default":false
-              },
-              "stream_options":{
-                 "anyOf":[
-                    {
-                       "$ref":"#/components/schemas/StreamOptions"
-                    },
-                    {
-                       "type":"null"
-                    }
-                 ]
               },
               "timeout":{
                  "anyOf":[
@@ -3099,16 +3059,6 @@
                  "title":"Stream",
                  "description":"If set, partial message deltas will be sent",
                  "default":false
-              },
-              "stream_options":{
-                 "anyOf":[
-                    {
-                       "$ref":"#/components/schemas/StreamOptions"
-                    },
-                    {
-                       "type":"null"
-                    }
-                 ]
               },
               "timeout":{
                  "anyOf":[
