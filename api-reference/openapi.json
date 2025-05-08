@@ -38,7 +38,7 @@
               {
                  "name":"authorization",
                  "in":"header",
-                 "required":false,
+                 "required":true,
                  "schema":{
                     "type":"string",
                     "description":"OpenAI API key in format 'Bearer sk-...'",
@@ -137,7 +137,7 @@
               {
                  "name":"authorization",
                  "in":"header",
-                 "required":false,
+                 "required":true,
                  "schema":{
                     "type":"string",
                     "description":"Anthropic API key",
@@ -269,7 +269,7 @@
               {
                  "name":"authorization",
                  "in":"header",
-                 "required":false,
+                 "required":true,
                  "schema":{
                     "type":"string",
                     "description":"Azure OpenAI API key in format 'Bearer {key}'",
@@ -379,7 +379,7 @@
               {
                  "name":"authorization",
                  "in":"header",
-                 "required":false,
+                 "required":true,
                  "schema":{
                     "type":"string",
                     "description":"Azure AI Studio API key in format 'Bearer {key}'",
@@ -599,7 +599,7 @@
               {
                  "name":"authorization",
                  "in":"header",
-                 "required":false,
+                 "required":true,
                  "schema":{
                     "type":"string",
                     "description":"Google Gemini API key",
