@@ -79,14 +79,14 @@
   "navbar": {
     "links": [
       {
-        "label": "Contact us",
-        "href": "https://www.altrum.ai/contact-us"
+        "label": "Website",
+        "href": "https://www.altrum.ai"
       }
     ],
     "primary": {
       "type": "button",
-      "label": "Log in",
-      "href": "https://altrum.ai"
+      "label": "Book a Demo",
+      "href": "https://www.altrum.ai/contact-us"
     }
   },
   "footer": {
