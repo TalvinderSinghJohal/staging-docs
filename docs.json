@@ -41,6 +41,12 @@
               "policies/hallucinations",
               "policies/prompt-injection"
             ]
+          },
+          {
+            "group": "Release Notes",
+            "pages": [
+              "release-notes/june-2024-release"
+            ]
           }
         ]
       },
