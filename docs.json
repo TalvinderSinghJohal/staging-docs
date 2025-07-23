@@ -17,14 +17,6 @@
             "group": "Get Started",
             "pages": [
               "get-started/introduction"
-            ],
-            "groups": [
-              {
-                "group": "Test",
-                "pages": [
-                  "get-started/Test/introduction"
-                ]
-              }
             ]
           },
           {
