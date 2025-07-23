@@ -112,26 +112,31 @@
           {
             "group": "Auto Caching",
             "pages": [
+              "ai-gateway/caching/test"
             ]
           },
           {
             "group": "Streaming Support",
             "pages": [
+              "ai-gateway/streaming-support/test"
             ]
           },
           {
             "group": "Tool/Function Calling",
             "pages": [
+              "ai-gateway/tool-calling/test"
             ]
           },
           {
             "group": "Thinking Mode",
             "pages": [
+              "ai-gateway/thinking/test"
             ]
           },
           {
             "group": "Response Formatting",
             "pages": [
+              "ai-gateway/response-formatting/test"
             ]
           }
         ]
