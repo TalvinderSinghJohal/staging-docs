@@ -122,9 +122,14 @@
             ]
           },
           {
-            "group": "Tool/Function Calling",
-            "pages": [
-              "ai-gateway/tool-calling/test"
+            "group": "test",
+            "groups": [
+              {
+                "group": "Tool/Function Calling",
+                "pages": [
+                  "ai-gateway/tool-calling/test"
+                ]
+              }
             ]
           },
           {
