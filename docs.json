@@ -1,6 +1,6 @@
 {
   "$schema": "https://mintlify.com/docs.json",
-  "theme": "mint",
+  "theme": "willow",
   "name": "AltrumAI Docs",
   "colors": {
     "primary": "#126FFF",
