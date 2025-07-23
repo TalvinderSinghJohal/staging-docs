@@ -76,67 +76,18 @@
         "tab": "AI Gateway",
         "groups": [
           {
-            "group": "Unified API (OpenAI SDK Compatible)",
+            "group": "Features",
             "pages": [
-              "ai-gateway/gateway-intro",
-              "ai-gateway/unified-api/openai",
-              "ai-gateway/unified-api/anthropic",
-              "ai-gateway/unified-api/bedrock",
-              "ai-gateway/unified-api/azure-openai",
-              "ai-gateway/unified-api/azure-ai-inference",
-              "ai-gateway/unified-api/google-ai",
-              "ai-gateway/unified-api/google-vertex-ai"
-            ]
-          },
-          {
-            "group": "Multi-Model Support",
-            "pages": [
-              "ai-gateway/multi-model/ai-guardrails",
-              "ai-gateway/multi-model/data-protection-filter",
-              "ai-gateway/multi-model/harmful-content-filter",
-              "ai-gateway/multi-model/restricted-topics-filter",
-              "ai-gateway/multi-model/words-phrases-filter",
-              "ai-gateway/multi-model/profanity-filter",
-              "ai-gateway/multi-model/content-relevance-check",
-              "ai-gateway/multi-model/prompt-injections"
-            ]
-          },
-          {
-            "group": "Multi-auth Support",
-            "pages": [
-              "ai-gateway/auth/api-key",
-              "ai-gateway/auth/azure-entra-id",
-              "ai-gateway/auth/managed-identity"
-            ]
-          },
-          {
-            "group": "Auto Caching",
-            "pages": [
-              "ai-gateway/caching/test"
-            ]
-          },
-          {
-            "group": "Streaming Support",
-            "pages": [
-              "ai-gateway/streaming-support/test"
-            ]
-          },
-          {
-            "group": "Tool/Function Calling",
-            "pages": [
-              "ai-gateway/tool-calling/test"
-            ]
-          },
-          {
-            "group": "Thinking Mode",
-            "pages": [
-              "ai-gateway/thinking/test"
-            ]
-          },
-          {
-            "group": "Response Formatting",
-            "pages": [
-              "ai-gateway/response-formatting/test"
+              "ai-gateway/Introduction/gateway-intro",
+              "ai-gateway/Features/ai-gurdrails",
+              "ai-gateway/Features/auto-caching",
+              "ai-gateway/Features/multi-auth-support",
+              "ai-gateway/Features/multi-model-support",
+              "ai-gateway/Features/reasoning",
+              "ai-gateway/Features/response-formatting",
+              "ai-gateway/Features/streaming-support",
+              "ai-gateway/Features/tool-calling",
+              "ai-gateway/Features/unified-api"
             ]
           }
         ]

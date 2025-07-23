@@ -1,0 +1,166 @@
+---
+title: All Authentication Methods
+---
+
+# Authentication Methods (Collated)
+
+## Table of Contents
+- [API Key Authentication](#api-key-authentication)
+- [Azure Entra ID Authentication](#azure-entra-id-authentication)
+- [Managed Identity Authentication](#managed-identity-authentication)
+
+---
+
+## API Key Authentication
+
+Authenticate requests using secure API keys, ideal for server-to-server and automated integrations.
+
+### How to Use API Key Authentication
+
+<Steps>
+  <Step title="Obtain Your API Key">
+    Register your project on the AltrumAI platform and generate an API key.
+  </Step>
+  <Step title="Add API Key to Request Headers">
+    Include the <code>Project-API-Key</code> header in all API requests.
+  </Step>
+  <Step title="Test Authentication">
+    Send a test request to verify authentication is working.
+  </Step>
+</Steps>
+
+### Example Usage
+
+```python title="api_key_auth_example.py"
+import requests
+
+url = "https://api.altrum.ai/v1/openai/chat/completions"
+headers = {"Project-API-Key": "YOUR_API_KEY"}
+data = {
+    "model": "gpt-3.5-turbo",
+    "messages": [{"role": "user", "content": "Hello!"}]
+}
+response = requests.post(url, headers=headers, json=data)
+print(response.json())
+```
+
+<Accordion title="API Key Management Best Practices">
+  <ul>
+    <li>Rotate API keys regularly</li>
+    <li>Never share API keys publicly</li>
+    <li>Restrict API key permissions to the minimum required</li>
+    <li>Monitor usage and revoke compromised keys immediately</li>
+  </ul>
+</Accordion>
+
+### Accessibility
+- All authentication screens are keyboard navigable
+- API key fields use accessible labels and descriptions
+
+---
+
+## Azure Entra ID Authentication
+
+Enable secure, enterprise-grade authentication using Azure Entra ID (formerly Azure Active Directory) for user and service access.
+
+### How to Use Azure Entra ID Authentication
+
+<Steps>
+  <Step title="Register Your Application">
+    Register your application in the Azure portal and obtain the client ID and tenant ID.
+  </Step>
+  <Step title="Configure Permissions">
+    Assign the necessary API permissions to your application.
+  </Step>
+  <Step title="Obtain Access Token">
+    Use Azure's OAuth 2.0 flow to obtain an access token.
+  </Step>
+  <Step title="Send Authenticated Request">
+    Include the <code>Authorization: Bearer &lt;token&gt;</code> header in your API requests.
+  </Step>
+</Steps>
+
+### Example Usage
+
+```python title="azure_entra_id_auth_example.py"
+import requests
+
+url = "https://api.altrum.ai/v1/openai/chat/completions"
+headers = {
+    "Authorization": "Bearer ACCESS_TOKEN"
+}
+data = {
+    "model": "gpt-3.5-turbo",
+    "messages": [{"role": "user", "content": "Hello!"}]
+}
+response = requests.post(url, headers=headers, json=data)
+print(response.json())
+```
+
+<Accordion title="Azure Entra ID Best Practices">
+  <ul>
+    <li>Use managed identities for automated services</li>
+    <li>Limit token scope and permissions</li>
+    <li>Monitor and audit authentication events</li>
+  </ul>
+</Accordion>
+
+### Accessibility
+- All authentication screens are keyboard navigable
+- Token fields use accessible labels and descriptions
+
+---
+
+## Managed Identity Authentication
+
+Leverage managed identities for seamless, passwordless authentication in cloud-native environments.
+
+### How to Use Managed Identity Authentication
+
+<Steps>
+  <Step title="Enable Managed Identity">
+    Enable managed identity for your Azure resource (VM, App Service, etc.).
+  </Step>
+  <Step title="Assign API Permissions">
+    Assign the required API permissions to the managed identity.
+  </Step>
+  <Step title="Obtain Access Token">
+    Use Azure's identity endpoint to obtain an access token for the AltrumAI API.
+  </Step>
+  <Step title="Send Authenticated Request">
+    Include the <code>Authorization: Bearer &lt;token&gt;</code> header in your API requests.
+  </Step>
+</Steps>
+
+### Example Usage
+
+```python title="managed_identity_auth_example.py"
+import requests
+import os
+
+# Obtain token using Azure SDK or IMDS endpoint
+access_token = os.environ.get("AZURE_MANAGED_IDENTITY_TOKEN")
+
+url = "https://api.altrum.ai/v1/openai/chat/completions"
+headers = {
+    "Authorization": f"Bearer {access_token}"
+}
+data = {
+    "model": "gpt-3.5-turbo",
+    "messages": [{"role": "user", "content": "Hello!"}]
+}
+response = requests.post(url, headers=headers, json=data)
+print(response.json())
+```
+
+<Accordion title="Managed Identity Best Practices">
+  <ul>
+    <li>Use system-assigned identities for simplicity</li>
+    <li>Restrict permissions to the minimum required</li>
+    <li>Monitor and audit managed identity usage</li>
+  </ul>
+</Accordion>
+
+### Accessibility
+- All authentication screens are keyboard navigable
+- Token fields use accessible labels and descriptions 
