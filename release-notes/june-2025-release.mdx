@@ -1,39 +1,25 @@
 ---
-title: June 2025 Release Notes
-description: "Summary of new features and changes released in June 2025."
+title: "Changelog"
+description: "Product updates and announcements"
 ---
 
-## Enhanced Policy Violation Logs in Reporting
+<Update label="June 2025" description="v1.0.0">
+  **Enhanced Policy Violation Logs in Reporting**
+  - The Policy Violation Logs table within the Project Reporting page now provides deeper insights and easier investigation of policy violations.
+  - Expand any record in the Policy Violation Logs table for more details. Click the eye icon on a row to open a slider panel from the right side of the screen.
+  - The slider panel displays further details about the selected violation, such as:
+    - Timestamp of the violation
+    - Policy name and details of violation
+    - User or system that triggered the violation
+    - Input and output data (if available and permitted)
+    - Request/Response Metadata
+  - This enhancement enables deeper investigation and auditing of individual policy violations, helping you understand context and take appropriate action.
 
-The **Policy Violation Logs** table within the Project Reporting page has been enhanced to provide deeper insights and easier investigation of policy violations.
-
-**What's New:**
-- You can now expand any record in the Policy Violation Logs table for more details. Click the **eye icon** on a row to open a **slider panel** from the right side of the screen.
-- The slider panel displays further details about the selected violation, such as:
-  - Timestamp of the violation
-  - Policy name and details of violation
-  - User or system that triggered the violation
-  - Input and output data (if available and permitted)
-  - Request/Response Metadata
-
-<img height="200" src="/images/Policy Violations Panel.png" />
-
-This enhancement enables deeper investigation and auditing of individual policy violations, helping you understand context and take appropriate action.
-
----
-
-## User Re-Invite Functionality in Administration
-
-Admin users with access to the Administration section can now easily re-invite users whose invitations have expired:
-
-- In the **Users** table, any user with the status **Invited** and an expired invite will have a new option available.
-- Click the **ellipsis icon** (⋯) next to the relevant user to open the action menu.
-- Select **Resend User** to send a new invitation email directly from the table.
-> **Note:**  
-> The **Resend User** option is only visible for users who are in the **Invited** status and whose invite has expired.
-
-This feature streamlines the process of managing user invitations and ensures that admins can quickly resend invites when needed.
-
-<img height="200" src="/images/User Reinvite.png" />
-
----
+  **User Re-Invite Functionality in Administration**
+  - Admin users with access to the Administration section can now easily re-invite users whose invitations have expired.
+  - In the Users table, any user with the status Invited and an expired invite will have a new option available.
+  - Click the ellipsis icon (⋯) next to the relevant user to open the action menu.
+  - Select Resend User to send a new invitation email directly from the table.
+  - The Resend User option is only visible for users who are in the Invited status and whose invite has expired.
+  - This feature streamlines the process of managing user invitations and ensures that admins can quickly resend invites when needed.
+</Update>
