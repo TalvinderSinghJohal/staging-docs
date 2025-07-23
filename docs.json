@@ -110,13 +110,28 @@
             ]
           },
           {
-            "group": "Advanced Features",
+            "group": "Auto Caching",
             "pages": [
-              "ai-gateway/auto-caching",
-              "ai-gateway/streaming-support",
-              "ai-gateway/tool-function-calling",
-              "ai-gateway/thinking-mode",
-              "ai-gateway/response-formatting"
+            ]
+          },
+          {
+            "group": "Streaming Support",
+            "pages": [
+            ]
+          },
+          {
+            "group": "Tool/Function Calling",
+            "pages": [
+            ]
+          },
+          {
+            "group": "Thinking Mode",
+            "pages": [
+            ]
+          },
+          {
+            "group": "Response Formatting",
+            "pages": [
             ]
           }
         ]
