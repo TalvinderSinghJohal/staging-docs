@@ -129,8 +129,13 @@
           },
           {
             "group": "Thinking Mode",
-            "pages": [
-              "ai-gateway/thinking/test"
+            "groups": [
+              {
+                "group": "Test",
+                "pages": [
+                  "ai-gateway/thinking/test"
+                ]
+              }
             ]
           },
           {
