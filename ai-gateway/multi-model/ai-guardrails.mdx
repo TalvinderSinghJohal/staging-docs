@@ -2,4 +2,52 @@
 title: AI Guardrails
 ---
 
-Enforce responsible AI usage with built-in guardrails for safety, compliance, and ethical standards across all supported models. 
+## AI Guardrails
+
+Enforce responsible AI usage with built-in guardrails for safety, compliance, and ethical standards across all supported models.
+
+### How to Enable Guardrails
+
+<Steps>
+  <Step title="Navigate to Policy Configuration">
+    Go to your project dashboard and select <strong>Configure Policies</strong>.
+  </Step>
+  <Step title="Enable AI Guardrails">
+    Toggle the <strong>AI Guardrails</strong> option on.
+  </Step>
+  <Step title="Adjust Sensitivity">
+    Set the sensitivity level to match your organization's risk tolerance.
+  </Step>
+  <Step title="Save and Test">
+    Save your changes and use the <strong>Test Policies</strong> tab to validate guardrail behavior.
+  </Step>
+</Steps>
+
+### Example Usage
+
+```python title="guardrails_example.py"
+import requests
+
+url = "https://api.altrum.ai/v1/openai/chat/completions"
+headers = {"Project-API-Key": "YOUR_API_KEY"}
+data = {
+    "model": "gpt-3.5-turbo",
+    "messages": [{"role": "user", "content": "Write a controversial statement."}]
+}
+response = requests.post(url, headers=headers, json=data)
+print(response.json())
+```
+
+If the prompt violates a guardrail, the response will include a policy violation message.
+
+<Accordion title="Advanced Guardrail Options">
+  <ul>
+    <li>Customizable enforcement modes (log only, block, override)</li>
+    <li>Granular topic/entity selection</li>
+    <li>Audit logging for all violations</li>
+  </ul>
+</Accordion>
+
+### Accessibility
+- All guardrail configuration screens are keyboard navigable
+- Sufficient color contrast is maintained for all alerts and toggles 

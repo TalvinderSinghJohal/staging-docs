@@ -2,4 +2,52 @@
 title: Content Relevance Check
 ---
 
-Ensure generated content remains relevant to the intended topic or context, reducing off-topic or hallucinated responses. 
+## Content Relevance Check
+
+Ensure generated content remains relevant to the intended topic or context, reducing off-topic or hallucinated responses.
+
+### How to Enable Content Relevance Check
+
+<Steps>
+  <Step title="Navigate to Policy Configuration">
+    Go to your project dashboard and select <strong>Configure Policies</strong>.
+  </Step>
+  <Step title="Enable Content Relevance Check">
+    Toggle the <strong>Content Relevance Check</strong> option on.
+  </Step>
+  <Step title="Set Relevance Threshold">
+    Adjust the relevance threshold to match your organization's needs.
+  </Step>
+  <Step title="Save and Test">
+    Save your changes and use the <strong>Test Policies</strong> tab to validate filter behavior.
+  </Step>
+</Steps>
+
+### Example Usage
+
+```python title="content_relevance_example.py"
+import requests
+
+url = "https://api.altrum.ai/v1/openai/chat/completions"
+headers = {"Project-API-Key": "YOUR_API_KEY"}
+data = {
+    "model": "gpt-3.5-turbo",
+    "messages": [{"role": "user", "content": "Tell me about the weather, but only answer if relevant."}]
+}
+response = requests.post(url, headers=headers, json=data)
+print(response.json())
+```
+
+If the response is off-topic, it will be flagged or blocked.
+
+<Accordion title="Advanced Content Relevance Options">
+  <ul>
+    <li>Customizable relevance scoring</li>
+    <li>Integration with external context providers</li>
+    <li>Audit logs for all flagged responses</li>
+  </ul>
+</Accordion>
+
+### Accessibility
+- All filter configuration screens are keyboard navigable
+- Relevance alerts use accessible color contrast 

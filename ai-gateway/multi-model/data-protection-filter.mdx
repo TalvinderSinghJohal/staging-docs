@@ -2,4 +2,52 @@
 title: Data Protection Filter
 ---
 
+## Data Protection Filter
+
 Automatically redact or mask sensitive data in prompts and responses to ensure compliance with data privacy regulations.
+
+### How to Enable Data Protection
+
+<Steps>
+  <Step title="Navigate to Policy Configuration">
+    Go to your project dashboard and select <strong>Configure Policies</strong>.
+  </Step>
+  <Step title="Enable Data Protection Filter">
+    Toggle the <strong>Data Protection Filter</strong> option on.
+  </Step>
+  <Step title="Select Data Types">
+    Choose which types of data to protect (PII, PHI, financial, etc.).
+  </Step>
+  <Step title="Save and Test">
+    Save your changes and use the <strong>Test Policies</strong> tab to validate filter behavior.
+  </Step>
+</Steps>
+
+### Example Usage
+
+```python title="data_protection_example.py"
+import requests
+
+url = "https://api.altrum.ai/v1/openai/chat/completions"
+headers = {"Project-API-Key": "YOUR_API_KEY"}
+data = {
+    "model": "gpt-3.5-turbo",
+    "messages": [{"role": "user", "content": "My SSN is 123-45-6789."}]
+}
+response = requests.post(url, headers=headers, json=data)
+print(response.json())
+```
+
+Sensitive data will be redacted in the response.
+
+<Accordion title="Advanced Data Protection Options">
+  <ul>
+    <li>Customizable redaction patterns</li>
+    <li>Audit logs for all redacted content</li>
+    <li>Integration with external DLP solutions</li>
+  </ul>
+</Accordion>
+
+### Accessibility
+- All filter configuration screens are keyboard navigable
+- Redacted content is clearly indicated with accessible labels

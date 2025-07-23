@@ -2,4 +2,52 @@
 title: Profanity Filter
 ---
 
-Automatically detect and filter profane language in prompts and responses to maintain a professional and safe environment. 
+## Profanity Filter
+
+Automatically detect and filter profane language in prompts and responses to maintain a professional and safe environment.
+
+### How to Enable Profanity Filter
+
+<Steps>
+  <Step title="Navigate to Policy Configuration">
+    Go to your project dashboard and select <strong>Configure Policies</strong>.
+  </Step>
+  <Step title="Enable Profanity Filter">
+    Toggle the <strong>Profanity Filter</strong> option on.
+  </Step>
+  <Step title="Set Sensitivity">
+    Adjust the filter's sensitivity to match your organization's needs.
+  </Step>
+  <Step title="Save and Test">
+    Save your changes and use the <strong>Test Policies</strong> tab to validate filter behavior.
+  </Step>
+</Steps>
+
+### Example Usage
+
+```python title="profanity_filter_example.py"
+import requests
+
+url = "https://api.altrum.ai/v1/openai/chat/completions"
+headers = {"Project-API-Key": "YOUR_API_KEY"}
+data = {
+    "model": "gpt-3.5-turbo",
+    "messages": [{"role": "user", "content": "Say something profane."}]
+}
+response = requests.post(url, headers=headers, json=data)
+print(response.json())
+```
+
+If the prompt or response contains profanity, it will be blocked or flagged.
+
+<Accordion title="Advanced Profanity Filter Options">
+  <ul>
+    <li>Customizable profanity lists</li>
+    <li>Granular enforcement by user or project</li>
+    <li>Audit logs for all filtered content</li>
+  </ul>
+</Accordion>
+
+### Accessibility
+- All filter configuration screens are keyboard navigable
+- Profanity alerts use accessible color contrast 

@@ -2,4 +2,85 @@
 title: Google Vertex AI (Unified API)
 ---
 
+## Google Vertex AI via AI Gateway
+
 Access Google Vertex AI models via the AI Gateway, benefiting from unified endpoints and advanced security.
+
+### How to Use
+
+<Steps>
+  <Step title="Obtain API Key">
+    Register your project and get your API key from the AltrumAI platform.
+  </Step>
+  <Step title="Send a Request">
+    Use the following code example to send a prompt.
+  </Step>
+</Steps>
+
+<CodeGroup>
+  <CodeBlock language="python" filename="google_vertex_ai_example.py">
+    import requests
+
+    url = "https://api.altrum.ai/v1/google-vertex-ai/completions"
+    headers = {
+        "Project-API-Key": "YOUR_API_KEY"
+    }
+    data = {
+        "model": "vertex-gpt",
+        "prompt": "Hello, world!"
+    }
+    response = requests.post(url, headers=headers, json=data)
+    print(response.json())
+  </CodeBlock>
+  <CodeBlock language="javascript" filename="google_vertex_ai_example.js">
+    const axios = require('axios');
+
+    const response = await axios.post(
+      'https://api.altrum.ai/v1/google-vertex-ai/completions',
+      {
+        model: 'vertex-gpt',
+        prompt: 'Hello, world!'
+      },
+      { headers: { 'Project-API-Key': 'YOUR_API_KEY' } }
+    );
+    console.log(response.data);
+  </CodeBlock>
+</CodeGroup>
+
+### API Parameters
+
+<ParamField name="model" type="string" required>
+  The model to use (e.g., "vertex-gpt").
+</ParamField>
+<ParamField name="prompt" type="string" required>
+  The prompt to send to the model.
+</ParamField>
+<!-- Add all parameters with descriptions -->
+
+### Example Response
+
+<ResponseExample>
+{
+  "id": "completion-654",
+  "object": "completion",
+  "created": 1234567890,
+  "completion": "Hello! How can I help you today?"
+}
+</ResponseExample>
+
+### Error Handling
+
+<ResponseExample>
+{
+  "error": {
+    "message": "Invalid API key",
+    "type": "authentication_error",
+    "code": 401
+  }
+}
+</ResponseExample>
+
+### Rate Limiting
+
+- **Standard:** 60 requests/minute per API key
+- **Burst:** 120 requests/minute for up to 10 seconds

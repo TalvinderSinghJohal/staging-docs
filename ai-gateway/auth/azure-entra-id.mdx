@@ -2,4 +2,52 @@
 title: Azure Entra ID Authentication
 ---
 
-Enable secure, enterprise-grade authentication using Azure Entra ID (formerly Azure Active Directory) for user and service access. 
+## Azure Entra ID Authentication
+
+Enable secure, enterprise-grade authentication using Azure Entra ID (formerly Azure Active Directory) for user and service access.
+
+### How to Use Azure Entra ID Authentication
+
+<Steps>
+  <Step title="Register Your Application">
+    Register your application in the Azure portal and obtain the client ID and tenant ID.
+  </Step>
+  <Step title="Configure Permissions">
+    Assign the necessary API permissions to your application.
+  </Step>
+  <Step title="Obtain Access Token">
+    Use Azure's OAuth 2.0 flow to obtain an access token.
+  </Step>
+  <Step title="Send Authenticated Request">
+    Include the <code>Authorization: Bearer &lt;token&gt;</code> header in your API requests.
+  </Step>
+</Steps>
+
+### Example Usage
+
+```python title="azure_entra_id_auth_example.py"
+import requests
+
+url = "https://api.altrum.ai/v1/openai/chat/completions"
+headers = {
+    "Authorization": "Bearer ACCESS_TOKEN"
+}
+data = {
+    "model": "gpt-3.5-turbo",
+    "messages": [{"role": "user", "content": "Hello!"}]
+}
+response = requests.post(url, headers=headers, json=data)
+print(response.json())
+```
+
+<Accordion title="Azure Entra ID Best Practices">
+  <ul>
+    <li>Use managed identities for automated services</li>
+    <li>Limit token scope and permissions</li>
+    <li>Monitor and audit authentication events</li>
+  </ul>
+</Accordion>
+
+### Accessibility
+- All authentication screens are keyboard navigable
+- Token fields use accessible labels and descriptions 

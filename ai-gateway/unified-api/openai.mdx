@@ -2,4 +2,92 @@
 title: OpenAI (Unified API)
 ---
 
-Access OpenAI models through a unified, OpenAI SDK-compatible endpoint. Enjoy seamless integration, policy enforcement, and advanced enterprise features.
+## OpenAI via AI Gateway
+
+Access OpenAI models through a unified, OpenAI SDK-compatible endpoint.
+
+### How to Use
+
+<Steps>
+  <Step title="Obtain API Key">
+    Register your project and get your API key from the AltrumAI platform.
+  </Step>
+  <Step title="Send a Request">
+    Use the following code example to send a prompt.
+  </Step>
+</Steps>
+
+<CodeGroup>
+  <CodeBlock language="python" filename="openai_example.py">
+    import requests
+
+    url = "https://api.altrum.ai/v1/openai/chat/completions"
+    headers = {
+        "Project-API-Key": "YOUR_API_KEY"
+    }
+    data = {
+        "model": "gpt-3.5-turbo",
+        "messages": [{"role": "user", "content": "Hello, world!"}]
+    }
+    response = requests.post(url, headers=headers, json=data)
+    print(response.json())
+  </CodeBlock>
+  <CodeBlock language="javascript" filename="openai_example.js">
+    const axios = require('axios');
+
+    const response = await axios.post(
+      'https://api.altrum.ai/v1/openai/chat/completions',
+      {
+        model: 'gpt-3.5-turbo',
+        messages: [{ role: 'user', content: 'Hello, world!' }]
+      },
+      { headers: { 'Project-API-Key': 'YOUR_API_KEY' } }
+    );
+    console.log(response.data);
+  </CodeBlock>
+</CodeGroup>
+
+### API Parameters
+
+<ParamField name="model" type="string" required>
+  The model to use (e.g., "gpt-3.5-turbo").
+</ParamField>
+<ParamField name="messages" type="array" required>
+  Array of message objects for the conversation.
+</ParamField>
+<!-- Add all parameters with descriptions -->
+
+### Example Response
+
+<ResponseExample>
+{
+  "id": "chatcmpl-123",
+  "object": "chat.completion",
+  "created": 1234567890,
+  "choices": [
+    {
+      "message": {
+        "role": "assistant",
+        "content": "Hello! How can I help you today?"
+      }
+    }
+  ]
+}
+</ResponseExample>
+
+### Error Handling
+
+<ResponseExample>
+{
+  "error": {
+    "message": "Invalid API key",
+    "type": "authentication_error",
+    "code": 401
+  }
+}
+</ResponseExample>
+
+### Rate Limiting
+
+- **Standard:** 60 requests/minute per API key
+- **Burst:** 120 requests/minute for up to 10 seconds

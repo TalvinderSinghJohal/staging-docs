@@ -2,4 +2,52 @@
 title: Words and Phrases Filter
 ---
 
-Filter out specific words and phrases from prompts and responses to enforce custom content policies. 
+## Words and Phrases Filter
+
+Filter out specific words and phrases from prompts and responses to enforce custom content policies.
+
+### How to Enable Words and Phrases Filter
+
+<Steps>
+  <Step title="Navigate to Policy Configuration">
+    Go to your project dashboard and select <strong>Configure Policies</strong>.
+  </Step>
+  <Step title="Enable Words and Phrases Filter">
+    Toggle the <strong>Words and Phrases Filter</strong> option on.
+  </Step>
+  <Step title="Add Words or Phrases">
+    Enter the words or phrases you want to filter. You can add multiple entries.
+  </Step>
+  <Step title="Save and Test">
+    Save your changes and use the <strong>Test Policies</strong> tab to validate filter behavior.
+  </Step>
+</Steps>
+
+### Example Usage
+
+```python title="words_phrases_filter_example.py"
+import requests
+
+url = "https://api.altrum.ai/v1/openai/chat/completions"
+headers = {"Project-API-Key": "YOUR_API_KEY"}
+data = {
+    "model": "gpt-3.5-turbo",
+    "messages": [{"role": "user", "content": "Say a forbidden word."}]
+}
+response = requests.post(url, headers=headers, json=data)
+print(response.json())
+```
+
+If the prompt or response contains a filtered word or phrase, it will be blocked or flagged.
+
+<Accordion title="Advanced Words and Phrases Options">
+  <ul>
+    <li>Case sensitivity settings</li>
+    <li>Partial word/phrase matching</li>
+    <li>Audit logs for all filtered content</li>
+  </ul>
+</Accordion>
+
+### Accessibility
+- All filter configuration screens are keyboard navigable
+- Filtered words/phrases are clearly indicated for screen readers 
