@@ -76,18 +76,23 @@
         "tab": "AI Gateway",
         "groups": [
           {
+            "group": "Introduction",
+            "pages": [
+              "ai-gateway/Introduction/gateway-intro"
+            ]
+          },
+          {
             "group": "Features",
             "pages": [
-              "ai-gateway/Introduction/gateway-intro",
-              "ai-gateway/Features/ai-gurdrails",
-              "ai-gateway/Features/auto-caching",
-              "ai-gateway/Features/multi-auth-support",
+              "ai-gateway/Features/unified-api",
               "ai-gateway/Features/multi-model-support",
-              "ai-gateway/Features/reasoning",
-              "ai-gateway/Features/response-formatting",
+              "ai-gateway/Features/ai-gurdrails",
+              "ai-gateway/Features/multi-auth-support",
+              "ai-gateway/Features/auto-caching",
               "ai-gateway/Features/streaming-support",
               "ai-gateway/Features/tool-calling",
-              "ai-gateway/Features/unified-api"
+              "ai-gateway/Features/reasoning",
+              "ai-gateway/Features/response-formatting"
             ]
           }
         ]
