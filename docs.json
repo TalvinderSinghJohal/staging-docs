@@ -71,6 +71,55 @@
             ]
           }
         ]
+      },
+      {
+        "tab": "AI Gateway",
+        "groups": [
+          {
+            "group": "Unified API (OpenAI SDK Compatible)",
+            "pages": [
+              "ai-gateway/gateway-intro",
+              "ai-gateway/unified-api/openai",
+              "ai-gateway/unified-api/anthropic",
+              "ai-gateway/unified-api/bedrock",
+              "ai-gateway/unified-api/azure-openai",
+              "ai-gateway/unified-api/azure-ai-inference",
+              "ai-gateway/unified-api/google-ai",
+              "ai-gateway/unified-api/google-vertex-ai"
+            ]
+          },
+          {
+            "group": "Multi-Model Support",
+            "pages": [
+              "ai-gateway/multi-model/ai-guardrails",
+              "ai-gateway/multi-model/data-protection-filter",
+              "ai-gateway/multi-model/harmful-content-filter",
+              "ai-gateway/multi-model/restricted-topics-filter",
+              "ai-gateway/multi-model/words-phrases-filter",
+              "ai-gateway/multi-model/profanity-filter",
+              "ai-gateway/multi-model/content-relevance-check",
+              "ai-gateway/multi-model/prompt-injections"
+            ]
+          },
+          {
+            "group": "Multi-auth Support",
+            "pages": [
+              "ai-gateway/auth/api-key",
+              "ai-gateway/auth/azure-entra-id",
+              "ai-gateway/auth/managed-identity"
+            ]
+          },
+          {
+            "group": "Advanced Features",
+            "pages": [
+              "ai-gateway/auto-caching",
+              "ai-gateway/streaming-support",
+              "ai-gateway/tool-function-calling",
+              "ai-gateway/thinking-mode",
+              "ai-gateway/response-formatting"
+            ]
+          }
+        ]
       }
     ],
     "global": {
