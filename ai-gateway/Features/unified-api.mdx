@@ -15,7 +15,8 @@ Access OpenAI models through a unified, OpenAI SDK-compatible endpoint.
 
 
 <CodeGroup>
-```python
+
+```python openai.py
 import openai
 
 # Configure the OpenAI SDK to use the AI Gateway endpoint
@@ -32,6 +33,8 @@ response = openai.ChatCompletion.create(
 )
 
 print(response.choices[0].message["content"])
+```
+
 </CodeGroup>
 ---
 
