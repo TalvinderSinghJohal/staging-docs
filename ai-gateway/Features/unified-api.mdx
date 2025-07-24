@@ -13,10 +13,7 @@ Access OpenAI models through a unified, OpenAI SDK-compatible endpoint.
 
 ### Example: Using OpenAI SDK via AI Gateway
 
-
-<CodeGroup>
-
-```python openai.py
+```python title= "OpenAI Example.py"
 import openai
 
 # Configure the OpenAI SDK to use the AI Gateway endpoint
@@ -35,7 +32,6 @@ response = openai.ChatCompletion.create(
 print(response.choices[0].message["content"])
 ```
 
-</CodeGroup>
 ---
 
 ## Anthropic via AI Gateway
