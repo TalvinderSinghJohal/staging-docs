@@ -11,6 +11,25 @@ Access multiple leading AI providers through a single, OpenAI SDK-compatible API
 
 Access OpenAI models through a unified, OpenAI SDK-compatible endpoint.
 
+### Example: Calling OpenAI via AI Gateway using the OpenAI SDK
+
+```python
+import openai
+
+# Point the OpenAI SDK to your AI Gateway endpoint
+openai.api_base = "https://<your-gateway-domain>/v1"
+openai.api_key = "<your-api-key>"
+
+# Make a chat completion request
+response = openai.ChatCompletion.create(
+    model="gpt-4",
+    messages=[
+        {"role": "system", "content": "You are a helpful assistant."},
+        {"role": "user", "content": "What is the capital of France?"}
+    ]
+)
+
+print(response.choices[0].message["content"])
 ---
 
 ## Anthropic via AI Gateway
