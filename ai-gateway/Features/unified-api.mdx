@@ -42,20 +42,27 @@ Connect to Anthropic models using the unified API interface, with full support f
 
 ### Example: Calling OpenAI via AI Gateway using the OpenAI SDK
 
-```python title="openai_example.py"
-import openai
+```python title="anthropic_example.py"
+from openai import OpenAI
 
-openai.api_base = "https://<your-gateway-domain>/v1"
-openai.api_key = "<your-api-key>"
+client = OpenAI(
+    api_key="your-anthropic-api-key",
+    base_url="https://your-gateway-url/v1",
+    default_headers={
+        "x-api-key": "your-api-key",
+        "x-provider-name": "anthropic",
+        "x-altrumai-key": "your-gateway-api-key"
+    }
+)
 
-response = openai.ChatCompletion.create(
+response = client.chat.completions.create(
     model="claude-3-opus-20240229",
     messages=[
         {"role": "user", "content": "Explain quantum computing in simple terms."}
     ]
 )
 
-print(response.choices[0].message["content"])
+print(response.choices[0].message.content)
 ```
 ---
 
@@ -65,20 +72,30 @@ Integrate Amazon Bedrock models via the AI Gateway, leveraging unified endpoints
 
 ### Example: Calling OpenAI via AI Gateway using the OpenAI SDK
 
-```python title="openai_example.py"
-import openai
+```python title="amazon_bedrock_example.py"
+from openai import OpenAI
 
-openai.api_base = "https://<your-gateway-domain>/v1"
-openai.api_key = "<your-api-key>"
+client = OpenAI(
+    api_key="unused-placeholder",  # Not used, credentials are provided via headers
+    base_url="https://your-gateway-url/v1",
+    default_headers={
+        "x-provider-name": "bedrock",
+        "x-bedrock-access-key-id": "your-aws-access-key-id",
+        "x-bedrock-secret-access-key": "your-aws-secret-access-key",
+        "x-bedrock-region": "your-aws-region",
+        "x-bedrock-session-token": "your-aws-session-token",  # Optional
+        "x-altrumai-key": "your-gateway-api-key"
+    }
+)
 
-response = openai.ChatCompletion.create(
-    model="anthropic.claude-v2",
+response = client.chat.completions.create(
+    model="anthropic.claude-v2",  # Alternate Bedrock-supported model
     messages=[
-        {"role": "user", "content": "Summarize the latest news on climate change."}
+        {"role": "user", "content": "Give me a list of 5 creative startup ideas in the AI space."}
     ]
 )
 
-print(response.choices[0].message["content"])
+print(response.choices[0].message.content)
 ```
 ---
 
@@ -88,20 +105,30 @@ Access Azure OpenAI models through the AI Gateway, with unified API compatibilit
 
 ### Example: Calling OpenAI via AI Gateway using the OpenAI SDK
 
-```python title="openai_example.py"
-import openai
+```python title="azure_openai_example.py"
+from openai import OpenAI
 
-openai.api_base = "https://<your-gateway-domain>/v1"
-openai.api_key = "<your-api-key>"
+client = OpenAI(
+    api_key="unused-placeholder",  # Not used; authentication is handled via headers
+    base_url="https://your-gateway-url/v1",
+    default_headers={
+        "x-provider-name": "azure_openai",
+        "x-azure-api-key": "your-azure-api-key",
+        "x-azure-resource-name": "your-azure-resource-name",
+        "x-azure-deployment-id": "your-azure-deployment-id",
+        "x-azure-api-version": "2024-02-15-preview",  # Example version, update as needed
+        "x-altrumai-key": "your-gateway-api-key"
+    }
+)
 
-response = openai.ChatCompletion.create(
-    model="azure-gpt-4",
+response = client.chat.completions.create(
+    model="gpt-35-turbo",  # Replace with the model name mapped to your deployment
     messages=[
-        {"role": "user", "content": "Write a LinkedIn post about AI in healthcare."}
+        {"role": "user", "content": "What are the advantages of using managed Kubernetes services?"}
     ]
 )
 
-print(response.choices[0].message["content"])
+print(response.choices[0].message.content)
 ```
 ---
 
@@ -111,20 +138,28 @@ Leverage Azure AI Inference models through the AI Gateway, ensuring unified acce
 
 ### Example: Calling OpenAI via AI Gateway using the OpenAI SDK
 
-```python title="openai_example.py"
-import openai
+```python title="azure_ai_inference_example.py"
+from openai import OpenAI
 
-openai.api_base = "https://<your-gateway-domain>/v1"
-openai.api_key = "<your-api-key>"
+client = OpenAI(
+    api_key="unused-placeholder",  # Not used; authentication is passed via headers
+    base_url="https://your-gateway-url/v1",
+    default_headers={
+        "x-provider-name": "azure_ai_inference",
+        "x-altrumai-key": "your-gateway-api-key",
+        "x-azure-ai-token": "your-azure-ai-inference-api-key",
+        "x-azure-ai-endpoint": "your-azure-ai-inference-endpoint"
+    }
+)
 
-response = openai.ChatCompletion.create(
-    model="phi-2",
+response = client.chat.completions.create(
+    model="phi-2",  # Example model from Azure AI Inference
     messages=[
-        {"role": "user", "content": "How does photosynthesis work?"}
+        {"role": "user", "content": "Summarize the main benefits of using serverless architectures."}
     ]
 )
 
-print(response.choices[0].message["content"])
+print(response.choices[0].message.content)
 ```
 ---
 
@@ -134,20 +169,27 @@ Integrate Google AI models using the unified API, with built-in policy enforceme
 
 ### Example: Calling OpenAI via AI Gateway using the OpenAI SDK
 
-```python title="openai_example.py"
-import openai
+```python title="google_ai_example.py"
+from openai import OpenAI
 
-openai.api_base = "https://<your-gateway-domain>/v1"
-openai.api_key = "<your-api-key>"
+client = OpenAI(
+    api_key="unused-placeholder",  # Not used; authentication is handled via headers
+    base_url="https://your-gateway-url/v1",
+    default_headers={
+        "x-provider-name": "google",
+        "x-goog-api-key": "your-google-api-key",
+        "x-altrumai-key": "your-gateway-api-key"
+    }
+)
 
-response = openai.ChatCompletion.create(
-    model="gemini-1.5-pro",
+response = client.chat.completions.create(
+    model="gemini-1.5-pro",  # Example Google Gemini model
     messages=[
-        {"role": "user", "content": "Generate a product launch checklist."}
+        {"role": "user", "content": "How can AI help improve energy efficiency in smart buildings?"}
     ]
 )
 
-print(response.choices[0].message["content"])
+print(response.choices[0].message.content)
 ```
 ---
 
@@ -158,18 +200,28 @@ Access Google Vertex AI models via the AI Gateway, benefiting from unified endpo
 ### Example: Calling OpenAI via AI Gateway using the OpenAI SDK
 
 ```python title="openai_example.py"
-import openai
+from openai import OpenAI
 
-openai.api_base = "https://<your-gateway-domain>/v1"
-openai.api_key = "<your-api-key>"
+client = OpenAI(
+    api_key="unused-placeholder",  # Not used; authentication is handled via headers
+    base_url="https://your-gateway-url/v1",
+    default_headers={
+        "x-provider-name": "google_vertex_ai",
+        "x-api-key": "your-google-vertex-ai-api-key",
+        "x-endpoint-base": "your-google-vertex-ai-endpoint-base",
+        "x-project-id": "your-google-vertex-ai-project-id",
+        "x-location": "your-google-vertex-ai-location",
+        "x-altrumai-key": "your-gateway-api-key"
+    }
+)
 
-response = openai.ChatCompletion.create(
-    model="google.models.text-bison",
+response = client.chat.completions.create(
+    model="google.models.text-bison",  # Example Vertex AI model
     messages=[
-        {"role": "user", "content": "Draft an email to request a product demo."}
+        {"role": "user", "content": "List three practical applications of generative AI in education."}
     ]
 )
 
-print(response.choices[0].message["content"])
+print(response.choices[0].message.content)
 ```
 ---
