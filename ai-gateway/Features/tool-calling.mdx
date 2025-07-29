@@ -4,3 +4,74 @@ icon: "square-scissors"
 ---
 
 Allow AI models to call external tools and functions, expanding their capabilities and automating workflows.
+
+### Example: Function Calling with the AI Gateway
+
+The following example demonstrates how to invoke a tool using OpenAI's function calling format via the AI Gateway.
+
+```python
+from openai import OpenAI
+
+client = OpenAI(
+    api_key="your-openai-api-key",
+    base_url="https://your-gateway-url/v1",
+    default_headers={
+        "x-provider-name": "openai",
+        "x-altrumai-key": "your-gateway-api-key"
+    }
+)
+
+response = client.chat.completions.create(
+    model="gpt-4",
+    messages=[
+        {"role": "user", "content": "What's the weather like in New York tomorrow?"}
+    ],
+    tools=[
+        {
+            "type": "function",
+            "function": {
+                "name": "get_weather",
+                "description": "Get the weather forecast for a city",
+                "parameters": {
+                    "type": "object",
+                    "properties": {
+                        "location": {
+                            "type": "string",
+                            "description": "Name of the city"
+                        },
+                        "date": {
+                            "type": "string",
+                            "description": "Date to get the forecast for"
+                        }
+                    },
+                    "required": ["location", "date"]
+                }
+            }
+        }
+    ],
+    tool_choice="auto"
+)
+
+print(response.choices[0].message)
+```
+
+### Sample Response
+
+The model decides to call the `get_weather` function with arguments inferred from the user's message.
+
+```json
+{
+  "role": "assistant",
+  "content": null,
+  "tool_calls": [
+    {
+      "id": "call_abc123",
+      "type": "function",
+      "function": {
+        "name": "get_weather",
+        "arguments": "{ \"location\": \"New York\", \"date\": \"2025-07-25\" }"
+      }
+    }
+  ]
+}
+```
