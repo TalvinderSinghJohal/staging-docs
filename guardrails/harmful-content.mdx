@@ -5,11 +5,14 @@ description: "Advanced content filtering that identifies and prevents harmful, u
 
 ## Overview
 
-This guardrail provides comprehensive protection against harmful content by leveraging advanced AI-powered detection systems to identify and filter unsafe, inappropriate, or potentially dangerous content. The guardrail applies sophisticated content analysis to both user inputs and AI-generated responses, ensuring all interactions remain safe, professional, and compliant with organisational standards.
+The Harmful Content Filter uses advanced AI to detect and block unsafe, inappropriate, or harmful content in both user inputs and AI responses. 
 
-The **Harmful Content Detection** guardrail enables organizations to identify and manage various forms of harmful content including hate speech, violence, self-harm, sexual content, and other inappropriate material. Designed with enterprise-grade accuracy and low latency, this guardrail helps ensure that AI interactions remain safe, inclusive, and aligned with responsible AI principles.
+**Key Points:**
+- Protects against hate speech, violence, self-harm, sexual content, and more
+- Analyses both prompts and responses for safety and compliance
+- Uses context-aware machine learning for accurate detection and fewer false positives
 
-Unlike basic content filters, this guardrail employs advanced machine learning models that understand context, nuance, and intent, providing more accurate detection while reducing false positives that could impact legitimate business communications.
+This ensures all AI interactions remain safe, professional, and aligned with your organisation’s standards.
 
 ---
 
@@ -17,7 +20,7 @@ Unlike basic content filters, this guardrail employs advanced machine learning m
 
 ### Purpose
 
-The primary goal of the Harmful Content Detection guardrail is to create a safe AI environment by preventing exposure to harmful, unsafe, or inappropriate content while maintaining high accuracy and minimal impact on legitimate business communications. By enabling this guardrail, organizations can protect users, maintain brand safety, ensure compliance with content standards, and uphold responsible AI usage across all interactions.
+The primary goal of the Harmful Content Detection guardrail is to create a safe AI environment by preventing exposure to harmful, unsafe, or inappropriate content while maintaining high accuracy and minimal impact on legitimate business communications. By enabling this guardrail, organisations can protect users, maintain brand safety, ensure compliance with content standards, and uphold responsible AI usage across all interactions.
 
 ### Scope
 
@@ -31,18 +34,27 @@ The Harmful Content Detection guardrail applies advanced content analysis to:
 
 #### Operational Modes
 
-- **Log Only**: Records detected harmful content for review and analysis without blocking
-- **Log and Override**: Automatically prevents harmful content from being processed or displayed
+- **Input** – Applies the selected behaviour to what users send to the model.
+- **Output** – Applies the selected behaviour to what the model returns as a response.
+- **Both** – Full bidirectional coverage
+
+#### Set Detection Threshold
+
+Under **Set Guardrail Threshold** select the required detection sensitivity:
+
+- **Low:** Filters only the most clearly restricted topics. Content with low or uncertain risk is allowed.
+- **Medium:** Filters content that's likely or certainly restricted. Lower-confidence content is still allowed.
+- **High:** Applies strict filtering—blocks any content that may be restricted, even with low confidence.
 
 #### Detection Categories
 
 The guardrail monitors multiple categories of harmful content:
 
-- **Hate**: Hateful language and content
-- **Insults**: Personal attacks and insults
-- **Sexual**: Sexual content and harassment
-- **Violence**: Violent threats and content
-- **Misconduct**: Inappropriate professional behavior
+- **Hate**: Flags content that targets someone negatively based on identity factors like race, gender, or religion.
+- **Insults**: Detects content that includes threats, bullying, or language that encourages physical harm.
+- **Sexual**: Flags explicit or suggestive content, including references to sexual activity or body parts.
+- **Violence**: Detects language that mocks, humiliates, or verbally attacks a person or group.
+- **Misconduct**: Flags attempts to share or request information about illegal, unethical, or harmful actions.
 
 ### Key Features
 
@@ -50,7 +62,7 @@ The guardrail monitors multiple categories of harmful content:
 - **Context-Aware Analysis**: Advanced understanding of conversation context and intent
 - **Configurable Sensitivity**: Adjustable detection thresholds for different use cases
 - **Low Latency**: High-performance detection that doesn't impact response times
-- **Enterprise-Grade Accuracy**: Minimizes false positives while maintaining high detection rates
+- **Enterprise-Grade Accuracy**: Minimises false positives while maintaining high detection rates
 
 ---
 
@@ -59,7 +71,7 @@ The guardrail monitors multiple categories of harmful content:
 ### Benefits
 
 - **User Protection**: Safeguards users from exposure to harmful or inappropriate content
-- **Brand Safety**: Protects organizational reputation and maintains professional standards
+- **Brand Safety**: Protects organisational reputation and maintains professional standards
 - **Compliance**: Ensures adherence to content policies and regulatory requirements
 - **Risk Mitigation**: Reduces legal and reputational risks associated with harmful content
 - **Inclusive Environment**: Creates safer, more welcoming AI interactions for all users
@@ -74,7 +86,7 @@ A global e-commerce company deploys an AI assistant to handle customer inquiries
 
 ### Challenge
 
-The organization must ensure that:
+The organisation must ensure that:
 
 - The AI never generates harmful, offensive, or inappropriate responses
 - User inputs containing harmful content are properly handled
@@ -101,50 +113,51 @@ The organization must ensure that:
 
 > **Note:** The following steps walk you through configuring the Harmful Content Detection Guardrail in the guardrail workflow.
 
-### Step 1: Navigate to the Policy Workflow
+### Step 1: Navigate to the Guardrail Workflow
 
-1. From the **Dashboard**, select your project to open the **Project Overview**.
-2. In the **Policy** section, click **Edit Policy** to enter the policy configuration workflow.
+1. From the **Dashboard**, open the **Project Overview** by selecting "view" to open your project from the **Project Table**.
+2. In the **guardrails** section of the Project Overview, click **Edit Guardrails** to launch the guardrail configuration workflow.
 
-### Step 2: Select and Enable the Toxicity Detection Policy
+### Step 2: Select and Enable the Harmful Content Filter
 
-1. In the **Configure Guardrails** tab, click **Toxicity** from the list of guardrails.
+1. In the **Configure Guardrails** dropdown, click **Harmful Content Filter** from the list of guardrails.
 2. The configuration panel will appear on the right.
-3. Toggle **Enable Policy** to **ON**.
+3. Toggle **Enable Guardrail** to **ON**.
 
 ### Step 3: Set Application Scope
 
-1. Under **Apply Policy To**, choose one of the following:
-   - **Prompt** – Monitor user inputs only.
-   - **Response** – Monitor AI outputs only.
-   - **Both** – Monitor both inputs and outputs.
+1. Under the **Apply Guardrail To** section, select where you want the guardrail enforced:
+   - **Input** – Applies the selected behaviour to what users send to the model.
+   - **Output** – Applies the selected behaviour to what the model returns as a response.
+   - **Both** – Full bidirectional coverage
 
 ### Step 4: Configure Enforcement Behaviour
 
-1. Under **Behaviour**, select:
-   - **Log Only** – Record instances of toxic content without blocking.
-   - **Log and Override** – Block toxic prompts/responses and replace with a smart fallback message.
+1. Under **Behaviour**, choose how the guardrail should respond to detected filters:
+   - **Monitor** – Lets you review input or output content without taking any action—used for observation and diagnostics.
+   - **Block** – Automatically stops content from being processed if it violates the selected guardrail rules.
 
-### Step 5: Adjust Detection Threshold
+### Step 5: Set Detection Threshold
 
-1. Use the **Threshold Slider** to set detection sensitivity:
-   - Lower thresholds (e.g., `0.2`) catch broader cases, reducing false negatives.
-   - Higher thresholds (e.g., `0.9`) enforce stricter toxicity detection.
+1. Under **Set Guardrail Threshold** select the required detection sensitivity:
+   - **Low:** Filters only the most clearly harmful content. Content with low or uncertain risk is allowed.
+   - **Medium:** Filters content that's likely or certainly harmful. Lower-confidence content is still allowed.
+   - **High:** Applies strict filtering—blocks any content that may be harmful, even with low confidence.
 
 ### Step 6: Save, Test, and Apply
 
-1. Click **Save Changes** to store your configuration.
-2. *(Optional)* Test your guardrail under the **Test Guardrails** tab.
-3. Return to **Configure Guardrails** and click **Apply Guardrails** to activate it.
-4. A success message will confirm that the guardrail is live.
+1. Click **Save Changes** to store your selected entities and configuration.
+2. *(Optional)* Go to the **Test Guardrails** dropdown to evaluate how the guardrail behaves in real time with a chatbot.
+3. After saving, you can proceed to integration by clicking the **Continue to Integration** button, which will guide you to the next step in the workflow.
+4. Alternatively, you may navigate to the **Summary** section to review your configuration, save all changes, and view your AI System overview.
 
-The **Toxicity Detection Policy** helps maintain professional and respectful AI interactions by detecting and managing harmful language with configurable precision.
+The **Harmful Content Filter** helps maintain professional and respectful AI interactions by detecting and managing harmful language with configurable precision.
 
 ---
 
-## Types of Toxicity Detection
+## Types of Harmful Content
 
-The Toxicity Policy is designed to identify and manage various forms of inappropriate content. Below is an overview of the primary categories our system monitors:
+The Harmful Content Filter is designed to identify and manage various forms of inappropriate content. Below is an overview of the primary categories our system monitors:
 
 | Category | Description |
 |----------|-------------|
@@ -152,6 +165,6 @@ The Toxicity Policy is designed to identify and manage various forms of inapprop
 | Insults | Identifies personal attacks and insults that demean, belittle, or cause emotional distress to individuals, helping maintain respectful and professional communication standards. |
 | Sexual | Monitors for sexual content and harassment, including inappropriate sexual language, explicit material, or unwanted sexual advances that are unsuitable for professional environments. |
 | Violence | Detects violent threats and content that promotes, glorifies, or threatens violence, including physical harm, terrorism, or other dangerous activities. |
-| Misconduct | Identifies inappropriate professional behavior, including unprofessional conduct, workplace harassment, or behavior that violates organizational standards and professional ethics. |
+| Misconduct | Identifies inappropriate professional behaviour, including unprofessional conduct, workplace harassment, or behaviour that violates organisational standards and professional ethics. |
 
-Each category is monitored with configurable sensitivity, allowing organizations to maintain appropriate safety measures while ensuring smooth user interactions. The guardrail helps create a safe AI environment while preserving the intended functionality and trustworthiness of your automated workflows.
+Each category is monitored with configurable sensitivity, allowing organisations to maintain appropriate safety measures while ensuring smooth user interactions. The guardrail helps create a safe AI environment while preserving the intended functionality and trustworthiness of your automated workflows.

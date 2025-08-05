@@ -5,11 +5,11 @@ description: "Advanced profanity detection that identifies and filters inappropr
 
 ## Overview
 
-This guardrail provides comprehensive protection against profanity and inappropriate language by leveraging advanced AI-powered detection systems to identify and filter offensive content in real-time. The guardrail applies sophisticated content analysis to both user inputs and AI-generated responses, ensuring that all interactions remain professional, respectful, and appropriate for the intended audience.
+The Profanity Filter uses advanced AI to detect and filter profanity and inappropriate language in both user inputs and AI responses, ensuring all interactions remain professional and respectful.
 
-The **Profanity Filter** enables organizations to automatically detect and manage various forms of profanity, vulgar language, and inappropriate content. Designed with enterprise-grade accuracy and low latency, this guardrail helps ensure that AI interactions remain professional and suitable.
+Unlike basic word lists, this guardrail leverages context-aware machine learning to accurately identify explicit, disguised, or context-dependent profanity across multiple languages, with high accuracy and minimal false positives.
 
-Unlike basic word filtering, this guardrail employs advanced machine learning models that understand context, recognize language variations, and accurately identify profanity even when disguised or used in different contexts, providing comprehensive protection while minimizing false positives.
+Designed for enterprise use, the Profanity Filter operates in real time with low latency, helping organisations maintain communication standards and protect their brand reputation.
 
 ---
 
@@ -17,7 +17,7 @@ Unlike basic word filtering, this guardrail employs advanced machine learning mo
 
 ### Purpose
 
-The primary goal of the Profanity Filter is to maintain professional communication standards by preventing the use of profanity and inappropriate language during AI interactions while maintaining high accuracy and minimal impact on legitimate business communications. By enabling this guardrail, organizations can ensure content appropriateness, maintain professional standards, protect brand reputation, and uphold responsible AI usage across all interactions.
+The primary goal of the Profanity Filter is to maintain professional communication standards by preventing the use of profanity and inappropriate language during AI interactions while maintaining high accuracy and minimal impact on legitimate business communications. By enabling this guardrail, organisations can ensure content appropriateness, maintain professional standards, protect brand reputation, and uphold responsible AI usage across all interactions.
 
 ### Scope
 
@@ -25,14 +25,15 @@ The primary goal of the Profanity Filter is to maintain professional communicati
 
 The Profanity Filter applies advanced content analysis to:
 
-- **User Prompts**: Analyzes incoming user content for profanity before processing
+- **User Prompts**: Analyses incoming user content for profanity before processing
 - **AI Responses**: Evaluates generated content for inappropriate language before delivery
 - **Context Understanding**: Considers conversation context and language variations for more accurate detection
 
 #### Operational Modes
 
-- **Log Only**: Records detected profanity for review and analysis without blocking
-- **Log and Override**: Automatically prevents profanity from being processed or displayed
+- **Input** – Applies the selected behaviour to what users send to the model.
+- **Output** – Applies the selected behaviour to what the model returns as a response.
+- **Both** – Full bidirectional coverage
 
 #### Detection Capabilities
 
@@ -49,7 +50,7 @@ The guardrail can identify various forms of inappropriate language:
 - **Context-Aware Analysis**: Advanced understanding of conversation context and language usage
 - **Configurable Sensitivity**: Adjustable detection thresholds for different use cases
 - **Low Latency**: High-performance detection that doesn't impact response times
-- **Enterprise-Grade Accuracy**: Minimizes false positives while maintaining high detection rates
+- **Enterprise-Grade Accuracy**: Minimises false positives while maintaining high detection rates
 - **Multi-Language Support**: Detects profanity across various languages and dialects
 
 ---
@@ -59,7 +60,7 @@ The guardrail can identify various forms of inappropriate language:
 ### Benefits
 
 - **Professional Standards**: Maintains appropriate language standards in all interactions
-- **Brand Protection**: Protects organizational reputation and maintains professional image
+- **Brand Protection**: Protects organisational reputation and maintains professional image
 - **Audience Appropriateness**: Ensures content is suitable for intended audiences
 - **Compliance**: Helps meet workplace and industry communication standards
 - **Risk Mitigation**: Reduces potential reputational damage from inappropriate language
@@ -74,7 +75,7 @@ A global retail company deploys an AI assistant to handle customer inquiries and
 
 ### Challenge
 
-The organization must ensure that:
+The organisation must ensure that:
 
 - The AI never uses profanity or inappropriate language in responses
 - User inputs containing profanity are properly handled
@@ -91,58 +92,52 @@ The organization must ensure that:
    - Set to **Log and Override** to actively prevent profanity
    - Provides clear, professional fallback responses
 
-3. **Optimized Sensitivity**  
+3. **Optimised Sensitivity**  
    - Calibrated for high accuracy with minimal false positives
    - Maintains detection effectiveness across diverse language patterns
 
 ---
 
-## How to Use the Policy
+## How to Use the Guardrail
 
-> **Note:** The steps below guide you through configuring the Bias & Fairness Policy in the policy workflow interface.
+> **Note:** The steps below guide you through configuring the Profanity Filter in the Guardrail workflow.
 
-### Step 1: Navigate to the Policy Workflow
+### Step 1: Navigate to the Guardrail Workflow
 
-1. From the **Dashboard**, open your project to access the **Project Overview**.
-2. Click **Edit Policy** in the Policy section to begin configuration.
+1. From the **Dashboard**, open the **Project Overview** by selecting "view" to open your project from the **Project Table**.
+2. In the **guardrails** section of the Project Overview, click **Edit Guardrails** to launch the guardrail configuration workflow.
 
-### Step 2: Select and Enable the Bias & Fairness Policy
+### Step 2: Select and Enable the Profanity Filter
 
-1. In the **Configure Guardrails** tab, click on **Bias & Fairness** from the list.
+1. In the **Configure Guardrails** dropdown, click on **Profanity Filter** from the list.
 2. The configuration panel will display on the right.
-3. Toggle **Enable Policy** to **ON** to begin editing.
+3. Toggle **Enable Guardrail** to **ON** to begin editing.
 
 ### Step 3: Set Application Scope
 
-1. Under **Apply Policy To**, choose one:
-   - **Prompt**
-   - **Response**
-   - **Both**
+1. Under the **Apply Guardrail To** section, select where you want the guardrail enforced:
+   - **Input** – Applies the selected behaviour to what users send to the model.
+   - **Output** – Applies the selected behaviour to what the model returns as a response.
+   - **Both** – Full bidirectional coverage
 
-This determines whether the policy is applied to user input, AI output, or both.
 
 ### Step 4: Configure Enforcement Behaviour
 
-1. Choose your policy behaviour:
-   - **Log Only** – Log detected bias without blocking.
-   - **Log and Override** – Block biased content and return a smart replacement.
+1. Under **Behaviour**, choose how the guardrail should respond to detected filters:
+   - **Monitor** – Lets you review input or output content without taking any action—used for observation and diagnostics.
+   - **Block** – Automatically stops content from being processed if it violates the selected guardrail rules.
 
-### Step 5: Adjust Detection Threshold
 
-1. Use the **Threshold Slider** to define the level of detection strictness:
-   - **Lower values** detect a broader range of potential bias.
-   - **Higher values** are stricter and more precise.
+### Step 5: Save, Test, and Apply
 
-### Step 6: Save, Test, and Apply
-
-1. Click **Save Changes** to store your configuration.
-2. *(Optional)* Go to **Test Guardrails** to preview how the guardrail behaves in live chat.
-3. Click **Apply Guardrails** in the **Configure Guardrails** tab to activate it.
-4. A confirmation message will verify that the guardrail is now active.
-
-The **Bias & Fairness Policy** ensures your AI interactions remain inclusive, balanced, and free from inappropriate bias—supporting ethical and equitable user experiences.
+1. Click **Save Changes** to store your selected entities and configuration.
+2. *(Optional)* Go to the **Test Guardrails** dropdown to evaluate how the guardrail behaves in real time with a chatbot.
+3. After saving, you can proceed to integration by clicking the **Continue to Integration** button, which will guide you to the next step in the workflow.
+4. Alternatively, you may navigate to the **Summary** section to review your configuration, save all changes, and view your AI System overview.
 
 ---
+
+#### Profanity Filter Capabilities
 
 | Capability | Description |
 |------------|-------------|

@@ -5,11 +5,13 @@ description: "Advanced PII detection and protection that identifies and safeguar
 
 ## Overview
 
-The **Data Protection Filter** provides comprehensive protection for personally identifiable information (PII) by leveraging advanced AI-powered detection systems to identify and safeguard sensitive data in real-time. This guardrail applies sophisticated content analysis to both user inputs and AI-generated responses, ensuring that sensitive information such as names, addresses, financial data, and other personal identifiers are properly protected.
+The **Data Protection Filter** safeguards personally identifiable information (PII) using advanced AI detection systems. It analyses both user inputs and AI responses in real-time to identify and protect sensitive data like names, addresses, and financial information.
 
-The **Data Protection Filter** enables organizations to automatically detect and manage various forms of PII including personal identification, financial information, healthcare data, and contact details. Designed with enterprise-grade accuracy and low latency, this guardrail helps ensure compliance with data protection regulations while maintaining the integrity of AI interactions.
-
-Unlike basic text matching, this guardrail employs advanced machine learning models that understand context, recognize patterns, and accurately identify PII even when partially obscured or formatted differently, providing comprehensive protection while minimizing false positives.
+**Key Capabilities:**
+- **Multi-category PII detection** across personal, financial, and government identifiers
+- **Context-aware analysis** using machine learning for accurate pattern recognition
+- **Enterprise-grade accuracy** with minimal false positives
+- **Regulatory compliance** with GDPR, HIPAA, and other frameworks
 
 ---
 
@@ -17,7 +19,7 @@ Unlike basic text matching, this guardrail employs advanced machine learning mod
 
 ### Purpose
 
-The primary goal of the Data Protection Filter is to safeguard sensitive personal information by preventing unauthorized exposure of PII during AI interactions while maintaining high accuracy and minimal impact on legitimate business communications. By enabling this guardrail, organizations can ensure compliance with data protection regulations, protect user privacy, maintain trust, and uphold responsible data handling practices across all AI-powered interactions.
+The primary goal of the Data Protection Filter is to safeguard sensitive personal information by preventing unauthorised exposure of PII during AI interactions while maintaining high accuracy and minimal impact on legitimate business communications. By enabling this guardrail, organisations can ensure compliance with data protection regulations, protect user privacy, maintain trust, and uphold responsible data handling practices across all AI-powered interactions.
 
 ### Scope
 
@@ -25,14 +27,15 @@ The primary goal of the Data Protection Filter is to safeguard sensitive persona
 
 The Data Protection Filter applies advanced content analysis to:
 
-- **User Prompts**: Analyzes incoming user content for PII before processing
+- **User Prompts**: Analyses incoming user content for PII before processing
 - **AI Responses**: Evaluates generated content for sensitive information before delivery
 - **Context Understanding**: Considers conversation context for more accurate detection
 
 #### Operational Modes
 
-- **Log Only**: Records detected PII for review and analysis without blocking
-- **Log and Override**: Automatically prevents PII from being processed or displayed
+- **Monitor** – Lets you review input or output content without taking any action—used for observation and diagnostics.
+- **Block** – Automatically stops content from being processed if it violates the selected guardrail rules.
+- **Mask** – Replaces detected sensitive information with a placeholder (like [NAME]) to protect user privacy.
 
 #### Detection Categories
 
@@ -51,7 +54,7 @@ The guardrail monitors multiple categories of PII:
 - **Context-Aware Analysis**: Advanced understanding of conversation context and data patterns
 - **Configurable Sensitivity**: Adjustable detection thresholds for different use cases
 - **Low Latency**: High-performance detection that doesn't impact response times
-- **Enterprise-Grade Accuracy**: Minimizes false positives while maintaining high detection rates
+- **Enterprise-Grade Accuracy**: Minimises false positives while maintaining high detection rates
 - **Regulatory Compliance**: Aligns with GDPR, HIPAA, and other data protection frameworks
 
 ---
@@ -61,7 +64,7 @@ The guardrail monitors multiple categories of PII:
 ### Benefits
 
 - **Regulatory Compliance**: Ensures adherence to data protection laws and industry standards
-- **Privacy Protection**: Safeguards user privacy and prevents unauthorized data exposure
+- **Privacy Protection**: Safeguards user privacy and prevents unauthorised data exposure
 - **Risk Mitigation**: Reduces legal and reputational risks associated with data breaches
 - **Trust Building**: Maintains user trust through responsible data handling
 - **Audit Trail**: Provides comprehensive logging for compliance and investigation purposes
@@ -72,11 +75,11 @@ The guardrail monitors multiple categories of PII:
 
 ### Scenario
 
-A healthcare organization deploys an AI assistant to support patient inquiries and administrative tasks. The assistant must handle sensitive patient information while ensuring strict compliance with HIPAA regulations and maintaining patient privacy at all times.
+A healthcare organisation deploys an AI assistant to support patient enquiries and administrative tasks. The assistant must handle sensitive patient information while ensuring strict compliance with HIPAA regulations and maintaining patient privacy at all times.
 
 ### Challenge
 
-The organization must ensure that:
+The organisation must ensure that:
 
 - Patient PII is never exposed in AI responses
 - User inputs containing sensitive data are properly handled
@@ -93,7 +96,7 @@ The organization must ensure that:
    - Set to **Log and Override** to actively prevent PII exposure
    - Provides clear, professional fallback responses
 
-3. **Optimized Sensitivity**  
+3. **Optimised Sensitivity**  
    - Calibrated for high accuracy with minimal false positives
    - Maintains detection effectiveness across diverse data types
 
@@ -101,62 +104,60 @@ The organization must ensure that:
 
 ## How to Use the Guardrail
 
-> **Note:** The steps below guide you through configuring the Data Privacy (Custom) Guardrail using the guardrail workflow interface.
+> **Note:** The steps below guide you through configuring the Data Protection Guardrail using the guardrail workflow interface.
 
-### Step 1: Navigate to the Policy Workflow
+### Step 1: Navigate to the guardrail workflow
 
-1. From the **Dashboard**, open the **Project Overview** by selecting your project from the **Project Table**.
-2. In the **Policy** section of the Project Overview, click **Edit Policy** to launch the policy configuration workflow.
-
----
-
-### Step 2: Select and Enable the Data Privacy (Custom) Policy
-
-1. In the **Configure Guardrails** tab, a list of available guardrails will be displayed.
-2. Click on **Data Privacy (Custom)** to view its configuration options on the right-hand side.
-3. Toggle the **Enable Policy** switch to **ON** at the top of the panel to begin editing.
+1. From the **Dashboard**, open the **Project Overview** by selecting "view" to open your project from the **Project Table**.
+2. In the **guardrails** section of the Project Overview, click **Edit Guardrails** to launch the guardrail configuration workflow.
 
 ---
 
-### Step 3: Select Custom Sensitive Entities
+### Step 2: Select and Enable the Data Protection Filter
 
-1. Under **Entity Categories**, you'll see a set of expandable groups. Click on any group to reveal its entities:
-   - **Personal Identification & Demographic**
-   - **Government and Legal Identifiers**
-   - **Contact & Online Presence**
-   - **Healthcare & Medical**
-   - **Financial and Banking**
-   - **Access Credentials & Security**
-   - **Organisational & Professional**
-   - **Temporal & Analytical**
-2. Within each expanded category, check the boxes for the specific sensitive entities you want to monitor (e.g., email address, passport number, IP address).
+1. Under the **Configure Guardrails** dropdown, a list of available guardrails will be displayed.
+2. Click on **Data Protection Filter** to view its configuration options on the right-hand side.
+3. Toggle the **Enable Guardrail** switch to **ON** at the top of the panel to begin editing.
+
+---
+
+### Step 3: Select Entities
+
+1. Within the guardrail configuration, you'll see a set of expandable groups. Click on any group to reveal its entities:
+   - **General**
+   - **Finance**
+   - **Technology**
+   - **UK Specific**
+   - **USA Specific**
+   - **Canada Specific**
+2. Within each expanded category, check the boxes for the specific entities you want to configure (e.g., Email Address, Name, IP Address).
 3. As entities are selected, they will appear as **tags** under the **Selected Entities** section for easy review and removal.
 
 ---
 
 ### Step 4: Set Application Scope
 
-1. Under the **Apply Policy To** section, select where you want the policy enforced:
-   - **Prompt** – User inputs only
-   - **Response** – AI-generated outputs only
+1. Under the **Apply Guardrail To** section, select where you want the guardrail enforced:
+   - **Input** – Applies the selected behaviour to what users send to the model.
+   - **Output** – Applies the selected behaviour to what the model returns as a response.
    - **Both** – Full bidirectional coverage
 
 ---
 
 ### Step 5: Configure Enforcement Behaviour
 
-1. Under **Behaviour**, choose how the policy should respond to detected sensitive data:
-   - **Log Only** – Capture and log entity violations without interruption.
-   - **Log and Override** – Block the interaction and return a smart, policy-aware response.
-
+1. Under **Behaviour**, choose how the guardrail should respond to detected filters:
+   - **Monitor** – Lets you review input or output content without taking any action—used for observation and diagnostics.
+   - **Block** – Automatically stops content from being processed if it violates the selected guardrail rules.
+   - **Mask** – Replaces detected sensitive information with a placeholder (like [NAME]) to protect user privacy.
 ---
 
-### Step 6: Save, Test, and Apply the Policy
+### Step 6: Save, Test, and Apply the Guardrail
 
 1. Click **Save Changes** to store your selected entities and configuration.
-2. *(Optional)* Go to the **Test Guardrails** tab to evaluate how the guardrail behaves in real time with a chatbot.
-3. Return to the **Configure Guardrails** tab and click **Apply Guardrails** to enforce your changes across the project.
-4. A confirmation message will notify you that the guardrail has been successfully applied.
+2. *(Optional)* Go to the **Test Guardrails** dropdown to evaluate how the guardrail behaves in real time with a chatbot.
+3. After saving, you can proceed to integration by clicking the **Continue to Integration** button, which will guide you to the next step in the workflow.
+4. Alternatively, you may navigate to the **Summary** section to review your configuration, save all changes, and view your AI System overview.
 
 ---
 
@@ -175,4 +176,4 @@ The Data Protection Filter is designed to identify and manage various forms of p
 | **Canada Specific** | Canadian Health Number, Canadian Social Insurance Number (SIN) |
 | **UK Specific** | U.K. Unique Taxpayer Reference (UTR) Number, U.K. National Insurance Number, U.K. NHS Number |
 
-Each category is monitored with configurable sensitivity, allowing organizations to maintain appropriate data protection measures while ensuring smooth user interactions. The guardrail provides comprehensive coverage across personal, financial, technological, and region-specific identifiers to create a secure AI environment while preserving the intended functionality and trustworthiness of your automated workflows.
+Each category is monitored with configurable sensitivity, allowing organisations to maintain appropriate data protection measures while ensuring smooth user interactions. The guardrail provides comprehensive coverage across personal, financial, technological, and region-specific identifiers to create a secure AI environment while preserving the intended functionality and trustworthiness of your automated workflows.

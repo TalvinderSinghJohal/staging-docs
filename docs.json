@@ -31,12 +31,11 @@
           {
             "group": "Guardrail Overview",
             "pages": [
-              "guardrails/words-phrases-filter",
               "guardrails/data-protection-filter",
               "guardrails/harmful-content",
-              "guardrails/profanity-filter",
-              "guardrails/competitor-mention",
               "guardrails/restricted-topic-filter",
+              "guardrails/words-phrases-filter",
+              "guardrails/profanity-filter",
               "guardrails/relevance-check",
               "guardrails/prompt-injections"
             ]

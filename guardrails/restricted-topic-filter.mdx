@@ -5,11 +5,7 @@ description: "Advanced topic filtering that prevents AI interactions from engagi
 
 ## Overview
 
-This guardrail provides comprehensive protection against unwanted topics by leveraging advanced AI-powered detection systems to identify and filter conversations that involve specified denied topics. The guardrail applies sophisticated content analysis to both user inputs and AI-generated responses, ensuring that interactions remain focused, appropriate, and aligned with organizational standards.
-
-The **Restricted Topic Filter** enables organizations to automatically detect and prevent discussions around any topics they specify by defining a comprehensive list of denied topics tailored to their specific needs. Designed with enterprise-grade accuracy and low latency, this guardrail helps ensure that AI interactions remain professional, compliant, and focused on approved subject matter.
-
-Unlike basic keyword filtering, this guardrail employs advanced machine learning models that understand context, recognize topic variations, and accurately identify denied content even when discussed indirectly or with different terminology, providing comprehensive protection while minimizing false positives.
+The **Restricted Topic Filter** uses advanced AI to detect and block conversations about topics you specify, ensuring interactions stay appropriate and aligned with your organization’s standards. Unlike simple keyword filters, it understands context and topic variations, providing accurate protection with minimal false positives.
 
 ---
 
@@ -31,15 +27,16 @@ The Restricted Topic Filter applies advanced content analysis to:
 
 #### Operational Modes
 
-- **Log Only**: Records detected denied topics for review and analysis without blocking
-- **Log and Override**: Automatically prevents denied topics from being processed or displayed
+- **Monitor** – Lets you review input or output content without taking any action—used for observation and diagnostics.
+- **Block** – Automatically stops content from being processed if it violates the selected guardrail rules.
 
-#### Threshold Sensitivity
+#### Set Detection Threshold
 
-A detection sensitivity threshold (range: **0.2 to 0.9**) allows fine-tuning of the model’s topic recognition:
+Under **Set Guardrail Threshold** select the required detection sensitivity:
 
-- **Lower thresholds** (e.g., 0.2) are more lenient, reducing false positives.
-- **Higher thresholds** (e.g., 0.9) are stricter, capturing more subtle or indirect topic violations.
+- **Low:** Filters only the most clearly restricted topics. Content with low or uncertain risk is allowed.
+- **Medium:** Filters content that's likely or certainly restricted. Lower-confidence content is still allowed.
+- **High:** Applies strict filtering—blocks any content that may be restricted, even with low confidence.
 
 ### Key Features
 
@@ -96,20 +93,20 @@ The organization must ensure that:
 
 ---
 
-## How to Use the Policy
+## How to Use the Guardrail
 
-> **Note:** The steps below guide you through configuring the Topic Restriction Policy using the policy workflow interface.
+> **Note:** The steps below guide you through configuring the Restricted Topic Filter using the Guardrail Workflow.
 
-### Step 1: Navigate to the Policy Workflow
+### Step 1: Navigate to the Guardrail Workflow
 
-1. From the **Dashboard**, open the **Project Overview** by selecting your project from the **Project Table**.
-2. In the **Policy** section of the Project Overview, click **Edit Policy** to launch the policy configuration workflow.
+1. From the **Dashboard**, open the **Project Overview** by selecting "view" to open your project from the **Project Table**.
+2. In the **guardrails** section of the Project Overview, click **Edit Guardrails** to launch the guardrail configuration workflow.
 
 ---
 
-### Step 2: Select and Enable the Topic Restriction Policy
+### Step 2: Select and Enable the Restricted Topic Filter
 
-1. In the **Configure Guardrails** tab, a list of available guardrails will be displayed.
+1. In the **Configure Guardrails** dropdown, a list of available guardrails will be displayed.
 2. Click on **Topic Restriction** to open its configuration options on the right-hand side of the screen.
 3. Toggle the **Enable Policy** switch to **ON** to begin configuration.
 
