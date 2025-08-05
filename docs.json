@@ -49,17 +49,16 @@
         ]
       },
       {
-        "dropdowns": [
+        "tab": "API Reference",
+        "groups": [
           {
-            "dropdown": "API Documentation",
-            "icon": "book-open",
+            "group": "API Documentation",
             "pages": [
               "api-reference/introduction"
             ]
           },
           {
-            "dropdown": "API Endpoints",
-            "icon": "square-terminal",
+            "group": "Endpoint",
             "pages": [
               "api-reference/endpoint/openai",
               "api-reference/endpoint/bedrock",
