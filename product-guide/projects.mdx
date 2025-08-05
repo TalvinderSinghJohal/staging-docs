@@ -10,7 +10,7 @@ Once logged in, you'll be directed to the **Dashboard**, the control center of y
 
 ### The Dashboard Includes:
 - **Navigation Panel** – Quick access to Dashboard, Administration, Reporting, Observability, Support, and Documentation.
-- **Summary Statistics** – Key metrics, charts, and graphs on projects, requests, and policy violations.
+- **Summary Statistics** – Key metrics, charts, and graphs on projects, requests, and guardrail violations.
 - **Project List** – A searchable and filterable table view of all projects with actionable controls.
 
 <img height="200" src="/images/Main Dashboard.png" />
@@ -47,19 +47,19 @@ Once logged in, you'll be directed to the **Dashboard**, the control center of y
 
 Upon creation, you'll be redirected to the **Project Setup** environment. This contains three tabs:
 
-#### 3.1 Configure Policies
+#### 3.1 Configure Guardrails
 
-1. Navigate to the **Configure Policies** tab.
-2. From the list of available policies, click to select a policy.
+1. Navigate to the **Configure Guardrails** tab.
+2. From the list of available guardrails, click to select a guardrail.
 3. Use the panel on the right to:
-   - Enable or disable the policy
+   - Enable or disable the guardrail
    - Set enforcement mode (e.g., **Log Only** or **Log and Override**)
    - Adjust thresholds or select relevant criteria (topics, entities, regulations)
 
 <img height="200" src="/images/Policy Config.png" />
 
 > **Note:**  
-> For more detail on individual policies, refer to the [Policy Configuration Guide](/product-guide/policies).
+> For more detail on individual guardrails, refer to the [Guardrail Configuration Guide](/product-guide/policies).
 
 #### 3.2 Configure Response
 
@@ -68,11 +68,11 @@ Upon creation, you'll be redirected to the **Project Setup** environment. This c
 
 <img height="200" src="/images/Response Config.png" />
 
-#### 3.3 Test Policies
+#### 3.3 Test Guardrails
 
 1. Use the built-in sandbox environment to:
    - Interact with a test chatbot
-   - Validate how policies behave in real time
+   - Validate how guardrails behave in real time
    - Review flagged prompts and responses
 2. Once satisfied, click **Continue to Integration** to proceed.
 
@@ -104,12 +104,12 @@ Upon creation, you'll be redirected to the **Project Setup** environment. This c
 
 ## Project Dashboard
 
-Once a project is published, the **Project Dashboard** becomes the central view for all configuration, activity, and policy enforcement related to that project.
+Once a project is published, the **Project Dashboard** becomes the central view for all configuration, activity, and guardrail enforcement related to that project.
 
 Key sections include:
 - **Project Details**
 - **Connection Status**
-- **Policy Summary**
+- **Guardrail Summary**
 - **Integration Details**
 - **Usage and Violation Metrics**
 
@@ -134,11 +134,11 @@ Key sections include:
 
 <CardGroup cols={2}>
   <Card
-    title="Configure Policies"
+    title="Configure Guardrails"
     icon="shield"
     href="/product-guide/policies"
   >
-    Enforce ethical AI usage and compliance policies.
+    Enforce ethical AI usage and compliance guardrails.
   </Card>
   <Card
     title="Analyse reports"

@@ -1,0 +1,178 @@
+---
+title: Data Protection Filter
+description: "Advanced PII detection and protection that identifies and safeguards personally identifiable information across all AI interactions."
+---
+
+## Overview
+
+The **Data Protection Filter** provides comprehensive protection for personally identifiable information (PII) by leveraging advanced AI-powered detection systems to identify and safeguard sensitive data in real-time. This guardrail applies sophisticated content analysis to both user inputs and AI-generated responses, ensuring that sensitive information such as names, addresses, financial data, and other personal identifiers are properly protected.
+
+The **Data Protection Filter** enables organizations to automatically detect and manage various forms of PII including personal identification, financial information, healthcare data, and contact details. Designed with enterprise-grade accuracy and low latency, this guardrail helps ensure compliance with data protection regulations while maintaining the integrity of AI interactions.
+
+Unlike basic text matching, this guardrail employs advanced machine learning models that understand context, recognize patterns, and accurately identify PII even when partially obscured or formatted differently, providing comprehensive protection while minimizing false positives.
+
+---
+
+## What the Guardrail Does
+
+### Purpose
+
+The primary goal of the Data Protection Filter is to safeguard sensitive personal information by preventing unauthorized exposure of PII during AI interactions while maintaining high accuracy and minimal impact on legitimate business communications. By enabling this guardrail, organizations can ensure compliance with data protection regulations, protect user privacy, maintain trust, and uphold responsible data handling practices across all AI-powered interactions.
+
+### Scope
+
+#### Comprehensive PII Detection
+
+The Data Protection Filter applies advanced content analysis to:
+
+- **User Prompts**: Analyzes incoming user content for PII before processing
+- **AI Responses**: Evaluates generated content for sensitive information before delivery
+- **Context Understanding**: Considers conversation context for more accurate detection
+
+#### Operational Modes
+
+- **Log Only**: Records detected PII for review and analysis without blocking
+- **Log and Override**: Automatically prevents PII from being processed or displayed
+
+#### Detection Categories
+
+The guardrail monitors multiple categories of PII:
+
+- **General**: Personal identification, contact information, and basic identifiers
+- **Finance**: Financial account numbers, credit cards, and banking information
+- **Technology**: Digital identifiers, network addresses, and technical credentials
+- **USA Specific**: United States government and financial identifiers
+- **Canada Specific**: Canadian government and healthcare identifiers
+- **UK Specific**: United Kingdom government and healthcare identifiers
+
+### Key Features
+
+- **Multi-Category Detection**: Comprehensive coverage across all major PII types
+- **Context-Aware Analysis**: Advanced understanding of conversation context and data patterns
+- **Configurable Sensitivity**: Adjustable detection thresholds for different use cases
+- **Low Latency**: High-performance detection that doesn't impact response times
+- **Enterprise-Grade Accuracy**: Minimizes false positives while maintaining high detection rates
+- **Regulatory Compliance**: Aligns with GDPR, HIPAA, and other data protection frameworks
+
+---
+
+## Why Use This Guardrail?
+
+### Benefits
+
+- **Regulatory Compliance**: Ensures adherence to data protection laws and industry standards
+- **Privacy Protection**: Safeguards user privacy and prevents unauthorized data exposure
+- **Risk Mitigation**: Reduces legal and reputational risks associated with data breaches
+- **Trust Building**: Maintains user trust through responsible data handling
+- **Audit Trail**: Provides comprehensive logging for compliance and investigation purposes
+
+---
+
+## Use Case: Healthcare AI Assistant
+
+### Scenario
+
+A healthcare organization deploys an AI assistant to support patient inquiries and administrative tasks. The assistant must handle sensitive patient information while ensuring strict compliance with HIPAA regulations and maintaining patient privacy at all times.
+
+### Challenge
+
+The organization must ensure that:
+
+- Patient PII is never exposed in AI responses
+- User inputs containing sensitive data are properly handled
+- All interactions comply with healthcare privacy regulations
+- Detection works accurately across various data formats and contexts
+
+### Solution: Implementing Data Protection Filter
+
+1. **Comprehensive PII Detection**  
+   - Enabled for both user inputs and AI responses
+   - Configured to detect all major categories of PII
+
+2. **Appropriate Enforcement**  
+   - Set to **Log and Override** to actively prevent PII exposure
+   - Provides clear, professional fallback responses
+
+3. **Optimized Sensitivity**  
+   - Calibrated for high accuracy with minimal false positives
+   - Maintains detection effectiveness across diverse data types
+
+---
+
+## How to Use the Policy
+
+> **Note:** The steps below guide you through configuring the Data Privacy (Custom) Policy using the policy workflow interface.
+
+### Step 1: Navigate to the Policy Workflow
+
+1. From the **Dashboard**, open the **Project Overview** by selecting your project from the **Project Table**.
+2. In the **Policy** section of the Project Overview, click **Edit Policy** to launch the policy configuration workflow.
+
+---
+
+### Step 2: Select and Enable the Data Privacy (Custom) Policy
+
+1. In the **Configure Guardrails** tab, a list of available guardrails will be displayed.
+2. Click on **Data Privacy (Custom)** to view its configuration options on the right-hand side.
+3. Toggle the **Enable Policy** switch to **ON** at the top of the panel to begin editing.
+
+---
+
+### Step 3: Select Custom Sensitive Entities
+
+1. Under **Entity Categories**, you'll see a set of expandable groups. Click on any group to reveal its entities:
+   - **Personal Identification & Demographic**
+   - **Government and Legal Identifiers**
+   - **Contact & Online Presence**
+   - **Healthcare & Medical**
+   - **Financial and Banking**
+   - **Access Credentials & Security**
+   - **Organisational & Professional**
+   - **Temporal & Analytical**
+2. Within each expanded category, check the boxes for the specific sensitive entities you want to monitor (e.g., email address, passport number, IP address).
+3. As entities are selected, they will appear as **tags** under the **Selected Entities** section for easy review and removal.
+
+---
+
+### Step 4: Set Application Scope
+
+1. Under the **Apply Policy To** section, select where you want the policy enforced:
+   - **Prompt** – User inputs only
+   - **Response** – AI-generated outputs only
+   - **Both** – Full bidirectional coverage
+
+---
+
+### Step 5: Configure Enforcement Behaviour
+
+1. Under **Behaviour**, choose how the policy should respond to detected sensitive data:
+   - **Log Only** – Capture and log entity violations without interruption.
+   - **Log and Override** – Block the interaction and return a smart, policy-aware response.
+
+---
+
+### Step 6: Save, Test, and Apply the Policy
+
+1. Click **Save Changes** to store your selected entities and configuration.
+2. *(Optional)* Go to the **Test Guardrails** tab to evaluate how the guardrail behaves in real time with a chatbot.
+3. Return to the **Configure Guardrails** tab and click **Apply Guardrails** to enforce your changes across the project.
+4. A confirmation message will notify you that the guardrail has been successfully applied.
+
+---
+
+The **Data Protection Filter** provides enterprise-grade PII protection with comprehensive detection capabilities, ensuring your AI interactions remain compliant and secure while maintaining the highest standards of data privacy.
+
+## PII Detection Categories
+
+The Data Protection Filter is designed to identify and manage various forms of personally identifiable information. Below is an overview of the supported entity categories and their specific identifiers:
+
+| Category | Supported Entities |
+|----------|-------------------|
+| **General** | Full Name, Phone Number, Email Address, Residential Address, Age, Username, Password, Driver's License Number, Vehicle License Plate, Vehicle Identification Number (VIN) |
+| **Finance** | Card Security Code (CVV), Card Expiration Date, Credit/Debit Card Number, Personal Identification Number (PIN), International Bank Account Number (IBAN), SWIFT/BIC Code |
+| **Technology** | IP Address, MAC Address, Website URL, AWS Access Key, AWS Secret Key |
+| **USA Specific** | U.S. Passport Number, U.S. Social Security Number (SSN), U.S. Taxpayer Identification Number (ITIN), U.S. Bank Account Number, U.S. Bank Routing Number |
+| **Canada Specific** | Canadian Health Number, Canadian Social Insurance Number (SIN) |
+| **UK Specific** | U.K. Unique Taxpayer Reference (UTR) Number, U.K. National Insurance Number, U.K. NHS Number |
+
+Each category is monitored with configurable sensitivity, allowing organizations to maintain appropriate data protection measures while ensuring smooth user interactions. The guardrail provides comprehensive coverage across personal, financial, technological, and region-specific identifiers to create a secure AI environment while preserving the intended functionality and trustworthiness of your automated workflows.

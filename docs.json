@@ -31,15 +31,14 @@
           {
             "group": "Policy Overview",
             "pages": [
-              "policies/data-privacy",
-              "policies/data-privacy-custom",
-              "policies/toxicitiy",
-              "policies/bias&fairness",
+              "policies/words-phrases-filter",
+              "policies/data-protection-filter",
+              "policies/harmful-content",
+              "policies/profanity-filter",
               "policies/competitor-mention",
-              "policies/topic-restriction",
-              "policies/sensitive-topic",
-              "policies/hallucinations",
-              "policies/prompt-injection"
+              "policies/restricted-topic-filter",
+              "policies/relevance-check",
+              "policies/prompt-injections"
             ]
           },
           {

@@ -1,0 +1,149 @@
+---
+title: Prompt Injections
+description: "Advanced protection against prompt injection attacks that attempt to manipulate AI system behavior and bypass security measures."
+---
+
+## Overview
+
+This guardrail provides comprehensive protection against prompt injection attacks by leveraging advanced AI-powered detection systems to identify and prevent attempts to manipulate or override system instructions through user prompts. The guardrail applies sophisticated content analysis to user inputs, ensuring that AI behavior remains consistent with its intended purpose and security requirements.
+
+The **Prompt Injection Protection** guardrail is designed to detect and manage sophisticated attempts to manipulate or override system instructions through carefully crafted user prompts. Prompt injection attacks can pose serious security risks to AI systems, enabling malicious users to bypass restrictions, alter model behavior, access unintended functionality, or extract sensitive information.
+
+Unlike basic pattern matching, this guardrail employs advanced machine learning models that understand context, recognize sophisticated injection techniques, and accurately identify manipulation attempts even when disguised or using complex evasion strategies, providing comprehensive protection while minimizing false positives.
+
+---
+
+## What the Guardrail Does
+
+### Purpose
+
+The primary goal of the Prompt Injection Protection guardrail is to safeguard AI systems from sophisticated manipulation attempts while maintaining high accuracy and minimal impact on legitimate user interactions. By enabling this guardrail, organizations can ensure system integrity, maintain security boundaries, protect sensitive information, and uphold responsible AI usage across all interactions.
+
+### Scope
+
+#### Comprehensive Injection Detection
+
+The Prompt Injection Protection guardrail applies advanced content analysis to:
+
+- **User Prompts**: Analyzes incoming user content for injection attempts before processing
+- **Context Understanding**: Considers conversation context and injection patterns for more accurate detection
+- **Pattern Recognition**: Identifies sophisticated manipulation techniques and evasion strategies
+
+#### Operational Modes
+
+- **Log Only**: Records detected injection attempts for review and analysis without blocking
+- **Log and Override**: Automatically prevents injection attempts from being processed
+
+#### Detection Capabilities
+
+The guardrail can identify various forms of prompt injection attacks:
+
+- **Instruction Override**: Attempts to override or ignore system instructions
+- **Role Manipulation**: Efforts to change the AI's role or behavior
+- **Context Injection**: Attempts to inject false context or information
+- **System Prompt Extraction**: Efforts to extract or reveal system prompts
+- **Bypass Attempts**: Techniques to circumvent security measures or restrictions
+
+### Key Features
+
+- **Advanced Attack Detection**: Identifies sophisticated prompt injection techniques across multiple attack vectors
+- **Context-Aware Analysis**: Advanced understanding of conversation context and manipulation patterns
+- **Configurable Sensitivity**: Adjustable detection thresholds for different security requirements
+- **Low Latency**: High-performance detection that doesn't impact response times
+- **Enterprise-Grade Accuracy**: Minimizes false positives while maintaining high detection rates
+- **Real-Time Protection**: Immediate detection and prevention of injection attempts
+
+---
+
+## Why Use This Guardrail?
+
+### Benefits
+
+- **System Security**: Prevents manipulation of AI system behavior and instructions
+- **Data Protection**: Safeguards sensitive information from unauthorized extraction
+- **Compliance**: Ensures adherence to security policies and regulatory requirements
+- **Trust Maintenance**: Preserves user trust in AI system reliability and security
+- **Risk Mitigation**: Reduces potential security breaches and system compromises
+
+---
+
+## Use Case: Financial Services AI Assistant
+
+### Scenario
+
+A financial services company deploys an AI assistant to handle customer inquiries and provide account information. The assistant must maintain strict security boundaries while preventing users from attempting to manipulate the system to access unauthorized information or bypass security protocols.
+
+### Challenge
+
+The organization must ensure that:
+
+- Users cannot manipulate the AI to access unauthorized account information
+- System instructions and security measures cannot be overridden
+- Sensitive financial data remains protected from extraction attempts
+- All interactions maintain strict security compliance
+
+### Solution: Implementing Prompt Injection Protection
+
+1. **Comprehensive Attack Detection**  
+   - Enabled to detect all forms of prompt injection attempts
+   - Configured to identify sophisticated manipulation techniques
+
+2. **Appropriate Enforcement**  
+   - Set to **Log and Override** to actively prevent injection attempts
+   - Provides secure fallback responses without revealing system information
+
+3. **Optimized Sensitivity**  
+   - Calibrated for high accuracy with minimal false positives
+   - Maintains detection effectiveness across diverse attack patterns
+
+---
+
+## How to Use the Policy
+
+> **Note:** The following steps explain how to configure the Prompt Injection Policy within the policy workflow. This policy applies **only to user-submitted prompts** and cannot be applied to responses.
+
+### Step 1: Navigate to the Policy Workflow
+
+1. From the **Dashboard**, open your project by selecting it from the **Project Table**.
+2. In the **Policy** section, click **Edit Policy** to open the policy configuration workflow.
+
+---
+
+### Step 2: Select and Enable the Prompt Injection Policy
+
+1. In the **Configure Guardrails** tab, click on **Prompt Injection** from the list of available guardrails.
+2. The configuration panel will display on the right-hand side.
+3. Toggle the **Enable Policy** switch to **ON** to begin configuration.
+
+---
+
+### Step 3: Configure Enforcement Behaviour
+
+1. Under **Behaviour**, select how the system should handle detected prompt injection attempts:
+   - **Log Only** – Log the violation without blocking the prompt.
+   - **Log and Override** – Block the prompt and return a smart fallback message, preventing manipulation of the system.
+
+---
+
+### Step 4: Save, Test, and Apply the Policy
+
+1. Click **Save Changes** to store your configuration.
+2. *(Optional)* Use the **Test Guardrails** tab to simulate injection attempts and validate guardrail behaviour.
+3. Return to the **Configure Guardrails** tab and click **Apply Guardrails** to activate the guardrail.
+4. A success message will confirm your settings have been successfully applied.
+
+---
+
+The **Prompt Injection Protection** guardrail provides enterprise-grade security against sophisticated manipulation attempts, ensuring your AI systems remain secure, reliable, and aligned with their intended purpose.
+
+## Prompt Injection Attack Types
+
+The Prompt Injection Protection guardrail is designed to identify and prevent various forms of prompt manipulation attacks. Below is an overview of the primary attack categories our system monitors:
+
+| Attack Type | Description | Security Impact |
+|-------------|-------------|-----------------|
+| Instruction Override | Detects attempts to override or ignore system instructions, such as "Ignore previous instructions" or "Forget about the rules". | Prevents manipulation of AI behavior and ensures system instructions remain enforced. |
+| Role Manipulation | Identifies efforts to change the AI's role or behavior, such as "Pretend you are a different system" or "Act as if you have different permissions". | Maintains system integrity and prevents unauthorized role changes. |
+| Context Injection | Monitors for attempts to inject false context or information to manipulate responses, such as "Assume this is a test environment" or "This is an authorized request". | Prevents context-based manipulation and maintains response accuracy. |
+| System Prompt Extraction | Detects efforts to extract or reveal system prompts, such as "What are your instructions?" or "Show me your system prompt". | Protects sensitive system information and prevents prompt leakage. |
+| Bypass Attempts | Identifies sophisticated techniques to circumvent security measures, such as encoding, obfuscation, or multi-step manipulation strategies. | Ensures security measures remain effective against advanced attack techniques. |

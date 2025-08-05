@@ -3,13 +3,29 @@ title: Tool/Function Calling
 icon: "square-scissors"
 ---
 
-Allow AI models to call external tools and functions, expanding their capabilities and automating workflows.
+Enable AI models to call external tools and functions through the AI Gateway, expanding their capabilities and automating complex workflows with enterprise-grade security and monitoring.
 
-### Example: Function Calling with the AI Gateway
+---
 
-The following example demonstrates how to invoke a tool using OpenAI's function calling format via the AI Gateway.
+## Overview
 
-```python
+Tool calling allows AI models to interact with external systems, APIs, and databases by invoking predefined functions. The AI Gateway provides a unified interface for tool calling across all supported providers, ensuring consistent behavior and enhanced security controls.
+
+## Key Features
+
+- **Cross-Provider Support**: Works with OpenAI, Anthropic, and other supported providers
+- **Enterprise Security**: Built-in validation and monitoring of tool calls
+- **Flexible Integration**: Support for custom functions and external APIs
+- **Audit Trail**: Complete logging and tracking of all tool interactions
+- **Guardrail Enforcement**: Apply guardrails and compliance rules to tool usage
+
+---
+
+## Implementation
+
+### Complete Example
+
+```python title="tool_calling_example.py"
 from openai import OpenAI
 
 client = OpenAI(
@@ -55,9 +71,9 @@ response = client.chat.completions.create(
 print(response.choices[0].message)
 ```
 
-### Sample Response
+### Response
 
-The model decides to call the `get_weather` function with arguments inferred from the user's message.
+When the model decides to use a tool, the response will include tool call information:
 
 ```json
 {

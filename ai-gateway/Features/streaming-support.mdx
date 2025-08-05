@@ -3,4 +3,106 @@ title: Streaming Support
 icon: "text-quote"
 ---
 
-Support real-time, token-by-token streaming of AI responses for interactive and low-latency applications.
+Support real-time, token-by-token streaming of AI responses for interactive and low-latency applications through the AI Gateway.
+
+---
+
+## Overview
+
+Streaming support enables real-time delivery of AI model responses, allowing applications to display content as it's generated rather than waiting for the complete response. The AI Gateway provides unified streaming capabilities across all supported providers, ensuring consistent behavior and enhanced user experience.
+
+## Key Benefits
+
+- **Real-Time Interaction**: Display responses as they're generated
+- **Improved User Experience**: Reduce perceived latency and increase engagement
+- **Cross-Provider Support**: Works with OpenAI, Anthropic, and other supported providers
+- **Enterprise Controls**: Maintain security and compliance during streaming
+- **Flexible Integration**: Easy implementation with existing OpenAI SDK
+
+---
+
+## Implementation
+
+### Complete Streaming Example with Anthropic
+
+```python title="streaming_example.py"
+from openai import OpenAI
+
+client = OpenAI(
+    api_key="your-anthropic-api-key",
+    base_url="https://your-gateway-url/v1",
+    default_headers={
+        "x-provider-name": "anthropic",
+        "x-altrumai-key": "your-gateway-api-key"
+    }
+)
+
+# Enable streaming by setting stream=True
+response = client.chat.completions.create(
+    model="claude-3-opus-20240229",
+    messages=[
+        {"role": "user", "content": "Write a short story about a robot learning to paint."}
+    ],
+    stream=True  # Enable streaming
+)
+
+# Process the streaming response
+for chunk in response:
+    if chunk.choices[0].delta.content is not None:
+        print(chunk.choices[0].delta.content, end="", flush=True)
+```
+
+### Response Format
+
+When streaming is enabled, the response comes in chunks:
+
+```json
+// First chunk
+{
+  "id": "chatcmpl-123",
+  "object": "chat.completion.chunk",
+  "created": 1677652288,
+  "model": "claude-3-opus-20240229",
+  "choices": [
+    {
+      "index": 0,
+      "delta": {
+        "content": "Once"
+      },
+      "finish_reason": null
+    }
+  ]
+}
+
+// Subsequent chunks
+{
+  "id": "chatcmpl-123",
+  "object": "chat.completion.chunk",
+  "created": 1677652288,
+  "model": "claude-3-opus-20240229",
+  "choices": [
+    {
+      "index": 0,
+      "delta": {
+        "content": " upon"
+      },
+      "finish_reason": null
+    }
+  ]
+}
+
+// Final chunk
+{
+  "id": "chatcmpl-123",
+  "object": "chat.completion.chunk",
+  "created": 1677652288,
+  "model": "claude-3-opus-20240229",
+  "choices": [
+    {
+      "index": 0,
+      "delta": {},
+      "finish_reason": "stop"
+    }
+  ]
+}
+```

@@ -1,36 +1,36 @@
 ---
-title: Policy Configuration
-description: "Define, configure, and enforce responsible AI policies within your projects"
+title: Guardrail Configuration
+description: "Define, configure, and enforce responsible AI guardrails within your projects"
 icon: "shield-check"
 ---
 
 ## Overview
 
-The **Policy Configuration** module enables users and administrators to define and manage responsible AI policies across projects. This ensures alignment with compliance, security, and ethical standards using AltrumAI's flexible and intuitive configuration system.
+The **Guardrail Configuration** module enables users and administrators to define and manage responsible AI guardrails across projects. This ensures alignment with compliance, security, and ethical standards using AltrumAI's flexible and intuitive configuration system.
 
 ---
 
-## Accessing Policy Configuration
+## Accessing Guardrail Configuration
 
 1. From the **Dashboard**, select a project to open the **Project Overview** page.
 2. From here, you can either:
-   - Edit an existing policy from the **Policies Table**, or
-   - Click the **Edit Policies** button to begin configuring new policies.
+   - Edit an existing guardrail from the **Guardrails Table**, or
+- Click the **Edit Guardrails** button to begin configuring new guardrails.
 
-This will take you to the **Policy Configuration** screen, which contains three tabs:
-- **Configure Policies**
+This will take you to the **Guardrail Configuration** screen, which contains three tabs:
+- **Configure Guardrails**
 - **Configure Response**
-- **Test Policies**
+- **Test Guardrails**
 
 <img height="200" src="/images/Policy Config.png" />
 
 ---
 
-## Configuring a Policy
+## Configuring a Guardrail
 
-### Step 1: Navigate to the Configure Policies Tab
+### Step 1: Navigate to the Configure Guardrails Tab
 
-Within the **Configure Policies** tab, you'll see a list of policies provided by AltrumAI, such as:
+Within the **Configure Guardrails** tab, you'll see a list of guardrails provided by AltrumAI, such as:
 - Data Privacy
 - Bias & Fairness
 - Toxicity
@@ -38,23 +38,23 @@ Within the **Configure Policies** tab, you'll see a list of policies provided by
 - Competitor Mention
 - and more
 
-### Step 2: Select a Policy
+### Step 2: Select a Guardrail
 
-- Click on a policy from the list on the left.
-- The selected policy's configuration options will appear on the right-hand panel.
+- Click on a guardrail from the list on the left.
+- The selected guardrail's configuration options will appear on the right-hand panel.
 
-### Step 3: Configure the Policy
+### Step 3: Configure the Guardrail
 
-Each policy has its own set of configuration options. Common configuration steps include:
+Each guardrail has its own set of configuration options. Common configuration steps include:
 
-- **Enable the Policy** using the toggle at the top of the panel.
+- **Enable the Guardrail** using the toggle at the top of the panel.
 - Choose an **Enforcement Mode**:
   - **Log Only** – Log violations without blocking interactions.
-  - **Log and Override** – Block content that violates the policy.
+  - **Log and Override** – Block content that violates the guardrail.
 - Adjust **Sensitivity Thresholds** (if applicable).
-- Select relevant **Topics, Entities, or Regulations** (depending on the policy type).
+- Select relevant **Topics, Entities, or Regulations** (depending on the guardrail type).
 
- _For detailed instructions on each policy type, refer to the **Policy Overview** section of the documentation._
+ _For detailed instructions on each guardrail type, refer to the **Guardrail Overview** section of the documentation._
 
 ### Step 4: Save the Configuration
 
@@ -63,40 +63,40 @@ Each policy has its own set of configuration options. Common configuration steps
 
 ---
 
-## Testing Policies
+## Testing Guardrails
 
-Once you've configured one or more policies, navigate to the **Test Policies** tab.
+Once you've configured one or more guardrails, navigate to the **Test Guardrails** tab.
 
 This is a **sandbox environment** where you can:
 
 - Interact with a test chatbot.
-- See your configured policies in action.
+- See your configured guardrails in action.
 - Observe how prompts and responses are flagged, modified, or blocked in real time.
 
-This is a valuable step to validate policy behavior before applying changes to a live project.
+This is a valuable step to validate guardrail behavior before applying changes to a live project.
 
 ---
 
-## Applying Configured Policies
+## Applying Configured Guardrails
 
 When you're satisfied with your configuration and testing:
 
 1. Navigate to the **Integration** page.
 2. If needed, retrieve your **Project API Key** from the integration settings.
 3. Review the **Summary** page where you can:
-   - View all configured policies
+   - View all configured guardrails
    - Make additional changes if required
    - Update existing configurations
 4. Once you're happy with all changes, click **View Project** to return to the Project Dashboard.
 
 ---
 
-## Editing or Disabling Policies
+## Editing or Disabling Guardrails
 
-To update or turn off a policy:
+To update or turn off a guardrail:
 
-1. From the **Project Dashboard**, click **Edit Policies** to access the Configure Policies page.
-2. For each policy:
+1. From the **Project Dashboard**, click **Edit Guardrails** to access the Configure Guardrails page.
+2. For each guardrail:
    - Toggle the **Enable** button On or Off based on your required configuration
    - Make any additional configuration changes as needed
 3. Click **Save Changes** to confirm your updates.
@@ -106,7 +106,7 @@ To update or turn off a policy:
 ## Best Practices
 
 - Start with **Log Only** mode to monitor behavior without disruption.
-- Use the **Test Policies** tab to validate before applying changes.
+- Use the **Test Guardrails** tab to validate before applying changes.
 - Regularly review violation logs and refine configurations as needed.
 - Apply stricter enforcement to regulated or high-risk projects.
 
@@ -120,13 +120,13 @@ To update or turn off a policy:
     icon="chart-bar"
     href="/product-guide/generating-and-viewing-reports"
   >
-    Analyze policy violation data and performance trends.
+    Analyze guardrail violation data and performance trends.
   </Card>
   <Card
     title="Manage Users"
     icon="user-gear"
     href="/product-guide/managing-users-and-permissions"
   >
-    Update roles and permissions to align with policy responsibilities.
+    Update roles and permissions to align with guardrail responsibilities.
   </Card>
 </CardGroup>

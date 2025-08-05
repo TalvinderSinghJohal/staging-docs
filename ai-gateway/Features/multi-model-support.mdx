@@ -3,7 +3,7 @@ title: Multi-Model Support
 icon: "square-stack"
 ---
 
-Seamlessly switch between and combine different AI models, enabling flexible, robust, and policy-driven AI workflows.
+Seamlessly switch between and combine different AI models, enabling flexible, robust, and guardrail-driven AI workflows.
 
 ---
 
@@ -14,8 +14,8 @@ Detect and mitigate prompt injection attacks to protect your AI workflows from m
 ### How to Enable Prompt Injection Protection
 
 <Steps>
-  <Step title="Navigate to Policy Configuration">
-    Go to your project dashboard and select <strong>Configure Policies</strong>.
+  <Step title="Navigate to Guardrail Configuration">
+    Go to your project dashboard and select <strong>Configure Guardrails</strong>.
   </Step>
   <Step title="Enable Prompt Injection Protection">
     Toggle the <strong>Prompt Injection Protection</strong> option on.
@@ -24,7 +24,7 @@ Detect and mitigate prompt injection attacks to protect your AI workflows from m
     Adjust the detection sensitivity to match your organization's needs.
   </Step>
   <Step title="Save and Test">
-    Save your changes and use the <strong>Test Policies</strong> tab to validate protection behavior.
+    Save your changes and use the <strong>Test Guardrails</strong> tab to validate protection behavior.
   </Step>
 </Steps>
 
@@ -66,8 +66,8 @@ Ensure generated content remains relevant to the intended topic or context, redu
 ### How to Enable Content Relevance Check
 
 <Steps>
-  <Step title="Navigate to Policy Configuration">
-    Go to your project dashboard and select <strong>Configure Policies</strong>.
+  <Step title="Navigate to Guardrail Configuration">
+    Go to your project dashboard and select <strong>Configure Guardrails</strong>.
   </Step>
   <Step title="Enable Content Relevance Check">
     Toggle the <strong>Content Relevance Check</strong> option on.
@@ -76,7 +76,7 @@ Ensure generated content remains relevant to the intended topic or context, redu
     Adjust the relevance threshold to match your organization's needs.
   </Step>
   <Step title="Save and Test">
-    Save your changes and use the <strong>Test Policies</strong> tab to validate filter behavior.
+    Save your changes and use the <strong>Test Guardrails</strong> tab to validate filter behavior.
   </Step>
 </Steps>
 
@@ -118,8 +118,8 @@ Automatically detect and filter profane language in prompts and responses to mai
 ### How to Enable Profanity Filter
 
 <Steps>
-  <Step title="Navigate to Policy Configuration">
-    Go to your project dashboard and select <strong>Configure Policies</strong>.
+  <Step title="Navigate to Guardrail Configuration">
+    Go to your project dashboard and select <strong>Configure Guardrails</strong>.
   </Step>
   <Step title="Enable Profanity Filter">
     Toggle the <strong>Profanity Filter</strong> option on.
@@ -128,7 +128,7 @@ Automatically detect and filter profane language in prompts and responses to mai
     Adjust the filter's sensitivity to match your organization's needs.
   </Step>
   <Step title="Save and Test">
-    Save your changes and use the <strong>Test Policies</strong> tab to validate filter behavior.
+    Save your changes and use the <strong>Test Guardrails</strong> tab to validate filter behavior.
   </Step>
 </Steps>
 
@@ -165,13 +165,13 @@ If the prompt or response contains profanity, it will be blocked or flagged.
 
 ## Words and Phrases Filter
 
-Filter out specific words and phrases from prompts and responses to enforce custom content policies.
+Filter out specific words and phrases from prompts and responses to enforce custom content guardrails.
 
 ### How to Enable Words and Phrases Filter
 
 <Steps>
-  <Step title="Navigate to Policy Configuration">
-    Go to your project dashboard and select <strong>Configure Policies</strong>.
+  <Step title="Navigate to Guardrail Configuration">
+    Go to your project dashboard and select <strong>Configure Guardrails</strong>.
   </Step>
   <Step title="Enable Words and Phrases Filter">
     Toggle the <strong>Words and Phrases Filter</strong> option on.
@@ -180,7 +180,7 @@ Filter out specific words and phrases from prompts and responses to enforce cust
     Enter the words or phrases you want to filter. You can add multiple entries.
   </Step>
   <Step title="Save and Test">
-    Save your changes and use the <strong>Test Policies</strong> tab to validate filter behavior.
+    Save your changes and use the <strong>Test Guardrails</strong> tab to validate filter behavior.
   </Step>
 </Steps>
 
@@ -217,13 +217,13 @@ If the prompt or response contains a filtered word or phrase, it will be blocked
 
 ## Restricted Topics Filter
 
-Prevent discussion or generation of content on restricted topics, ensuring compliance with organizational policies.
+Prevent discussion or generation of content on restricted topics, ensuring compliance with organizational guardrails.
 
 ### How to Enable Restricted Topics Filter
 
 <Steps>
-  <Step title="Navigate to Policy Configuration">
-    Go to your project dashboard and select <strong>Configure Policies</strong>.
+  <Step title="Navigate to Guardrail Configuration">
+    Go to your project dashboard and select <strong>Configure Guardrails</strong>.
   </Step>
   <Step title="Enable Restricted Topics Filter">
     Toggle the <strong>Restricted Topics Filter</strong> option on.
@@ -232,7 +232,7 @@ Prevent discussion or generation of content on restricted topics, ensuring compl
     Choose which topics to restrict from the provided list or add custom topics.
   </Step>
   <Step title="Save and Test">
-    Save your changes and use the <strong>Test Policies</strong> tab to validate filter behavior.
+    Save your changes and use the <strong>Test Guardrails</strong> tab to validate filter behavior.
   </Step>
 </Steps>
 
@@ -274,8 +274,8 @@ Detect and block harmful or unsafe content across all supported models, protecti
 ### How to Enable Harmful Content Filter
 
 <Steps>
-  <Step title="Navigate to Policy Configuration">
-    Go to your project dashboard and select <strong>Configure Policies</strong>.
+  <Step title="Navigate to Guardrail Configuration">
+    Go to your project dashboard and select <strong>Configure Guardrails</strong>.
   </Step>
   <Step title="Enable Harmful Content Filter">
     Toggle the <strong>Harmful Content Filter</strong> option on.
@@ -284,7 +284,7 @@ Detect and block harmful or unsafe content across all supported models, protecti
     Adjust the filter's sensitivity to match your organization's needs.
   </Step>
   <Step title="Save and Test">
-    Save your changes and use the <strong>Test Policies</strong> tab to validate filter behavior.
+    Save your changes and use the <strong>Test Guardrails</strong> tab to validate filter behavior.
   </Step>
 </Steps>
 
@@ -326,8 +326,8 @@ Automatically redact or mask sensitive data in prompts and responses to ensure c
 ### How to Enable Data Protection
 
 <Steps>
-  <Step title="Navigate to Policy Configuration">
-    Go to your project dashboard and select <strong>Configure Policies</strong>.
+  <Step title="Navigate to Guardrail Configuration">
+    Go to your project dashboard and select <strong>Configure Guardrails</strong>.
   </Step>
   <Step title="Enable Data Protection Filter">
     Toggle the <strong>Data Protection Filter</strong> option on.
@@ -336,7 +336,7 @@ Automatically redact or mask sensitive data in prompts and responses to ensure c
     Choose which types of data to protect (PII, PHI, financial, etc.).
   </Step>
   <Step title="Save and Test">
-    Save your changes and use the <strong>Test Policies</strong> tab to validate filter behavior.
+    Save your changes and use the <strong>Test Guardrails</strong> tab to validate filter behavior.
   </Step>
 </Steps>
 

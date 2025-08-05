@@ -1,14 +1,14 @@
 ---
 title: Reporting
-description: "Understand how to access, filter, and analyse AI performance and policy violation data"
+description: "Understand how to access, filter, and analyse AI performance and guardrail violation data"
 icon: "square-poll-vertical"
 ---
 
 ## Overview
 
-The **Reporting** module provides real-time insights into the performance of your AI applications and the effectiveness of policy enforcement across your organisation and projects.
+The **Reporting** module provides real-time insights into the performance of your AI applications and the effectiveness of guardrail enforcement across your organisation and projects.
 
-Reporting enables you to track key usage statistics, monitor policy adherence, and identify trends over time empowering better governance and continuous improvement.
+Reporting enables you to track key usage statistics, monitor guardrail adherence, and identify trends over time empowering better governance and continuous improvement.
 
 ---
 
@@ -28,7 +28,7 @@ The Reporting Page includes two tabs:
 - View aggregated data across all projects within the organisation.
 - Metrics include:
   - Overall usage statistics
-  - Aggregate policy violation counts
+  - Aggregate guardrail violation counts
   - Organisation wide trends over time
 
 **Time Filter Options**:
@@ -61,22 +61,22 @@ Using both filters together allows users to:
 
 ---
 
-#### Detailed Policy Violations Logs
+#### Detailed Guardrail Violations Logs
 
-The **Policy Violation Logs** table within the Project Reporting page allows you to review all policy violation events for the selected project.
+The **Guardrail Violation Logs** table within the Project Reporting page allows you to review all guardrail violation events for the selected project.
 
 **New Feature:**
 - You can now expand any record in the table for more details. Click the **eye icon** on a row to open a **slider panel** from the right side of the screen.
 - The slider panel displays further details about the selected violation, such as:
   - Timestamp of the violation
-  - Policy name and details of violation
+  - Guardrail name and details of violation
   - User or system that triggered the violation
   - Input and output data (if available and permitted)
   - Request/Response Metadata
 
 <img height="200" src="/images/Policy Violations Panel.png" />
 
-This enhancement enables deeper investigation and auditing of individual policy violations, helping you understand context and take appropriate action.
+This enhancement enables deeper investigation and auditing of individual guardrail violations, helping you understand context and take appropriate action.
 
 ---
 
@@ -99,10 +99,10 @@ This enhancement enables deeper investigation and auditing of individual policy 
     Add new users and manage access rights.
   </Card>
   <Card
-    title="Refine Policies"
+    title="Refine Guardrails"
     icon="sliders"
     href="/product-guide/policies"
   >
-    Update and adjust policy settings for better oversight.
+    Update and adjust guardrail settings for better oversight.
   </Card>
 </CardGroup>
