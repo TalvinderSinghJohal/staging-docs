@@ -25,20 +25,20 @@
               "product-guide/projects",
               "product-guide/reporting",
               "product-guide/administration",
-              "product-guide/policies"
+              "product-guide/guardrails"
             ]
           },
           {
-            "group": "Policy Overview",
+            "group": "Guardrail Overview",
             "pages": [
-              "policies/words-phrases-filter",
-              "policies/data-protection-filter",
-              "policies/harmful-content",
-              "policies/profanity-filter",
-              "policies/competitor-mention",
-              "policies/restricted-topic-filter",
-              "policies/relevance-check",
-              "policies/prompt-injections"
+              "guardrails/words-phrases-filter",
+              "guardrails/data-protection-filter",
+              "guardrails/harmful-content",
+              "guardrails/profanity-filter",
+              "guardrails/competitor-mention",
+              "guardrails/restricted-topic-filter",
+              "guardrails/relevance-check",
+              "guardrails/prompt-injections"
             ]
           },
           {
