@@ -9,90 +9,53 @@
   },
   "favicon": "images/Altrum AI Favicon 128x128.png",
   "navigation": {
-    "tabs": [
+    "dropdowns": [
       {
-        "tab": "Guides",
-        "groups": [
-          {
-            "group": "Get Started",
-            "pages": [
-              "get-started/introduction"
-            ]
-          },
-          {
-            "group": "Product Guide",
-            "pages": [
-              "product-guide/projects",
-              "product-guide/reporting",
-              "product-guide/administration",
-              "product-guide/guardrails"
-            ]
-          },
-          {
-            "group": "Guardrail Overview",
-            "pages": [
-              "guardrails/data-protection-filter",
-              "guardrails/harmful-content",
-              "guardrails/restricted-topic-filter",
-              "guardrails/words-phrases-filter",
-              "guardrails/profanity-filter",
-              "guardrails/relevance-check",
-              "guardrails/prompt-injections"
-            ]
-          },
-          {
-            "group": "Release Notes",
-            "pages": [
-              "release-notes/june-2025-release"
-            ]
-          }
+        "dropdown": "Guides",
+        "icon": "book-open",
+        "pages": [
+          "get-started/introduction",
+          "product-guide/projects",
+          "product-guide/reporting",
+          "product-guide/administration",
+          "product-guide/guardrails",
+          "guardrails/data-protection-filter",
+          "guardrails/harmful-content",
+          "guardrails/restricted-topic-filter",
+          "guardrails/words-phrases-filter",
+          "guardrails/profanity-filter",
+          "guardrails/relevance-check",
+          "guardrails/prompt-injections",
+          "release-notes/june-2025-release"
         ]
       },
       {
-        "tab": "API Reference",
-        "groups": [
-          {
-            "group": "API Documentation",
-            "pages": [
-              "api-reference/introduction"
-            ]
-          },
-          {
-            "group": "Endpoint",
-            "pages": [
-              "api-reference/endpoint/openai",
-              "api-reference/endpoint/bedrock",
-              "api-reference/endpoint/azure-openai",
-              "api-reference/endpoint/azure-studio",
-              "api-reference/endpoint/anthropic",
-              "api-reference/endpoint/gemini"
-            ]
-          }
+        "dropdown": "API Reference",
+        "icon": "square-terminal",
+        "pages": [
+          "api-reference/introduction",
+          "api-reference/endpoint/openai",
+          "api-reference/endpoint/bedrock",
+          "api-reference/endpoint/azure-openai",
+          "api-reference/endpoint/azure-studio",
+          "api-reference/endpoint/anthropic",
+          "api-reference/endpoint/gemini"
         ]
       },
       {
-        "tab": "AI Gateway",
-        "groups": [
-          {
-            "group": "Introduction",
-            "pages": [
-              "ai-gateway/Introduction/gateway-intro"
-            ]
-          },
-          {
-            "group": "Features",
-            "pages": [
-              "ai-gateway/Features/unified-api",
-              "ai-gateway/Features/multi-model-support",
-              "ai-gateway/Features/ai-gurdrails",
-              "ai-gateway/Features/multi-auth-support",
-              "ai-gateway/Features/auto-caching",
-              "ai-gateway/Features/streaming-support",
-              "ai-gateway/Features/tool-calling",
-              "ai-gateway/Features/reasoning",
-              "ai-gateway/Features/response-formatting"
-            ]
-          }
+        "dropdown": "AI Gateway",
+        "icon": "zap",
+        "pages": [
+          "ai-gateway/Introduction/gateway-intro",
+          "ai-gateway/Features/unified-api",
+          "ai-gateway/Features/multi-model-support",
+          "ai-gateway/Features/ai-gurdrails",
+          "ai-gateway/Features/multi-auth-support",
+          "ai-gateway/Features/auto-caching",
+          "ai-gateway/Features/streaming-support",
+          "ai-gateway/Features/tool-calling",
+          "ai-gateway/Features/reasoning",
+          "ai-gateway/Features/response-formatting"
         ]
       }
     ],
