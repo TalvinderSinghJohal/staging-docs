@@ -64,13 +64,13 @@
           "ai-gateway/Features/reasoning",
           "ai-gateway/Features/response-formatting"
         ]
-      },
-      {
-        "group": "Release Notes",
-        "pages": [
-          "release-notes/june-2025-release"
-        ]
       }
+      // {
+      //   "group": "Release Notes",
+      //   "pages": [
+      //     "release-notes/june-2025-release"
+      //   ]
+      // }
     ],
     "global": {
       "anchors": [
