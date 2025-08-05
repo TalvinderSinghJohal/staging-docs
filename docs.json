@@ -1,6 +1,6 @@
 {
   "$schema": "https://mintlify.com/docs.json",
-  "theme": "mint",
+  "theme": "willow",
   "name": "AltrumAI Docs",
   "colors": {
     "primary": "#126FFF",
@@ -18,11 +18,24 @@
       },
       {
         "group": "Product Guide",
+        "icon": "book-open",
         "pages": [
           "product-guide/projects",
-          "product-guide/reporting",
-          "product-guide/administration",
-          "product-guide/guardrails"
+          {
+            "group": "Management",
+            "icon": "settings",
+            "pages": [
+              "product-guide/reporting",
+              "product-guide/administration"
+            ]
+          },
+          {
+            "group": "Security",
+            "icon": "shield",
+            "pages": [
+              "product-guide/guardrails"
+            ]
+          }
         ]
       },
       {
