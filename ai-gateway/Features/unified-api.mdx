@@ -145,12 +145,20 @@ By adopting the Unified API, organizations can focus on building innovative AI a
 | **Google AI** | Integrate Google Gemini models | Multi-modal capabilities, Google ecosystem |
 | **Google Vertex AI** | Access Vertex AI models | GCP integration, MLOps capabilities |
 
-## Quick Start
-
-1. **Set Up Gateway**: Deploy the AI Gateway to your infrastructure
-2. **Configure Client**: Use OpenAI SDK with provider-specific headers
-3. **Make Requests**: Send requests using the unified API format
-4. **Switch Providers**: Change providers by updating headers only
+<Steps>
+  <Step title="Set Up Gateway">
+    Deploy the AI Gateway to your infrastructure. This provides a unified endpoint for all supported AI providers.
+  </Step>
+  <Step title="Configure Client">
+    Use the OpenAI SDK and set provider-specific headers (such as <code>x-provider-name</code>) to route requests through the gateway.
+  </Step>
+  <Step title="Make Requests">
+    Send requests using the standard OpenAI API format. The gateway will automatically translate and forward them to the selected provider.
+  </Step>
+  <Step title="Switch Providers">
+    Change providers at any time by updating the <code>x-provider-name</code> header—no code changes required.
+  </Step>
+</Steps>
 
 ## Implementation Examples
 
