@@ -27,123 +27,21 @@ The Unified API standardizes how your applications interact with leading AI mode
 
 By adopting the Unified API, organizations can focus on building innovative AI applications rather than managing complex integrations, ultimately accelerating their AI transformation journey while maintaining full control over their AI strategy.
 
-
-## Key Benefits
-
-<AccordionGroup>
-
-  <Accordion title="Vendor Independence & Risk Mitigation">
-    <ul>
-      <li>
-        <b>Eliminate vendor lock-in</b><br />
-        Switch between 7 providers without code changes.
-      </li>
-      <li>
-        <b>Business continuity</b><br />
-        Seamless failover during outages.
-      </li>
-      <li>
-        <b>Cost optimization</b><br />
-        Dynamically select cost-effective providers.
-      </li>
-      <li>
-        <b>Load distribution</b><br />
-        Balance workloads to avoid single points of failure.
-      </li>
-    </ul>
-  </Accordion>
-
-  <Accordion title="Accelerated Time-to-Market">
-    <ul>
-      <li>
-        <b>Rapid integration</b><br />
-        Use existing OpenAI SDKs and libraries.
-      </li>
-      <li>
-        <b>Unified development</b><br />
-        One API to learn and maintain.
-      </li>
-      <li>
-        <b>Reduced development costs</b><br />
-        No need for multiple integration teams.
-      </li>
-      <li>
-        <b>Faster experimentation</b><br />
-        Test models/providers with minimal overhead.
-      </li>
-    </ul>
-  </Accordion>
-
-  <Accordion title="Operational Excellence">
-    <ul>
-      <li>
-        <b>Simplified infrastructure</b><br />
-        Single endpoint for all AI services.
-      </li>
-      <li>
-        <b>Centralized management</b><br />
-        Unified monitoring, logging, and security.
-      </li>
-      <li>
-        <b>Compliance ready</b><br />
-        Centralized governance and controls.
-      </li>
-      <li>
-        <b>Performance optimization</b><br />
-        Built-in caching and request optimization.
-      </li>
-    </ul>
-  </Accordion>
-
-  <Accordion title="Strategic Flexibility">
-    <ul>
-      <li>
-        <b>Future-proof</b><br />
-        Add new providers without app changes.
-      </li>
-      <li>
-        <b>Best-of-breed</b><br />
-        Choose optimal models for each use case.
-      </li>
-      <li>
-        <b>Negotiation leverage</b><br />
-        Easy switching strengthens your position.
-      </li>
-      <li>
-        <b>Innovation agility</b><br />
-        Quickly adopt new AI capabilities.
-      </li>
-    </ul>
-  </Accordion>
-
-</AccordionGroup>
-
-## Key Capabilities
-
-- **OpenAI SDK Compatibility**: Use official OpenAI client libraries with any provider
-- **Consistent API Format**: Same `/v1/chat/completions` endpoint for all providers
-- **Automatic Format Translation**: Seamless conversion between OpenAI format and provider-specific formats
-- **Full Feature Support**: Streaming, function calling, and multi-modal capabilities where available
-- **Zero Code Changes**: Switch providers by changing only configuration headers
-- **Enterprise Controls**: Built-in guardrails, compliance, and monitoring across all providers
-
-## How It Works
-
-### Architecture/Request Flow
+### How it Works
 
 <img height="200" src="/images/unified-api-request-diagram.png" />
 
 ## Supported Providers
 
-| Provider | Description | Key Features |
-|----------|-------------|--------------|
-| **OpenAI** | Access OpenAI models through the unified endpoint | Full SDK compatibility, GPT-4o, GPT-4o-mini |
-| **Anthropic** | Connect to Claude models with built-in guardrails | Constitutional AI, 200K context, safety features |
-| **Amazon Bedrock** | Integrate AWS Bedrock models | Enterprise security, HIPAA compliance, AWS integration |
-| **Azure OpenAI** | Access Azure-hosted OpenAI models | Microsoft ecosystem, enterprise SLAs |
-| **Azure AI Inference** | Leverage Azure AI Inference models | Custom models, Azure ML integration |
-| **Google AI** | Integrate Google Gemini models | Multi-modal capabilities, Google ecosystem |
-| **Google Vertex AI** | Access Vertex AI models | GCP integration, MLOps capabilities |
+| Provider | Description |
+|----------|-------------|
+| **OpenAI** | Access OpenAI models through the unified endpoint |
+| **Anthropic** | Connect to Claude models with built-in guardrails |
+| **Amazon Bedrock** | Integrate AWS Bedrock models |
+| **Azure OpenAI** | Access Azure-hosted OpenAI models |
+| **Azure AI Inference** | Leverage Azure AI Inference models |
+| **Google AI** | Integrate Google Gemini models |
+| **Google Vertex AI** | Access Vertex AI models |
 
 ## Implementation Guide
 
@@ -162,31 +60,16 @@ By adopting the Unified API, organizations can focus on building innovative AI a
   </Step>
 </Steps>
 
-## Implementation Examples
+## Implementation Examples for Each Provider
 
-All examples use the OpenAI SDK with provider-specific headers to route requests through the AI Gateway.
-
-### Basic Setup Pattern
-
-```python
-from openai import OpenAI
-
-client = OpenAI(
-    api_key="your-provider-api-key",  # Varies by provider
-    base_url="https://your-gateway-url/v1",
-    default_headers={
-        "x-provider-name": "provider_name",
-        "x-altrumai-key": "your-gateway-api-key"
-        # Additional provider-specific headers as needed
-    }
-)
-```
-
-### Provider-Specific Examples
+<Note>All examples use the OpenAI SDK with provider-specific headers to route requests through the AI Gateway.</Note>
 
 #### OpenAI
+Access OpenAI models using the unified API endpoint and standard OpenAI SDK.
 
-```python
+<CodeGroup dropdown>
+
+```python openai_example.py
 from openai import OpenAI
 
 client = OpenAI(
@@ -208,18 +91,40 @@ response = client.chat.completions.create(
 print(response.choices[0].message.content)
 ```
 
-#### Anthropic
+```bash openai_curl.sh
+curl -X POST "https://your-gateway-url/v1/chat/completions" \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer your-openai-api-key" \
+  -H "x-provider-name: openai" \
+  -H "x-altrumai-key: your-gateway-api-key" \
+  -d '{
+    "model": "gpt-4",
+    "messages": [
+      {
+        "role": "user",
+        "content": "What is the capital of France?"
+      }
+    ]
+  }'
+```
 
-```python
+</CodeGroup>
+
+#### Anthropic
+Access Anthropic Claude models using the unified API endpoint and standard OpenAI SDK.
+
+<CodeGroup dropdown>
+
+```python anthropic_example.py
 from openai import OpenAI
 
 client = OpenAI(
     api_key="your-anthropic-api-key",
-    base_url="https://your-gateway-url/v1",
+    base_url="https://gateway.altrum.ai/v1",
     default_headers={
         "x-api-key": "your-api-key",
         "x-provider-name": "anthropic",
-        "x-altrumai-key": "your-gateway-api-key"
+        "x-altrumai-key": "your-altrumai-api-key"
     }
 )
 
@@ -233,9 +138,32 @@ response = client.chat.completions.create(
 print(response.choices[0].message.content)
 ```
 
-#### Amazon Bedrock
+```bash anthropic_curl.sh
+curl -X POST "https://gateway.altrum.ai/v1/chat/completions" \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer your-anthropic-api-key" \
+  -H "x-api-key: your-api-key" \
+  -H "x-provider-name: anthropic" \
+  -H "x-altrumai-key: your-altrumai-api-key" \
+  -d '{
+    "model": "claude-3-opus-20240229",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Explain quantum computing in simple terms."
+      }
+    ]
+  }'
+```
 
-```python
+</CodeGroup>
+
+#### Amazon Bedrock
+Access Amazon Bedrock models using the unified API endpoint and standard OpenAI SDK.
+
+<CodeGroup dropdown>
+
+```python bedrock_example.py
 from openai import OpenAI
 
 client = OpenAI(
@@ -261,9 +189,34 @@ response = client.chat.completions.create(
 print(response.choices[0].message.content)
 ```
 
-#### Azure OpenAI
+```bash bedrock_curl.sh
+curl -X POST "https://your-gateway-url/v1/chat/completions" \
+  -H "Content-Type: application/json" \
+  -H "x-provider-name: bedrock" \
+  -H "x-bedrock-access-key-id: your-aws-access-key-id" \
+  -H "x-bedrock-secret-access-key: your-aws-secret-access-key" \
+  -H "x-bedrock-region: your-aws-region" \
+  -H "x-bedrock-session-token: your-aws-session-token" \
+  -H "x-altrumai-key: your-gateway-api-key" \
+  -d '{
+    "model": "anthropic.claude-v2",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Give me a list of 5 creative startup ideas in the AI space."
+      }
+    ]
+  }'
+```
 
-```python
+</CodeGroup>
+
+#### Azure OpenAI
+Access Azure OpenAI models through the unified API using standard OpenAI SDK and gateway headers.
+
+<CodeGroup dropdown>
+
+```python azure_openai_example.py
 from openai import OpenAI
 
 client = OpenAI(
@@ -289,9 +242,34 @@ response = client.chat.completions.create(
 print(response.choices[0].message.content)
 ```
 
-#### Azure AI Inference
+```bash azure_openai_curl.sh
+curl -X POST "https://your-gateway-url/v1/chat/completions" \
+  -H "Content-Type: application/json" \
+  -H "x-provider-name: azure_openai" \
+  -H "x-azure-api-key: your-azure-api-key" \
+  -H "x-azure-resource-name: your-azure-resource-name" \
+  -H "x-azure-deployment-id: your-azure-deployment-id" \
+  -H "x-azure-api-version: 2024-02-15-preview" \
+  -H "x-altrumai-key: your-gateway-api-key" \
+  -d '{
+    "model": "gpt-35-turbo",
+    "messages": [
+      {
+        "role": "user",
+        "content": "What are the advantages of using managed Kubernetes services?"
+      }
+    ]
+  }'
+```
 
-```python
+</CodeGroup>
+
+#### Azure AI Inference
+Access Azure AI Inference models via the unified API using standard OpenAI SDK and gateway headers.
+
+<CodeGroup dropdown>
+
+```python azure_ai_inference_example.py
 from openai import OpenAI
 
 client = OpenAI(
@@ -315,9 +293,32 @@ response = client.chat.completions.create(
 print(response.choices[0].message.content)
 ```
 
-#### Google AI
+```bash azure_ai_inference_curl.sh
+curl -X POST "https://your-gateway-url/v1/chat/completions" \
+  -H "Content-Type: application/json" \
+  -H "x-provider-name: azure_ai_inference" \
+  -H "x-altrumai-key: your-gateway-api-key" \
+  -H "x-azure-ai-token: your-azure-ai-inference-api-key" \
+  -H "x-azure-ai-endpoint: your-azure-ai-inference-endpoint" \
+  -d '{
+    "model": "phi-2",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Summarize the main benefits of using serverless architectures."
+      }
+    ]
+  }'
+```
 
-```python
+</CodeGroup>
+
+#### Google AI
+Access Google Gemini models via the unified API using standard OpenAI SDK and gateway headers.
+
+<CodeGroup dropdown>
+
+```python google_ai_example.py
 from openai import OpenAI
 
 client = OpenAI(
@@ -340,9 +341,31 @@ response = client.chat.completions.create(
 print(response.choices[0].message.content)
 ```
 
-#### Google Vertex AI
+```bash google_ai_curl.sh
+curl -X POST "https://your-gateway-url/v1/chat/completions" \
+  -H "Content-Type: application/json" \
+  -H "x-provider-name: google" \
+  -H "x-goog-api-key: your-google-api-key" \
+  -H "x-altrumai-key: your-gateway-api-key" \
+  -d '{
+    "model": "gemini-1.5-pro",
+    "messages": [
+      {
+        "role": "user",
+        "content": "How can AI help improve energy efficiency in smart buildings?"
+      }
+    ]
+  }'
+```
 
-```python
+</CodeGroup>
+
+#### Google Vertex AI
+Access Google Vertex AI models through the unified API using standard OpenAI SDK and gateway headers.
+
+<CodeGroup dropdown>
+
+```python google_vertex_ai_example.py
 from openai import OpenAI
 
 client = OpenAI(
@@ -368,172 +391,27 @@ response = client.chat.completions.create(
 print(response.choices[0].message.content)
 ```
 
-## Advanced Features
-
-### Streaming Responses
-
-> Streaming works identically across all providers with the same OpenAI SDK interface.
-
-```python
-# Streaming works identically across all providers
-client = create_ai_client("anthropic", {"api_key": "your-key"})
-
-stream = client.chat.completions.create(
-    model="claude-3-5-sonnet-20241022",
-    messages=[{"role": "user", "content": "Write a story"}],
-    stream=True  # Enable streaming
-)
-
-for chunk in stream:
-    if chunk.choices[0].delta.content:
-        print(chunk.choices[0].delta.content, end='')
+```bash google_vertex_ai_curl.sh
+curl -X POST "https://your-gateway-url/v1/chat/completions" \
+  -H "Content-Type: application/json" \
+  -H "x-provider-name: google_vertex_ai" \
+  -H "x-api-key: your-google-vertex-ai-api-key" \
+  -H "x-endpoint-base: your-google-vertex-ai-endpoint-base" \
+  -H "x-project-id: your-google-vertex-ai-project-id" \
+  -H "x-location: your-google-vertex-ai-location" \
+  -H "x-altrumai-key: your-gateway-api-key" \
+  -d '{
+    "model": "google.models.text-bison",
+    "messages": [
+      {
+        "role": "user",
+        "content": "List three practical applications of generative AI in education."
+      }
+    ]
+  }'
 ```
 
-### Function Calling
-
-> Function calling is supported across multiple providers with automatic format conversion.
-
-```typescript
-// Function calling with automatic format conversion
-const response = await client.chat.completions.create({
-    model: 'gpt-4o-mini',  // or Claude, Gemini, etc.
-    messages: [
-        { role: 'user', content: 'What is the weather in London?' }
-    ],
-    tools: [{
-        type: 'function',
-        function: {
-            name: 'get_weather',
-            description: 'Get weather for a location',
-            parameters: {
-                type: 'object',
-                properties: {
-                    location: { type: 'string' },
-                    unit: { type: 'string', enum: ['celsius', 'fahrenheit'] }
-                },
-                required: ['location']
-            }
-        }
-    }],
-    tool_choice: 'auto'
-});
-```
-
-### Provider Switching
-
-> Switch between providers seamlessly without changing your application code.
-
-```python
-# Demonstration of seamless provider switching
-def analyze_text(text: str, provider: str):
-    """Same function works with any provider"""
-    
-    # Provider configurations
-    configs = {
-        "openai": {
-            "model": "gpt-4o-mini",
-            "headers": {"Authorization": f"Bearer {os.getenv('OPENAI_KEY')}"}
-        },
-        "anthropic": {
-            "model": "claude-3-5-sonnet-20241022",
-            "headers": {"x-api-key": os.getenv('ANTHROPIC_KEY')}
-        },
-        "google": {
-            "model": "gemini-1.5-pro",
-            "headers": {"x-goog-api-key": os.getenv('GOOGLE_KEY')}
-        }
-    }
-    
-    config = configs[provider]
-    config["headers"]["x-provider-name"] = provider
-    
-    client = OpenAI(
-        api_key="dummy",
-        base_url="https://gateway.your-domain.com",
-        default_headers=config["headers"]
-    )
-    
-    # Identical API call regardless of provider
-    return client.chat.completions.create(
-        model=config["model"],
-        messages=[
-            {"role": "system", "content": "You are a text analyst."},
-            {"role": "user", "content": f"Analyze this text: {text}"}
-        ],
-        temperature=0.7
-    )
-
-# Switch providers without changing code
-result_openai = analyze_text("Sample text", "openai")
-result_claude = analyze_text("Sample text", "anthropic")
-result_gemini = analyze_text("Sample text", "google")
-```
-
-## Implementation Guide
-
-### Step 1: Set Up the Gateway
-
-```bash
-# Deploy the AI Gateway
-docker run -d \
-  -p 3000:3000 \
-  -e PORT=3000 \
-  --name ai-gateway \
-  your-registry/ai-gateway:latest
-```
-
-### Step 2: Configure Your Application
-
-```python
-# Update your application configuration
-AI_GATEWAY_URL = "https://gateway.altrum.ai"
-
-# Replace provider-specific SDKs with OpenAI SDK
-# Before: anthropic.Client, googleai.Client, etc.
-# After: Just OpenAI client for everything
-```
-
-### Step 3: Update API Calls
-
-```python
-# Before: Multiple SDK implementations
-if provider == "openai":
-    openai_client.completions.create(...)
-elif provider == "anthropic":
-    anthropic_client.messages.create(...)
-elif provider == "google":
-    google_client.generate_content(...)
-
-# After: Single unified implementation
-response = openai_client.chat.completions.create(
-    model=model_name,
-    messages=messages
-)
-```
-
-### Step 4: Add Provider Switching Logic
-
-```python
-def get_ai_response(prompt: str, preferred_provider: str = None):
-    """Intelligent provider selection with fallback"""
-    
-    providers = ["openai", "anthropic", "google"]
-    if preferred_provider:
-        providers = [preferred_provider] + [p for p in providers if p != preferred_provider]
-    
-    for provider in providers:
-        try:
-            client = create_ai_client(provider, get_credentials(provider))
-            return client.chat.completions.create(
-                model=get_model_for_provider(provider),
-                messages=[{"role": "user", "content": prompt}]
-            )
-        except Exception as e:
-            logger.warning(f"Provider {provider} failed: {e}")
-            continue
-    
-    raise Exception("All providers failed")
-```
+</CodeGroup>
 
 ## Best Practices
 
@@ -674,51 +552,3 @@ def get_response(provider: str):
     )
     return client.chat.completions.create(...)
 ```
-
-## Supported AI Providers
-
-### OpenAI
-**Models**: GPT-4o, GPT-4o-mini, GPT-4-Turbo, GPT-3.5-Turbo  
-**Strengths**: Industry-leading language models, extensive function calling support, robust ecosystem  
-**Use Cases**: General-purpose AI, complex reasoning, code generation, creative writing
-
-### Anthropic Claude
-**Models**: Claude 3.5 Sonnet, Claude 3.5 Haiku, Claude 3 Opus  
-**Strengths**: Superior context handling (200K tokens), constitutional AI for safety, nuanced responses  
-**Use Cases**: Long-form content analysis, research, technical documentation, ethical AI applications
-
-### Amazon Bedrock
-**Models**: Multiple providers including Anthropic Claude, Meta Llama, Amazon Titan  
-**Strengths**: AWS integration, enterprise security, multi-model access, HIPAA compliance  
-**Use Cases**: Enterprise deployments, regulated industries, AWS-native applications
-
-### Azure OpenAI
-**Models**: GPT-4, GPT-3.5, DALL-E, Embeddings  
-**Strengths**: Microsoft ecosystem integration, enterprise SLAs, regional deployments  
-**Use Cases**: Microsoft 365 integration, enterprise applications, global deployments
-
-### Azure AI Inference
-**Models**: Various models from Azure AI Studio catalog  
-**Strengths**: Model variety, Azure ML integration, custom model deployment  
-**Use Cases**: Specialized AI models, custom fine-tuned models, Azure ML workflows
-
-### Google AI (Gemini)
-**Models**: Gemini 1.5 Pro, Gemini 1.5 Flash, Gemini 1.0 Pro  
-**Strengths**: Multi-modal capabilities, large context windows, Google ecosystem  
-**Use Cases**: Multi-modal applications, Google Workspace integration, consumer applications
-
-### Google Vertex AI
-**Models**: Gemini models, PaLM, custom models  
-**Strengths**: GCP integration, MLOps capabilities, enterprise features  
-**Use Cases**: GCP-native applications, ML pipelines, enterprise AI deployments
-
----
-
-## Key Benefits Summary
-
-- **Unified Interface**: Single API endpoint for all providers
-- **SDK Compatibility**: Works with existing OpenAI SDK code
-- **Enterprise Controls**: Built-in guardrails, compliance, and monitoring
-- **Provider Flexibility**: Easy switching between AI providers
-- **Consistent Authentication**: Standardized header-based authentication
-- **Cost Optimization**: Centralized usage tracking and optimization
