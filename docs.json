@@ -11,58 +11,52 @@
   "navigation": {
     "groups": [
       {
-        "group": "Get Started",
+        "group": "Introduction",
         "pages": [
-          "get-started/introduction"
+          "get-started/altrumai",
+          "get-started/getting-started"
         ]
       },
       {
-        "group": "Product Guide",
-        "icon": "book-open",
+        "group": "Product",
         "pages": [
-          "product-guide/projects",
           {
-            "group": "Management",
-            "icon": "settings",
+            "group": "Guide",
+            "icon": "book-open",
             "pages": [
+              "product-guide/projects",
               "product-guide/reporting",
-              "product-guide/administration"
+              "product-guide/administration",
+              "product-guide/guardrails"
             ]
           },
           {
-            "group": "Security",
-            "icon": "shield",
+            "group": "AI Gateway",
             "pages": [
-              "product-guide/guardrails"
+              "ai-gateway/Introduction/gateway-intro",
+              "ai-gateway/Features/unified-api",
+              "ai-gateway/Features/multi-model-support",
+              "ai-gateway/Features/ai-gurdrails",
+              "ai-gateway/Features/multi-auth-support",
+              "ai-gateway/Features/auto-caching",
+              "ai-gateway/Features/streaming-support",
+              "ai-gateway/Features/tool-calling",
+              "ai-gateway/Features/reasoning",
+              "ai-gateway/Features/response-formatting"
+            ]
+          },
+          {
+            "group": "Guardrails",
+            "pages": [
+              "guardrails/data-protection-filter",
+              "guardrails/harmful-content",
+              "guardrails/restricted-topic-filter",
+              "guardrails/words-phrases-filter",
+              "guardrails/profanity-filter",
+              "guardrails/relevance-check",
+              "guardrails/prompt-injections"
             ]
           }
-        ]
-      },
-      {
-        "group": "Guardrail Overview",
-        "pages": [
-          "guardrails/data-protection-filter",
-          "guardrails/harmful-content",
-          "guardrails/restricted-topic-filter",
-          "guardrails/words-phrases-filter",
-          "guardrails/profanity-filter",
-          "guardrails/relevance-check",
-          "guardrails/prompt-injections"
-        ]
-      },
-      {
-        "group": "AI Gateway",
-        "pages": [
-          "ai-gateway/Introduction/gateway-intro",
-          "ai-gateway/Features/unified-api",
-          "ai-gateway/Features/multi-model-support",
-          "ai-gateway/Features/ai-gurdrails",
-          "ai-gateway/Features/multi-auth-support",
-          "ai-gateway/Features/auto-caching",
-          "ai-gateway/Features/streaming-support",
-          "ai-gateway/Features/tool-calling",
-          "ai-gateway/Features/reasoning",
-          "ai-gateway/Features/response-formatting"
         ]
       },
       {
