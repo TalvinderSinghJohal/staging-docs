@@ -25,9 +25,9 @@
             "icon": "book-open",
             "pages": [
               "product-guide/ai-systems",
+              "product-guide/guardrail-config",
               "product-guide/reporting",
-              "product-guide/administration",
-              "product-guide/guardrails"
+              "product-guide/administration"
             ]
           },
           {
