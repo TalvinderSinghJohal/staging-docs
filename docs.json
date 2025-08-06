@@ -24,7 +24,7 @@
             "group": "Guide",
             "icon": "book-open",
             "pages": [
-              "product-guide/projects",
+              "product-guide/ai-systems",
               "product-guide/reporting",
               "product-guide/administration",
               "product-guide/guardrails"
