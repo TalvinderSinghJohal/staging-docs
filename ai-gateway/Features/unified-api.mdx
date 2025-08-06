@@ -1,30 +1,30 @@
 ---
 title: Unified API
-description: "Access 7 major AI providers through a single, OpenAI SDK-compatible API endpoint"
+description: "Access 7 major AI providers through a single, OpenAI SDK compatible API endpoint"
 ---
 
-<Info>The Unified API exposes a single, OpenAI-compatible endpoint for accessing 7 major AI providers. This eliminates vendor lock-in and streamlines integration—no code changes required to switch providers.</Info>
+<Info>The Unified API exposes a single, OpenAI compatible endpoint for accessing 7 major AI providers. This eliminates vendor lockin and streamlines integration no code changes required to switch providers.</Info>
 
 ## Overview
 
-The Unified API standardizes how your applications interact with leading AI models. Use the familiar OpenAI API format, request structure, and response schema—regardless of the underlying provider. This approach delivers:
+The Unified API standardises how your applications interact with leading AI models. Use the familiar OpenAI API format, request structure, and response schema regardless of the underlying provider. This approach delivers:
 
 <Columns cols={2}>
   <Card title="Vendor Independence" icon="shuffle">
-    Swap providers instantly without code changes. Avoid vendor lock-in and maintain flexibility in your AI strategy.
+    Swap providers instantly without code changes. Avoid vendor lock in and maintain flexibility in your AI strategy.
   </Card>
   <Card title="Reduced Development Cost" icon="dollar-sign">
-    Integrate once and access many models. Minimize engineering effort and lower ongoing maintenance costs.
+    Integrate once and access many models. Minimise engineering effort and lower ongoing maintenance costs.
   </Card>
   <Card title="Operational Simplicity" icon="activity">
-    Centralized management and monitoring for all providers. Streamline operations and simplify troubleshooting.
+    Centralised management and monitoring for all providers. Streamline operations and simplify troubleshooting.
   </Card>
   <Card title="Strategic Flexibility" icon="compass">
     Leverage each provider’s unique strengths. Easily adapt to new capabilities and optimize for your use cases.
   </Card>
 </Columns>
 
-By adopting the Unified API, organizations can focus on building innovative AI applications rather than managing complex integrations, ultimately accelerating their AI transformation journey while maintaining full control over their AI strategy.
+By adopting the Unified API, organisations can focus on building innovative AI applications rather than managing complex integrations, ultimately accelerating their AI transformation journey while maintaining full control over their AI strategy.
 
 ### How it Works
 
@@ -35,9 +35,9 @@ By adopting the Unified API, organizations can focus on building innovative AI a
 | Provider | Description |
 |----------|-------------|
 | **OpenAI** | Access OpenAI models through the unified endpoint |
-| **Anthropic** | Connect to Claude models with built-in guardrails |
+| **Anthropic** | Connect to Claude models with built in guardrails |
 | **Amazon Bedrock** | Integrate AWS Bedrock models |
-| **Azure OpenAI** | Access Azure-hosted OpenAI models |
+| **Azure OpenAI** | Access Azure hosted OpenAI models |
 | **Azure AI Inference** | Leverage Azure AI Inference models |
 | **Google AI** | Integrate Google Gemini models |
 | **Google Vertex AI** | Access Vertex AI models |
@@ -49,19 +49,19 @@ By adopting the Unified API, organizations can focus on building innovative AI a
     Deploy the AI Gateway to your infrastructure. This provides a unified endpoint for all supported AI providers.
   </Step>
   <Step title="Configure Client">
-    Use the OpenAI SDK and set provider-specific headers (such as <code>x-provider-name</code>) to route requests through the gateway.
+    Use the OpenAI SDK and set provider specific headers (such as <code>x-provider-name</code>) to route requests through the gateway.
   </Step>
   <Step title="Make Requests">
     Send requests using the standard OpenAI API format. The gateway will automatically translate and forward them to the selected provider.
   </Step>
   <Step title="Switch Providers">
-    Change providers at any time by updating the <code>x-provider-name</code> header—no code changes required.
+    Change providers at any time by updating the <code>x-provider-name</code> header no code changes required.
   </Step>
 </Steps>
 
 ## Implementation Examples for Each Provider
 
-<Note>All examples use the OpenAI SDK with provider-specific headers to route requests through the AI Gateway.</Note>
+<Note>All examples use the OpenAI SDK with provider specific headers to route requests through the AI Gateway.</Note>
 
 #### OpenAI
 Access OpenAI models using the unified API endpoint and standard OpenAI SDK.
@@ -285,7 +285,7 @@ client = OpenAI(
 response = client.chat.completions.create(
     model="phi-2",
     messages=[
-        {"role": "user", "content": "Summarize the main benefits of using serverless architectures."}
+        {"role": "user", "content": "Summarise the main benefits of using serverless architectures."}
     ]
 )
 
@@ -304,7 +304,7 @@ curl -X POST "https://your-gateway-url/v1/chat/completions" \
     "messages": [
       {
         "role": "user",
-        "content": "Summarize the main benefits of using serverless architectures."
+        "content": "Summarise the main benefits of using serverless architectures."
       }
     ]
   }'
@@ -408,114 +408,6 @@ curl -X POST "https://your-gateway-url/v1/chat/completions" \
       }
     ]
   }'
-```
-
-</CodeGroup>
-
-## Best Practices
-
-### Provider Selection Strategy
-
-```python
-class ProviderSelector:
-    """Intelligent provider selection based on use case"""
-    
-    def select_provider(self, use_case: str, requirements: dict):
-        if use_case == "long_context":
-            return "anthropic"  # Claude handles 200K tokens
-        elif use_case == "multimodal":
-            return "google"  # Gemini excels at vision tasks
-        elif use_case == "function_calling":
-            return "openai"  # Most mature function calling
-        elif requirements.get("aws_integration"):
-            return "bedrock"  # Native AWS integration
-        elif requirements.get("azure_integration"):
-            return "azure_openai"  # Azure ecosystem
-        else:
-            return "openai"  # Default fallback
-```
-
-### Error Handling
-
-```typescript
-async function robustAICall(prompt: string) {
-    const providers = ['openai', 'anthropic', 'google'];
-    const errors = [];
-    
-    for (const provider of providers) {
-        try {
-            const client = createAIClient(provider, getCredentials(provider));
-            return await client.chat.completions.create({
-                model: getModelForProvider(provider),
-                messages: [{ role: 'user', content: prompt }]
-            });
-        } catch (error) {
-            errors.push({ provider, error });
-            console.error(`Provider ${provider} failed:`, error);
-        }
-    }
-    
-    throw new Error(`All providers failed: ${JSON.stringify(errors)}`);
-}
-```
-
-### Cost Optimization
-
-```python
-def cost_optimized_request(prompt: str, max_cost_usd: float = 0.01):
-    """Select provider based on cost constraints"""
-    
-    # Cost per 1K tokens (approximate)
-    provider_costs = {
-        "openai": {"gpt-4o-mini": 0.00015},
-        "anthropic": {"claude-3-5-haiku": 0.00025},
-        "google": {"gemini-1.5-flash": 0.00010}
-    }
-    
-    # Select cheapest provider within budget
-    for provider, models in sorted(provider_costs.items(), 
-                                   key=lambda x: min(x[1].values())):
-        model = min(models, key=models.get)
-        if models[model] * (len(prompt) / 1000) <= max_cost_usd:
-            return make_request(provider, model, prompt)
-```
-
-### Monitoring and Observability
-
-```python
-import time
-import logging
-
-def monitored_ai_call(client, **kwargs):
-    """Add monitoring to AI calls"""
-    
-    start_time = time.time()
-    provider = client.default_headers.get('x-provider-name')
-    
-    try:
-        response = client.chat.completions.create(**kwargs)
-        
-        # Log success metrics
-        logging.info({
-            'provider': provider,
-            'model': kwargs.get('model'),
-            'latency': time.time() - start_time,
-            'tokens': response.usage.total_tokens,
-            'status': 'success'
-        })
-        
-        return response
-        
-    except Exception as e:
-        # Log failure metrics
-        logging.error({
-            'provider': provider,
-            'model': kwargs.get('model'),
-            'latency': time.time() - start_time,
-            'error': str(e),
-            'status': 'failed'
-        })
-        raise
 ```
 
 ## Migration Guide
