@@ -27,6 +27,7 @@ The Unified API standardizes how your applications interact with leading AI mode
 
 By adopting the Unified API, organizations can focus on building innovative AI applications rather than managing complex integrations, ultimately accelerating their AI transformation journey while maintaining full control over their AI strategy.
 
+
 ## Key Benefits
 
 <AccordionGroup>
@@ -128,28 +129,9 @@ By adopting the Unified API, organizations can focus on building innovative AI a
 
 ## How It Works
 
-### Architecture Flow
+### Architecture/Request Flow
 
-```
-Your Application
-      ↓
-[OpenAI SDK / REST API]
-      ↓
-AI Gateway (Unified API)
-      ↓
-[Automatic Format Translation]
-      ↓
-Target AI Provider
-```
-
-### Request Flow
-
-1. **Client Request**: Your application sends an OpenAI-formatted request
-2. **Provider Detection**: Gateway identifies target provider from headers
-3. **Format Translation**: Request is automatically converted to provider's native format
-4. **Provider Call**: Gateway forwards the transformed request to the AI provider
-5. **Response Translation**: Provider's response is converted back to OpenAI format
-6. **Unified Response**: Your application receives a standard OpenAI-compatible response
+<img height="200" src="/images/unified-api-request-diagram.png" />
 
 ## Supported Providers
 
