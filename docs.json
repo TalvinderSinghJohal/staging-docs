@@ -32,6 +32,7 @@
           },
           {
             "group": "AI Gateway",
+            "icon": "archway",
             "pages": [
               "ai-gateway/Introduction/gateway-intro",
               "ai-gateway/Features/unified-api",
@@ -47,6 +48,7 @@
           },
           {
             "group": "Guardrails",
+            "icon": "shield-halved",
             "pages": [
               "guardrails/data-protection-filter",
               "guardrails/harmful-content",
