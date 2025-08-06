@@ -9,7 +9,76 @@ Access multiple leading AI providers through a single, OpenAI SDK-compatible API
 
 ## Overview
 
-The AI Gateway provides a unified interface to access various AI providers using the familiar OpenAI SDK format. This eliminates the need to learn different APIs and enables seamless switching between providers while maintaining consistent enterprise controls.
+The Unified API feature provides a single, standardized OpenAI-compatible interface to access 7 major AI providers. This means your applications can communicate with different AI models using the same API format, request structure, and response format - regardless of the underlying provider.
+
+The Unified API feature transforms how enterprises consume AI services by providing a single, standardized interface to multiple AI providers. This approach delivers immediate business value through vendor independence, reduced development costs, and operational simplicity, while maintaining the flexibility to leverage the unique strengths of each AI provider.
+
+By adopting the Unified API, organizations can focus on building innovative AI applications rather than managing complex integrations, ultimately accelerating their AI transformation journey while maintaining full control over their AI strategy.
+
+## Business Benefits
+
+### 1. Vendor Independence & Risk Mitigation
+- **Eliminate Vendor Lock-in**: Switch between 7 leading AI providers without changing a single line of application code
+- **Business Continuity**: Seamlessly failover to alternative providers during outages or service disruptions
+- **Cost Optimization**: Compare and switch to more cost-effective providers based on real-time pricing and performance
+- **Load Distribution**: Distribute AI workloads across multiple providers to avoid single points of failure
+
+### 2. Accelerated Time-to-Market
+- **Rapid Integration**: Use existing OpenAI SDKs and libraries with any provider - no learning curve
+- **Unified Development**: One API to learn, one integration to maintain across all AI providers
+- **Reduced Development Costs**: Eliminate the need for multiple integration teams and specialized expertise
+- **Faster Experimentation**: Test different AI models and providers without engineering overhead
+
+### 3. Operational Excellence
+- **Simplified Infrastructure**: Single endpoint for all AI services reduces complexity
+- **Centralized Management**: Unified monitoring, logging, and security controls across all providers
+- **Compliance Ready**: Single point for implementing Data and AI governance.
+- **Performance Optimization**: Built-in caching and request optimization across all providers
+
+### 4. Strategic Flexibility
+- **Future-Proof Architecture**: Add new AI providers without modifying existing applications
+- **Best-of-Breed Selection**: Choose the optimal model for each use case regardless of provider
+- **Negotiation Leverage**: Stronger position when negotiating with AI vendors due to easy switching capability
+- **Innovation Agility**: Quickly adopt new AI capabilities as they become available from any provider
+
+---
+
+## Key Capabilities
+
+- **OpenAI SDK Compatibility**: Use official OpenAI client libraries with any provider
+- **Consistent API Format**: Same `/v1/chat/completions` endpoint for all providers
+- **Automatic Format Translation**: Seamless conversion between OpenAI format and provider-specific formats
+- **Full Feature Support**: Streaming, function calling, and multi-modal capabilities where available
+- **Zero Code Changes**: Switch providers by changing only configuration headers
+
+---
+
+## How It Works
+
+### Architecture Flow
+
+```
+Your Application
+      ↓
+[OpenAI SDK / REST API]
+      ↓
+AI Gateway (Unified API)
+      ↓
+[Automatic Format Translation]
+      ↓
+Target AI Provider
+```
+
+### Request Flow
+
+1. **Client Request**: Your application sends an OpenAI-formatted request
+2. **Provider Detection**: Gateway identifies target provider from headers
+3. **Format Translation**: Request is automatically converted to provider's native format
+4. **Provider Call**: Gateway forwards the transformed request to the AI provider
+5. **Response Translation**: Provider's response is converted back to OpenAI format
+6. **Unified Response**: Your application receives a standard OpenAI-compatible response
+
+---
 
 ## Supported Providers
 
@@ -241,6 +310,352 @@ response = client.chat.completions.create(
 
 print(response.choices[0].message.content)
 ```
+
+---
+
+## Advanced Features
+
+### Streaming Responses (All Providers)
+
+```python
+# Streaming works identically across all providers
+client = create_ai_client("anthropic", {"api_key": "your-key"})
+
+stream = client.chat.completions.create(
+    model="claude-3-5-sonnet-20241022",
+    messages=[{"role": "user", "content": "Write a story"}],
+    stream=True  # Enable streaming
+)
+
+for chunk in stream:
+    if chunk.choices[0].delta.content:
+        print(chunk.choices[0].delta.content, end='')
+```
+
+### Function Calling (Supported Providers)
+
+```typescript
+// Function calling with automatic format conversion
+const response = await client.chat.completions.create({
+    model: 'gpt-4o-mini',  // or Claude, Gemini, etc.
+    messages: [
+        { role: 'user', content: 'What is the weather in London?' }
+    ],
+    tools: [{
+        type: 'function',
+        function: {
+            name: 'get_weather',
+            description: 'Get weather for a location',
+            parameters: {
+                type: 'object',
+                properties: {
+                    location: { type: 'string' },
+                    unit: { type: 'string', enum: ['celsius', 'fahrenheit'] }
+                },
+                required: ['location']
+            }
+        }
+    }],
+    tool_choice: 'auto'
+});
+```
+
+### Provider Switching Example
+
+```python
+# Demonstration of seamless provider switching
+def analyze_text(text: str, provider: str):
+    """Same function works with any provider"""
+    
+    # Provider configurations
+    configs = {
+        "openai": {
+            "model": "gpt-4o-mini",
+            "headers": {"Authorization": f"Bearer {os.getenv('OPENAI_KEY')}"}
+        },
+        "anthropic": {
+            "model": "claude-3-5-sonnet-20241022",
+            "headers": {"x-api-key": os.getenv('ANTHROPIC_KEY')}
+        },
+        "google": {
+            "model": "gemini-1.5-pro",
+            "headers": {"x-goog-api-key": os.getenv('GOOGLE_KEY')}
+        }
+    }
+    
+    config = configs[provider]
+    config["headers"]["x-provider-name"] = provider
+    
+    client = OpenAI(
+        api_key="dummy",
+        base_url="https://gateway.your-domain.com",
+        default_headers=config["headers"]
+    )
+    
+    # Identical API call regardless of provider
+    return client.chat.completions.create(
+        model=config["model"],
+        messages=[
+            {"role": "system", "content": "You are a text analyst."},
+            {"role": "user", "content": f"Analyze this text: {text}"}
+        ],
+        temperature=0.7
+    )
+
+# Switch providers without changing code
+result_openai = analyze_text("Sample text", "openai")
+result_claude = analyze_text("Sample text", "anthropic")
+result_gemini = analyze_text("Sample text", "google")
+```
+
+---
+
+## Implementation Guide
+
+### Step 1: Set Up the Gateway
+
+```bash
+# Deploy the AI Gateway
+docker run -d \
+  -p 3000:3000 \
+  -e PORT=3000 \
+  --name ai-gateway \
+  your-registry/ai-gateway:latest
+```
+
+### Step 2: Configure Your Application
+
+```python
+# Update your application configuration
+AI_GATEWAY_URL = "https://gateway.altrum.ai"
+
+# Replace provider-specific SDKs with OpenAI SDK
+# Before: anthropic.Client, googleai.Client, etc.
+# After: Just OpenAI client for everything
+```
+
+### Step 3: Update API Calls
+
+```python
+# Before: Multiple SDK implementations
+if provider == "openai":
+    openai_client.completions.create(...)
+elif provider == "anthropic":
+    anthropic_client.messages.create(...)
+elif provider == "google":
+    google_client.generate_content(...)
+
+# After: Single unified implementation
+response = openai_client.chat.completions.create(
+    model=model_name,
+    messages=messages
+)
+```
+
+### Step 4: Add Provider Switching Logic
+
+```python
+def get_ai_response(prompt: str, preferred_provider: str = None):
+    """Intelligent provider selection with fallback"""
+    
+    providers = ["openai", "anthropic", "google"]
+    if preferred_provider:
+        providers = [preferred_provider] + [p for p in providers if p != preferred_provider]
+    
+    for provider in providers:
+        try:
+            client = create_ai_client(provider, get_credentials(provider))
+            return client.chat.completions.create(
+                model=get_model_for_provider(provider),
+                messages=[{"role": "user", "content": prompt}]
+            )
+        except Exception as e:
+            logger.warning(f"Provider {provider} failed: {e}")
+            continue
+    
+    raise Exception("All providers failed")
+```
+
+---
+
+## Best Practices
+
+### 1. Provider Selection Strategy
+
+```python
+class ProviderSelector:
+    """Intelligent provider selection based on use case"""
+    
+    def select_provider(self, use_case: str, requirements: dict):
+        if use_case == "long_context":
+            return "anthropic"  # Claude handles 200K tokens
+        elif use_case == "multimodal":
+            return "google"  # Gemini excels at vision tasks
+        elif use_case == "function_calling":
+            return "openai"  # Most mature function calling
+        elif requirements.get("aws_integration"):
+            return "bedrock"  # Native AWS integration
+        elif requirements.get("azure_integration"):
+            return "azure_openai"  # Azure ecosystem
+        else:
+            return "openai"  # Default fallback
+```
+
+### 2. Error Handling
+
+```typescript
+async function robustAICall(prompt: string) {
+    const providers = ['openai', 'anthropic', 'google'];
+    const errors = [];
+    
+    for (const provider of providers) {
+        try {
+            const client = createAIClient(provider, getCredentials(provider));
+            return await client.chat.completions.create({
+                model: getModelForProvider(provider),
+                messages: [{ role: 'user', content: prompt }]
+            });
+        } catch (error) {
+            errors.push({ provider, error });
+            console.error(`Provider ${provider} failed:`, error);
+        }
+    }
+    
+    throw new Error(`All providers failed: ${JSON.stringify(errors)}`);
+}
+```
+
+### 3. Cost Optimization
+
+```python
+def cost_optimized_request(prompt: str, max_cost_usd: float = 0.01):
+    """Select provider based on cost constraints"""
+    
+    # Cost per 1K tokens (approximate)
+    provider_costs = {
+        "openai": {"gpt-4o-mini": 0.00015},
+        "anthropic": {"claude-3-5-haiku": 0.00025},
+        "google": {"gemini-1.5-flash": 0.00010}
+    }
+    
+    # Select cheapest provider within budget
+    for provider, models in sorted(provider_costs.items(), 
+                                   key=lambda x: min(x[1].values())):
+        model = min(models, key=models.get)
+        if models[model] * (len(prompt) / 1000) <= max_cost_usd:
+            return make_request(provider, model, prompt)
+```
+
+### 4. Monitoring and Observability
+
+```python
+import time
+import logging
+
+def monitored_ai_call(client, **kwargs):
+    """Add monitoring to AI calls"""
+    
+    start_time = time.time()
+    provider = client.default_headers.get('x-provider-name')
+    
+    try:
+        response = client.chat.completions.create(**kwargs)
+        
+        # Log success metrics
+        logging.info({
+            'provider': provider,
+            'model': kwargs.get('model'),
+            'latency': time.time() - start_time,
+            'tokens': response.usage.total_tokens,
+            'status': 'success'
+        })
+        
+        return response
+        
+    except Exception as e:
+        # Log failure metrics
+        logging.error({
+            'provider': provider,
+            'model': kwargs.get('model'),
+            'latency': time.time() - start_time,
+            'error': str(e),
+            'status': 'failed'
+        })
+        raise
+```
+
+---
+
+## Migration Guide
+
+### From Native SDKs to Unified API
+
+#### Before (Multiple SDKs)
+```python
+# OpenAI
+import openai
+openai_response = openai.ChatCompletion.create(...)
+
+# Anthropic
+import anthropic
+claude_response = anthropic.Anthropic().messages.create(...)
+
+# Google
+import google.generativeai as genai
+gemini_response = genai.GenerativeModel().generate_content(...)
+```
+
+#### After (Unified API)
+```python
+from openai import OpenAI
+
+# One client, multiple providers
+def get_response(provider: str):
+    client = OpenAI(
+        base_url="https://gateway.your-domain.com",
+        default_headers={"x-provider-name": provider, **get_auth_headers(provider)}
+    )
+    return client.chat.completions.create(...)
+```
+
+---
+
+## Supported AI Providers
+
+### 1. OpenAI
+**Models**: GPT-4o, GPT-4o-mini, GPT-4-Turbo, GPT-3.5-Turbo  
+**Strengths**: Industry-leading language models, extensive function calling support, robust ecosystem  
+**Use Cases**: General-purpose AI, complex reasoning, code generation, creative writing
+
+### 2. Anthropic Claude
+**Models**: Claude 3.5 Sonnet, Claude 3.5 Haiku, Claude 3 Opus  
+**Strengths**: Superior context handling (200K tokens), constitutional AI for safety, nuanced responses  
+**Use Cases**: Long-form content analysis, research, technical documentation, ethical AI applications
+
+### 3. Amazon Bedrock
+**Models**: Multiple providers including Anthropic Claude, Meta Llama, Amazon Titan  
+**Strengths**: AWS integration, enterprise security, multi-model access, HIPAA compliance  
+**Use Cases**: Enterprise deployments, regulated industries, AWS-native applications
+
+### 4. Azure OpenAI
+**Models**: GPT-4, GPT-3.5, DALL-E, Embeddings  
+**Strengths**: Microsoft ecosystem integration, enterprise SLAs, regional deployments  
+**Use Cases**: Microsoft 365 integration, enterprise applications, global deployments
+
+### 5. Azure AI Inference
+**Models**: Various models from Azure AI Studio catalog  
+**Strengths**: Model variety, Azure ML integration, custom model deployment  
+**Use Cases**: Specialized AI models, custom fine-tuned models, Azure ML workflows
+
+### 6. Google AI (Gemini)
+**Models**: Gemini 1.5 Pro, Gemini 1.5 Flash, Gemini 1.0 Pro  
+**Strengths**: Multi-modal capabilities, large context windows, Google ecosystem  
+**Use Cases**: Multi-modal applications, Google Workspace integration, consumer applications
+
+### 7. Google Vertex AI
+**Models**: Gemini models, PaLM, custom models  
+**Strengths**: GCP integration, MLOps capabilities, enterprise features  
+**Use Cases**: GCP-native applications, ML pipelines, enterprise AI deployments
 
 ---
 
