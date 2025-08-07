@@ -27,6 +27,7 @@
               "product-guide/ai-systems",
               "product-guide/guardrail-config",
               "product-guide/reporting",
+              "product-guide/observability",
               "product-guide/administration"
             ]
           },
