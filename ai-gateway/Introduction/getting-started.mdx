@@ -1,0 +1,326 @@
+---
+title: Getting Started with AI Gateway
+description: Get up and running with AI Gateway in minutes. Send your first request and verify your gateway is working properly.
+---
+
+## Quick Start Guide
+
+This guide will help you send your first request through the AI Gateway and verify everything is working correctly. You'll be able to test the gateway with a simple chat completion request.
+
+### Prerequisites
+
+Before you begin, make sure you have:
+
+- **AI Gateway deployed** and accessible at your gateway URL
+- **API key** for at least one AI provider (OpenAI, Anthropic, Google, etc.)
+- **Basic knowledge** of HTTP requests and JSON
+
+### Step 1: Verify Your Gateway
+
+First, let's make sure your gateway is running and accessible:
+
+```bash
+curl -X GET https://your-gateway-domain.com/health
+```
+
+You should receive a response like:
+```json
+{
+  "status": "healthy",
+  "version": "1.0.0",
+  "timestamp": "2024-01-15T10:30:00Z"
+}
+```
+
+### Step 2: Send Your First Request
+
+Now let's send a simple chat completion request. This example uses OpenAI, but you can adapt it for any supported provider.
+
+#### Basic Chat Completion
+
+```bash
+curl -X POST https://your-gateway-domain.com/v1/chat/completions \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer your-openai-api-key" \
+  -H "x-provider-name: openai" \
+  -d '{
+    "model": "gpt-4o-mini",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Hello! Can you tell me a short joke?"
+      }
+    ],
+    "max_tokens": 100
+  }'
+```
+
+#### Expected Response
+
+If everything is working correctly, you should receive a response like:
+
+```json
+{
+  "id": "chatcmpl-123",
+  "object": "chat.completion",
+  "created": 1677652288,
+  "model": "gpt-4o-mini",
+  "provider": "openai",
+  "choices": [
+    {
+      "index": 0,
+      "message": {
+        "role": "assistant",
+        "content": "Why don't scientists trust atoms? Because they make up everything! 😄"
+      },
+      "finish_reason": "stop"
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 9,
+    "completion_tokens": 15,
+    "total_tokens": 24
+  }
+}
+```
+
+### Step 3: Test Different Providers
+
+Once you've confirmed the basic request works, try testing with different providers:
+
+#### Anthropic Claude
+
+```bash
+curl -X POST https://your-gateway-domain.com/v1/chat/completions \
+  -H "Content-Type: application/json" \
+  -H "x-provider-name: anthropic" \
+  -H "x-api-key: your-anthropic-api-key" \
+  -d '{
+    "model": "claude-3-5-haiku-20241022",
+    "messages": [
+      {
+        "role": "user",
+        "content": "What is 2 + 2?"
+      }
+    ],
+    "max_tokens": 50
+  }'
+```
+
+#### Google Gemini
+
+```bash
+curl -X POST https://your-gateway-domain.com/v1/chat/completions \
+  -H "Content-Type: application/json" \
+  -H "x-provider-name: google" \
+  -H "x-goog-api-key: your-google-api-key" \
+  -d '{
+    "model": "gemini-1.5-flash",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Explain quantum computing in one sentence."
+      }
+    ],
+    "max_tokens": 100
+  }'
+```
+
+### Step 4: Test Streaming (Optional)
+
+Try a streaming request to see real-time responses:
+
+```bash
+curl -X POST https://your-gateway-domain.com/v1/chat/completions \
+  -H "Content-Type: application/json" \
+  -H "Accept: text/event-stream" \
+  -H "Authorization: Bearer your-openai-api-key" \
+  -H "x-provider-name: openai" \
+  -d '{
+    "model": "gpt-4o-mini",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Write a short story about a robot learning to paint."
+      }
+    ],
+    "stream": true,
+    "max_tokens": 200
+  }'
+```
+
+You should see the response streaming in real-time with chunks like:
+
+```
+data: {"id":"chatcmpl-123","object":"chat.completion.chunk","created":1677652288,"model":"gpt-4o-mini","choices":[{"index":0,"delta":{"content":"Once"},"finish_reason":null}]}
+
+data: {"id":"chatcmpl-123","object":"chat.completion.chunk","created":1677652288,"model":"gpt-4o-mini","choices":[{"index":0,"delta":{"content":" upon"},"finish_reason":null}]}
+
+data: [DONE]
+```
+
+### Step 5: Verify Multi-Model Support
+
+Test that you can switch between different models seamlessly:
+
+```bash
+# Test with GPT-4o
+curl -X POST https://your-gateway-domain.com/v1/chat/completions \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer your-openai-api-key" \
+  -H "x-provider-name: openai" \
+  -d '{
+    "model": "gpt-4o",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Solve this math problem: 15 * 23 + 7"
+      }
+    ],
+    "max_tokens": 50
+  }'
+
+# Test with Claude Sonnet
+curl -X POST https://your-gateway-domain.com/v1/chat/completions \
+  -H "Content-Type: application/json" \
+  -H "x-provider-name: anthropic" \
+  -H "x-api-key: your-anthropic-api-key" \
+  -d '{
+    "model": "claude-3-5-sonnet-20241022",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Solve this math problem: 15 * 23 + 7"
+      }
+    ],
+    "max_tokens": 50
+  }'
+```
+
+### Troubleshooting
+
+#### Common Issues
+
+**Gateway Not Responding**
+```bash
+# Check if gateway is accessible
+curl -v https://your-gateway-domain.com/health
+
+# Check for network connectivity
+ping your-gateway-domain.com
+```
+
+**Authentication Errors**
+- Verify your API key is correct
+- Ensure you're using the right provider header
+- Check that your API key has sufficient credits
+
+**Model Not Found**
+- Verify the model name is correct
+- Check that your API key has access to the requested model
+- Ensure the provider supports the model
+
+**Rate Limiting**
+- Check your API provider's rate limits
+- Implement exponential backoff for retries
+- Consider using different models or providers
+
+#### Debug Headers
+
+Add these headers to get more information about your request:
+
+```bash
+curl -X POST https://your-gateway-domain.com/v1/chat/completions \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer your-openai-api-key" \
+  -H "x-provider-name: openai" \
+  -H "x-debug: true" \
+  -H "x-request-id: test-123" \
+  -d '{
+    "model": "gpt-4o-mini",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Hello"
+      }
+    ]
+  }'
+```
+
+### Next Steps
+
+Congratulations! Your AI Gateway is working. Now you can:
+
+1. **Explore Advanced Features**: Try [tool calling](/ai-gateway/Features/tool-calling), [streaming](/ai-gateway/Features/streaming-support), and [response formatting](/ai-gateway/Features/response-formatting)
+2. **Set Up Authentication**: Configure [multi-authentication support](/ai-gateway/Features/multi-auth-support) for enterprise deployments
+3. **Implement Guardrails**: Add [content filtering](/guardrails/harmful-content) and [data protection](/guardrails/data-protection-filter)
+4. **Monitor Usage**: Set up [observability](/product-guide/observability) and [reporting](/product-guide/reporting)
+
+### Example Code Snippets
+
+#### Python Example
+
+```python
+import requests
+import json
+
+def test_gateway():
+    url = "https://your-gateway-domain.com/v1/chat/completions"
+    headers = {
+        "Content-Type": "application/json",
+        "Authorization": "Bearer your-openai-api-key",
+        "x-provider-name": "openai"
+    }
+    data = {
+        "model": "gpt-4o-mini",
+        "messages": [
+            {"role": "user", "content": "Hello, gateway!"}
+        ],
+        "max_tokens": 50
+    }
+    
+    response = requests.post(url, headers=headers, json=data)
+    print(f"Status: {response.status_code}")
+    print(f"Response: {response.json()}")
+
+if __name__ == "__main__":
+    test_gateway()
+```
+
+#### JavaScript Example
+
+```javascript
+async function testGateway() {
+    const response = await fetch('https://your-gateway-domain.com/v1/chat/completions', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': 'Bearer your-openai-api-key',
+            'x-provider-name': 'openai'
+        },
+        body: JSON.stringify({
+            model: 'gpt-4o-mini',
+            messages: [
+                { role: 'user', content: 'Hello, gateway!' }
+            ],
+            max_tokens: 50
+        })
+    });
+    
+    const data = await response.json();
+    console.log('Response:', data);
+}
+
+testGateway();
+```
+
+### Success Checklist
+
+- [ ] Gateway health check passes
+- [ ] Basic chat completion request works
+- [ ] Response format is correct
+- [ ] Provider switching works
+- [ ] Streaming requests function properly
+- [ ] Error handling works as expected
+
+Once you've completed all these steps, your AI Gateway is ready for production use!

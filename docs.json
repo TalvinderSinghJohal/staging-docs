@@ -36,9 +36,9 @@
             "icon": "archway",
             "pages": [
               "ai-gateway/Introduction/gateway-intro",
+              "ai-gateway/Introduction/getting-started",
               "ai-gateway/Features/unified-api",
               "ai-gateway/Features/multi-model-support",
-              "ai-gateway/Features/ai-gurdrails",
               "ai-gateway/Features/multi-auth-support",
               "ai-gateway/Features/auto-caching",
               "ai-gateway/Features/streaming-support",
