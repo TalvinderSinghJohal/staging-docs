@@ -108,12 +108,6 @@
                   "policies-aurora/hallucinations",
                   "policies-aurora/prompt-injection"
                 ]
-              },
-              {
-                "group": "Release Notes",
-                "pages": [
-                  "release-notes/june-2025-release"
-                ]
               }
             ]
           },
