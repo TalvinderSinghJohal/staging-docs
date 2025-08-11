@@ -9,65 +9,74 @@
   },
   "favicon": "images/Altrum AI Favicon 128x128.png",
   "navigation": {
-    "groups": [
+    "versions": [
       {
-        "group": "Introduction",
-        "pages": [
-          "get-started/altrumai",
-          "get-started/getting-started"
-        ]
-      },
-      {
-        "group": "Product",
-        "pages": [
+        "version": "Nebula",
+        "groups": [
           {
-            "group": "Guide",
-            "icon": "book-open",
+            "group": "Introduction",
             "pages": [
-              "product-guide/ai-systems",
-              "product-guide/guardrail-config",
-              "product-guide/reporting",
-              "product-guide/observability",
-              "product-guide/administration"
+              "get-started/altrumai",
+              "get-started/getting-started"
             ]
           },
           {
-            "group": "AI Gateway",
-            "icon": "archway",
+            "group": "Product",
             "pages": [
-              "ai-gateway/Introduction/gateway-intro",
-              "ai-gateway/Introduction/getting-started",
-              "ai-gateway/Features/unified-api",
-              "ai-gateway/Features/multi-model-support",
-              "ai-gateway/Features/multi-auth-support",
-              "ai-gateway/Features/auto-caching",
-              "ai-gateway/Features/streaming-support",
-              "ai-gateway/Features/tool-calling",
-              "ai-gateway/Features/reasoning",
-              "ai-gateway/Features/response-formatting"
+              {
+                "group": "Guide",
+                "icon": "book-open",
+                "pages": [
+                  "product-guide/ai-systems",
+                  "product-guide/guardrail-config",
+                  "product-guide/reporting",
+                  "product-guide/observability",
+                  "product-guide/administration"
+                ]
+              },
+              {
+                "group": "AI Gateway",
+                "icon": "archway",
+                "pages": [
+                  "ai-gateway/Introduction/gateway-intro",
+                  "ai-gateway/Introduction/getting-started",
+                  "ai-gateway/Features/unified-api",
+                  "ai-gateway/Features/multi-model-support",
+                  "ai-gateway/Features/multi-auth-support",
+                  "ai-gateway/Features/auto-caching",
+                  "ai-gateway/Features/streaming-support",
+                  "ai-gateway/Features/tool-calling",
+                  "ai-gateway/Features/reasoning",
+                  "ai-gateway/Features/response-formatting"
+                ]
+              },
+              {
+                "group": "Guardrails",
+                "icon": "shield-halved",
+                "pages": [
+                  "guardrails/data-protection-filter",
+                  "guardrails/harmful-content",
+                  "guardrails/restricted-topic-filter",
+                  "guardrails/words-phrases-filter",
+                  "guardrails/profanity-filter",
+                  "guardrails/relevance-check",
+                  "guardrails/prompt-injections"
+                ]
+              }
             ]
           },
           {
-            "group": "Guardrails",
-            "icon": "shield-halved",
+            "group": "Release Notes",
+            "hidden": true,
             "pages": [
-              "guardrails/data-protection-filter",
-              "guardrails/harmful-content",
-              "guardrails/restricted-topic-filter",
-              "guardrails/words-phrases-filter",
-              "guardrails/profanity-filter",
-              "guardrails/relevance-check",
-              "guardrails/prompt-injections"
+              "release-notes/june-2025-release"
             ]
           }
         ]
       },
       {
-        "group": "Release Notes",
-        "hidden": true,
-        "pages": [
-          "release-notes/june-2025-release"
-        ]
+        "version": "Aurora (Deprecated)",
+        "groups": []
       }
     ],
     "global": {

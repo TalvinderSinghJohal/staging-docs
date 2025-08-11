@@ -1,0 +1,132 @@
+---
+title: Policy Configuration
+description: "Define, configure, and enforce responsible AI policies within your projects"
+icon: "shield-check"
+---
+
+## Overview
+
+The **Policy Configuration** module enables users and administrators to define and manage responsible AI policies across projects. This ensures alignment with compliance, security, and ethical standards using AltrumAI's flexible and intuitive configuration system.
+
+---
+
+## Accessing Policy Configuration
+
+1. From the **Dashboard**, select a project to open the **Project Overview** page.
+2. From here, you can either:
+   - Edit an existing policy from the **Policies Table**, or
+   - Click the **Edit Policies** button to begin configuring new policies.
+
+This will take you to the **Policy Configuration** screen, which contains three tabs:
+- **Configure Policies**
+- **Configure Response**
+- **Test Policies**
+
+<img height="200" src="/images/Policy Config.png" />
+
+---
+
+## Configuring a Policy
+
+### Step 1: Navigate to the Configure Policies Tab
+
+Within the **Configure Policies** tab, you'll see a list of policies provided by AltrumAI, such as:
+- Data Privacy
+- Bias & Fairness
+- Toxicity
+- Hallucinations
+- Competitor Mention
+- and more
+
+### Step 2: Select a Policy
+
+- Click on a policy from the list on the left.
+- The selected policy's configuration options will appear on the right-hand panel.
+
+### Step 3: Configure the Policy
+
+Each policy has its own set of configuration options. Common configuration steps include:
+
+- **Enable the Policy** using the toggle at the top of the panel.
+- Choose an **Enforcement Mode**:
+  - **Log Only** – Log violations without blocking interactions.
+  - **Log and Override** – Block content that violates the policy.
+- Adjust **Sensitivity Thresholds** (if applicable).
+- Select relevant **Topics, Entities, or Regulations** (depending on the policy type).
+
+ _For detailed instructions on each policy type, refer to the **Policy Overview** section of the documentation._
+
+### Step 4: Save the Configuration
+
+- Click **Save Changes** to store your configuration.
+- Your updates will now be associated with the project, but not yet active until applied.
+
+---
+
+## Testing Policies
+
+Once you've configured one or more policies, navigate to the **Test Policies** tab.
+
+This is a **sandbox environment** where you can:
+
+- Interact with a test chatbot.
+- See your configured policies in action.
+- Observe how prompts and responses are flagged, modified, or blocked in real time.
+
+This is a valuable step to validate policy behavior before applying changes to a live project.
+
+---
+
+## Applying Configured Policies
+
+When you're satisfied with your configuration and testing:
+
+1. Navigate to the **Integration** page.
+2. If needed, retrieve your **Project API Key** from the integration settings.
+3. Review the **Summary** page where you can:
+   - View all configured policies
+   - Make additional changes if required
+   - Update existing configurations
+4. Once you're happy with all changes, click **View Project** to return to the Project Dashboard.
+
+---
+
+## Editing or Disabling Policies
+
+To update or turn off a policy:
+
+1. From the **Project Dashboard**, click **Edit Policies** to access the Configure Policies page.
+2. For each policy:
+   - Toggle the **Enable** button On or Off based on your required configuration
+   - Make any additional configuration changes as needed
+3. Click **Save Changes** to confirm your updates.
+
+---
+
+## Best Practices
+
+- Start with **Log Only** mode to monitor behavior without disruption.
+- Use the **Test Policies** tab to validate before applying changes.
+- Regularly review violation logs and refine configurations as needed.
+- Apply stricter enforcement to regulated or high-risk projects.
+
+---
+
+## Next Steps
+
+<CardGroup cols={2}>
+  <Card
+    title="Review Reports"
+    icon="chart-bar"
+    href="/product-guide/generating-and-viewing-reports"
+  >
+    Analyze policy violation data and performance trends.
+  </Card>
+  <Card
+    title="Manage Users"
+    icon="user-gear"
+    href="/product-guide/managing-users-and-permissions"
+  >
+    Update roles and permissions to align with policy responsibilities.
+  </Card>
+</CardGroup>

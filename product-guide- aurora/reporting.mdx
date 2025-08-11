@@ -1,0 +1,108 @@
+---
+title: Reporting
+description: "Understand how to access, filter, and analyse AI performance and policy violation data"
+icon: "square-poll-vertical"
+---
+
+## Overview
+
+The **Reporting** module provides real-time insights into the performance of your AI applications and the effectiveness of policy enforcement across your organisation and projects.
+
+Reporting enables you to track key usage statistics, monitor policy adherence, and identify trends over time empowering better governance and continuous improvement.
+
+---
+
+## Accessing the Reporting Dashboard
+
+1. From the **Navigation Panel**, click on the **Reporting** tab.
+2. You will be directed to the **Reporting Page**, where you can access organisational and project level insights.
+
+---
+
+## Navigating the Reporting Page
+
+The Reporting Page includes two tabs:
+
+### 1. Organisation-Level Data
+
+- View aggregated data across all projects within the organisation.
+- Metrics include:
+  - Overall usage statistics
+  - Aggregate policy violation counts
+  - Organisation wide trends over time
+
+**Time Filter Options**:
+- **Last 7 Days**
+- **Last 30 Days**
+- **Last 90 Days**
+- **Year to Date**
+
+Selecting a timeframe will automatically update the statistics and visualisations.
+
+<img height="200" src="/images/Org Reporting.png" />
+
+---
+
+### 2. Project-Level Data
+
+- View detailed metrics for individual projects.
+- This tab offers an additional **Project Filter** to allow users to isolate reporting data for a specific project within the organisation.
+
+**Time and Project Filter Options**:
+- **Time Filters**: Last 7 Days, Last 30 Days, Last 90 Days, Year to Date
+- **Project Filter**: Select from a list of active projects
+
+Using both filters together allows users to:
+- Compare project specific performance
+- Identify where compliance efforts may need reinforcement
+- Spot trends unique to individual projects
+
+<img height="200" src="/images/Project Reporting.png" />
+
+---
+
+#### Detailed Policy Violations Logs
+
+The **Policy Violation Logs** table within the Project Reporting page allows you to review all policy violation events for the selected project.
+
+**New Feature:**
+- You can now expand any record in the table for more details. Click the **eye icon** on a row to open a **slider panel** from the right side of the screen.
+- The slider panel displays further details about the selected violation, such as:
+  - Timestamp of the violation
+  - Policy name and details of violation
+  - User or system that triggered the violation
+  - Input and output data (if available and permitted)
+  - Request/Response Metadata
+
+<img height="200" src="/images/Policy Violations Panel.png" />
+
+This enhancement enables deeper investigation and auditing of individual policy violations, helping you understand context and take appropriate action.
+
+---
+
+## Best Practices
+
+- **Weekly Reviews**: Monitor the Reporting Dashboard weekly to ensure continuous compliance and spot early trends.
+- **Use Filters Strategically**: Narrow down by project and timeframe when investigating spikes in violation activity.
+- **Compare Organisation vs. Project**: Use both tabs to understand overall health versus project specific deviations.
+
+---
+
+## Next Steps
+
+<CardGroup cols={2}>
+  <Card
+    title="Manage Users"
+    icon="users"
+    href="/product-guide/permissions.mdx"
+  >
+    Add new users and manage access rights.
+  </Card>
+  <Card
+    title="Refine Policies"
+    icon="sliders"
+    href="/product-guide/policies"
+  >
+    Update and adjust policy settings for better oversight.
+  </Card>
+</CardGroup>

@@ -1,0 +1,147 @@
+---
+title: Bias and Fairness
+description: "Ensures that AI interactions remain inclusive and free from discriminatory content, promoting equitable communication."
+---
+
+## Overview
+
+This policy safeguards the fairness and inclusivity of AI interactions by preventing the generation or processing of biased or discriminatory content. The policy applies to both user inputs and AI-generated responses, ensuring that all interactions remain respectful and equitable. It works by monitoring and enforcing restrictions on language that could perpetuate stereotypes, discrimination, or unfair treatment based on protected characteristics.
+
+Built with the same configuration simplicity as the Toxicity Policy, this policy focuses exclusively on the detection and control of bias and fairness issues—offering a lightweight but powerful layer of oversight for AI behaviour.
+
+## What the Policy Does
+
+### Purpose
+
+The Bias & Fairness Policy is designed to identify and manage language that may exhibit or reinforce social, cultural, gender, or demographic biases. It helps prevent the AI from engaging in or perpetuating stereotypes, discriminatory perspectives, or imbalanced narratives.
+
+By enabling this policy, organisations can uphold fairness in communication and foster responsible AI deployment.
+
+### Scope
+
+#### Prompt & Response Configuration
+
+The policy can be applied to both:
+
+- **Prompts**: User-submitted inputs that may include biased language.
+- **Responses**: AI-generated outputs that could unintentionally reinforce bias.
+
+Organisations can choose to enable filtering on one or both ends, depending on internal fairness standards and regulatory needs.
+
+#### Operational Modes
+
+- **Log Only**: Monitors and records bias-related content without restricting the flow.
+- **Log and Override**: Blocks prompts or responses that are flagged for bias, ensuring users are not exposed to unfair or inappropriate content.
+
+#### Threshold Sensitivity
+
+The detection strictness is configurable with a threshold range of **0.2 to 0.9**:
+
+- **Lower thresholds** (e.g., 0.2) allow broader detection and awareness.
+- **Higher thresholds** (e.g., 0.9) enforce stricter filtering to prevent even subtle bias.
+
+### Key Features
+
+- **Bias Detection in Prompts and Responses**: Actively monitors both user input and AI output.
+- **Customisable Sensitivity Threshold**: Set the detection strictness to align with organisational values.
+- **Two Enforcement Modes**: Choose between passive monitoring and active blocking.
+- **Focused, Lightweight Configuration**: Simple setup with high impact.
+
+---
+
+## Why Use This Policy?
+
+### Benefits
+
+- Promotes fairness and inclusivity in AI interactions.
+- Helps prevent the spread of biased or discriminatory perspectives.
+- Supports compliance with DEI, legal, and regulatory standards.
+- Increases transparency and accountability across AI workflows.
+
+---
+
+## Use Case: Inclusive Customer Support AI
+
+### Scenario
+
+A national insurance company uses an AI assistant for customer service inquiries. As the assistant interacts with a diverse customer base, leadership wants to ensure it communicates in a neutral, fair, and respectful way, avoiding responses that could suggest cultural, gender, or age bias.
+
+### Challenge
+
+The organisation must:
+
+- Detect potentially biased language in user prompts.
+- Prevent the AI from returning responses that include harmful or unbalanced representations.
+- Ensure alignment with corporate values on diversity and fairness.
+
+### Solution: Implementing the Bias & Fairness Policy
+
+1. **Prompt & Response Filtering**  
+   - Enabled for both inputs and outputs to ensure full oversight.
+
+2. **Enforcement Mode**  
+   - Configured as **Log and Override** to block biased content entirely.
+
+3. **Threshold Sensitivity**  
+   - Set to **0.8** to ensure strict, meaningful detection without excessive false positives.
+
+---
+
+## How to Use the Policy
+
+> **Note:** The steps below guide you through configuring the Bias & Fairness Policy in the policy workflow interface.
+
+### Step 1: Navigate to the Policy Workflow
+
+1. From the **Dashboard**, open your project to access the **Project Overview**.
+2. Click **Edit Policy** in the Policy section to begin configuration.
+
+### Step 2: Select and Enable the Bias & Fairness Policy
+
+1. In the **Configure Policies** tab, click on **Bias & Fairness** from the list.
+2. The configuration panel will display on the right.
+3. Toggle **Enable Policy** to **ON** to begin editing.
+
+### Step 3: Set Application Scope
+
+1. Under **Apply Policy To**, choose one:
+   - **Prompt**
+   - **Response**
+   - **Both**
+
+This determines whether the policy is applied to user input, AI output, or both.
+
+### Step 4: Configure Enforcement Behaviour
+
+1. Choose your policy behaviour:
+   - **Log Only** – Log detected bias without blocking.
+   - **Log and Override** – Block biased content and return a smart replacement.
+
+### Step 5: Adjust Detection Threshold
+
+1. Use the **Threshold Slider** to define the level of detection strictness:
+   - **Lower values** detect a broader range of potential bias.
+   - **Higher values** are stricter and more precise.
+
+### Step 6: Save, Test, and Apply
+
+1. Click **Save Changes** to store your configuration.
+2. *(Optional)* Go to **Test Policies** to preview how the policy behaves in live chat.
+3. Click **Apply Policies** in the **Configure Policies** tab to activate it.
+4. A confirmation message will verify that the policy is now active.
+
+The **Bias & Fairness Policy** ensures your AI interactions remain inclusive, balanced, and free from inappropriate bias—supporting ethical and equitable user experiences.
+
+---
+
+## Types of Bias Detection
+
+The Bias & Fairness Policy is designed to identify and manage various forms of bias in AI interactions. Below is an overview of the primary categories our system monitors:
+
+| Category | Description |
+|----------|-------------|
+| Religious Bias | Monitors for language that may discriminate against or stereotype individuals based on their religious beliefs or practices, promoting respectful interfaith dialogue and inclusion. |
+| Racial Bias | Detects language that could perpetuate racial stereotypes or discrimination, helping maintain equitable and respectful communication across diverse racial and ethnic backgrounds. |
+| Gender Bias | Identifies language that reinforces gender stereotypes or discrimination, ensuring fair and balanced representation in professional communications. |
+| Sexual Orientation Bias | Monitors for language that may discriminate against or stereotype individuals based on their sexual orientation, fostering an inclusive environment for all team members and customers. |
+| Mental Health Bias | Detects language that stigmatizes or discriminates against individuals with mental health conditions, promoting understanding and respectful workplace communication. |
