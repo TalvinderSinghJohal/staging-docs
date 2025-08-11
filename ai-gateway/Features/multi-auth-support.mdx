@@ -1,168 +1,473 @@
 ---
-title: Multi-Auth Support
+title: Multi-Authentication Support for Azure OpenAI
+description: The AI Gateway's Multi-Authentication Support for Azure OpenAI provides enterprise-grade flexibility in authentication methods, enabling organizations to seamlessly integrate with Azure OpenAI services using their preferred security protocols. This feature supports three distinct authentication modes - API Key, Azure Entra ID (formerly Azure AD), and Managed Identity - ensuring compatibility with diverse enterprise security architectures and compliance requirements.
 ---
 
-Support multiple authentication methods including API Key, Azure Entra ID, and Managed Identity for secure, enterprise-grade access control.
+## Overview
 
-# Authentication Methods (Collated)
+Multi-Authentication Support represents a critical enterprise feature that enables organizations to adopt Azure OpenAI services while maintaining their existing security posture and compliance requirements. This feature eliminates the traditional "one-size-fits-all" authentication approach, providing flexibility to choose the most appropriate authentication method based on specific use cases, security requirements, and deployment environments.
 
-## Table of Contents
-- [API Key Authentication](#api-key-authentication)
-- [Azure Entra ID Authentication](#azure-entra-id-authentication)
-- [Managed Identity Authentication](#managed-identity-authentication)
+### Key Capabilities
 
+<Columns cols={2}>
+  <Card title="Three Authentication Modes" icon="shield">
+    Comprehensive support for API Key, Azure Entra ID, and Managed Identity authentication.
+  </Card>
+  <Card title="Seamless Switching" icon="refresh-cw">
+    Dynamic authentication mode selection without code changes.
+  </Card>
+  <Card title="Token Caching" icon="clock">
+    Intelligent token management with automatic refresh and 15-minute cache duration.
+  </Card>
+  <Card title="Enterprise Integration" icon="building">
+    Native support for Azure enterprise security features including conditional access and identity governance.
+  </Card>
+</Columns>
 ---
 
-## API Key Authentication
+## Authentication Methods
 
-Authenticate requests using secure API keys, ideal for server-to-server and automated integrations.
+### API Key Authentication
+API Key authentication provides the simplest integration path, ideal for rapid prototyping, development environments, and scenarios where traditional key-based authentication suffices.
 
-### How to Use API Key Authentication
+#### Technical Details
+- **Authentication Type**: Subscription-based API key
+- **Header Format**: `api-key: <your-api-key>`
+- **Latency**: Minimal - no additional authentication calls required
+- **Suitable For**: Development, testing, and simple production deployments
 
-<Steps>
-  <Step title="Obtain Your API Key">
-    Register your project on the AltrumAI platform and generate an API key.
-  </Step>
-  <Step title="Add API Key to Request Headers">
-    Include the <code>Project-API-Key</code> header in all API requests.
-  </Step>
-  <Step title="Test Authentication">
-    Send a test request to verify authentication is working.
-  </Step>
-</Steps>
-
-### Example Usage
-
-```python title="api_key_auth_example.py"
-import requests
-
-url = "https://api.altrum.ai/v1/openai/chat/completions"
-headers = {"Project-API-Key": "YOUR_API_KEY"}
-data = {
-    "model": "gpt-3.5-turbo",
-    "messages": [{"role": "user", "content": "Hello!"}]
+#### Configuration Example
+```json
+{
+  "resourceName": "your-resource-name",
+  "deploymentId": "your-deployment-id",
+  "authMode": "apiKey",
+  "apiKey": "your-api-key"
 }
-response = requests.post(url, headers=headers, json=data)
-print(response.json())
 ```
 
-<Accordion title="API Key Management Best Practices">
-  <ul>
-    <li>Rotate API keys regularly</li>
-    <li>Never share API keys publicly</li>
-    <li>Restrict API key permissions to the minimum required</li>
-    <li>Monitor usage and revoke compromised keys immediately</li>
-  </ul>
-</Accordion>
+### Azure Entra ID Authentication
+Azure Entra ID (formerly Azure Active Directory) authentication provides enterprise-grade security through OAuth 2.0 client credentials flow, enabling advanced features like conditional access policies, multi-factor authentication enforcement, and centralized identity management.
 
-### Accessibility
-- All authentication screens are keyboard navigable
-- API key fields use accessible labels and descriptions
+#### Technical Details
+- **Authentication Type**: OAuth 2.0 Client Credentials Flow
+- **Token Endpoint**: `https://login.microsoftonline.com/{tenantId}/oauth2/v2.0/token`
+- **Scope**: `https://cognitiveservices.azure.com/.default`
+- **Token Lifetime**: Typically 1 hour (cached for 15 minutes)
+- **Suitable For**: Enterprise production environments requiring advanced security controls
+
+#### Configuration Example
+```json
+{
+  "resourceName": "your-resource-name",
+  "deploymentId": "your-deployment-id",
+  "authMode": "entra",
+  "entraId": {
+    "tenantId": "your-tenant-id",
+    "clientId": "your-client-id",
+    "clientSecret": "your-client-secret"
+  }
+}
+```
+
+### Managed Identity Authentication
+Managed Identity provides the highest level of security by eliminating credential management entirely. This passwordless authentication method is ideal for Azure-hosted applications, offering both system-assigned and user-assigned identity options.
+
+#### Technical Details
+- **Authentication Type**: Azure Instance Metadata Service (IMDS)
+- **Token Endpoint**: `http://169.254.169.254/metadata/identity/oauth2/token`
+- **Resource**: `https://cognitiveservices.azure.com/`
+- **Token Lifetime**: Variable (cached for 15 minutes)
+- **Suitable For**: Azure-hosted applications (App Service, Container Instances, VMs, AKS)
+
+#### Configuration Example
+
+##### System-Assigned Identity
+```json
+{
+  "resourceName": "your-resource-name",
+  "deploymentId": "your-deployment-id",
+  "authMode": "managed"
+}
+```
+
+##### User-Assigned Identity
+```json
+{
+  "resourceName": "your-resource-name",
+  "deploymentId": "your-deployment-id",
+  "authMode": "managed",
+  "managedIdentity": {
+    "clientId": "user-assigned-identity-client-id"
+  }
+}
+```
 
 ---
 
-## Azure Entra ID Authentication
+## Business Benefits
 
-Enable secure, enterprise-grade authentication using Azure Entra ID (formerly Azure Active Directory) for user and service access.
+### Enhanced Security
 
-### How to Use Azure Entra ID Authentication
+#### Credential-Free Operations
+- **Managed Identity Integration**: Eliminates password and key management overhead
+- **Reduced Attack Surface**: No credentials stored in code or configuration files
+- **Automatic Rotation**: System-managed credential lifecycle with no manual intervention
 
-<Steps>
-  <Step title="Register Your Application">
-    Register your application in the Azure portal and obtain the client ID and tenant ID.
-  </Step>
-  <Step title="Configure Permissions">
-    Assign the necessary API permissions to your application.
-  </Step>
-  <Step title="Obtain Access Token">
-    Use Azure's OAuth 2.0 flow to obtain an access token.
-  </Step>
-  <Step title="Send Authenticated Request">
-    Include the <code>Authorization: Bearer &lt;token&gt;</code> header in your API requests.
-  </Step>
-</Steps>
+#### Enterprise-Grade Access Control
+- **Conditional Access Policies**: Enforce location, device, and risk-based access controls
+- **Multi-Factor Authentication**: Require MFA for sensitive operations
+- **Identity Governance**: Centralized access reviews and certification campaigns
+- **Privileged Identity Management**: Just-in-time access with approval workflows
 
-### Example Usage
+#### Zero-Trust Alignment
+- **Identity-Centric Security**: Every request authenticated and authorized
+- **Least Privilege Access**: Granular permissions based on identity
+- **Continuous Verification**: Token-based authentication with short-lived credentials
 
-```python title="azure_entra_id_auth_example.py"
-import requests
+### Operational Excellence
 
-url = "https://api.altrum.ai/v1/openai/chat/completions"
-headers = {
-    "Authorization": "Bearer ACCESS_TOKEN"
-}
-data = {
-    "model": "gpt-3.5-turbo",
-    "messages": [{"role": "user", "content": "Hello!"}]
-}
-response = requests.post(url, headers=headers, json=data)
-print(response.json())
-```
+#### Simplified Credential Management
+- **Centralized Administration**: Single point of control for all authentication
+- **Automated Lifecycle**: No manual key rotation or password updates required
+- **Reduced Operational Overhead**: Fewer help desk tickets for credential issues
 
-<Accordion title="Azure Entra ID Best Practices">
-  <ul>
-    <li>Use managed identities for automated services</li>
-    <li>Limit token scope and permissions</li>
-    <li>Monitor and audit authentication events</li>
-  </ul>
-</Accordion>
+#### Improved Developer Experience
+- **Environment Parity**: Same authentication method across dev, test, and production
+- **Local Development Support**: API keys for local testing, Managed Identity for production
+- **Seamless Integration**: Works with existing Azure SDK and tooling
 
-### Accessibility
-- All authentication screens are keyboard navigable
-- Token fields use accessible labels and descriptions
+#### High Availability and Resilience
+- **Token Caching**: 15-minute cache reduces authentication service dependencies
+- **Automatic Retry Logic**: Built-in resilience for transient failures
+- **Multiple Authentication Fallbacks**: Graceful degradation between authentication modes
+
+### Compliance and Governance
+
+#### Regulatory Compliance
+- **SOC 2 Type II**: Alignment with security and availability principles
+- **ISO 27001**: Information security management compliance
+- **HIPAA**: Support for healthcare data protection requirements
+- **PCI DSS**: Reduced scope for payment card industry compliance
+
+#### Audit and Monitoring
+- **Comprehensive Logging**: All authentication attempts tracked and logged
+- **Azure Monitor Integration**: Native integration with Azure monitoring services
+- **Identity Protection**: Anomaly detection and risk-based conditional access
+- **Compliance Reporting**: Built-in reports for access reviews and certifications
+
+#### Data Sovereignty
+- **Regional Authentication**: Authentication services respect data residency requirements
+- **Encryption in Transit**: TLS 1.2+ for all authentication flows
+- **Key Management**: Integration with Azure Key Vault for secret storage
+
+### Cost Optimization
+
+#### Reduced Infrastructure Costs
+- **No Additional Authentication Infrastructure**: Leverage existing Azure AD investment
+- **Lower Certificate Management Costs**: No need for PKI infrastructure
+- **Decreased Security Tool Costs**: Built-in Azure security features
+
+#### Operational Cost Savings
+- **Reduced Incident Response**: Fewer security incidents from compromised credentials
+- **Lower Training Costs**: Simplified authentication reduces training requirements
+- **Decreased Audit Costs**: Automated compliance reporting and evidence collection
+
+#### Performance Benefits
+- **Token Caching**: Reduces authentication API calls by up to 90%
+- **Connection Pooling**: Efficient resource utilization
+- **Optimized Network Traffic**: Fewer round trips for authentication
 
 ---
 
-## Managed Identity Authentication
+## Technical Architecture
 
-Leverage managed identities for seamless, passwordless authentication in cloud-native environments.
+### Authentication Flow
 
-### How to Use Managed Identity Authentication
+#### Request Processing Pipeline
+1. **Request Reception**: Gateway receives client request with provider credentials
+2. **Authentication Mode Detection**: System identifies authentication method from configuration
+3. **Token Acquisition**: 
+   - API Key: Direct header injection
+   - Entra ID: OAuth token acquisition via client credentials
+   - Managed Identity: Token acquisition via IMDS
+4. **Token Caching**: Store valid tokens for 15 minutes
+5. **Request Forwarding**: Authenticated request sent to Azure OpenAI
 
-<Steps>
-  <Step title="Enable Managed Identity">
-    Enable managed identity for your Azure resource (VM, App Service, etc.).
-  </Step>
-  <Step title="Assign API Permissions">
-    Assign the required API permissions to the managed identity.
-  </Step>
-  <Step title="Obtain Access Token">
-    Use Azure's identity endpoint to obtain an access token for the AltrumAI API.
-  </Step>
-  <Step title="Send Authenticated Request">
-    Include the <code>Authorization: Bearer &lt;token&gt;</code> header in your API requests.
-  </Step>
-</Steps>
+### Token Management
 
-### Example Usage
+#### Caching Strategy
+- **Cache Duration**: 15 minutes or (token_expiry - 5 minutes), whichever is shorter
+- **Cache Key Structure**: `{auth_type}_{tenant_id}_{client_id}` for uniqueness
+- **Cache Invalidation**: Automatic on token expiry or manual via API
+- **Memory Management**: In-memory cache with configurable size limits
 
-```python title="managed_identity_auth_example.py"
-import requests
-import os
-
-# Obtain token using Azure SDK or IMDS endpoint
-access_token = os.environ.get("AZURE_MANAGED_IDENTITY_TOKEN")
-
-url = "https://api.altrum.ai/v1/openai/chat/completions"
-headers = {
-    "Authorization": f"Bearer {access_token}"
+#### Token Refresh Logic
+```typescript
+if (cached_token && cached_token.expires_at > Date.now()) {
+  return cached_token;
+} else {
+  const new_token = await acquire_token();
+  cache.set(cache_key, new_token, ttl);
+  return new_token;
 }
-data = {
-    "model": "gpt-3.5-turbo",
-    "messages": [{"role": "user", "content": "Hello!"}]
-}
-response = requests.post(url, headers=headers, json=data)
-print(response.json())
 ```
 
-<Accordion title="Managed Identity Best Practices">
-  <ul>
-    <li>Use system-assigned identities for simplicity</li>
-    <li>Restrict permissions to the minimum required</li>
-    <li>Monitor and audit managed identity usage</li>
-  </ul>
-</Accordion>
+### Error Handling
 
-### Accessibility
-- All authentication screens are keyboard navigable
-- Token fields use accessible labels and descriptions 
+#### Authentication Failures
+- **401 Unauthorized**: Invalid credentials or expired tokens
+- **403 Forbidden**: Insufficient permissions for requested resource
+- **429 Too Many Requests**: Rate limiting on authentication endpoints
+- **500 Internal Server Error**: Transient Azure service issues
+
+#### Retry Strategy
+- **Exponential Backoff**: 2^n seconds with jitter
+- **Maximum Retries**: 3 attempts for transient failures
+- **Circuit Breaker**: Prevent cascading failures
+- **Fallback Mechanism**: Graceful degradation to alternative auth methods
+
+---
+
+## Implementation Guide
+
+### Configuration Examples
+
+#### Environment Variables Setup
+```bash
+# API Key Authentication
+AZURE_AUTH_MODE=apiKey
+AZURE_RESOURCE_NAME=your-resource
+AZURE_DEPLOYMENT_ID=gpt-4
+AZURE_API_KEY=your-api-key
+
+# Entra ID Authentication
+AZURE_AUTH_MODE=entra
+AZURE_RESOURCE_NAME=your-resource
+AZURE_DEPLOYMENT_ID=gpt-4
+AZURE_TENANT_ID=your-tenant-id
+AZURE_CLIENT_ID=your-client-id
+AZURE_CLIENT_SECRET=your-client-secret
+
+# Managed Identity Authentication
+AZURE_AUTH_MODE=managed
+AZURE_RESOURCE_NAME=your-resource
+AZURE_DEPLOYMENT_ID=gpt-4
+AZURE_MANAGED_CLIENT_ID=optional-user-assigned-id
+```
+
+#### HTTP Request Headers
+```http
+POST /v1/chat/completions
+Content-Type: application/json
+x-provider: azure_openai
+x-azure-resource-name: your-resource
+x-azure-deployment-id: gpt-4
+x-azure-auth-mode: entra
+x-azure-entra-tenant-id: tenant-id
+x-azure-entra-client-id: client-id
+x-azure-entra-client-secret: client-secret
+```
+
+### Best Practices
+
+#### Security Recommendations
+1. **Use Managed Identity** for all Azure-hosted applications
+2. **Implement Key Vault** for credential storage when using API keys
+3. **Enable Conditional Access** policies for Entra ID authentication
+4. **Regular Access Reviews** for service principal permissions
+5. **Monitor Authentication Logs** for anomalous patterns
+
+#### Performance Optimization
+1. **Leverage Token Caching** to reduce authentication overhead
+2. **Use Connection Pooling** for HTTP clients
+3. **Implement Request Batching** where applicable
+4. **Monitor Cache Hit Rates** to optimize cache duration
+5. **Profile Authentication Latency** to identify bottlenecks
+
+### Migration Strategies
+
+#### From API Key to Entra ID
+1. **Create Service Principal** in Azure AD
+2. **Grant Permissions** to Azure OpenAI resource
+3. **Update Configuration** to use Entra ID credentials
+4. **Test in Non-Production** environment first
+5. **Gradual Rollout** with feature flags
+6. **Monitor and Validate** authentication success rates
+
+#### From On-Premises to Managed Identity
+1. **Deploy to Azure** infrastructure (App Service, AKS, etc.)
+2. **Enable Managed Identity** on the Azure resource
+3. **Configure RBAC** permissions for the identity
+4. **Update Application** configuration
+5. **Validate Connectivity** to Azure OpenAI
+6. **Decommission Old Credentials** after successful migration
+
+---
+
+## Use Cases
+
+### Enterprise Scenarios
+
+#### Multi-Tenant SaaS Applications
+- **Scenario**: SaaS platform serving multiple enterprise customers
+- **Solution**: Entra ID with tenant-specific service principals
+- **Benefits**: Isolated authentication per tenant, compliance with data boundaries
+
+#### Hybrid Cloud Deployments
+- **Scenario**: Applications spanning on-premises and Azure infrastructure
+- **Solution**: API Key for on-premises, Managed Identity for Azure components
+- **Benefits**: Optimal security for each environment
+
+#### Microservices Architecture
+- **Scenario**: Distributed services requiring Azure OpenAI access
+- **Solution**: User-assigned Managed Identity shared across services
+- **Benefits**: Centralized identity management, simplified permissions
+
+### Development Workflows
+
+#### Local Development
+- **Scenario**: Developers testing Azure OpenAI integration locally
+- **Solution**: API Key authentication with personal development keys
+- **Benefits**: Simple setup, no Azure infrastructure required
+
+#### CI/CD Pipelines
+- **Scenario**: Automated testing and deployment pipelines
+- **Solution**: Entra ID service principal with limited permissions
+- **Benefits**: Secure, auditable, and automated authentication
+
+#### Production Deployments
+- **Scenario**: High-scale production applications
+- **Solution**: System-assigned Managed Identity
+- **Benefits**: Maximum security, zero credential management
+
+---
+
+## Security Considerations
+
+### Threat Mitigation
+
+#### Credential Exposure
+- **Risk**: API keys or secrets exposed in code or logs
+- **Mitigation**: Use Managed Identity or Azure Key Vault
+- **Detection**: Regular scanning of code repositories and logs
+
+#### Token Hijacking
+- **Risk**: Intercepted or stolen authentication tokens
+- **Mitigation**: TLS encryption, short token lifetime, IP restrictions
+- **Detection**: Anomaly detection on authentication patterns
+
+#### Privilege Escalation
+- **Risk**: Unauthorized access to higher privileges
+- **Mitigation**: Least privilege principle, regular access reviews
+- **Detection**: Azure AD Identity Protection alerts
+
+### Compliance Controls
+
+#### Data Protection
+- **Encryption**: TLS 1.2+ for all authentication flows
+- **Key Management**: Azure Key Vault integration
+- **Data Residency**: Regional authentication endpoints
+
+#### Access Control
+- **RBAC**: Role-based access control for all identities
+- **Conditional Access**: Context-aware access policies
+- **MFA**: Multi-factor authentication enforcement
+
+#### Audit Trail
+- **Logging**: Comprehensive authentication logs
+- **Retention**: Configurable log retention policies
+- **Analysis**: Integration with Azure Sentinel for threat detection
+
+---
+
+## Performance Optimization
+
+### Metrics and Monitoring
+
+#### Key Performance Indicators
+- **Authentication Latency**: Time to acquire tokens
+- **Cache Hit Rate**: Percentage of requests served from cache
+- **Token Refresh Rate**: Frequency of token renewals
+- **Error Rate**: Authentication failure percentage
+
+#### Optimization Strategies
+- **Preemptive Token Refresh**: Refresh tokens before expiry
+- **Connection Pooling**: Reuse HTTP connections
+- **Regional Endpoints**: Use closest authentication endpoints
+- **Batch Processing**: Combine multiple requests under single authentication
+
+### Capacity Planning
+
+#### Scaling Considerations
+- **Token Cache Size**: Plan for peak concurrent users
+- **Authentication Rate Limits**: Azure AD limits per tenant
+- **Network Bandwidth**: Account for authentication overhead
+- **Failover Strategy**: Multiple authentication methods as backup
+
+---
+
+## Monitoring and Troubleshooting
+
+### Observability
+
+#### Logging
+- **Authentication Events**: All authentication attempts and outcomes
+- **Performance Metrics**: Latency, throughput, and error rates
+- **Security Events**: Failed authentication attempts and anomalies
+
+#### Monitoring Tools
+- **Azure Monitor**: Native Azure monitoring integration
+- **Application Insights**: Application-level telemetry
+- **Log Analytics**: Centralized log aggregation and analysis
+
+### Common Issues and Solutions
+
+#### Authentication Failures
+
+##### "Entra ID authentication failed"
+- **Cause**: Invalid tenant ID, client ID, or secret
+- **Solution**: Verify credentials and service principal configuration
+- **Prevention**: Use Azure Key Vault for credential management
+
+##### "Managed Identity authentication failed"
+- **Cause**: Application not running on Azure or identity not configured
+- **Solution**: Ensure Managed Identity is enabled and has permissions
+- **Prevention**: Validate deployment environment before configuration
+
+##### "Token expired"
+- **Cause**: Cached token exceeded lifetime
+- **Solution**: Automatic refresh on next request
+- **Prevention**: Configure appropriate cache duration
+
+#### Performance Issues
+
+##### High Authentication Latency
+- **Cause**: Network latency or authentication service load
+- **Solution**: Implement token caching and connection pooling
+- **Prevention**: Use regional endpoints and optimize network path
+
+##### Cache Misses
+- **Cause**: Cache eviction or short cache duration
+- **Solution**: Increase cache size or duration
+- **Prevention**: Monitor cache metrics and adjust configuration
+
+### Support and Resources
+
+#### Documentation
+- [Azure OpenAI Documentation](https://docs.microsoft.com/azure/cognitive-services/openai/)
+- [Azure AD Authentication](https://docs.microsoft.com/azure/active-directory/)
+- [Managed Identity Overview](https://docs.microsoft.com/azure/active-directory/managed-identities-azure-resources/)
+
+#### Community Support
+- GitHub Issues for bug reports and feature requests
+- Stack Overflow for implementation questions
+- Azure Support for enterprise customers
+
+---
+
+## Conclusion
+
+Multi-Authentication Support for Azure OpenAI in the AI Gateway represents a comprehensive solution for enterprise authentication requirements. By supporting API Key, Azure Entra ID, and Managed Identity authentication methods, organizations can choose the optimal security approach for their specific needs while maintaining operational efficiency and compliance requirements.
+
+The feature's intelligent token caching, comprehensive error handling, and seamless integration with Azure's security ecosystem make it an essential component for any enterprise deploying AI solutions at scale. Whether you're building a proof of concept with API keys or deploying a production system with Managed Identity, the AI Gateway ensures secure, reliable, and performant access to Azure OpenAI services.
