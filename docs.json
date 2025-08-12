@@ -34,7 +34,7 @@
               },
               {
                 "group": "Reporting",
-                "icon": "bar-chart",
+                "icon": "chart-line",
                 "pages": [
                   "product-guide/org-reporting",
                   "product-guide/ai-system-reporting"
@@ -42,7 +42,7 @@
               },
               {
                 "group": "Violations Logs",
-                "icon": "chart-line",
+                "icon": "align-justify",
                 "pages": [
                   "product-guide/violations-logs"
                 ]
