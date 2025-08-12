@@ -39,9 +39,10 @@
                 "icon": "archway",
                 "pages": [
                   {
-                    "group": "Intro",
+                    "group": "Overview",
                     "pages": [
-                      "ai-gateway/Introduction/gateway-intro"
+                      "ai-gateway/Introduction/gateway-intro",
+                      "ai-gateway/Introduction/getting-started"
                     ]
                   },
                   {
