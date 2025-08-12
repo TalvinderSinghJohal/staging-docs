@@ -38,16 +38,26 @@
                 "group": "AI Gateway",
                 "icon": "archway",
                 "pages": [
-                  "ai-gateway/Introduction/gateway-intro",
-                  "ai-gateway/Introduction/getting-started",
-                  "ai-gateway/Features/unified-api",
-                  "ai-gateway/Features/multi-model-support",
-                  "ai-gateway/Features/multi-auth-support",
-                  "ai-gateway/Features/auto-caching",
-                  "ai-gateway/Features/streaming-support",
-                  "ai-gateway/Features/tool-calling",
-                  "ai-gateway/Features/reasoning",
-                  "ai-gateway/Features/response-formatting"
+                  {
+                    "group": "Intro",
+                    "pages": [
+                      "ai-gateway/Introduction/gateway-intro",
+                      "ai-gateway/Introduction/getting-started"
+                    ]
+                  },
+                  {
+                    "group": "Features",
+                    "pages": [
+                      "ai-gateway/Features/unified-api",
+                      "ai-gateway/Features/multi-model-support",
+                      "ai-gateway/Features/multi-auth-support",
+                      "ai-gateway/Features/auto-caching",
+                      "ai-gateway/Features/streaming-support",
+                      "ai-gateway/Features/tool-calling",
+                      "ai-gateway/Features/reasoning",
+                      "ai-gateway/Features/response-formatting"
+                    ]
+                  }
                 ]
               },
               {
