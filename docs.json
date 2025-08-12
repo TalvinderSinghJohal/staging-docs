@@ -52,10 +52,7 @@
                       "ai-gateway/Features/multi-model-support",
                       "ai-gateway/Features/multi-auth-support",
                       "ai-gateway/Features/auto-caching",
-                      "ai-gateway/Features/streaming-support",
-                      "ai-gateway/Features/tool-calling",
-                      "ai-gateway/Features/reasoning",
-                      "ai-gateway/Features/response-formatting"
+                      "ai-gateway/Features/streaming-support"
                     ]
                   }
                 ]
