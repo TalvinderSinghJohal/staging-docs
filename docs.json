@@ -53,6 +53,7 @@
                 "pages": [
                   {
                     "group": "Overview",
+                    "icon": "mountain",
                     "pages": [
                       "ai-gateway/Introduction/gateway-intro",
                       "ai-gateway/Introduction/getting-started"
@@ -60,6 +61,7 @@
                   },
                   {
                     "group": "Features",
+                    "icon": "book-open",
                     "pages": [
                       "ai-gateway/Features/unified-api",
                       "ai-gateway/Features/multi-model-support",
