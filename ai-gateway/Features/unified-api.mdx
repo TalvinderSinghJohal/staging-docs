@@ -1,13 +1,11 @@
 ---
 title: Unified API
-description: "Access 7 major AI providers through a single, OpenAI SDK compatible API endpoint"
+description: "Access 7 major AI providers and their models through our unified API (OpenAI compatible)"
 ---
-
-<Info>The Unified API exposes a single, OpenAI compatible endpoint for accessing 7 major AI providers. This eliminates vendor lockin and streamlines integration no code changes required to switch providers.</Info>
 
 ## Overview
 
-The Unified API standardises how your applications interact with leading AI models. Use the familiar OpenAI API format, request structure, and response schema regardless of the underlying provider. This approach delivers:
+The Unified API standardises how your AI applications interact with leading AI models. It exposes a single OpenAI compatible endpoint for accessing 7 major AI providers eliminating vendor lock-in and enabling easy switching between providers. You can use the familiar OpenAI API format, request structure, and response schema regardless of the underlying provider. This approach delivers:
 
 <Columns cols={2}>
   <Card title="Vendor Independence" icon="shuffle">
@@ -17,10 +15,10 @@ The Unified API standardises how your applications interact with leading AI mode
     Integrate once and access many models. Minimise engineering effort and lower ongoing maintenance costs.
   </Card>
   <Card title="Operational Simplicity" icon="activity">
-    Centralised management and monitoring for all providers. Streamline operations and simplify troubleshooting.
+    Centralised management and monitoring for all AI providers. Streamline operations and simplify troubleshooting.
   </Card>
   <Card title="Strategic Flexibility" icon="compass">
-    Leverage each provider’s unique strengths. Easily adapt to new capabilities and optimize for your use cases.
+    Leverage each provider’s unique strengths. Easily adapt to new capabilities and optimise for your use cases.
   </Card>
 </Columns>
 
@@ -34,37 +32,22 @@ By adopting the Unified API, organisations can focus on building innovative AI a
 
 | Provider | Description |
 |----------|-------------|
-| **OpenAI** | Access OpenAI models through the unified endpoint |
-| **Anthropic** | Connect to Claude models with built in guardrails |
-| **Amazon Bedrock** | Integrate AWS Bedrock models |
-| **Azure OpenAI** | Access Azure hosted OpenAI models |
-| **Azure AI Inference** | Leverage Azure AI Inference models |
-| **Google AI** | Integrate Google Gemini models |
-| **Google Vertex AI** | Access Vertex AI models |
+| **OpenAI** | Access OpenAI's GPT models made available by OpenAI API |
+| **Anthropic** | Connect to Anthropic's Claude models available in Anthropic API |
+| **Amazon Bedrock** | Integrate AWS Bedrock models Claude, Llama, Titan etc. available in AWS Bedrock API |
+| **Azure OpenAI** | Access Azure hosted OpenAI models available in Azure OpenAI API |
+| **Azure AI Inference** | Leverage custom Azure AI Inference models available in Azure AI Inference API |
+| **Google AI** | Integrate Google Gemini models available in Google AI API |
+| **Google Vertex AI** | Access custom deployed Vertex AI models available in Google Vertex Model Garden |
 
-## Implementation Guide
 
-<Steps>
-  <Step title="Set Up Gateway">
-    Deploy the AI Gateway to your infrastructure. This provides a unified endpoint for all supported AI providers.
-  </Step>
-  <Step title="Configure Client">
-    Use the OpenAI SDK and set provider specific headers (such as <code>x-provider-name</code>) to route requests through the gateway.
-  </Step>
-  <Step title="Make Requests">
-    Send requests using the standard OpenAI API format. The gateway will automatically translate and forward them to the selected provider.
-  </Step>
-  <Step title="Switch Providers">
-    Change providers at any time by updating the <code>x-provider-name</code> header no code changes required.
-  </Step>
-</Steps>
-
-## Implementation Examples for Each Provider
+## Implementation Examples (for Each Provider)
 
 <Note>All examples use the OpenAI SDK with provider specific headers to route requests through the AI Gateway.</Note>
 
-#### OpenAI
-Access OpenAI models using the unified API endpoint and standard OpenAI SDK.
+### OpenAI
+
+Access OpenAI's GPT models made available by OpenAI API
 
 <CodeGroup dropdown>
 
@@ -72,16 +55,16 @@ Access OpenAI models using the unified API endpoint and standard OpenAI SDK.
 from openai import OpenAI
 
 client = OpenAI(
-    api_key="your-openai-api-key",
-    base_url="https://your-gateway-url/v1",
+    api_key="YOUR_OPENAI_API_KEY",
+    base_url="https://gateway.altrum.ai/v1",
     default_headers={
         "x-provider-name": "openai",
-        "x-altrumai-key": "your-gateway-api-key"
+        "x-altrumai-key": "YOUR_ALTRUMAI_API_KEY"
     }
 )
 
 response = client.chat.completions.create(
-    model="gpt-4",
+    model="gpt-4o-mini",
     messages=[
         {"role": "user", "content": "What is the capital of France?"}
     ]
@@ -91,13 +74,13 @@ print(response.choices[0].message.content)
 ```
 
 ```bash openai_curl.sh
-curl -X POST "https://your-gateway-url/v1/chat/completions" \
+curl -X POST "https://gateway.altrum.ai/v1/chat/completions" \
   -H "Content-Type: application/json" \
-  -H "Authorization: Bearer your-openai-api-key" \
+  -H "Authorization: Bearer YOUR_OPENAI_API_KEY" \
   -H "x-provider-name: openai" \
-  -H "x-altrumai-key: your-gateway-api-key" \
+  -H "x-altrumai-key: YOUR_ALTRUMAI_API_KEY" \
   -d '{
-    "model": "gpt-4",
+    "model": "gpt-4o-mini",
     "messages": [
       {
         "role": "user",
@@ -109,8 +92,9 @@ curl -X POST "https://your-gateway-url/v1/chat/completions" \
 
 </CodeGroup>
 
-#### Anthropic
-Access Anthropic Claude models using the unified API endpoint and standard OpenAI SDK.
+### Anthropic
+
+Access Anthropic Claude models made available by Anthropic API
 
 <CodeGroup dropdown>
 
@@ -118,12 +102,12 @@ Access Anthropic Claude models using the unified API endpoint and standard OpenA
 from openai import OpenAI
 
 client = OpenAI(
-    api_key="your-anthropic-api-key",
+    api_key="",
     base_url="https://gateway.altrum.ai/v1",
     default_headers={
-        "x-api-key": "your-api-key",
+        "x-api-key": "YOUR_ANTHROPIC_API_KEY",
         "x-provider-name": "anthropic",
-        "x-altrumai-key": "your-altrumai-api-key"
+        "x-altrumai-key": "YOUR_ALTRUMAI_API_KEY"
     }
 )
 
@@ -140,10 +124,10 @@ print(response.choices[0].message.content)
 ```bash anthropic_curl.sh
 curl -X POST "https://gateway.altrum.ai/v1/chat/completions" \
   -H "Content-Type: application/json" \
-  -H "Authorization: Bearer your-anthropic-api-key" \
-  -H "x-api-key: your-api-key" \
+  -H "Authorization: Bearer " \
+  -H "x-api-key: YOUR_ANTHROPIC_API_KEY" \
   -H "x-provider-name: anthropic" \
-  -H "x-altrumai-key: your-altrumai-api-key" \
+  -H "x-altrumai-key: YOUR_ALTRUMAI_API_KEY" \
   -d '{
     "model": "claude-3-opus-20240229",
     "messages": [
@@ -157,8 +141,8 @@ curl -X POST "https://gateway.altrum.ai/v1/chat/completions" \
 
 </CodeGroup>
 
-#### Amazon Bedrock
-Access Amazon Bedrock models using the unified API endpoint and standard OpenAI SDK.
+### Amazon Bedrock
+Access Amazon Bedrock models made available by AWS Bedrock API
 
 <CodeGroup dropdown>
 
@@ -167,14 +151,14 @@ from openai import OpenAI
 
 client = OpenAI(
     api_key="unused-placeholder",  # Not used, credentials via headers
-    base_url="https://your-gateway-url/v1",
+    base_url="https://gateway.altrum.ai/v1",
     default_headers={
         "x-provider-name": "bedrock",
-        "x-bedrock-access-key-id": "your-aws-access-key-id",
-        "x-bedrock-secret-access-key": "your-aws-secret-access-key",
-        "x-bedrock-region": "your-aws-region",
-        "x-bedrock-session-token": "your-aws-session-token",  # Optional
-        "x-altrumai-key": "your-gateway-api-key"
+        "x-bedrock-access-key-id": "YOUR_AWS_ACCESS_KEY_ID",
+        "x-bedrock-secret-access-key": "YOUR_AWS_SECRET_ACCESS_KEY",
+        "x-bedrock-region": "YOUR_AWS_REGION",
+        "x-bedrock-session-token": "YOUR_AWS_SESSION_TOKEN",  # Optional
+        "x-altrumai-key": "YOUR_ALTRUMAI_API_KEY"
     }
 )
 
@@ -189,14 +173,14 @@ print(response.choices[0].message.content)
 ```
 
 ```bash bedrock_curl.sh
-curl -X POST "https://your-gateway-url/v1/chat/completions" \
+curl -X POST "https://gateway.altrum.ai/v1/chat/completions" \
   -H "Content-Type: application/json" \
   -H "x-provider-name: bedrock" \
-  -H "x-bedrock-access-key-id: your-aws-access-key-id" \
-  -H "x-bedrock-secret-access-key: your-aws-secret-access-key" \
-  -H "x-bedrock-region: your-aws-region" \
-  -H "x-bedrock-session-token: your-aws-session-token" \
-  -H "x-altrumai-key: your-gateway-api-key" \
+  -H "x-bedrock-access-key-id: YOUR_AWS_ACCESS_KEY_ID" \
+  -H "x-bedrock-secret-access-key: YOUR_AWS_SECRET_ACCESS_KEY" \
+  -H "x-bedrock-region: YOUR_AWS_REGION" \
+  -H "x-bedrock-session-token: YOUR_AWS_SESSION_TOKEN" \
+  -H "x-altrumai-key: YOUR_ALTRUMAI_API_KEY" \
   -d '{
     "model": "anthropic.claude-v2",
     "messages": [
@@ -210,8 +194,8 @@ curl -X POST "https://your-gateway-url/v1/chat/completions" \
 
 </CodeGroup>
 
-#### Azure OpenAI
-Access Azure OpenAI models through the unified API using standard OpenAI SDK and gateway headers.
+### Azure OpenAI
+Access Azure OpenAI models made available by Azure OpenAI API
 
 <CodeGroup dropdown>
 
@@ -220,14 +204,14 @@ from openai import OpenAI
 
 client = OpenAI(
     api_key="unused-placeholder",  # Authentication via headers
-    base_url="https://your-gateway-url/v1",
+    base_url="https://gateway.altrum.ai/v1",
     default_headers={
         "x-provider-name": "azure_openai",
-        "x-azure-api-key": "your-azure-api-key",
-        "x-azure-resource-name": "your-azure-resource-name",
-        "x-azure-deployment-id": "your-azure-deployment-id",
+        "x-azure-api-key": "YOUR_AZURE_API_KEY",
+        "x-azure-resource-name": "YOUR_AZURE_RESOURCE_NAME",
+        "x-azure-deployment-id": "YOUR_AZURE_DEPLOYMENT_ID",
         "x-azure-api-version": "2024-02-15-preview",
-        "x-altrumai-key": "your-gateway-api-key"
+        "x-altrumai-key": "YOUR_ALTRUMAI_API_KEY"
     }
 )
 
@@ -242,14 +226,14 @@ print(response.choices[0].message.content)
 ```
 
 ```bash azure_openai_curl.sh
-curl -X POST "https://your-gateway-url/v1/chat/completions" \
+curl -X POST "https://gateway.altrum.ai/v1/chat/completions" \
   -H "Content-Type: application/json" \
   -H "x-provider-name: azure_openai" \
-  -H "x-azure-api-key: your-azure-api-key" \
-  -H "x-azure-resource-name: your-azure-resource-name" \
-  -H "x-azure-deployment-id: your-azure-deployment-id" \
+  -H "x-azure-api-key: YOUR_AZURE_API_KEY" \
+  -H "x-azure-resource-name: YOUR_AZURE_RESOURCE_NAME" \
+  -H "x-azure-deployment-id: YOUR_AZURE_DEPLOYMENT_ID" \
   -H "x-azure-api-version: 2024-02-15-preview" \
-  -H "x-altrumai-key: your-gateway-api-key" \
+  -H "x-altrumai-key: YOUR_ALTRUMAI_API_KEY" \
   -d '{
     "model": "gpt-35-turbo",
     "messages": [
@@ -263,8 +247,8 @@ curl -X POST "https://your-gateway-url/v1/chat/completions" \
 
 </CodeGroup>
 
-#### Azure AI Inference
-Access Azure AI Inference models via the unified API using standard OpenAI SDK and gateway headers.
+### Azure AI Inference
+Access Azure AI Inference models made available by Azure AI Inference API
 
 <CodeGroup dropdown>
 
@@ -273,12 +257,12 @@ from openai import OpenAI
 
 client = OpenAI(
     api_key="unused-placeholder",  # Authentication via headers
-    base_url="https://your-gateway-url/v1",
+    base_url="https://gateway.altrum.ai/v1",
     default_headers={
         "x-provider-name": "azure_ai_inference",
-        "x-altrumai-key": "your-gateway-api-key",
-        "x-azure-ai-token": "your-azure-ai-inference-api-key",
-        "x-azure-ai-endpoint": "your-azure-ai-inference-endpoint"
+        "x-altrumai-key": "YOUR_ALTRUMAI_API_KEY",
+        "x-azure-ai-token": "YOUR_AZURE_AI_INFERENCE_API_KEY",
+        "x-azure-ai-endpoint": "YOUR_AZURE_AI_INFERENCE_ENDPOINT"
     }
 )
 
@@ -293,12 +277,12 @@ print(response.choices[0].message.content)
 ```
 
 ```bash azure_ai_inference_curl.sh
-curl -X POST "https://your-gateway-url/v1/chat/completions" \
+curl -X POST "https://gateway.altrum.ai/v1/chat/completions" \
   -H "Content-Type: application/json" \
   -H "x-provider-name: azure_ai_inference" \
-  -H "x-altrumai-key: your-gateway-api-key" \
-  -H "x-azure-ai-token: your-azure-ai-inference-api-key" \
-  -H "x-azure-ai-endpoint: your-azure-ai-inference-endpoint" \
+  -H "x-altrumai-key: YOUR_ALTRUMAI_API_KEY" \
+  -H "x-azure-ai-token: YOUR_AZURE_AI_INFERENCE_API_KEY" \
+  -H "x-azure-ai-endpoint: YOUR_AZURE_AI_INFERENCE_ENDPOINT" \
   -d '{
     "model": "phi-2",
     "messages": [
@@ -312,8 +296,8 @@ curl -X POST "https://your-gateway-url/v1/chat/completions" \
 
 </CodeGroup>
 
-#### Google AI
-Access Google Gemini models via the unified API using standard OpenAI SDK and gateway headers.
+### Google AI
+Access Google Gemini models made available by Google AI API
 
 <CodeGroup dropdown>
 
@@ -322,11 +306,11 @@ from openai import OpenAI
 
 client = OpenAI(
     api_key="unused-placeholder",  # Authentication via headers
-    base_url="https://your-gateway-url/v1",
+    base_url="https://gateway.altrum.ai/v1",
     default_headers={
         "x-provider-name": "google",
-        "x-goog-api-key": "your-google-api-key",
-        "x-altrumai-key": "your-gateway-api-key"
+        "x-goog-api-key": "YOUR_GOOGLE_API_KEY",
+        "x-altrumai-key": "YOUR_ALTRUMAI_API_KEY"
     }
 )
 
@@ -341,11 +325,11 @@ print(response.choices[0].message.content)
 ```
 
 ```bash google_ai_curl.sh
-curl -X POST "https://your-gateway-url/v1/chat/completions" \
+curl -X POST "https://gateway.altrum.ai/v1/chat/completions" \
   -H "Content-Type: application/json" \
   -H "x-provider-name: google" \
-  -H "x-goog-api-key: your-google-api-key" \
-  -H "x-altrumai-key: your-gateway-api-key" \
+  -H "x-goog-api-key: YOUR_GOOGLE_API_KEY" \
+  -H "x-altrumai-key: YOUR_ALTRUMAI_API_KEY" \
   -d '{
     "model": "gemini-1.5-pro",
     "messages": [
@@ -359,8 +343,8 @@ curl -X POST "https://your-gateway-url/v1/chat/completions" \
 
 </CodeGroup>
 
-#### Google Vertex AI
-Access Google Vertex AI models through the unified API using standard OpenAI SDK and gateway headers.
+### Google Vertex AI
+Access Google Vertex AI models made available by Google Vertex AI API
 
 <CodeGroup dropdown>
 
@@ -369,14 +353,14 @@ from openai import OpenAI
 
 client = OpenAI(
     api_key="unused-placeholder",  # Authentication via headers
-    base_url="https://your-gateway-url/v1",
+    base_url="https://gateway.altrum.ai/v1",
     default_headers={
         "x-provider-name": "google_vertex_ai",
-        "x-api-key": "your-google-vertex-ai-api-key",
-        "x-endpoint-base": "your-google-vertex-ai-endpoint-base",
-        "x-project-id": "your-google-vertex-ai-project-id",
-        "x-location": "your-google-vertex-ai-location",
-        "x-altrumai-key": "your-gateway-api-key"
+        "x-api-key": "YOUR_GOOGLE_VERTEX_AI_API_KEY",
+        "x-endpoint-base": "YOUR_GOOGLE_VERTEX_AI_ENDPOINT_BASE",
+        "x-project-id": "YOUR_GOOGLE_VERTEX_AI_PROJECT_ID",
+        "x-location": "YOUR_GOOGLE_VERTEX_AI_LOCATION",
+        "x-altrumai-key": "YOUR_ALTRUMAI_API_KEY"
     }
 )
 
@@ -391,14 +375,14 @@ print(response.choices[0].message.content)
 ```
 
 ```bash google_vertex_ai_curl.sh
-curl -X POST "https://your-gateway-url/v1/chat/completions" \
+curl -X POST "https://gateway.altrum.ai/v1/chat/completions" \
   -H "Content-Type: application/json" \
   -H "x-provider-name: google_vertex_ai" \
-  -H "x-api-key: your-google-vertex-ai-api-key" \
-  -H "x-endpoint-base: your-google-vertex-ai-endpoint-base" \
-  -H "x-project-id: your-google-vertex-ai-project-id" \
-  -H "x-location: your-google-vertex-ai-location" \
-  -H "x-altrumai-key: your-gateway-api-key" \
+  -H "x-api-key: YOUR_GOOGLE_VERTEX_AI_API_KEY" \
+  -H "x-endpoint-base: YOUR_GOOGLE_VERTEX_AI_ENDPOINT_BASE" \
+  -H "x-project-id: YOUR_GOOGLE_VERTEX_AI_PROJECT_ID" \
+  -H "x-location: YOUR_GOOGLE_VERTEX_AI_LOCATION" \
+  -H "x-altrumai-key: YOUR_ALTRUMAI_API_KEY" \
   -d '{
     "model": "google.models.text-bison",
     "messages": [
@@ -410,37 +394,3 @@ curl -X POST "https://your-gateway-url/v1/chat/completions" \
   }'
 ```
 </CodeGroup>
-
-## Migration Guide
-
-### From Native SDKs to Unified API
-
-#### Before (Multiple SDKs)
-
-```python
-# OpenAI
-import openai
-openai_response = openai.ChatCompletion.create(...)
-
-# Anthropic
-import anthropic
-claude_response = anthropic.Anthropic().messages.create(...)
-
-# Google
-import google.generativeai as genai
-gemini_response = genai.GenerativeModel().generate_content(...)
-```
-
-#### After (Unified API)
-
-```python
-from openai import OpenAI
-
-# One client, multiple providers
-def get_response(provider: str):
-    client = OpenAI(
-        base_url="https://gateway.your-domain.com",
-        default_headers={"x-provider-name": provider, **get_auth_headers(provider)}
-    )
-    return client.chat.completions.create(...)
-```
