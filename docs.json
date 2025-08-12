@@ -41,7 +41,7 @@
                 ]
               },
               {
-                "group": "Observability",
+                "group": "Violations Logs",
                 "icon": "chart-line",
                 "pages": [
                   "product-guide/violations-logs"
