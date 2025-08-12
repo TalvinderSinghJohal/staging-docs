@@ -19,13 +19,13 @@ Before you begin, make sure you have:
 
 First, let's make sure your gateway is enabled and accessible:
 
-```bash request.sh lines icon="bash"
+```bash Gateway Health Check lines icon="bash"
 curl -X GET https://gateway.altrum.ai/
 ```
 
 You should receive a response like:
 
-```json response.json lines icon="json"
+```json Response lines icon="json"
 {
   "message": "Welcome to the AltrumAI Gateway API! Documentation is available at https://docs.altrum.ai/ai-gateway"
 }
@@ -37,7 +37,7 @@ Now let's send a simple chat completion request. This example uses OpenAI, but y
 
 #### Basic Chat Completion
 
-```bash chat-completion-request.sh lines icon="bash"
+```bash Chat Completion Request lines icon="bash"
 curl -X POST https://gateway.altrum.ai/v1/chat/completions \
   -H "Content-Type: application/json" \
   -H "Authorization: Bearer your-openai-api-key" \
@@ -59,7 +59,7 @@ curl -X POST https://gateway.altrum.ai/v1/chat/completions \
 
 If everything is working correctly, you should receive a response like:
 
-```json chat-completion-response.json lines icon="json"
+```json Response lines icon="json"
 {
   "id": "chatcmpl-123",
   "object": "chat.completion",
@@ -90,7 +90,7 @@ Once you have confirmed the basic request works, try testing with different prov
 
 #### Anthropic Claude
 
-```bash anthropic-request.sh lines icon="bash"
+```bash Anthropic Claude Request lines icon="bash"
 curl -X POST https://gateway.altrum.ai/v1/chat/completions \
   -H "Content-Type: application/json" \
   -H "x-provider-name: anthropic" \
@@ -110,7 +110,7 @@ curl -X POST https://gateway.altrum.ai/v1/chat/completions \
 
 #### Google Gemini
 
-```bash google-gemini-request.sh lines icon="bash"
+```bash Google Gemini Request lines icon="bash"
 curl -X POST https://gateway.altrum.ai/v1/chat/completions \
   -H "Content-Type: application/json" \
   -H "x-provider-name: google" \
@@ -132,7 +132,7 @@ curl -X POST https://gateway.altrum.ai/v1/chat/completions \
 
 Try a streaming request to see real-time responses:
 
-```bash streaming-request.sh lines icon="bash"
+```bash Streaming Request lines icon="bash"
 curl -X POST https://gateway.altrum.ai/v1/chat/completions \
   -H "Content-Type: application/json" \
   -H "Accept: text/event-stream" \
@@ -153,7 +153,7 @@ curl -X POST https://gateway.altrum.ai/v1/chat/completions \
 
 You should see the response streaming in real-time with chunks like:
 
-```json streaming-response.json lines icon="json"
+```json Streaming Response lines icon="json"
 data: {"id":"chatcmpl-123","object":"chat.completion.chunk","created":1677652288,"model":"gpt-4o-mini","choices":[{"index":0,"delta":{"content":"Once"},"finish_reason":null}]}
 
 data: {"id":"chatcmpl-123","object":"chat.completion.chunk","created":1677652288,"model":"gpt-4o-mini","choices":[{"index":0,"delta":{"content":" upon"},"finish_reason":null}]}
@@ -165,7 +165,7 @@ data: [DONE]
 
 Test that you can switch between different models seamlessly:
 
-```bash multi-model-test.sh lines icon="bash"
+```bash Multi-Model Test lines icon="bash"
 # Test with GPT-4o
 curl -X POST https://gateway.altrum.ai/v1/chat/completions \
   -H "Content-Type: application/json" \
@@ -206,7 +206,7 @@ curl -X POST https://gateway.altrum.ai/v1/chat/completions \
 #### Common Issues
 
 **Gateway Not Responding**
-```bash troubleshooting.sh lines icon="bash"
+```bash Troubleshooting Commands lines icon="bash"
 # Check if gateway is accessible
 curl -v https://gateway.altrum.ai/
 
