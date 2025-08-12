@@ -1,38 +1,37 @@
 ---
-title: Reporting
-description: "Understand how to access, filter, and analyse AI performance and guardrail violation data"
+title: AI System Reporting
+description: "Understand how to access, filter, and analyse AI system performance and guardrail violation data"
 ---
 
 ## Overview
 
-The **Reporting** module provides real-time insights into the performance of your AI applications and the effectiveness of guardrail enforcement across your organisation and projects.
+The **AI System Reporting** module provides real-time insights into the performance of your AI systems and the effectiveness of guardrail enforcement.
 
-Reporting enables you to track key usage statistics, monitor guardrail adherence, and identify trends over time empowering better governance and continuous improvement.
-
----
-
-## Accessing the Reporting Dashboard
-
-1. From the **Navigation Panel**, click on the **Reporting** tab.
-2. You will be directed to the **Reporting Page**, where you can access organisational and project level insights.
+AI System Reporting enables you to track key usage statistics, monitor guardrail adherence, and identify trends over time empowering better governance and continuous improvement.
 
 ---
 
-## Navigating the Reporting Page
+## Accessing the AI System Reporting Dashboard
 
-The Reporting Page includes two tabs:
+1. From the **Navigation Panel**, click on the **Reporting** tab and select **AI Systems**
+2. You will be directed to the **AI System Reporting Page**, where you can access detailed insights for your AI systems.
 
-### 1. Organisation-Level Data
+---
 
-- View aggregated data across all projects within the organisation.
-- Metrics include:
-  - Overall usage statistics
-  - Aggregate guardrail violation counts
-  - Organisation wide trends over time
+## Navigating the AI System Reporting Page
 
-**Time Filter Options**:
+The AI System Reporting Page provides comprehensive metrics and analytics for your AI systems:
+
+### Key Metrics
+
+- **Usage Statistics**: Track request volume, response times, and model performance
+- **Guardrail Violations**: Monitor compliance and identify potential issues
+- **Performance Trends**: Analyze patterns over time to optimize system performance
+
+### Time Filter Options
+
 - **Last 7 Days**
-- **Last 30 Days**
+- **Last 30 Days** 
 - **Last 90 Days**
 - **Year to Date**
 
@@ -42,48 +41,11 @@ Selecting a timeframe will automatically update the statistics and visualisation
 
 ---
 
-### 2. Project-Level Data
-
-- View detailed metrics for individual projects.
-- This tab offers an additional **Project Filter** to allow users to isolate reporting data for a specific project within the organisation.
-
-**Time and Project Filter Options**:
-- **Time Filters**: Last 7 Days, Last 30 Days, Last 90 Days, Year to Date
-- **Project Filter**: Select from a list of active projects
-
-Using both filters together allows users to:
-- Compare project specific performance
-- Identify where compliance efforts may need reinforcement
-- Spot trends unique to individual projects
-
-<img height="200" src="/images/reporting/ai-system-report.png>
-
----
-
-#### Detailed Guardrail Violations Logs
-
-The **Guardrail Violation Logs** table within the Project Reporting page allows you to review all guardrail violation events for the selected project.
-
-**New Feature:**
-- You can now expand any record in the table for more details. Click the **eye icon** on a row to open a **slider panel** from the right side of the screen.
-- The slider panel displays further details about the selected violation, such as:
-  - Timestamp of the violation
-  - Guardrail name and details of violation
-  - User or system that triggered the violation
-  - Input and output data (if available and permitted)
-  - Request/Response Metadata
-
-<img height="200" src="/images/Policy Violations Panel.png" />
-
-This enhancement enables deeper investigation and auditing of individual guardrail violations, helping you understand context and take appropriate action.
-
----
-
 ## Best Practices
 
-- **Weekly Reviews**: Monitor the Reporting Dashboard weekly to ensure continuous compliance and spot early trends.
-- **Use Filters Strategically**: Narrow down by project and timeframe when investigating spikes in violation activity.
-- **Compare Organisation vs. Project**: Use both tabs to understand overall health versus project specific deviations.
+- **Regular Monitoring**: Check the AI System Reporting Dashboard regularly to ensure continuous compliance
+- **Trend Analysis**: Use time filters to identify patterns and spot early warning signs
+- **Performance Optimization**: Monitor usage patterns to optimize costs and performance
 
 ---
 
@@ -91,17 +53,17 @@ This enhancement enables deeper investigation and auditing of individual guardra
 
 <CardGroup cols={2}>
   <Card
-    title="Manage Users"
-    icon="users"
-    href="/product-guide/permissions.mdx"
-  >
-    Add new users and manage access rights.
-  </Card>
-  <Card
-    title="Refine Guardrails"
-    icon="sliders"
-    href="/product-guide/policies"
+    title="Configure Guardrails"
+    icon="shield-halved"
+    href="/product-guide/guardrail-config"
   >
     Update and adjust guardrail settings for better oversight.
+  </Card>
+  <Card
+    title="View Violations Logs"
+    icon="file-text"
+    href="/product-guide/violations-logs"
+  >
+    Access detailed violation logs and audit trails.
   </Card>
 </CardGroup>
