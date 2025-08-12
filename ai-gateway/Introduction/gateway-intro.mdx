@@ -1,20 +1,215 @@
 ---
-title: AI Gateway Introduction
+title: Introduction
 ---
 
-## What is the AI Gateway?
+## Overview
 
-The **AI Gateway** provides a unified, secure, and policy-driven interface to leading AI providers and advanced enterprise features.
+The AltrumAI Enterprise AI Gateway is a unified, secure, and scalable API abstraction layer that seamlessly integrates with the AltrumAI governance platform to provide organisations with controlled, compliant, and efficient access to multiple AI providers. It serves as the critical bridge between your AI guardrails, policies & controls defined in AltrumAI and the actual AI applications your teams build, ensuring every AI interaction adheres to your organisation's standards, security requirements, and regulatory compliance needs.
 
-### Key Features
-- Unified API compatible with OpenAI SDK
-- Multi-model support with advanced guardrails
-- Multiple authentication methods
-- Advanced features: auto-caching, streaming, tool/function calling, and more
+## Why Enterprise AI Gateway?
 
-## How to Use This Section
+### For Business Leaders
 
-- [Unified API (OpenAI SDK Compatible)](/ai-gateway/unified-api/openai)
-- [Multi-Model Support](/ai-gateway/multi-model/ai-guardrails)
-- [Multi-auth Support](/ai-gateway/auth/api-key)
-- [Advanced Features](/ai-gateway/auto-caching) 
+**Strategic Control & Risk Management**
+- **AI Governance at Scale**: Enforce company-wide AI policies automatically without slowing innovation
+- **Cost Optimisation**: Monitor and control AI spend across all departments and projects
+- **Vendor Independence**: Avoid vendor lock in to any single AI provider, maintaining negotiation leverage
+- **Compliance Assurance**: Meet regulatory requirements (EU's AI Act, GDPR, HIPAA, SOC2) for your AI Products with built-in controls
+- **Risk Mitigation**: Prevent data leaks, inappropriate content, and harmful AI outputs
+
+**Business Agility**
+- Switch AI providers instantly based on cost, performance, or capabilities
+- Test new AI models without changing application code
+- Scale AI adoption safely across the organisation
+- Maintain audit trails for all AI interactions across your organisations and projects
+
+### For Developers
+
+**Developer Productivity**
+- **Single API Interface**: Use one OpenAI compatible API for all AI providers
+- **No Code Changes**: Switch between GPT-4, Claude, Gemini, and other providers without changing application code
+- **SDK Compatibility**: Works with existing OpenAI SDKs and integrations in Python, JavaScript, and other languages
+- **Streaming Support**: Supports streaming responses for better user experience in your AI Products
+- **Built-in Resilience**: Automatic error handling and failover capabilities
+
+**Operational Excellence**
+- Centralised monitoring and logging
+- Performance optimisation with intelligent caching
+- Rate limiting and quota management
+- Comprehensive error handling and debugging
+
+### For Compliance & Security Teams
+
+**Enterprise-grade Security and Compliance**
+- **Data Privacy**: No storage of sensitive request/response data unless explicitly enabled by the user
+- **Secret Management**: Secure handling of Provider API keys and credentials
+- **Access Controls**: Role-based permissions integrated with AltrumAI platform
+- **Audit Logging**: Complete trail of all AI interactions across your AI systems and projects
+- **Sensitive Data Protection**: Automatic detection and redaction of sensitive information & PII from your AI interactions
+
+
+## Key Capabilities
+
+### 1. Multi-Provider AI Access
+
+Access to **7 leading AI providers**:
+
+| Provider | Models Available | Key Strengths |
+|----------|-----------------|---------------|
+| **OpenAI** | GPT-4o, GPT-4, GPT-3.5, o1 (reasoning) | Industry standard, broad capabilities |
+| **Anthropic** | Claude 3.5 Sonnet, Haiku, Opus | Advanced reasoning, large context windows |
+| **Amazon Bedrock** | Multiple providers (Claude, Llama, Titan) | AWS integration with enterprise features |
+| **Azure OpenAI** | GPT models on Azure | Multi-Auth integration and other enterprise features |
+| **Azure AI Inference** | Various Azure AI models | Microsoft ecosystem integration |
+| **Google AI** | Gemini Pro, Flash, Ultra, Gemini 1.5 Pro | Multimodal capabilities |
+| **Google Vertex AI** | Enterprise models on Google Model Garden | GCP integration with advanced features |
+
+### 2. Unified API Interface
+
+**OpenAI Compatibility**
+- Single endpoint
+- Standard request/response format across all providers
+- Drop-in replacement for OpenAI API calls
+- Compatible with existing OpenAI client libraries and other AI frameworks
+
+### 3. AltrumAI Integration
+
+**Governance Workflow**
+1. **Register AI System** in AltrumAI platform
+2. **Configure Policies**: Set guardrails, access controls, and compliance rules
+3. **Activate System**: Enable the AI system for production use
+4. **Use Gateway**: Applications automatically inherit all governance settings
+5. **Monitor & Audit**: Track usage, violations, and compliance in real-time
+
+## How It Works
+
+### Architecture Overview
+
+<img height="200" src="/images/ai-request-process.png" />
+---
+
+
+## Use Cases
+
+### Financial Analysis & Reporting
+- **Challenge**: Ensure accuracy and compliance in financial AI applications
+- **Solution**: Reasoning transparency and audit trails
+- **Benefit**: Trustworthy AI for critical financial decisions
+
+### Healthcare & Life Sciences
+- **Challenge**: Maintain patient data privacy while leveraging AI
+- **Solution**: HIPAA compliant data handling and access controls
+- **Benefit**: Advanced AI capabilities with regulatory compliance
+
+### Customer Service Automation
+- **Challenge**: Ensure chatbots provide accurate, compliant responses
+- **Solution**: Gateway enforces content policies and logs all interactions
+- **Benefit**: Safe, scalable customer support with full audit trail
+
+### Document Processing & Analysis
+- **Challenge**: Handle sensitive documents while using AI
+- **Solution**: Automatic PII detection and redaction before AI processing
+- **Benefit**: GDPR/HIPAA compliant document intelligence
+
+---
+
+## Benefits Summary
+
+### Immediate Benefits
+✅ **Unified Access**: One API for all AI providers  
+✅ **Instant Switching**: Change providers without code changes  
+✅ **Cost Savings**: Up to 40% reduction through caching and optimisation  
+✅ **Faster Development**: 70% reduction in AI integration time  
+✅ **Compliance Ready**: Built-in controls for regulated industries  
+
+### Long-term Strategic Advantages
+✅ **Future-Proof**: Easy adoption of new AI models and providers  
+✅ **Vendor Independence**: Maintain negotiation leverage  
+✅ **Scale Safely**: Grow AI usage with confidence  
+✅ **Innovation Enablement**: Experiment with new AI capabilities risk free  
+✅ **Competitive Edge**: Faster AI adoption than competitors  
+
+---
+
+## Security & Compliance
+
+### Data Protection
+- **Encryption**: TLS encryption for all data in transit
+- **No Persistence**: Request/response data not stored by default
+- **PII Handling**: Automatic detection and redaction
+- **Secret Scanning**: Prevents credential exposure
+
+### Compliance Standards
+- **GDPR**: Full data privacy compliance
+- **HIPAA**: Healthcare data protection
+- **SOC2**: Security and availability controls
+- **ISO 27001**: Information security management
+- **PCI DSS**: Payment card data protection (where applicable)
+
+### Audit & Monitoring
+- **Complete Audit Trails**: Every request logged
+- **Real-time Monitoring**: Live dashboards and alerts
+- **Compliance Reports**: Helps with regulatory reporting
+- **Violation Tracking**: Immediate notification of policy breaches
+
+
+## Support & Resources
+
+### Documentation
+- **API Reference**: Complete endpoint documentation
+- **Integration Guides**: Step-by-step tutorials
+- **Best Practices**: Optimisation and security guidelines
+
+### Support Channels
+- **Email**: support@altrum.ai
+- **Documentation**: docs.altrum.ai
+
+
+## Frequently Asked Questions
+
+<AccordionGroup>
+  <Accordion title="Can I use my existing OpenAI code with the gateway?" icon="code">
+    Yes! The gateway is 100% OpenAI compatible. Just change the base URL and add AltrumAI & provider headers.
+  </Accordion>
+
+  <Accordion title="How quickly can I switch between AI providers?" icon="shuffle">
+    Instantly. Just change the provider header - no code changes needed.
+  </Accordion>
+
+  <Accordion title="Is my data safe when using the gateway?" icon="shield-check">
+    Yes. We don't store request/response data by default, use encryption, and comply with major security standards.
+  </Accordion>
+
+  <Accordion title="Can I use multiple AI providers simultaneously?" icon="layer-group">
+    Yes. You can route different requests to different providers based on your needs.
+  </Accordion>
+
+  <Accordion title="How does billing work with multiple providers?" icon="credit-card">
+    You can use your own API keys (pay providers directly).
+  </Accordion>
+
+  <Accordion title="What happens if a provider goes down?" icon="heart-pulse">
+    The gateway can automatically failover to backup providers you configure. (Based on your configuration in AltrumAI)
+  </Accordion>
+
+  <Accordion title="Can I customise the gateway for my specific needs?" icon="gear">
+    Yes, through AI System configuration in AltrumAI platform.
+  </Accordion>
+</AccordionGroup>
+
+
+
+## Next Steps
+
+### Start Your Journey
+
+1. **Schedule a Demo**: See the gateway in action
+2. **Start Free Trial**: Test with your use cases (Get in touch with us)
+3. **Start Using**: Go live with confidence
+
+### Contact Us
+
+**Support**: support@altrum.ai  
+
+
+*The Enterprise AI Gateway is your bridge to safe, scalable, and compliant AI adoption. Join leading enterprises who trust AltrumAI to govern their AI journey.*
