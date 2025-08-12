@@ -5,26 +5,25 @@ description: "Learn how to create, set up, and manage AI systems in AltrumAI"
 
 ## Navigating the Dashboard
 
-Once logged in, you'll be directed to the **Dashboard**, the control center of your AltrumAI experience.
+Once logged in, you'll be directed to the **Home PAge**, the control center of your AltrumAI experience.
 
-### The Dashboard Includes:
-- **Navigation Panel** – Quick access to Dashboard, Administration, Reporting, Observability, Support, and Documentation.
+### The Home Page Includes:
+- **Navigation Panel** – Quick access to Home, Reporting, Observability, Administration, Support, and Documentation.
 - **Summary Statistics** – Key metrics, charts, and graphs on AI systems, requests, and guardrail violations.
 - **AI Systems List** – A searchable and filterable table view of all AI systems with actionable controls.
 
-<img height="200" src="/images/Main Dashboard.png" />
+<img height="200" src="/images/ai-systems/nebula-home.png" />
 
 ---
 
 ## Creating and Configuring a New AI System
 
-### Step 1: Launch the AI System Creation Flow
+### Step 1: Launch the AI System Wizard
 
-1. Click the **Create AI System** button in the left-hand navigation panel  
-   _or_ click the small blue **+ icon** in the bottom-right corner of the screen.
-2. You will be redirected to the **Create AI System** page.
+1. Click the **Add AI System** button in the left-hand navigation panel
+2. You will be redirected to the **AI System Details** Step.
 
-<img height="200" src="/images/Create Project with Arrow.png" />
+<img height="200" src="/images/ai-systems/add-ai-system-button.png" />
 
 ---
 
@@ -35,69 +34,51 @@ Once logged in, you'll be directed to the **Dashboard**, the control center of y
    - **AI System Description** (required)
    - **AI System Owner** (required)
    - **LLM Service Providers** (select one or more)
+> **Important:**  
+> Your AI System will only function with the AI Providers you select during setup. Ensure you choose all providers you plan to use with this system.
 2. Optionally, add:
    - **AI System Tags**
-3. Click **Create & Continue**.
+3. Click **Add & Continue**.
 
-<img height="200" src="/images/Project Creation.png" />
+<img height="200" src="/images/ai-systems/add-ai-system-wizard.png" />
 ---
 
 ### Step 3: Configure the AI System
 
-Upon creation, you'll be redirected to the **AI System Setup** environment. This contains three tabs:
+Upon creation, you'll be redirected to the **Configure Guardrails** environment.:
 
-#### 3.1 Configure Guardrails
-
-1. Navigate to the **Configure Guardrails** tab.
-2. From the list of available guardrails, click to select a guardrail.
-3. Use the panel on the right to:
+1. From the list of available guardrails, click to select a guardrail.
+2. Use the panel on the right to:
    - Enable or disable the guardrail
-   - Set enforcement mode (e.g., **Log Only** or **Log and Override**)
-   - Adjust thresholds or select relevant criteria (topics, entities, regulations)
+   - Set enforcement mode (e.g., **Monitor** or **Block**)
+   - Adjust thresholds or select relevant criteria (topics, entities, words & phrases)
 
-<img height="200" src="/images/Policy Config.png" />
+<img height="200" src="/images/ai-systems/guardrails.png" />
 
 > **Note:**  
-> For more detail on individual guardrails, refer to the [Guardrail Configuration Guide](/product-guide/policies).
+> For more detail on individual guardrails, refer to the [Guardrail Configuration Guide](/guardrails).
 
-#### 3.2 Configure Response
-
-1. Set response parameters to guide the LLM’s behavior.
-2. These configurations determine tone, scope, or fallback responses depending on your use case.
-
-<img height="200" src="/images/Response Config.png" />
-
-#### 3.3 Test Guardrails
+#### 3.2 Test Guardrails
 
 1. Use the built-in sandbox environment to:
    - Interact with a test chatbot
    - Validate how guardrails behave in real time
-   - Review flagged prompts and responses
-2. Once satisfied, click **Continue to Integration** to proceed.
+   - Review flagged inputs and outputs
+2. Once satisfied, click **Continue to Summary** to proceed.
 
-<img height="200" src="/images/Test Policies.png" />
-
----
-
-### Step 4: Configure Integration
-
-1. Select an **Integration Type** from the available options.
-2. Once selected, your **API Key** will be displayed.
-3. Click **Continue to Summary**.
-
-<img height="200" src="/images/Integration set up.png" />
+<img height="200" src="/images/ai-systems/test-guardrails.png" />
 
 ---
 
-### Step 5: Review and Publish
+### Step 4: Review and Activate AI System
 
 1. Review your project’s setup on the **Summary Page**.
 2. Use the edit icons to make changes to any step if needed.
-3. Once confirmed, click **Publish AI System**.
-4. A confirmation message will appear: _“Project successfully published”_.
+3. Once confirmed, click **Activate AI System**.
+4. A success message will appear
 5. Click **View AI System** to open the **AI System Dashboard**.
 
-<img height="200" src="/images/Project Summary.png" />
+<img height="200" src="/images/ai-systems/summary.png" />
 
 ---
 
@@ -107,12 +88,11 @@ Once an AI system is published, the **AI System Dashboard** becomes the central 
 
 Key sections include:
 - **AI System Details**
-- **Connection Status**
 - **Guardrail Summary**
-- **Integration Details**
+- **API Key Access**
 - **Usage and Violation Metrics**
 
-<img height="200" src="/images/Project Dashboard.png" />
+<img height="200" src="/images/ai-systems/system-dashboard.png" />
 
 ---
 
@@ -120,12 +100,10 @@ Key sections include:
 
 ### To Edit an Existing AI System:
 
-1. Navigate to the **Dashboard**.
-2. In the **AI Systems Table**, find your AI system and click the **ellipsis (⋮)** in the **Actions** column.
-3. Select **View AI System**.
-4. On the **AI System Dashboard**, locate the **AI System Details** quadrant.
-5. Click **Edit** to return to **Step 1** of the setup process.
-6. Modify the necessary fields and click **Save Changes**.
+1. Navigate to the **Home Page**.
+2. In the **AI Systems Table**, find your AI system and click the **View** in the last column.
+3. On the **AI System Dashboard**, Click **Edit** to return to **Step 1** of the setup process
+4. Modify the necessary fields and click **Save Changes**.
 
 ---
 

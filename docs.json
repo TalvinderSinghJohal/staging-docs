@@ -29,9 +29,22 @@
                 "pages": [
                   "product-guide/ai-systems",
                   "product-guide/guardrail-config",
-                  "product-guide/reporting",
-                  "product-guide/observability",
                   "product-guide/administration"
+                ]
+              },
+              {
+                "group": "Reporting",
+                "icon": "bar-chart",
+                "pages": [
+                  "product-guide/org-reporting",
+                  "product-guide/ai-system-reporting"
+                ]
+              },
+              {
+                "group": "Observability",
+                "icon": "chart-line",
+                "pages": [
+                  "product-guide/violations-logs"
                 ]
               },
               {

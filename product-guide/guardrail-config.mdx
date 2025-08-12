@@ -11,68 +11,49 @@ The **Guardrail Configuration** module enables users and administrators to defin
 
 ## Accessing Guardrail Configuration
 
-1. From the **Dashboard**, select a project to open the **Project Overview** page.
-2. From here, you can either:
-   - Edit an existing guardrail from the **Guardrails Table**, or
-- Click the **Edit Guardrails** button to begin configuring new guardrails.
+1. From the **Home Page**, select your AI System to open the **Ai System Dashboard**.
+2. Click the **Edit Guardrails** button to begin editing your guardrails.
 
-This will take you to the **Guardrail Configuration** screen, which contains three tabs:
-- **Configure Guardrails**
-- **Configure Response**
-- **Test Guardrails**
-
-<img height="200" src="/images/Policy Config.png" />
+<img height="200" src="/images/ai-systems/guardrails.png" />
 
 ---
 
-## Configuring a Guardrail
-
-### Step 1: Navigate to the Configure Guardrails Tab
-
-Within the **Configure Guardrails** tab, you'll see a list of guardrails provided by AltrumAI, such as:
-- Data Privacy
-- Bias & Fairness
-- Toxicity
-- Hallucinations
-- Competitor Mention
-- and more
-
-### Step 2: Select a Guardrail
+### Step 1: Select a Guardrail
 
 - Click on a guardrail from the list on the left.
 - The selected guardrail's configuration options will appear on the right-hand panel.
 
-### Step 3: Configure the Guardrail
+### Step 2: Configure the Guardrail
 
 Each guardrail has its own set of configuration options. Common configuration steps include:
 
 - **Enable the Guardrail** using the toggle at the top of the panel.
 - Choose an **Enforcement Mode**:
-  - **Log Only** – Log violations without blocking interactions.
-  - **Log and Override** – Block content that violates the guardrail.
-- Adjust **Sensitivity Thresholds** (if applicable).
-- Select relevant **Topics, Entities, or Regulations** (depending on the guardrail type).
+  - **Input** – Applies the selected behaviour to what users send to the model.
+  - **Output** – Applies the selected behaviour to what the model returns as a response.
+- Adjust **Thresholds** (if applicable).
+- Select and Configure relevant **Topics, Entities, Categories, or Words & Phrases** (depending on the guardrail type).
 
  _For detailed instructions on each guardrail type, refer to the **Guardrail Overview** section of the documentation._
 
 ### Step 4: Save the Configuration
 
-- Click **Save Changes** to store your configuration.
-- Your updates will now be associated with the project, but not yet active until applied.
+- Click **Save & Continue** to store your configuration.
+- Your updates will now be saved to your AI System and ready to view in the Summary Page.
 
 ---
 
 ## Testing Guardrails
 
-Once you've configured one or more guardrails, navigate to the **Test Guardrails** tab.
+Once you've configured one or more guardrails, navigate to the **Test Configuration** Page.
 
 This is a **sandbox environment** where you can:
 
 - Interact with a test chatbot.
 - See your configured guardrails in action.
-- Observe how prompts and responses are flagged, modified, or blocked in real time.
+- Observe how inputs and outputs are flagged & blocked in real time.
 
-This is a valuable step to validate guardrail behavior before applying changes to a live project.
+This is a valuable step to validate guardrail behaviour before applying changes to a live AI System.
 
 ---
 
@@ -80,13 +61,11 @@ This is a valuable step to validate guardrail behavior before applying changes t
 
 When you're satisfied with your configuration and testing:
 
-1. Navigate to the **Integration** page.
-2. If needed, retrieve your **Project API Key** from the integration settings.
-3. Review the **Summary** page where you can:
+1. Review the **Summary** page where you can:
    - View all configured guardrails
    - Make additional changes if required
    - Update existing configurations
-4. Once you're happy with all changes, click **View Project** to return to the Project Dashboard.
+2. Once you're happy with all changes, click **View AI System** to return to the AI System Dashboard.
 
 ---
 
@@ -94,20 +73,20 @@ When you're satisfied with your configuration and testing:
 
 To update or turn off a guardrail:
 
-1. From the **Project Dashboard**, click **Edit Guardrails** to access the Configure Guardrails page.
+1. From the **AI System Dashboard**, click **Edit Guardrails** to access the Configure Guardrails page.
 2. For each guardrail:
    - Toggle the **Enable** button On or Off based on your required configuration
    - Make any additional configuration changes as needed
-3. Click **Save Changes** to confirm your updates.
+3. Click **Save & Continue** to confirm your updates.
 
 ---
 
 ## Best Practices
 
-- Start with **Log Only** mode to monitor behavior without disruption.
-- Use the **Test Guardrails** tab to validate before applying changes.
+- Start with **Monitor** mode to observe behavior without disruption.
+- Use the **Test Guardrails** page to validate before applying changes.
 - Regularly review violation logs and refine configurations as needed.
-- Apply stricter enforcement to regulated or high-risk projects.
+- Apply stricter enforcement to regulated or high-risk AI Systems.
 
 ---
 
@@ -117,14 +96,14 @@ To update or turn off a guardrail:
   <Card
     title="Review Reports"
     icon="chart-bar"
-    href="/product-guide/generating-and-viewing-reports"
+    href="/product-guide/reporting"
   >
     Analyze guardrail violation data and performance trends.
   </Card>
   <Card
     title="Manage Users"
     icon="user-gear"
-    href="/product-guide/managing-users-and-permissions"
+    href="product-guide/administration"
   >
     Update roles and permissions to align with guardrail responsibilities.
   </Card>
