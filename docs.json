@@ -32,7 +32,6 @@
                   "product-guide/administration",
                   {
                     "group": "Reporting",
-                    "icon": "chart-line",
                     "pages": [
                       "product-guide/org-reporting",
                       "product-guide/system-reporting"
@@ -40,7 +39,6 @@
                   },
                   {
                     "group": "Observability",
-                    "icon": "align-justify",
                     "pages": [
                       "product-guide/violations-logs"
                     ]
