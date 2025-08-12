@@ -19,23 +19,17 @@ Before you begin, make sure you have:
 
 First, let's make sure your gateway is enabled and accessible:
 
-<RequestExample>
-
-```bash Request
+```bash request.sh lines icon="bash"
 curl -X GET https://gateway.altrum.ai/
 ```
 
-</RequestExample>
+You should receive a response like:
 
-<ResponseExample>
-
-```json Response
+```json response.json lines icon="json"
 {
   "message": "Welcome to the AltrumAI Gateway API! Documentation is available at https://docs.altrum.ai/ai-gateway"
 }
 ```
-
-</ResponseExample>
 
 ### Step 2: Send Your First Request
 
