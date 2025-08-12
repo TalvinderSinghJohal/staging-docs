@@ -41,8 +41,7 @@
                   {
                     "group": "Intro",
                     "pages": [
-                      "ai-gateway/Introduction/gateway-intro",
-                      "ai-gateway/Introduction/getting-started"
+                      "ai-gateway/Introduction/gateway-intro"
                     ]
                   },
                   {
