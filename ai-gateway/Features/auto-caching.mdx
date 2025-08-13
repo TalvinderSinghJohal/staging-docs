@@ -7,27 +7,6 @@ description: The AI Gateway's Auto Caching feature delivers intelligent response
 
 Auto Caching represents a critical performance optimisation feature that stores AI model responses for reuse, eliminating redundant API calls to upstream providers. This caching system operates transparently across all 7 supported AI providers, ensuring consistent performance improvements regardless of the underlying model or provider.
 
-<Columns cols={2}>
-  <Card title="Automatic Response Caching">
-    Zero-configuration caching for all non-streaming responses.
-  </Card>
-  <Card title="Automatic Cache Key Generation">
-    Intelligent cache key generation based on request content.
-  </Card>
-  <Card title="Configurable TTL">
-    Flexible time-to-live settings with 60 second default.
-  </Card>
-  <Card title="Provider Agnostic">
-    Works seamlessly across all 7 AI providers.
-  </Card>
-  <Card title="Performance Metrics">
-    Built-in cache hit/miss tracking and latency measurements.
-  </Card>
-  <Card title="Memory-Efficient Storage">
-    Optimised in-memory cache with automatic expiration.
-  </Card>
-</Columns>
-
 ### What Gets Cached
 
 - **Successful Responses Only**: Only 2xx responses are cached
