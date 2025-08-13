@@ -1,17 +1,11 @@
 ---
-title: Data Protection Filter
+title: Data Protection
 description: "Advanced PII detection and protection that identifies and safeguards personally identifiable information across all AI interactions."
 ---
 
 ## Overview
 
 The **Data Protection Filter** safeguards personally identifiable information (PII) using advanced AI detection systems. It analyses both user inputs and AI responses in real-time to identify and protect sensitive data like names, addresses, and financial information.
-
-**Key Capabilities:**
-- **Multi-category PII detection** across personal, financial, and government identifiers
-- **Context-aware analysis** using machine learning for accurate pattern recognition
-- **Enterprise-grade accuracy** with minimal false positives
-- **Regulatory compliance** with GDPR, HIPAA, and other frameworks
 
 ---
 
@@ -35,7 +29,6 @@ The Data Protection Filter applies advanced content analysis to:
 
 - **Monitor** – Lets you review input or output content without taking any action—used for observation and diagnostics.
 - **Block** – Automatically stops content from being processed if it violates the selected guardrail rules.
-- **Mask** – Replaces detected sensitive information with a placeholder (like [NAME]) to protect user privacy.
 
 #### Detection Categories
 
@@ -50,12 +43,26 @@ The guardrail monitors multiple categories of PII:
 
 ### Key Features
 
-- **Multi-Category Detection**: Comprehensive coverage across all major PII types
-- **Context-Aware Analysis**: Advanced understanding of conversation context and data patterns
-- **Configurable Sensitivity**: Adjustable detection thresholds for different use cases
-- **Low Latency**: High-performance detection that doesn't impact response times
-- **Enterprise-Grade Accuracy**: Minimises false positives while maintaining high detection rates
-- **Regulatory Compliance**: Aligns with GDPR, HIPAA, and other data protection frameworks
+<Columns cols={2}>
+  <Card title="Multi-Category Detection">
+    Comprehensive coverage across all major PII types including personal, financial, and government identifiers.
+  </Card>
+  <Card title="Context-Aware Analysis">
+    Advanced understanding of conversation context and data patterns for accurate PII detection.
+  </Card>
+  <Card title="Configurable Sensitivity">
+    Adjustable detection thresholds for different use cases with Low, Medium, and High options.
+  </Card>
+  <Card title="Low Latency">
+    High-performance detection that doesn't impact response times or user experience.
+  </Card>
+  <Card title="Enterprise-Grade Accuracy">
+    Minimises false positives while maintaining high detection rates across all data types.
+  </Card>
+  <Card title="Regulatory Compliance">
+    Aligns with GDPR, HIPAA, and other data protection frameworks for compliance assurance.
+  </Card>
+</Columns>
 
 ---
 
@@ -88,36 +95,37 @@ The organisation must ensure that:
 
 ### Solution: Implementing Data Protection Filter
 
-1. **Comprehensive PII Detection**  
-   - Enabled for both user inputs and AI responses
-   - Configured to detect all major categories of PII
+1. **Comprehensive Entity Selection**  
+   - Selected **General** entities: Full Name, Phone Number, Email Address, Residential Address, Age
+   - Selected **UK Specific** entities: U.K. NHS Number for patient identification
+   - Applied to both **Input** and **Output** for full bidirectional protection
 
 2. **Appropriate Enforcement**  
-   - Set to **Log and Override** to actively prevent PII exposure
-   - Provides clear, professional fallback responses
+   - Set to **Block** behaviour to actively prevent PII exposure
+   - Provides clear, professional fallback responses when sensitive data is detected
 
-3. **Optimised Sensitivity**  
-   - Calibrated for high accuracy with minimal false positives
-   - Maintains detection effectiveness across diverse data types
+3. **Optimised Configuration**  
+   - Used **Medium** sensitivity threshold for balanced accuracy
+   - Maintains detection effectiveness across diverse data types and formats
 
 ---
 
 ## How to Use the Guardrail
 
-> **Note:** The steps below guide you through configuring the Data Protection Guardrail using the guardrail workflow interface.
+> **Note:** The steps below guide you through configuring the Data Protection Filter using the Guardrail Setup.
 
-### Step 1: Navigate to the guardrail workflow
+### Step 1: Navigate to the Guardrail Setup
 
-1. From the **Dashboard**, open the **Project Overview** by selecting "view" to open your project from the **Project Table**.
-2. In the **guardrails** section of the Project Overview, click **Edit Guardrails** to launch the guardrail configuration workflow.
+1. From the **Home Page**, open the **AI System Dashboard** by selecting **View** to open your AI system from the **AI System Table**.
+2. In the **guardrails** section of the AI System Overview, click **Edit Guardrails** to launch the guardrail configuration workflow.
 
 ---
 
 ### Step 2: Select and Enable the Data Protection Filter
 
-1. Under the **Configure Guardrails** dropdown, a list of available guardrails will be displayed.
-2. Click on **Data Protection Filter** to view its configuration options on the right-hand side.
-3. Toggle the **Enable Guardrail** switch to **ON** at the top of the panel to begin editing.
+1. In the **Configure Guardrails** page, a list of available guardrails will be displayed.
+2. Click on **Data Protection** to open its configuration options on the right-hand side of the screen.
+3. Toggle the **Enable Policy** switch to **ON** to begin configuration.
 
 ---
 
@@ -146,9 +154,10 @@ The organisation must ensure that:
 
 ### Step 5: Configure Enforcement Behaviour
 
-1. Under **Behaviour**, choose how the guardrail should respond to detected filters:
+1. Under **Select Guardrail Behaviour**, choose how the system should respond to detected PII:
    - **Monitor** – Lets you review input or output content without taking any action—used for observation and diagnostics.
    - **Block** – Automatically stops content from being processed if it violates the selected guardrail rules.
+
 ---
 
 ### Step 6: Save, Test, and Apply the Guardrail
