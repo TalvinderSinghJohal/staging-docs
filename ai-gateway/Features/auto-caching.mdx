@@ -1,22 +1,21 @@
 ---
 title: Auto Caching for AI Gateway
-description: The AI Gateway's Auto Caching feature delivers intelligent response caching for AI model interactions, automatically storing and serving frequently requested completions to dramatically reduce latency, optimize costs, and improve system performance. By implementing a sophisticated content-aware caching mechanism, organizations can achieve up to 95% latency reduction for repeated queries while maintaining response freshness and accuracy.
-sidebarTitle: Auto Caching
+description: The AI Gateway's Auto Caching feature delivers intelligent response caching for AI model interactions, automatically storing and serving frequently requested completions to dramatically reduce latency, optimise costs, and improve system performance. Organisations can achieve up to 95% latency reduction for repeated queries while maintaining response freshness and accuracy.
 ---
 
 ## Overview
 
-Auto Caching represents a critical performance optimization feature that intelligently stores AI model responses for reuse, eliminating redundant API calls to upstream providers. This enterprise-grade caching system operates transparently across all 7 supported AI providers, ensuring consistent performance improvements regardless of the underlying model or provider.
+Auto Caching represents a critical performance optimisation feature that stores AI model responses for reuse, eliminating redundant API calls to upstream providers. This caching system operates transparently across all 7 supported AI providers, ensuring consistent performance improvements regardless of the underlying model or provider.
 
 <Columns cols={2}>
   <Card title="Automatic Response Caching">
     Zero-configuration caching for all non-streaming responses.
   </Card>
-  <Card title="Content-Aware Cache Keys">
+  <Card title="Automatic Cache Key Generation">
     Intelligent cache key generation based on request content.
   </Card>
   <Card title="Configurable TTL">
-    Flexible time-to-live settings with 60-second default.
+    Flexible time-to-live settings with 60 second default.
   </Card>
   <Card title="Provider Agnostic">
     Works seamlessly across all 7 AI providers.
@@ -25,7 +24,7 @@ Auto Caching represents a critical performance optimization feature that intelli
     Built-in cache hit/miss tracking and latency measurements.
   </Card>
   <Card title="Memory-Efficient Storage">
-    Optimized in-memory cache with automatic expiration.
+    Optimised in-memory cache with automatic expiration.
   </Card>
 </Columns>
 
@@ -36,45 +35,12 @@ Auto Caching represents a critical performance optimization feature that intelli
 - **Complete Request Context**: Cache keys include full request body and path
 - **Provider-Specific Metadata**: Model, provider, and latency information preserved
 
----
 
 ## How Auto Caching Works
 
 ### Cache Key Generation
 
 The caching system generates unique cache keys by combining the request path with the validated request body, ensuring that identical requests receive cached responses while maintaining isolation between different queries.
-
-#### Key Generation Algorithm
-```typescript
-const cache_key = `${request_path}:${JSON.stringify(validated_request)}`
-```
-
-#### Key Components
-- **Request Path**: `/v1/chat/completions` endpoint identifier
-- **Validated Request**: Normalized request body after validation
-- **Content Fingerprint**: JSON serialization ensures byte-level accuracy
-
-### Cache Storage Architecture
-
-#### In-Memory Store
-The current implementation uses a high-performance in-memory cache store optimized for:
-- **Sub-millisecond Access**: Direct memory access for maximum speed
-- **Automatic Cleanup**: Expired entries removed on access
-- **Thread-Safe Operations**: Concurrent read/write support
-- **Zero External Dependencies**: No Redis or database requirements
-
-#### Cache Entry Structure
-```typescript
-interface CacheEntry {
-  expires: number;           // Expiration timestamp
-  body: string;              // Response body
-  status: number;            // HTTP status code
-  headers: [string, string][]; // Response headers
-  latencyMs: number;         // Original request latency
-  model?: string;            // AI model identifier
-  provider?: string;         // Provider name
-}
-```
 
 ### Cache Lifecycle Management
 
@@ -93,20 +59,18 @@ interface CacheEntry {
 5. **Metrics Update**: Record cache hit and time saved
 
 #### Expiration Handling
-- **TTL-Based Expiration**: Entries expire after configured duration
+- **TTL Based Expiration**: Entries expire after configured duration
 - **Lazy Cleanup**: Expired entries removed on next access attempt
 - **Memory Protection**: Prevents unbounded cache growth
 - **Graceful Degradation**: Expired entries trigger fresh requests
 
----
-
 ## Business Benefits
 
-### Cost Optimization
+### Cost Optimisation
 
 #### Direct Cost Savings
 - **70-95% Reduction in API Calls**: Eliminate redundant requests to AI providers
-- **Token Usage Optimization**: Reuse responses without consuming additional tokens
+- **Token Usage Optimisation**: Reuse responses without consuming additional tokens
 - **Bandwidth Savings**: Reduce network transfer costs
 - **Provider Cost Reduction**: Lower monthly bills from AI service providers
 
@@ -128,7 +92,7 @@ With 80% Cache Hit Rate:
 #### Indirect Cost Benefits
 - **Reduced Infrastructure Needs**: Lower compute requirements
 - **Decreased Operational Overhead**: Fewer rate limit issues
-- **Improved Resource Utilization**: Better throughput per dollar spent
+- **Improved Resource Utilisation**: Better throughput per dollar spent
 
 ### Performance Enhancement
 
@@ -182,7 +146,7 @@ Typical Latency Comparison:
 - **Load Balancing**: Distribute cache hits across instances
 
 #### Vertical Scaling
-- **Memory Optimization**: Efficient storage per cache entry
+- **Memory Optimisation**: Efficient storage per cache entry
 - **Configurable Limits**: Control maximum cache size
 - **Automatic Pruning**: Remove least recently used entries
 - **Resource Management**: Predictable memory consumption
@@ -193,145 +157,6 @@ Typical Latency Comparison:
 - **Self-Healing**: Automatic cache rebuilding
 - **No Coordination Overhead**: No distributed cache complexity
 
----
-
-## Technical Architecture
-
-### Caching Pipeline
-
-#### Request Flow Architecture
-```
-Client Request
-    ↓
-Authentication Middleware
-    ↓
-Provider Detection
-    ↓
-Request Validation
-    ↓
-Cache Key Generation ←── Validated Request
-    ↓
-Cache Lookup
-    ↓
-[Cache Hit] → Return Cached Response → Client
-    ↓
-[Cache Miss] → Provider Request
-    ↓
-Response Processing
-    ↓
-Cache Storage ←── TTL Configuration
-    ↓
-Return Response → Client
-```
-
-### Cache Store Implementation
-
-#### Memory Cache Store
-```typescript
-class MemoryCacheStore {
-  private store = new Map<string, CacheEntry>();
-
-  async get(key: string): Promise<CacheEntry | undefined> {
-    const entry = this.store.get(key);
-    if (!entry) return undefined;
-    
-    // Automatic expiration check
-    if (entry.expires < Date.now()) {
-      this.store.delete(key);
-      return undefined;
-    }
-    return entry;
-  }
-
-  async set(key: string, entry: CacheEntry): Promise<void> {
-    this.store.set(key, entry);
-  }
-
-  async clear(): Promise<void> {
-    this.store.clear();
-  }
-}
-```
-
-### Middleware Integration
-
-#### Cache Middleware Stack
-1. **Request Interception**: Capture incoming requests
-2. **Validation Pass-Through**: Work with validated requests
-3. **Cache Operations**: Perform lookup/storage operations
-4. **Metrics Collection**: Track hit/miss statistics
-5. **Response Handling**: Manage cached and fresh responses
-
-#### Integration Points
-- **Pre-Provider**: Cache check before expensive API calls
-- **Post-Validation**: Use normalized requests for consistency
-- **Pre-Response**: Store successful responses
-- **Metrics Pipeline**: Feed cache statistics to monitoring
-
----
-
-## Configuration and Management
-
-### Cache Settings
-
-#### Configuration Options
-```yaml
-cache:
-  responses:
-    ttl_ms: 60000  # Time-to-live in milliseconds (default: 60 seconds)
-```
-
-#### Environment Variables
-```bash
-# Cache TTL configuration
-CACHE_TTL_MS=60000
-
-# Enable/disable caching (future feature)
-CACHE_ENABLED=true
-
-# Maximum cache size (future feature)
-CACHE_MAX_SIZE_MB=100
-```
-
-### TTL Management
-
-#### TTL Strategies
-- **Default TTL**: 60 seconds for general use cases
-- **Short TTL (5-30s)**: Frequently changing content
-- **Medium TTL (1-5min)**: Balance freshness and performance
-- **Long TTL (5-30min)**: Stable content, maximum performance
-
-#### TTL Selection Guidelines
-```
-Content Type          Recommended TTL    Use Case
------------------    ----------------    ------------------
-Real-time Data       5-10 seconds        Stock prices, news
-User Queries         30-60 seconds       Chat interactions
-Static Content       5-30 minutes        Documentation Q&A
-Training Data        1-24 hours          Model responses
-```
-
-### Cache Invalidation
-
-#### Invalidation Strategies
-- **TTL Expiration**: Automatic expiration after configured time
-- **Manual Clear**: API endpoint for cache clearing (future)
-- **Selective Invalidation**: Remove specific cache entries (future)
-- **Pattern-Based Clear**: Wildcard cache key removal (future)
-
-#### Cache Management API (Future)
-```http
-# Clear entire cache
-DELETE /v1/cache
-
-# Clear specific pattern
-DELETE /v1/cache?pattern=/v1/chat/*
-
-# Get cache statistics
-GET /v1/cache/stats
-```
-
----
 
 ## Use Cases
 
@@ -359,7 +184,7 @@ GET /v1/cache/stats
 - **Scenario**: AI-generated insights and summaries
 - **Cache Benefit**: Cache computed analytics
 - **Impact**: Instant dashboard loading
-- **Configuration**: 5-minute TTL for near-real-time data
+- **Configuration**: 5 minute TTL for near real-time data
 
 ### Development Scenarios
 
@@ -387,207 +212,8 @@ GET /v1/cache/stats
 - **Impact**: Impressive performance showcase
 - **Configuration**: Pre-cached demo scenarios
 
----
-
-## Performance Metrics
-
-### Key Indicators
-
-#### Cache Effectiveness Metrics
-```typescript
-interface CacheMetrics {
-  hitRate: number;           // Percentage of requests served from cache
-  missRate: number;          // Percentage requiring provider calls
-  averageTimeSaved: number;  // Average latency reduction per hit
-  totalTimeSaved: number;    // Cumulative time saved
-  costSavings: number;       // Estimated cost reduction
-}
-```
-
-#### Performance KPIs
-- **Cache Hit Rate**: Target 70-90% for repetitive workloads
-- **Response Time**: <5ms for cache hits vs 500-2000ms for misses
-- **Time Saved**: 495-1995ms per cache hit
-- **Cost Reduction**: 70-95% for cached requests
-- **Memory Usage**: ~1KB per cache entry
-
-### Monitoring and Analytics
-
-#### Real-Time Metrics
-- **Hit/Miss Ratio**: Current cache effectiveness
-- **Response Times**: P50, P95, P99 latencies
-- **Cache Size**: Current memory consumption
-- **Eviction Rate**: Entries expiring vs manual evictions
-
-#### Historical Analytics
-- **Trend Analysis**: Cache performance over time
-- **Pattern Recognition**: Identify cacheable content
-- **Cost Attribution**: Savings per model/provider
-- **Capacity Planning**: Memory and performance projections
-
-#### Alerting Thresholds
-```yaml
-alerts:
-  low_hit_rate:
-    threshold: < 50%
-    action: Review TTL settings
-  
-  high_memory_usage:
-    threshold: > 80% capacity
-    action: Increase cache limits
-  
-  performance_degradation:
-    threshold: > 100ms cache latency
-    action: Investigate cache store
-```
-
----
-
-## Best Practices
-
-### Cache Strategy Optimization
-
-#### Content Selection
-1. **Identify Repetitive Queries**: Monitor request patterns
-2. **Categorize by Stability**: Group content by change frequency
-3. **Set Appropriate TTLs**: Match TTL to content characteristics
-4. **Monitor Hit Rates**: Adjust based on actual performance
-
-#### TTL Tuning
-1. **Start Conservative**: Begin with shorter TTLs
-2. **Monitor Freshness**: Track accuracy of cached responses
-3. **Gradually Increase**: Extend TTL as confidence grows
-4. **Segment by Use Case**: Different TTLs for different endpoints
-
-### Performance Optimization
-
-#### Cache Warming
-- **Pre-populate Common Queries**: Load frequently used responses
-- **Scheduled Refresh**: Periodic cache updates for critical content
-- **Gradual Warming**: Avoid thundering herd on startup
-- **Priority Loading**: Cache business-critical queries first
-
-#### Memory Management
-- **Set Size Limits**: Prevent unbounded growth
-- **Implement LRU**: Least Recently Used eviction
-- **Monitor Usage**: Track memory consumption patterns
-- **Plan Capacity**: Size cache for peak loads
-
-### Security Considerations
-
-#### Data Protection
-- **Sensitive Content**: Avoid caching PII or confidential data
-- **Access Control**: Ensure cache respects authentication
-- **Encryption**: Consider encrypting cache contents
-- **Audit Logging**: Track cache access patterns
-
-#### Cache Poisoning Prevention
-- **Request Validation**: Cache only validated requests
-- **Response Verification**: Validate before caching
-- **TTL Limits**: Prevent long-lived poisoned entries
-- **Monitoring**: Detect unusual cache patterns
-
----
-
-## Advanced Features
-
-### Future Enhancements
-
-#### Distributed Caching (Roadmap)
-- **Redis Integration**: Shared cache across instances
-- **Cluster Support**: Coordinated cache management
-- **Geographic Distribution**: Regional cache deployments
-- **Cache Synchronization**: Consistency across nodes
-
-#### Intelligent Caching (Roadmap)
-- **ML-Based TTL**: Dynamic TTL based on content patterns
-- **Predictive Warming**: Anticipate and pre-cache queries
-- **Smart Invalidation**: Detect stale content automatically
-- **Adaptive Sizing**: Dynamic memory allocation
-
-#### Advanced Analytics (Roadmap)
-- **Cache Intelligence**: Insights and recommendations
-- **Cost Analytics**: Detailed savings breakdowns
-- **Performance Profiling**: Deep cache performance analysis
-- **Optimization Suggestions**: Automated tuning recommendations
-
-### Integration Capabilities
-
-#### External Cache Stores (Future)
-```typescript
-interface CacheProvider {
-  redis?: RedisConfig;
-  memcached?: MemcachedConfig;
-  dynamodb?: DynamoDBConfig;
-  custom?: CustomCacheConfig;
-}
-```
-
-#### Cache Plugins (Future)
-- **Custom Key Generators**: Flexible cache key strategies
-- **Content Transformers**: Normalize before caching
-- **Compression**: Reduce memory footprint
-- **Encryption**: Secure cache contents
-
----
-
-## Troubleshooting
-
-### Common Issues
-
-#### Low Cache Hit Rate
-- **Cause**: Unique requests, short TTL, or dynamic content
-- **Solution**: Analyze request patterns, increase TTL
-- **Prevention**: Identify cacheable content patterns
-
-#### Memory Pressure
-- **Cause**: Large responses or too many entries
-- **Solution**: Reduce TTL, implement size limits
-- **Prevention**: Monitor memory usage trends
-
-#### Stale Content
-- **Cause**: TTL too long for changing content
-- **Solution**: Reduce TTL, implement invalidation
-- **Prevention**: Match TTL to content volatility
-
-### Debugging Cache Behavior
-
-#### Enable Debug Logging
-```typescript
-// View cache operations in logs
-process.env.CACHE_DEBUG = 'true';
-```
-
-#### Cache Inspection Tools
-```bash
-# View cache statistics
-curl http://gateway/v1/cache/stats
-
-# Check specific cache key
-curl http://gateway/v1/cache/inspect?key=<key>
-
-# Monitor cache metrics
-curl http://gateway/metrics | grep cache
-```
-
-### Performance Tuning
-
-#### Optimization Checklist
-- [ ] Analyze request patterns for cache opportunities
-- [ ] Set appropriate TTLs based on content type
-- [ ] Monitor hit rates and adjust configuration
-- [ ] Implement cache warming for critical queries
-- [ ] Size memory appropriately for workload
-- [ ] Enable metrics collection and monitoring
-- [ ] Document cache strategy and settings
-- [ ] Plan for cache invalidation scenarios
-
----
-
 ## Conclusion
 
-The Auto Caching feature of the AI Gateway delivers immediate and measurable benefits through intelligent response caching. By automatically storing and serving repeated AI model responses, organizations can achieve dramatic improvements in performance, cost efficiency, and system reliability.
-
-With up to 95% reduction in response latency and 70-95% cost savings for cached requests, Auto Caching transforms the economics and performance characteristics of AI-powered applications. The transparent, provider-agnostic implementation ensures that these benefits are realized across all supported AI providers without any code changes or complex configuration.
-
-Whether optimizing customer-facing applications for speed, reducing development costs, or ensuring consistent performance at scale, the Auto Caching feature provides the foundation for efficient, cost-effective AI integration in enterprise environments.
+The Auto Caching feature of the AI Gateway delivers immediate and measurable benefits through intelligent response caching. By automatically storing and serving repeated AI model responses, organisations can achieve dramatic improvements in performance, cost efficiency, and system reliability.
+With up to 95% reduction in response latency and 70-95% cost savings for cached requests, Auto Caching transforms the economics and performance characteristics of AI-powered applications. The transparent, provider-agnostic implementation ensures that these benefits are realised across all supported AI providers without any code changes or complex configuration.
+Whether optimising customer-facing applications for speed, reducing development costs, or ensuring consistent performance at scale, the Auto Caching feature provides the foundation for efficient, cost-effective AI integration in enterprise environments.

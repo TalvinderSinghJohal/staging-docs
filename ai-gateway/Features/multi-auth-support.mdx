@@ -1,12 +1,11 @@
 ---
-title: Multi-Auth
-description: The AI Gateway's Multi-Authentication Support for Azure OpenAI provides enterprise-grade flexibility in authentication methods, enabling organizations to seamlessly integrate with Azure OpenAI services using their preferred security protocols. This feature supports three distinct authentication modes - API Key, Azure Entra ID (formerly Azure AD), and Managed Identity - ensuring compatibility with diverse enterprise security architectures and compliance requirements.
-sidebarTitle: Multi-Auth
+title: Multi Authentication Support (Azure OpenAI)
+description: Multi Authentication Support for Azure OpenAI provides enterprise grade flexibility in authentication methods, enabling organisations to seamlessly integrate with Azure OpenAI services using their preferred security protocols.
 ---
 
 ## Overview
 
-Multi-Authentication Support represents a critical enterprise feature that enables organizations to adopt Azure OpenAI services while maintaining their existing security posture and compliance requirements. This feature eliminates the traditional "one-size-fits-all" authentication approach, providing flexibility to choose the most appropriate authentication method based on specific use cases, security requirements, and deployment environments.
+Multi Authentication Support represents a critical enterprise feature that enables organisations to adopt Azure OpenAI services while maintaining their existing security posture and compliance requirements. This feature provides flexibility to choose the most appropriate authentication method based on specific use cases, security requirements, and deployment environments.
 
 ### Key Capabilities
 
@@ -18,7 +17,7 @@ Multi-Authentication Support represents a critical enterprise feature that enabl
     Dynamic authentication mode selection without code changes.
   </Card>
   <Card title="Token Caching">
-    Intelligent token management with automatic refresh and 15-minute cache duration.
+    Intelligent token management with automatic refresh and 15 minute cache duration.
   </Card>
   <Card title="Enterprise Integration">
     Native support for Azure enterprise security features including conditional access and identity governance.
@@ -48,7 +47,7 @@ API Key authentication provides the simplest integration path, ideal for rapid p
 ```
 
 ### Azure Entra ID Authentication
-Azure Entra ID (formerly Azure Active Directory) authentication provides enterprise-grade security through OAuth 2.0 client credentials flow, enabling advanced features like conditional access policies, multi-factor authentication enforcement, and centralized identity management.
+Azure Entra ID (formerly Azure Active Directory) authentication provides enterprise-grade security through OAuth 2.0 client credentials flow, enabling advanced features like conditional access policies, multi-factor authentication enforcement, and centralised identity management.
 
 #### Technical Details
 - **Authentication Type**: OAuth 2.0 Client Credentials Flow
@@ -118,18 +117,18 @@ Managed Identity provides the highest level of security by eliminating credentia
 #### Enterprise-Grade Access Control
 - **Conditional Access Policies**: Enforce location, device, and risk-based access controls
 - **Multi-Factor Authentication**: Require MFA for sensitive operations
-- **Identity Governance**: Centralized access reviews and certification campaigns
+- **Identity Governance**: Centralised access reviews and certification campaigns
 - **Privileged Identity Management**: Just-in-time access with approval workflows
 
 #### Zero-Trust Alignment
-- **Identity-Centric Security**: Every request authenticated and authorized
+- **Identity-Centric Security**: Every request authenticated and authorised
 - **Least Privilege Access**: Granular permissions based on identity
 - **Continuous Verification**: Token-based authentication with short-lived credentials
 
 ### Operational Excellence
 
 #### Simplified Credential Management
-- **Centralized Administration**: Single point of control for all authentication
+- **Centralised Administration**: Single point of control for all authentication
 - **Automated Lifecycle**: No manual key rotation or password updates required
 - **Reduced Operational Overhead**: Fewer help desk tickets for credential issues
 
@@ -139,7 +138,7 @@ Managed Identity provides the highest level of security by eliminating credentia
 - **Seamless Integration**: Works with existing Azure SDK and tooling
 
 #### High Availability and Resilience
-- **Token Caching**: 15-minute cache reduces authentication service dependencies
+- **Token Caching**: 15 minute cache reduces authentication service dependencies
 - **Automatic Retry Logic**: Built-in resilience for transient failures
 - **Multiple Authentication Fallbacks**: Graceful degradation between authentication modes
 
@@ -159,25 +158,25 @@ Managed Identity provides the highest level of security by eliminating credentia
 
 #### Data Sovereignty
 - **Regional Authentication**: Authentication services respect data residency requirements
-- **Encryption in Transit**: TLS 1.2+ for all authentication flows
+- **Encryption in Transit**: TLS 1.2 for all authentication flows
 - **Key Management**: Integration with Azure Key Vault for secret storage
 
-### Cost Optimization
+### Cost Management
 
 #### Reduced Infrastructure Costs
 - **No Additional Authentication Infrastructure**: Leverage existing Azure AD investment
 - **Lower Certificate Management Costs**: No need for PKI infrastructure
 - **Decreased Security Tool Costs**: Built-in Azure security features
 
-#### Operational Cost Savings
+#### Operational Cost Optimisation
 - **Reduced Incident Response**: Fewer security incidents from compromised credentials
 - **Lower Training Costs**: Simplified authentication reduces training requirements
 - **Decreased Audit Costs**: Automated compliance reporting and evidence collection
 
-#### Performance Benefits
+#### Performance Optimisation
 - **Token Caching**: Reduces authentication API calls by up to 90%
-- **Connection Pooling**: Efficient resource utilization
-- **Optimized Network Traffic**: Fewer round trips for authentication
+- **Connection Pooling**: Efficient resource utilisation
+- **Optimised Network Traffic**: Fewer round trips for authentication
 
 ---
 
@@ -279,7 +278,7 @@ x-azure-entra-client-secret: client-secret
 4. **Regular Access Reviews** for service principal permissions
 5. **Monitor Authentication Logs** for anomalous patterns
 
-#### Performance Optimization
+#### Performance Optimisation
 1. **Leverage Token Caching** to reduce authentication overhead
 2. **Use Connection Pooling** for HTTP clients
 3. **Implement Request Batching** where applicable
@@ -359,7 +358,7 @@ x-azure-entra-client-secret: client-secret
 - **Detection**: Anomaly detection on authentication patterns
 
 #### Privilege Escalation
-- **Risk**: Unauthorized access to higher privileges
+- **Risk**: Unauthorised access to higher privileges
 - **Mitigation**: Least privilege principle, regular access reviews
 - **Detection**: Azure AD Identity Protection alerts
 
@@ -382,7 +381,7 @@ x-azure-entra-client-secret: client-secret
 
 ---
 
-## Performance Optimization
+## Performance Optimisation
 
 ### Metrics and Monitoring
 
@@ -392,7 +391,7 @@ x-azure-entra-client-secret: client-secret
 - **Token Refresh Rate**: Frequency of token renewals
 - **Error Rate**: Authentication failure percentage
 
-#### Optimization Strategies
+#### Optimisation Strategies
 - **Preemptive Token Refresh**: Refresh tokens before expiry
 - **Connection Pooling**: Reuse HTTP connections
 - **Regional Endpoints**: Use closest authentication endpoints
@@ -420,7 +419,7 @@ x-azure-entra-client-secret: client-secret
 #### Monitoring Tools
 - **Azure Monitor**: Native Azure monitoring integration
 - **Application Insights**: Application-level telemetry
-- **Log Analytics**: Centralized log aggregation and analysis
+- **Log Analytics**: Centralised log aggregation and analysis
 
 ### Common Issues and Solutions
 
@@ -446,7 +445,7 @@ x-azure-entra-client-secret: client-secret
 ##### High Authentication Latency
 - **Cause**: Network latency or authentication service load
 - **Solution**: Implement token caching and connection pooling
-- **Prevention**: Use regional endpoints and optimize network path
+- **Prevention**: Use regional endpoints and optimise network path
 
 ##### Cache Misses
 - **Cause**: Cache eviction or short cache duration
@@ -460,15 +459,9 @@ x-azure-entra-client-secret: client-secret
 - [Azure AD Authentication](https://docs.microsoft.com/azure/active-directory/)
 - [Managed Identity Overview](https://docs.microsoft.com/azure/active-directory/managed-identities-azure-resources/)
 
-#### Community Support
-- GitHub Issues for bug reports and feature requests
-- Stack Overflow for implementation questions
-- Azure Support for enterprise customers
-
 ---
 
 ## Conclusion
 
-Multi-Authentication Support for Azure OpenAI in the AI Gateway represents a comprehensive solution for enterprise authentication requirements. By supporting API Key, Azure Entra ID, and Managed Identity authentication methods, organizations can choose the optimal security approach for their specific needs while maintaining operational efficiency and compliance requirements.
-
+Multi-Authentication Support for Azure OpenAI in the AI Gateway represents a comprehensive solution for enterprise authentication requirements. By supporting API Key, Azure Entra ID, and Managed Identity authentication methods, organisations can choose the optimal security approach for their specific needs while maintaining operational efficiency and compliance requirements.
 The feature's intelligent token caching, comprehensive error handling, and seamless integration with Azure's security ecosystem make it an essential component for any enterprise deploying AI solutions at scale. Whether you're building a proof of concept with API keys or deploying a production system with Managed Identity, the AI Gateway ensures secure, reliable, and performant access to Azure OpenAI services.
