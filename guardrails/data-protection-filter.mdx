@@ -174,13 +174,78 @@ The **Data Protection Filter** provides enterprise-grade PII protection with com
 
 The Data Protection Filter is designed to identify and manage various forms of personally identifiable information. Below is an overview of the supported entity categories and their specific identifiers:
 
-| Category | Supported Entities |
-|----------|-------------------|
-| **General** | Full Name, Phone Number, Email Address, Residential Address, Age, Username, Password, Driver's License Number, Vehicle License Plate, Vehicle Identification Number (VIN) |
-| **Finance** | Card Security Code (CVV), Card Expiration Date, Credit/Debit Card Number, Personal Identification Number (PIN), International Bank Account Number (IBAN), SWIFT/BIC Code |
-| **Technology** | IP Address, MAC Address, Website URL, AWS Access Key, AWS Secret Key |
-| **USA Specific** | U.S. Passport Number, U.S. Social Security Number (SSN), U.S. Taxpayer Identification Number (ITIN), U.S. Bank Account Number, U.S. Bank Routing Number |
-| **Canada Specific** | Canadian Health Number, Canadian Social Insurance Number (SIN) |
-| **UK Specific** | U.K. Unique Taxpayer Reference (UTR) Number, U.K. National Insurance Number, U.K. NHS Number |
+### General
+
+**ADDRESS** - A physical address, such as "42 Oak Avenue, London, UK" or "Apartment 5B, Tower 2, Business District". An address can include information such as the street, building, location, city, state, country, county, zip code, precinct, and neighbourhood.
+
+**AGE** - An individual's age, including the quantity and unit of time. For example, in the phrase "She is 25 years old," the system recognises "25 years" as an age.
+
+**NAME** - An individual's name. This entity type does not include titles, such as Dr., Mr., Mrs., or Miss. The system does not apply this entity type to names that are part of organisations or addresses. For example, it recognises the "Smith & Associates Ltd" as an organisation, and it recognises "Victoria Station Road" as an address.
+
+**EMAIL** - An email address, such as john.smith@company.co.uk.
+
+**PHONE** - A phone number. This entity type also includes fax and pager numbers.
+
+**USERNAME** - A user name that identifies an account, such as a login name, screen name, nick name, or handle.
+
+**PASSWORD** - An alphanumeric string that is used as a password, such as "SecurePass2024!".
+
+**DRIVER_ID** - The number assigned to a driver's license, which is an official document permitting an individual to operate one or more motorised vehicles on a public road. A driver's license number consists of alphanumeric characters.
+
+**LICENSE_PLATE** - A license plate for a vehicle is issued by the state or country where the vehicle is registered. The format for passenger vehicles is typically five to eight digits, consisting of upper-case letters and numbers. The format varies depending on the location of the issuing state or country.
+
+**VEHICLE_IDENTIFICATION_NUMBER** - A Vehicle Identification Number (VIN) uniquely identifies a vehicle. VIN content and format are defined in the ISO 3779 specification. Each country has specific codes and formats for VINs.
+
+### Finance
+
+**CREDIT_DEBIT_CARD_CVV** - A three-digit card verification code (CVV) that is present on VISA, MasterCard, and Discover credit and debit cards. For American Express credit or debit cards, the CVV is a four-digit numeric code.
+
+**CREDIT_DEBIT_CARD_EXPIRY** - The expiration date for a credit or debit card. This number is usually four digits long and is often formatted as month/year or MM/YY. The system recognises expiration dates such as 12/25, 12/2025, and Dec 2025.
+
+**CREDIT_DEBIT_CARD_NUMBER** - The number for a credit or debit card. These numbers can vary from 13 to 16 digits in length. However, the system also recognises credit or debit card numbers when only the last four digits are present.
+
+**PIN** - A four-digit personal identification number (PIN) with which you can access your bank account.
+
+**INTERNATIONAL_BANK_ACCOUNT_NUMBER** - An International Bank Account Number has specific formats in each country. For more information, see www.iban.com/structure.
+
+**SWIFT_CODE** - A SWIFT code is a standard format of Bank Identifier Code (BIC) used to specify a particular bank or branch. Banks use these codes for money transfers such as international wire transfers. SWIFT codes consist of eight or 11 characters. The 11-digit codes refer to specific branches, while eight-digit codes (or 11-digit codes ending in 'XXX') refer to the head or primary office.
+
+### Technology
+
+**IP_ADDRESS** - An IPv4 address, such as 192.168.1.100.
+
+**MAC_ADDRESS** - A media access control (MAC) address is a unique identifier assigned to a network interface controller (NIC).
+
+**URL** - A web address, such as https://www.mycompany.com.
+
+**AWS_ACCESS_KEY** - A unique identifier that's associated with a secret access key; you use the access key ID and secret access key to sign programmatic AWS requests cryptographically.
+
+**AWS_SECRET_KEY** - A unique identifier that's associated with an access key. You use the access key ID and secret access key to sign programmatic AWS requests cryptographically.
+
+### USA Specific
+
+**US_BANK_ACCOUNT_NUMBER** - A US bank account number, which is typically 10 to 12 digits long.
+
+**US_BANK_ROUTING_NUMBER** - A US bank account routing number. These are typically nine digits long.
+
+**US_INDIVIDUAL_TAX_IDENTIFICATION_NUMBER** - A US Individual Taxpayer Identification Number (ITIN) is a nine-digit number that starts with a "9" and contains a "7" or "8" as the fourth digit. An ITIN can be formatted with a space or a dash after the third and fourth digits.
+
+**US_PASSPORT_NUMBER** - A US passport number. Passport numbers range from six to nine alphanumeric characters.
+
+**US_SOCIAL_SECURITY_NUMBER** - A US Social Security Number (SSN) is a nine-digit number that is issued to US citizens, permanent residents, and temporary working residents.
+
+### Canada Specific
+
+**CA_HEALTH_NUMBER** - A Canadian Health Service Number is a 10-digit unique identifier, required for individuals to access healthcare benefits.
+
+**CA_SOCIAL_INSURANCE_NUMBER** - A Canadian Social Insurance Number (SIN) is a nine-digit unique identifier, required for individuals to access government programmes and benefits. The SIN is formatted as three groups of three digits, such as 987-654-321. A SIN can be validated through a simple check-digit process called the Luhn algorithm.
+
+### UK Specific
+
+**UK_NATIONAL_HEALTH_SERVICE_NUMBER** - A UK National Health Service Number is a 10-17 digit number, such as 123 456 7890. The current system formats the 10-digit number with spaces after the third and sixth digits. The final digit is an error-detecting checksum.
+
+**UK_NATIONAL_INSURANCE_NUMBER** - A UK National Insurance Number (NINO) provides individuals with access to National Insurance (social security) benefits. It is also used for some purposes in the UK tax system. The number is nine digits long and starts with two letters, followed by six numbers and one letter. A NINO can be formatted with a space or a dash after the two letters and after the second, fourth, and sixth digits.
+
+**UK_UNIQUE_TAXPAYER_REFERENCE_NUMBER** - A UK Unique Taxpayer Reference (UTR) is a 10-digit number that identifies a taxpayer or a business.
 
 Each category is monitored with configurable sensitivity, allowing organisations to maintain appropriate data protection measures while ensuring smooth user interactions. The guardrail provides comprehensive coverage across personal, financial, technological, and region-specific identifiers to create a secure AI environment while preserving the intended functionality and trustworthiness of your automated workflows.
