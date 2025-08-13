@@ -1,6 +1,6 @@
 ---
 title: Multi-Model
-Description: Seamlessly switch between and combine different AI models, enabling flexible, robust, and guardrail driven AI workflows.
+description: Seamlessly switch between and combine different AI models, enabling flexible, robust, and guardrail driven AI workflows.
 sidebarTitle: Multi-Model
 ---
 
@@ -11,16 +11,16 @@ The Multi-Model feature provides access to **50+ AI models** across 7 major prov
 ### Key Capabilities
 
 <Columns cols={2}>
-  <Card title="50+ Production Models" icon="layers">
+  <Card title="50+ Production Models">
     From lightweight to state-of-the-art models across all AI providers.
   </Card>
-  <Card title="Automatic Model Validation" icon="check-circle">
+  <Card title="Automatic Model Validation">
     Built-in controls ensure only supported models are used ensuring consistent AI output quality.
   </Card>
-  <Card title="Model-Specific Optimisations" icon="settings">
+  <Card title="Model-Specific Optimisations">
     Automatic parameter adjustments based on model capabilities to ensure optimal performance.
   </Card>
-  <Card title="Transparent Pricing" icon="dollar-sign">
+  <Card title="Transparent Pricing">
     Real-time cost calculation and monitoring for all supported models in AI Gateway.
   </Card>
 </Columns>
@@ -207,44 +207,44 @@ The Multi-Model feature provides access to **50+ AI models** across 7 major prov
 ### By Use Case
 
 #### Complex Reasoning & Analysis
-<CodeBlock language="python">
+```python
 models = {
     "premium": ["gpt-4o", "claude-3-5-sonnet-20241022", "gemini-1.5-pro"],
     "balanced": ["gpt-4-turbo", "claude-3-sonnet-20240229"],
     "reasoning": ["o1-preview", "o1-mini"]
 }
-</CodeBlock>
+```
 
 #### High Volume Processing
-<CodeBlock language="python">
+```python
 models = {
     "fastest": ["claude-3-5-haiku-20241022", "gpt-4o-mini", "gemini-1.5-flash"],
     "cost_optimised": ["gpt-3.5-turbo", "claude-3-haiku-20240307"],
     "open_source": ["meta.llama3-8b-instruct-v1:0"]
 }
-</CodeBlock>
+```
 
 #### Long Context Applications
-<CodeBlock language="python">
+```python
 models = {
     "maximum_context": ["gemini-1.5-pro"],  # 2M tokens
     "large_context": ["gemini-1.5-flash"],  # 1M tokens
     "standard_large": ["claude-3-5-sonnet-20241022", "gpt-4o"]  # 200K/128K
 }
-</CodeBlock>
+```
 
 #### Multimodal Applications
-<CodeBlock language="python">
+```python
 models = {
     "vision": ["gpt-4o", "gemini-1.5-pro", "gpt-4-turbo"],
     "video": ["gemini-1.5-pro", "gemini-1.5-flash"],
     "images": ["gpt-4o", "gemini-1.0-pro-vision"]
 }
-</CodeBlock>
+```
 
 ### Dynamic Model Selection (Example Script)
 
-<CodeBlock language="python">
+```python
 from openai import OpenAI
 from typing import Dict, List
 
@@ -339,11 +339,11 @@ model_for_analysis = selector.select_model(
     budget="high",
     speed_requirement="normal"
 )  # Returns: claude-3-5-sonnet-20241022 or gemini-1.5-pro
-</CodeBlock>
+```
 
 ### Cost Optimised Model Routing (Example Script)
 
-<CodeBlock language="python">
+```python
 import json
 from typing import Dict, Optional
 from openai import OpenAI
@@ -439,11 +439,11 @@ result = router.route_request(
     complexity="complex"
 )
 print(f"Model: {result['model']}, Cost: ${result['estimated_cost']:.4f}")
-</CodeBlock>
+```
 
 ### A/B Testing Different Models
 
-<CodeBlock language="python">
+```python
 import asyncio
 import time
 from typing import List, Dict
@@ -577,7 +577,7 @@ async def main():
 
 # Run the test
 asyncio.run(main())
-</CodeBlock>
+```
 
 ---
 
@@ -605,7 +605,7 @@ asyncio.run(main())
 
 ### 1. Model Selection Strategy
 
-<CodeBlock language="python">
+```python
 def select_model_strategy(requirements):
     """Strategic model selection based on requirements"""
     
@@ -633,11 +633,11 @@ def select_model_strategy(requirements):
     }
     
     return strategies.get(requirements["priority"], strategies["quality_first"])
-</CodeBlock>
+```
 
 ### 2. Fallback Chains
 
-<CodeBlock language="python">
+```python
 class ModelFallbackChain:
     """Implement fallback chains for reliability"""
     
@@ -670,11 +670,11 @@ class ModelFallbackChain:
                 continue
         
         raise Exception("All models in fallback chain failed")
-</CodeBlock>
+```
 
 ### 3. Cost Monitoring
 
-<CodeBlock language="python">
+```python
 class CostMonitor:
     """Monitor and control model costs"""
     
@@ -707,7 +707,7 @@ class CostMonitor:
             "budget_remaining": self.monthly_budget - self.current_spend,
             "model_breakdown": self.model_usage
         }
-</CodeBlock>
+```
 
 ---
 
@@ -715,7 +715,7 @@ class CostMonitor:
 
 ### From Single Model to Multi-Model
 
-<CodeBlock language="python">
+```python
 # Before: Single model deployment
 client = OpenAI(api_key="key")
 response = client.chat.completions.create(
@@ -737,7 +737,7 @@ class MultiModelClient:
         
         # Execute with automatic fallback
         return self.execute_with_fallback(client, model, messages)
-</CodeBlock>
+```
 
 ---
 
