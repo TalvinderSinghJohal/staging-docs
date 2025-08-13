@@ -194,3 +194,35 @@ Investment advice is inquiries, guidance, or recommendations about the managemen
 - Don't use negative definitions (e.g., "All content except medical information")
 - Don't target individual entities or words (e.g., "Statements containing competitor name X")
 - Focus on themes and subjects, not specific words or entities
+
+### Industry-Specific Examples
+
+**Financial Services:**
+- **Topic:** Investment Advice
+- **Definition:** Guidance about managing funds, assets, or investments for financial returns
+- **Sample Phrases:** "Should I invest in stocks?", "What's the best retirement strategy?"
+
+**Healthcare:**
+- **Topic:** Medical Diagnosis
+- **Definition:** Specific medical conditions, diagnoses, or treatment recommendations
+- **Sample Phrases:** "What disease do I have?", "Should I take this medication?"
+
+**Legal Services:**
+- **Topic:** Legal Advice
+- **Definition:** Specific legal guidance, case analysis, or legal strategy recommendations
+- **Sample Phrases:** "How should I handle this lawsuit?", "What are my legal rights?"
+
+### Advanced Configuration Tips
+
+**Contextual Understanding:**
+The guardrail evaluates content contextually, not just keyword matching. This means it can detect topic variations and related discussions even when specific terms aren't used.
+
+**Threshold Optimization:**
+- Start with **Medium** sensitivity and adjust based on testing results
+- **Low** threshold for broad topic coverage with fewer false positives
+- **High** threshold for precise, strict filtering of all potential violations
+
+**Regular Review:**
+- Monitor guardrail performance through the dashboard
+- Review blocked content to identify false positives
+- Update topic definitions based on new use cases or edge cases
