@@ -94,3 +94,71 @@ The organization must ensure that:
    - Maintains detection effectiveness across diverse topic variations
 
 ---
+
+## How to Use the Guardrail
+
+> **Note:** The steps below guide you through configuring the Restricted Topic Filter using the Guardrail Workflow.
+
+### Step 1: Navigate to the Guardrail Workflow
+
+1. From the **Dashboard**, open the **Project Overview** by selecting "view" to open your project from the **Project Table**.
+2. In the **guardrails** section of the Project Overview, click **Edit Guardrails** to launch the guardrail configuration workflow.
+
+---
+
+### Step 2: Select and Enable the Restricted Topic Filter
+
+1. In the **Configure Guardrails** dropdown, a list of available guardrails will be displayed.
+2. Click on **Topic Restriction** to open its configuration options on the right-hand side of the screen.
+3. Toggle the **Enable Policy** switch to **ON** to begin configuration.
+
+---
+
+### Step 3: Define Valid and/or Invalid Topics
+
+1. Under the **Topic Configuration** section, you’ll find two input fields:
+   - **Valid Topics** – Enter allowed topics here. Press `Enter` after each topic to add it. These will appear as tags below the input field.
+   - **Invalid Topics** – Enter restricted topics here. Press `Enter` after each entry. These will also display as tags.
+2. You may configure **only Valid**, **only Invalid**, or **both**, depending on your organisation's requirements.
+3. Topics can be removed by clicking the “X” on any tag.
+
+---
+
+### Step 4: Set Application Scope
+
+1. Under **Apply Policy To**, choose where the policy will be enforced:
+   - **Prompt** – User input only
+   - **Response** – AI-generated output only
+   - **Both** – Enforce on both directions
+
+---
+
+### Step 5: Configure Enforcement Behaviour
+
+1. Under **Behaviour**, choose how the system should respond to restricted topics:
+   - **Log Only** – Flag violations without blocking the interaction.
+   - **Log and Override** – Block the prompt or response and return a smart message based on your response configuration.
+
+---
+
+### Step 6: Adjust Detection Threshold
+
+1. Under **Set Guardrail Threshold**, select the required detection sensitivity:
+   - **Low:** Filters only the most clearly restricted topics. Content with low or uncertain risk is allowed.
+   - **Medium:** Filters content that's likely or certainly restricted. Lower-confidence content is still allowed.
+   - **High:** Applies strict filtering—blocks any content that may be restricted, even with low confidence.
+
+---
+
+### Step 7: Save, Test, and Apply the Policy
+
+1. Click **Save Changes** to store your configuration settings.
+2. *(Optional)* Navigate to the **Test Guardrails** tab to simulate prompts and validate guardrail enforcement live.
+3. Return to the **Configure Guardrails** tab and click **Apply Guardrails** to activate the configuration.
+4. A success message will confirm the guardrail has been applied to your project.
+
+---
+
+The **Topic Restriction Policy** provides full control over allowable and prohibited discussion topics—ensuring your AI interactions remain relevant, compliant, and aligned with your organisation's standards.
+
+---
