@@ -46,6 +46,8 @@ Under **Set Guardrail Threshold** select the required detection sensitivity:
 - **Low Latency**: High-performance detection that doesn't impact response times
 - **Enterprise-Grade Accuracy**: Minimizes false positives while maintaining high detection rates
 - **Flexible Configuration**: Easy addition and management of custom topics as requirements change
+- **Intelligent Topic Detection**: Evaluates prompts and responses against restricted topics using natural language understanding
+- **Sample Phrase Support**: Include example phrases to improve detection accuracy for complex topics
 
 ---
 
@@ -141,10 +143,10 @@ The organization must ensure that:
 
 ### Step 6: Adjust Detection Threshold
 
-1. Use the **Threshold Slider** to set how strictly topics should be matched:
-   - Lower values (e.g., `0.2`) allow broader interpretation and fewer false positives.
-   - Higher values (e.g., `0.9`) enforce stricter topic detection and filtering.
-2. The selected threshold level will be displayed numerically alongside the slider.
+1. Under **Set Guardrail Threshold**, select the required detection sensitivity:
+   - **Low:** Filters only the most clearly restricted topics. Content with low or uncertain risk is allowed.
+   - **Medium:** Filters content that's likely or certainly restricted. Lower-confidence content is still allowed.
+   - **High:** Applies strict filtering—blocks any content that may be restricted, even with low confidence.
 
 ---
 
@@ -158,3 +160,69 @@ The organization must ensure that:
 ---
 
 The **Topic Restriction Policy** provides full control over allowable and prohibited discussion topics—ensuring your AI interactions remain relevant, compliant, and aligned with your organisation's standards.
+
+---
+
+## Best Practices for Topic Definition
+
+### Creating Effective Denied Topics
+
+When defining denied topics, follow these best practices for optimal detection accuracy:
+
+**Topic Name Guidelines:**
+- Use clear, concise nouns or phrases (e.g., "Investment Advice", "Cryptocurrency Trading")
+- Avoid descriptive language or instructions in the name
+- Keep names specific and actionable
+
+**Topic Definition Best Practices:**
+- Provide a crisp, precise definition (up to 200 characters)
+- Describe the content and subtopics clearly
+- Focus on what the topic encompasses, not what to block
+
+**Example Topic Definition:**
+```
+Investment advice is inquiries, guidance, or recommendations about the management or allocation of funds or assets with the goal of generating returns or achieving specific financial objectives.
+```
+
+**Sample Phrases (Optional):**
+- Include up to 5 example phrases (max 100 characters each)
+- Provide real-world examples of what should be filtered
+- Examples: "Is investing in stocks better than bonds?", "Should I invest in gold?"
+
+**What to Avoid:**
+- Don't include instructions in definitions (e.g., "Block all cryptocurrency content")
+- Don't use negative definitions (e.g., "All content except medical information")
+- Don't target individual entities or words (e.g., "Statements containing competitor name X")
+- Focus on themes and subjects, not specific words or entities
+
+### Industry-Specific Examples
+
+**Financial Services:**
+- **Topic:** Investment Advice
+- **Definition:** Guidance about managing funds, assets, or investments for financial returns
+- **Sample Phrases:** "Should I invest in stocks?", "What's the best retirement strategy?"
+
+**Healthcare:**
+- **Topic:** Medical Diagnosis
+- **Definition:** Specific medical conditions, diagnoses, or treatment recommendations
+- **Sample Phrases:** "What disease do I have?", "Should I take this medication?"
+
+**Legal Services:**
+- **Topic:** Legal Advice
+- **Definition:** Specific legal guidance, case analysis, or legal strategy recommendations
+- **Sample Phrases:** "How should I handle this lawsuit?", "What are my legal rights?"
+
+### Advanced Configuration Tips
+
+**Contextual Understanding:**
+The guardrail evaluates content contextually, not just keyword matching. This means it can detect topic variations and related discussions even when specific terms aren't used.
+
+**Threshold Optimization:**
+- Start with **Medium** sensitivity and adjust based on testing results
+- **Low** threshold for broad topic coverage with fewer false positives
+- **High** threshold for precise, strict filtering of all potential violations
+
+**Regular Review:**
+- Monitor guardrail performance through the dashboard
+- Review blocked content to identify false positives
+- Update topic definitions based on new use cases or edge cases
