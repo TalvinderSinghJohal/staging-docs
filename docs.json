@@ -45,11 +45,9 @@
               },
               {
                 "group": "AI Gateway",
-                "icon": "archway",
                 "pages": [
                   {
                     "group": "Overview",
-                    "icon": "mountain",
                     "pages": [
                       "ai-gateway/Introduction/gateway-intro",
                       "ai-gateway/Introduction/getting-started"
