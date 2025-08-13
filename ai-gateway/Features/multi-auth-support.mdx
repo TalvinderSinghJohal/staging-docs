@@ -456,13 +456,37 @@ x-azure-entra-client-secret: client-secret
 ### Support and Resources
 
 #### Documentation
-- [Azure OpenAI Documentation](https://docs.microsoft.com/azure/cognitive-services/openai/)
-- [Azure AD Authentication](https://docs.microsoft.com/azure/active-directory/)
-- [Managed Identity Overview](https://docs.microsoft.com/azure/active-directory/managed-identities-azure-resources/)
+
+<Columns cols={3}>
+  <Card
+    title="Azure OpenAI Documentation"
+    icon="link"
+    href="https://docs.microsoft.com/azure/cognitive-services/openai/"
+    arrow="true"
+    cta="View Documentation"
+  >
+    Comprehensive documentation for Azure OpenAI services, including setup guides, API references, and best practices for integrating with Azure's AI services.
+  </Card>
+
+  <Card
+    title="Azure AD Authentication"
+    icon="link"
+    href="https://docs.microsoft.com/azure/active-directory/"
+    arrow="true"
+    cta="Learn More"
+  >
+    Official Microsoft documentation for Azure Active Directory authentication, covering identity management, single sign-on, and security features.
+  </Card>
+
+  <Card
+    title="Managed Identity Overview"
+    icon="link"
+    href="https://docs.microsoft.com/azure/active-directory/managed-identities-azure-resources/"
+    arrow="true"
+    cta="Get Started"
+  >
+    Learn about Azure Managed Identities for secure, automatic authentication between Azure services without managing credentials.
+  </Card>
+</Columns>
 
 ---
-
-## Conclusion
-
-Multi-Authentication Support for Azure OpenAI in the AI Gateway represents a comprehensive solution for enterprise authentication requirements. By supporting API Key, Azure Entra ID, and Managed Identity authentication methods, organisations can choose the optimal security approach for their specific needs while maintaining operational efficiency and compliance requirements.
-The feature's intelligent token caching, comprehensive error handling, and seamless integration with Azure's security ecosystem make it an essential component for any enterprise deploying AI solutions at scale. Whether you're building a proof of concept with API keys or deploying a production system with Managed Identity, the AI Gateway ensures secure, reliable, and performant access to Azure OpenAI services.
