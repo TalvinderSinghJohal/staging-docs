@@ -31,9 +31,8 @@ The Profanity Filter applies advanced content analysis to:
 
 #### Operational Modes
 
-- **Input** – Applies the selected behaviour to what users send to the model.
-- **Output** – Applies the selected behaviour to what the model returns as a response.
-- **Both** – Full bidirectional coverage
+- **Monitor** – Lets you review input or output content without taking any action—used for observation and diagnostics.
+- **Block** – Automatically stops content from being processed if it violates the selected guardrail rules.
 
 #### Detection Capabilities
 
@@ -46,12 +45,26 @@ The guardrail can identify various forms of inappropriate language:
 
 ### Key Features
 
-- **Comprehensive Language Detection**: Identifies profanity across multiple languages and contexts
-- **Context-Aware Analysis**: Advanced understanding of conversation context and language usage
-- **Configurable Sensitivity**: Adjustable detection thresholds for different use cases
-- **Low Latency**: High-performance detection that doesn't impact response times
-- **Enterprise-Grade Accuracy**: Minimises false positives while maintaining high detection rates
-- **Multi-Language Support**: Detects profanity across various languages and dialects
+<Columns cols={2}>
+  <Card title="Comprehensive Language Detection">
+    Identifies profanity across multiple languages and contexts with advanced pattern recognition.
+  </Card>
+  <Card title="Context-Aware Analysis">
+    Advanced understanding of conversation context and language usage for accurate detection.
+  </Card>
+  <Card title="Configurable Sensitivity">
+    Adjustable detection thresholds for different use cases with Low, Medium, and High options.
+  </Card>
+  <Card title="Low Latency">
+    High-performance detection that doesn't impact response times or user experience.
+  </Card>
+  <Card title="Enterprise-Grade Accuracy">
+    Minimises false positives while maintaining high detection rates across all languages.
+  </Card>
+  <Card title="Multi-Language Support">
+    Detects profanity across various languages and dialects for global applications.
+  </Card>
+</Columns>
 
 ---
 
@@ -85,16 +98,14 @@ The organisation must ensure that:
 ### Solution: Implementing Profanity Filter
 
 1. **Comprehensive Language Filtering**  
-   - Enabled for both user inputs and AI responses
-   - Configured to detect profanity across multiple languages
+   - Enabled for both inputs and output
 
 2. **Appropriate Enforcement**  
-   - Set to **Log and Override** to actively prevent profanity
+   - Set to **Block** to actively prevent profanity
    - Provides clear, professional fallback responses
 
 3. **Optimised Sensitivity**  
-   - Calibrated for high accuracy with minimal false positives
-   - Maintains detection effectiveness across diverse language patterns
+   - Set to **High** for high accuracy with minimal false positives
 
 ---
 
@@ -102,14 +113,14 @@ The organisation must ensure that:
 
 > **Note:** The steps below guide you through configuring the Profanity Filter in the Guardrail workflow.
 
-### Step 1: Navigate to the Guardrail Workflow
+### Step 1: Navigate to the Guardrail Setup
 
-1. From the **Dashboard**, open the **Project Overview** by selecting "view" to open your project from the **Project Table**.
-2. In the **guardrails** section of the Project Overview, click **Edit Guardrails** to launch the guardrail configuration workflow.
+1. From the **Home Page**, open the **AI System Dashboard** by selecting **View** to open your AI system from the **AI System Table**.
+2. In the **guardrails** section of the AI System Overview, click **Edit Guardrails** to launch the guardrail configuration workflow.
 
 ### Step 2: Select and Enable the Profanity Filter
 
-1. In the **Configure Guardrails** dropdown, click on **Profanity Filter** from the list.
+1. In the **Configure Guardrails** page, click on **Profanity Filter** from the list.
 2. The configuration panel will display on the right.
 3. Toggle **Enable Guardrail** to **ON** to begin editing.
 
@@ -123,7 +134,7 @@ The organisation must ensure that:
 
 ### Step 4: Configure Enforcement Behaviour
 
-1. Under **Behaviour**, choose how the guardrail should respond to detected filters:
+1. Under **Select Guardrail Behaviour**, choose how the guardrail should respond to detected filters:
    - **Monitor** – Lets you review input or output content without taking any action—used for observation and diagnostics.
    - **Block** – Automatically stops content from being processed if it violates the selected guardrail rules.
 

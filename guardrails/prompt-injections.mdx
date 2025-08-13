@@ -40,12 +40,26 @@ The guardrail can identify various forms of prompt injection attacks:
 
 ### Key Features
 
-- **Advanced Attack Detection**: Identifies sophisticated prompt injection techniques across multiple attack vectors
-- **Context-Aware Analysis**: Advanced understanding of conversation context and manipulation patterns
-- **Configurable Sensitivity**: Adjustable detection thresholds for different security requirements
-- **Low Latency**: High-performance detection that doesn't impact response times
-- **Enterprise-Grade Accuracy**: Minimises false positives while maintaining high detection rates
-- **Real-Time Protection**: Immediate detection and prevention of injection attempts
+<Columns cols={2}>
+  <Card title="Advanced Attack Detection">
+    Identifies sophisticated prompt injection techniques across multiple attack vectors and patterns.
+  </Card>
+  <Card title="Context-Aware Analysis">
+    Advanced understanding of conversation context and manipulation patterns for accurate detection.
+  </Card>
+  <Card title="Configurable Sensitivity">
+    Adjustable detection thresholds for different security requirements with Low, Medium, and High options.
+  </Card>
+  <Card title="Low Latency">
+    High-performance detection that doesn't impact response times or user experience.
+  </Card>
+  <Card title="Enterprise-Grade Accuracy">
+    Minimises false positives while maintaining high detection rates across all injection attempts.
+  </Card>
+  <Card title="Real-Time Protection">
+    Immediate detection and prevention of injection attempts for continuous security.
+  </Card>
+</Columns>
 
 ---
 
@@ -83,7 +97,7 @@ The organisation must ensure that:
    - Configured to identify sophisticated manipulation techniques
 
 2. **Appropriate Enforcement**  
-   - Set to **Log and Override** to actively prevent injection attempts
+   - Set to **Block** to actively prevent injection attempts
    - Provides secure fallback responses without revealing system information
 
 3. **Optimised Sensitivity**  
@@ -96,16 +110,16 @@ The organisation must ensure that:
 
 > **Note:** The following steps explain how to configure the Prompt injections Guardrail within the Guardrail Workflow. This guardrail applies **only to inputs** and cannot be applied to outputs.
 
-### Step 1: Navigate to the Guardrail Workflow
+### Step 1: Navigate to the Guardrail Setup
 
-1. From the **Dashboard**, open the **Project Overview** by selecting "view" to open your project from the **Project Table**.
-2. In the **guardrails** section of the Project Overview, click **Edit Guardrails** to launch the guardrail configuration workflow.
+1. From the **Home Page**, open the **AI System Dashboard** by selecting **View** to open your AI system from the **AI System Table**.
+2. In the **guardrails** section of the AI System Overview, click **Edit Guardrails** to launch the guardrail configuration workflow.
 
 ---
 
 ### Step 2: Select and Enable the Prompt Injections Guardrail
 
-1. In the **Configure Guardrails** dropdown, click on **Prompt Injections** from the list of available guardrails.
+1. In the **Configure Guardrails** page, click on **Prompt Injections** from the list of available guardrails.
 2. The configuration panel will display on the right-hand side.
 3. Toggle the **Enable Policy** switch to **ON** to begin configuration.
 
