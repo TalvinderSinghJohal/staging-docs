@@ -45,6 +45,7 @@
               },
               {
                 "group": "AI Gateway",
+                "icon": "archway",
                 "pages": [
                   {
                     "group": "Overview",
@@ -55,7 +56,6 @@
                   },
                   {
                     "group": "Features",
-                    "icon": "book-open",
                     "pages": [
                       "ai-gateway/Features/unified-api",
                       "ai-gateway/Features/multi-model-support",
