@@ -2,3 +2,214 @@
 title: Relevance Check
 description: "Ensures that AI-generated content remains accurate and verifiable, preventing the spread of misinformation."
 ---
+
+## Overview
+
+The **Relevance Check** guardrail uses advanced AI to verify that AI-generated responses are relevant, accurate, and aligned with the user's query. It analyses both the user's input and the AI's response to ensure the content is appropriate, factual, and directly addresses the user's needs.
+
+**Key Points:**
+- Verifies response relevance and accuracy against user queries
+- Prevents AI from generating off-topic or misleading information
+- Uses context-aware analysis to maintain conversation quality
+- Ensures responses are factual and well-supported
+
+This ensures all AI interactions remain relevant, accurate, and trustworthy while maintaining high-quality user experiences.
+
+---
+
+## What the Guardrail Does
+
+### Purpose
+
+The primary goal of the Relevance Check guardrail is to maintain high-quality AI interactions by ensuring responses are relevant, accurate, and directly address user queries while preventing the spread of misinformation or off-topic content. By enabling this guardrail, organisations can improve user satisfaction, maintain content quality, ensure factual accuracy, and uphold responsible AI usage across all interactions.
+
+### Scope
+
+#### Comprehensive Relevance Analysis
+
+The Relevance Check guardrail applies advanced content analysis to:
+
+- **Input** – Applies the selected behaviour to what users send to the model.
+- **Output** – Applies the selected behaviour to what the model returns as a response.
+- **Both** – Full bidirectional coverage
+
+#### Operational Modes
+
+- **Monitor** – Lets you review input or output content without taking any action—used for observation and diagnostics.
+- **Block** – Automatically stops content from being processed if it violates the selected guardrail rules.
+
+#### Set Detection Threshold
+
+Under **Set Guardrail Threshold** select the required detection sensitivity:
+
+- **Low:** Filters only the most clearly irrelevant responses. Content with low or uncertain relevance issues is allowed.
+- **Medium:** Filters responses that are likely or certainly irrelevant. Lower-confidence relevance issues are still allowed.
+- **High:** Applies strict filtering—blocks any response that may be irrelevant, even with low confidence.
+
+#### Detection Categories
+
+The guardrail monitors multiple aspects of response quality:
+
+- **Relevance**: Ensures responses directly address the user's query and stay on topic
+- **Accuracy**: Verifies that information provided is factual and well-supported
+- **Completeness**: Checks that responses provide adequate information to answer the query
+- **Context**: Ensures responses maintain appropriate context and don't introduce irrelevant information
+- **Misinformation**: Detects potential false or misleading information that could spread misinformation
+
+### Key Features
+
+<Columns cols={2}>
+  <Card title="Relevance Verification">
+    Ensures AI responses directly address user queries and maintain conversation focus.
+  </Card>
+  <Card title="Accuracy Assessment">
+    Verifies factual accuracy and prevents the spread of misinformation in responses.
+  </Card>
+  <Card title="Context-Aware Analysis">
+    Advanced understanding of conversation context and query intent for accurate relevance checking.
+  </Card>
+  <Card title="Configurable Sensitivity">
+    Adjustable detection thresholds for different use cases with Low, Medium, and High options.
+  </Card>
+  <Card title="Low Latency">
+    High-performance detection that doesn't impact response times or user experience.
+  </Card>
+  <Card title="Quality Assurance">
+    Maintains high standards of response quality and user satisfaction across all interactions.
+  </Card>
+</Columns>
+
+---
+
+## Why Use This Guardrail?
+
+### Benefits
+
+- **Quality Assurance**: Ensures AI responses are relevant and directly address user queries
+- **Misinformation Prevention**: Prevents the spread of false or misleading information
+- **User Satisfaction**: Improves user experience by maintaining high-quality, relevant responses
+- **Brand Protection**: Protects organisational reputation by ensuring accurate and helpful AI interactions
+- **Trust Building**: Maintains user trust through reliable and relevant AI responses
+
+---
+
+## Use Case: Customer Support AI Assistant
+
+### Scenario
+
+A technology company deploys an AI assistant to handle customer support inquiries across their product range. The assistant must provide accurate, relevant responses that directly address customer questions while preventing the spread of incorrect information about their products or services.
+
+### Challenge
+
+The organisation must ensure that:
+
+- AI responses are always relevant to the customer's specific query
+- Information provided is accurate and up-to-date
+- Responses don't contain misleading or incorrect product information
+- All interactions maintain high quality and customer satisfaction
+
+### Solution: Implementing Relevance Check
+
+1. **Comprehensive Quality Control**  
+   - Enabled for both user inputs and AI responses
+   - Configured to verify relevance and accuracy across all interactions
+
+2. **Appropriate Enforcement**  
+   - Set to **Block** to prevent irrelevant or inaccurate responses
+   - Provides clear, helpful fallback responses when quality issues are detected
+
+3. **Optimised Configuration**  
+   - Used **Medium** sensitivity threshold for balanced quality control
+   - Maintains detection effectiveness across diverse query types and topics
+
+---
+
+## How to Use the Guardrail
+
+> **Note:** The steps below guide you through configuring the Relevance Check using the Guardrail Setup.
+
+### Step 1: Navigate to the Guardrail Setup
+
+1. From the **Home Page**, open the **AI System Dashboard** by selecting **View** to open your AI system from the **AI System Table**.
+2. In the **guardrails** section of the AI System Overview, click **Edit Guardrails** to launch the guardrail configuration workflow.
+
+---
+
+### Step 2: Select and Enable the Relevance Check
+
+1. In the **Configure Guardrails** page, a list of available guardrails will be displayed.
+2. Click on **Relevance Check** to open its configuration options on the right-hand side of the screen.
+3. Toggle the **Enable Policy** switch to **ON** to begin configuration.
+
+---
+
+### Step 3: Set Application Scope
+
+1. Under **Apply Guardrail To**, choose where the policy will be enforced:
+   - **Input** – Applies the selected behaviour to what users send to the model.
+   - **Output** – Applies the selected behaviour to what the model returns as a response.
+   - **Both** – Full bidirectional coverage
+
+---
+
+### Step 4: Configure Enforcement Behaviour
+
+1. Under **Select Guardrail Behaviour**, choose how the system should respond to relevance issues:
+   - **Monitor** – Lets you review input or output content without taking any action—used for observation and diagnostics.
+   - **Block** – Automatically stops content from being processed if it violates the selected guardrail rules.
+
+---
+
+### Step 5: Adjust Detection Threshold
+
+1. Under **Set Guardrail Threshold**, select the required detection sensitivity:
+   - **Low:** Filters only the most clearly irrelevant responses. Content with low or uncertain relevance issues is allowed.
+   - **Medium:** Filters responses that are likely or certainly irrelevant. Lower-confidence relevance issues are still allowed.
+   - **High:** Applies strict filtering—blocks any response that may be irrelevant, even with low confidence.
+
+---
+
+### Step 6: Save, Test, and Apply the Guardrail
+
+1. Click **Save & Continue** to store your configuration settings.
+2. Go to the **Test Guardrails** step to evaluate how the guardrail behaves in real time with a chatbot.
+3. After saving, you can proceed to the **Summary** section to review your configuration, save all changes, and view your AI System overview.
+
+---
+
+The **Relevance Check** guardrail provides enterprise-grade quality control for AI responses, ensuring your AI interactions remain relevant, accurate, and trustworthy while maintaining the highest standards of user satisfaction.
+
+## Relevance Check Categories
+
+The Relevance Check guardrail is designed to identify and manage various aspects of response quality. Below is an overview of the primary categories our system monitors:
+
+| Category | Description | Example |
+|----------|-------------|---------|
+| Relevance | Ensures responses directly address the user's query and maintain conversation focus | User asks about product pricing, AI responds with unrelated product features |
+| Accuracy | Verifies that information provided is factual and well-supported | AI provides outdated pricing information or incorrect technical specifications |
+| Completeness | Checks that responses provide adequate information to answer the query | User asks for troubleshooting steps, AI provides incomplete or partial instructions |
+| Context | Ensures responses maintain appropriate context and don't introduce irrelevant information | AI includes unrelated product information when user asks about a specific feature |
+| Misinformation | Detects potential false or misleading information that could spread misinformation | AI provides incorrect product capabilities or false claims about features |
+
+Each category is monitored with configurable sensitivity, allowing organisations to maintain appropriate quality standards while ensuring smooth user interactions. The guardrail helps create a reliable AI environment while preserving the intended functionality and trustworthiness of your automated workflows.
+
+## Best Practices for Relevance Checking
+
+### Optimising Response Quality
+
+When configuring the Relevance Check guardrail, consider these best practices for optimal performance:
+
+**Threshold Selection:**
+- Start with **Medium** sensitivity and adjust based on testing results
+- **Low** threshold for broad topic coverage with fewer false positives
+- **High** threshold for strict quality control and accuracy requirements
+
+**Application Scope:**
+- Apply to **Output** for most use cases to ensure response quality
+- Use **Both** for comprehensive quality control across the entire conversation
+- Consider **Input** monitoring for query validation in critical applications
+
+**Regular Review:**
+- Monitor guardrail performance through the dashboard
+- Review blocked responses to identify false positives
+- Update configuration based on new use cases or quality requirements

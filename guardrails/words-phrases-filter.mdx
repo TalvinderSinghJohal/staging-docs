@@ -1,4 +1,252 @@
 ---
 title: Words & Phrases Filter
-description: "Ensures that Generative AI usage complies with the data protection principles and requirements."
+description: "Customisable content filtering that allows organisations to define and block specific words, phrases, or patterns to maintain brand safety and compliance standards."
 ---
+
+## Overview
+
+The **Words & Phrases Filter** guardrail provides organisations with granular control over content by allowing them to define and block specific words, phrases, or patterns that are inappropriate for their use case. This customisable filtering system ensures brand safety, compliance with organisational policies, and maintains professional standards across all AI interactions.
+
+**Key Points:**
+- Customisable word and phrase filtering for organisational needs
+- Supports exact matches, patterns, and contextual filtering
+- Maintains brand safety and compliance standards
+- Provides flexible configuration options for different use cases
+
+This ensures all AI interactions align with your organisation's specific content requirements and brand guidelines.
+
+---
+
+## What the Guardrail Does
+
+### Purpose
+
+The primary goal of the Words & Phrases Filter guardrail is to provide organisations with precise control over content by allowing them to define and block specific words, phrases, or patterns that are inappropriate, unprofessional, or non-compliant with their policies. By enabling this guardrail, organisations can maintain brand safety, ensure compliance with industry regulations, uphold professional standards, and create customised content filtering that aligns with their specific requirements.
+
+### Scope
+
+#### Customisable Content Filtering
+
+The Words & Phrases Filter guardrail applies targeted content analysis to:
+
+- **Input** – Applies the selected behaviour to what users send to the model.
+- **Output** – Applies the selected behaviour to what the model returns as a response.
+- **Both** – Full bidirectional coverage
+
+#### Operational Modes
+
+- **Monitor** – Lets you review input or output content without taking any action—used for observation and diagnostics.
+- **Block** – Automatically stops content from being processed if it violates the selected guardrail rules.
+
+#### Set Detection Threshold
+
+Under **Set Guardrail Threshold** select the required detection sensitivity:
+
+- **Low:** Filters only exact matches of defined words and phrases. Partial matches or similar terms are allowed.
+- **Medium:** Filters exact matches and close variations of defined terms. Some contextual filtering is applied.
+- **High:** Applies strict filtering—blocks exact matches, variations, and contextually similar content.
+
+#### Filter Types
+
+The guardrail supports multiple filtering approaches:
+
+- **Exact Match**: Blocks specific words or phrases exactly as defined
+- **Pattern Matching**: Uses patterns and wildcards for flexible filtering
+- **Contextual Filtering**: Considers context when evaluating matches
+- **Case Sensitivity**: Configurable case-sensitive or case-insensitive matching
+- **Multi-language Support**: Filters across multiple languages and dialects
+
+### Key Features
+
+<Columns cols={2}>
+  <Card title="Customisable Filtering">
+    Define and manage specific words, phrases, and patterns that align with your organisation's requirements.
+  </Card>
+  <Card title="Flexible Matching">
+    Support for exact matches, pattern matching, and contextual filtering with configurable sensitivity.
+  </Card>
+  <Card title="Brand Safety">
+    Maintain brand integrity by blocking inappropriate or unprofessional content across all interactions.
+  </Card>
+  <Card title="Compliance Support">
+    Ensure adherence to industry regulations and organisational policies through targeted content filtering.
+  </Card>
+  <Card title="Multi-language Coverage">
+    Comprehensive filtering across multiple languages and dialects for global organisations.
+  </Card>
+  <Card title="Easy Management">
+    Simple interface for adding, editing, and managing filtered terms with real-time updates.
+  </Card>
+</Columns>
+
+---
+
+## Why Use This Guardrail?
+
+### Benefits
+
+- **Brand Protection**: Maintains brand integrity by preventing inappropriate content
+- **Policy Compliance**: Ensures adherence to organisational and industry-specific policies
+- **Customised Control**: Provides granular control over content filtering based on specific needs
+- **Professional Standards**: Upholds professional communication standards across all interactions
+- **Flexible Configuration**: Adapts to different use cases and organisational requirements
+
+---
+
+## Use Case: Financial Services AI Assistant
+
+### Scenario
+
+A financial services company deploys an AI assistant to handle customer inquiries about their products and services. The organisation must ensure that the AI never uses inappropriate language, maintains professional standards, and complies with financial industry regulations regarding communication.
+
+### Challenge
+
+The organisation must ensure that:
+
+- AI responses maintain professional financial services language
+- No inappropriate or unprofessional terms are used
+- Compliance with financial industry communication standards
+- Brand safety is maintained across all customer interactions
+
+### Solution: Implementing Words & Phrases Filter
+
+1. **Customised Content Filtering**  
+   - Defined specific inappropriate terms and phrases
+   - Created industry-specific filtering rules for financial services
+   - Configured professional language requirements
+
+2. **Appropriate Enforcement**  
+   - Set to **Block** to prevent inappropriate content
+   - Provides professional fallback responses when violations are detected
+
+3. **Optimised Configuration**  
+   - Used **Medium** sensitivity for balanced filtering
+   - Maintains detection effectiveness while minimising false positives
+
+---
+
+## How to Use the Guardrail
+
+> **Note:** The steps below guide you through configuring the Words & Phrases Filter using the Guardrail Setup.
+
+### Step 1: Navigate to the Guardrail Setup
+
+1. From the **Home Page**, open the **AI System Dashboard** by selecting **View** to open your AI system from the **AI System Table**.
+2. In the **guardrails** section of the AI System Overview, click **Edit Guardrails** to launch the guardrail configuration workflow.
+
+---
+
+### Step 2: Select and Enable the Words & Phrases Filter
+
+1. In the **Configure Guardrails** page, a list of available guardrails will be displayed.
+2. Click on **Words & Phrases Filter** to open its configuration options on the right-hand side of the screen.
+3. Toggle the **Enable Policy** switch to **ON** to begin configuration.
+
+---
+
+### Step 3: Set Application Scope
+
+1. Under **Apply Guardrail To**, choose where the policy will be enforced:
+   - **Input** – Applies the selected behaviour to what users send to the model.
+   - **Output** – Applies the selected behaviour to what the model returns as a response.
+   - **Both** – Full bidirectional coverage
+
+---
+
+### Step 4: Configure Enforcement Behaviour
+
+1. Under **Select Guardrail Behaviour**, choose how the system should respond to filtered content:
+   - **Monitor** – Lets you review input or output content without taking any action—used for observation and diagnostics.
+   - **Block** – Automatically stops content from being processed if it violates the selected guardrail rules.
+
+---
+
+### Step 5: Add Filtered Words and Phrases
+
+1. Under **Add Words & Phrases**, enter the specific terms you want to filter:
+   - Click **Add Word/Phrase** to enter individual terms
+   - Use the text field to enter exact words or phrases
+   - Click **Add** to include the term in your filter list
+   - Repeat for all terms you want to filter
+
+2. **Filter Management**:
+   - Review your list of filtered terms
+   - Edit or remove terms as needed
+   - Ensure all terms are correctly spelled and formatted
+
+---
+
+### Step 6: Adjust Detection Threshold
+
+1. Under **Set Guardrail Threshold**, select the required detection sensitivity:
+   - **Low:** Filters only exact matches of defined words and phrases. Partial matches or similar terms are allowed.
+   - **Medium:** Filters exact matches and close variations of defined terms. Some contextual filtering is applied.
+   - **High:** Applies strict filtering—blocks exact matches, variations, and contextually similar content.
+
+---
+
+### Step 7: Save, Test, and Apply the Guardrail
+
+1. Click **Save & Continue** to store your configuration settings.
+2. Go to the **Test Guardrails** step to evaluate how the guardrail behaves in real time with a chatbot.
+3. After saving, you can proceed to the **Summary** section to review your configuration, save all changes, and view your AI System overview.
+
+---
+
+The **Words & Phrases Filter** guardrail provides precise control over content filtering, ensuring your AI interactions maintain the highest standards of professionalism and compliance while protecting your brand integrity.
+
+## Filter Configuration Best Practices
+
+### Optimising Your Word and Phrase Filters
+
+When configuring the Words & Phrases Filter guardrail, consider these best practices for optimal performance:
+
+**Term Selection:**
+- Focus on specific, actionable terms rather than broad categories
+- Include common variations and misspellings of important terms
+- Consider industry-specific terminology and compliance requirements
+- Review and update your filter list regularly based on usage patterns
+
+**Threshold Configuration:**
+- Start with **Medium** sensitivity and adjust based on testing results
+- **Low** threshold for strict exact matching with minimal false positives
+- **High** threshold for comprehensive filtering including contextual variations
+
+**Application Scope:**
+- Apply to **Output** for most use cases to ensure AI response quality
+- Use **Both** for comprehensive content control across the entire conversation
+- Consider **Input** monitoring for user query validation in sensitive applications
+
+**Regular Maintenance:**
+- Monitor filter performance through the dashboard
+- Review blocked content to identify false positives or missing terms
+- Update your filter list based on new organisational requirements or industry changes
+- Test new terms before adding them to production filters
+
+## Common Use Cases
+
+### Industry-Specific Filtering
+
+Different industries have unique requirements for content filtering:
+
+**Financial Services:**
+- Professional financial terminology
+- Compliance with regulatory communication standards
+- Brand-specific language requirements
+
+**Healthcare:**
+- Medical terminology and professional language
+- Patient privacy and confidentiality terms
+- Clinical communication standards
+
+**Education:**
+- Age-appropriate language for different student groups
+- Academic integrity and plagiarism prevention
+- Professional educational communication
+
+**Retail:**
+- Brand-specific language and terminology
+- Customer service communication standards
+- Product-specific filtering requirements
+
+Each use case can be customised with specific words, phrases, and patterns that align with organisational needs and industry requirements.
