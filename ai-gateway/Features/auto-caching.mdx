@@ -41,3 +41,25 @@ Auto Caching represents a critical performance optimisation feature that stores 
 ### Cache Key Generation
 
 The caching system generates unique cache keys by combining the request path with the validated request body, ensuring that identical requests receive cached responses while maintaining isolation between different queries.
+
+### Cache Lifecycle Management
+
+#### Write Path
+1. **Request Reception**: Incoming request processed by middleware stack
+2. **Cache Lookup**: Check for existing valid cache entry
+3. **Cache Miss**: Forward request to AI provider
+4. **Response Storage**: Store successful responses with TTL
+5. **Client Return**: Send response to client
+
+#### Read Path
+1. **Request Reception**: Incoming request enters pipeline
+2. **Key Generation**: Create cache key from validated request
+3. **Cache Hit**: Retrieve stored response if valid
+4. **Instant Return**: Serve cached response with minimal latency
+5. **Metrics Update**: Record cache hit and time saved
+
+#### Expiration Handling
+- **TTL Based Expiration**: Entries expire after configured duration
+- **Lazy Cleanup**: Expired entries removed on next access attempt
+- **Memory Protection**: Prevents unbounded cache growth
+- **Graceful Degradation**: Expired entries trigger fresh requests
