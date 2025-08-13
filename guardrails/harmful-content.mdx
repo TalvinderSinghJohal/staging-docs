@@ -58,11 +58,23 @@ The guardrail monitors multiple categories of harmful content:
 
 ### Key Features
 
-- **Multi-Category Detection**: Comprehensive coverage across all major harmful content types
-- **Context-Aware Analysis**: Advanced understanding of conversation context and intent
-- **Configurable Sensitivity**: Adjustable detection thresholds for different use cases
-- **Low Latency**: High-performance detection that doesn't impact response times
-- **Enterprise-Grade Accuracy**: Minimises false positives while maintaining high detection rates
+<Columns cols={2}>
+  <Card title="Multi-Category Detection">
+    Comprehensive coverage across all major harmful content types including violence, hate speech, and inappropriate content.
+  </Card>
+  <Card title="Context-Aware Analysis">
+    Advanced understanding of conversation context and intent for accurate harmful content detection.
+  </Card>
+  <Card title="Configurable Sensitivity">
+    Adjustable detection thresholds for different use cases with Low, Medium, and High options.
+  </Card>
+  <Card title="Low Latency">
+    High-performance detection that doesn't impact response times or user experience.
+  </Card>
+  <Card title="Enterprise-Grade Accuracy">
+    Minimises false positives while maintaining high detection rates across all content types.
+  </Card>
+</Columns>
 
 ---
 
@@ -100,11 +112,11 @@ The organisation must ensure that:
    - Configured to detect all major categories of harmful content
 
 2. **Appropriate Enforcement**  
-   - Set to **Log and Override** to actively prevent harmful content
+   - Set to **Block** to actively prevent harmful content
    - Provides clear, professional fallback responses
 
-3. **Optimized Sensitivity**  
-   - Calibrated for high accuracy with minimal false positives
+3. **Optimised Sensitivity**  
+   - Set to **High** for high accuracy with minimal false positives
    - Maintains detection effectiveness across diverse content types
 
 ---
@@ -113,14 +125,14 @@ The organisation must ensure that:
 
 > **Note:** The following steps walk you through configuring the Harmful Content Detection Guardrail in the guardrail workflow.
 
-### Step 1: Navigate to the Guardrail Workflow
+### Step 1: Navigate to the Guardrail Setup
 
-1. From the **Dashboard**, open the **Project Overview** by selecting "view" to open your project from the **Project Table**.
-2. In the **guardrails** section of the Project Overview, click **Edit Guardrails** to launch the guardrail configuration workflow.
+1. From the **Home Page**, open the **AI System Dashboard** by selecting **View** to open your AI system from the **AI System Table**.
+2. In the **guardrails** section of the AI System Overview, click **Edit Guardrails** to launch the guardrail configuration workflow.
 
 ### Step 2: Select and Enable the Harmful Content Filter
 
-1. In the **Configure Guardrails** dropdown, click **Harmful Content Filter** from the list of guardrails.
+1. In the **Configure Guardrails** page, click **Harmful Content Filter** from the list of guardrails.
 2. The configuration panel will appear on the right.
 3. Toggle **Enable Guardrail** to **ON**.
 
@@ -133,7 +145,7 @@ The organisation must ensure that:
 
 ### Step 4: Configure Enforcement Behaviour
 
-1. Under **Behaviour**, choose how the guardrail should respond to detected filters:
+1. Under **Select Guardrail Behaviour**, choose how the system should respond to detected filters:
    - **Monitor** – Lets you review input or output content without taking any action—used for observation and diagnostics.
    - **Block** – Automatically stops content from being processed if it violates the selected guardrail rules.
 
