@@ -176,16 +176,7 @@ The organisation must ensure that:
 
 ---
 
-### Step 6: Adjust Detection Threshold
-
-1. Under **Set Guardrail Threshold**, select the required detection sensitivity:
-   - **Low:** Filters only exact matches of defined words and phrases. Partial matches or similar terms are allowed.
-   - **Medium:** Filters exact matches and close variations of defined terms. Some contextual filtering is applied.
-   - **High:** Applies strict filtering—blocks exact matches, variations, and contextually similar content.
-
----
-
-### Step 7: Save, Test, and Apply the Guardrail
+### Step 6: Save, Test, and Apply the Guardrail
 
 1. Click **Save & Continue** to store your configuration settings.
 2. Go to the **Test Guardrails** step to evaluate how the guardrail behaves in real time with a chatbot.
@@ -206,11 +197,6 @@ When configuring the Words & Phrases Filter guardrail, consider these best pract
 - Include common variations and misspellings of important terms
 - Consider industry-specific terminology and compliance requirements
 - Review and update your filter list regularly based on usage patterns
-
-**Threshold Configuration:**
-- Start with **Medium** sensitivity and adjust based on testing results
-- **Low** threshold for strict exact matching with minimal false positives
-- **High** threshold for comprehensive filtering including contextual variations
 
 **Application Scope:**
 - Apply to **Output** for most use cases to ensure AI response quality

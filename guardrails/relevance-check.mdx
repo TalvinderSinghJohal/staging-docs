@@ -56,6 +56,15 @@ The guardrail monitors multiple aspects of response quality:
 - **Context**: Ensures responses maintain appropriate context and don't introduce irrelevant information
 - **Misinformation**: Detects potential false or misleading information that could spread misinformation
 
+#### Contextual Analysis
+
+The Relevance Check guardrail performs comprehensive contextual analysis by evaluating:
+
+- **Query Alignment**: Whether the response directly answers the user's specific question
+- **Source Grounding**: Whether the response is based on available information sources
+- **Factual Consistency**: Whether the response contains accurate information without introducing unverified claims
+- **Contextual Relevance**: Whether the response maintains appropriate context throughout the conversation
+
 ### Key Features
 
 <Columns cols={2}>
@@ -163,9 +172,9 @@ The organisation must ensure that:
 ### Step 5: Adjust Detection Threshold
 
 1. Under **Set Guardrail Threshold**, select the required detection sensitivity:
-   - **Low:** Filters only the most clearly irrelevant responses. Content with low or uncertain relevance issues is allowed.
-   - **Medium:** Filters responses that are likely or certainly irrelevant. Lower-confidence relevance issues are still allowed.
-   - **High:** Applies strict filtering—blocks any response that may be irrelevant, even with low confidence.
+   - **0.00 - 0.33 (Strict):** Applies strict filtering—blocks any response that may be irrelevant, even with low confidence.
+   - **0.34 - 0.66 (Balanced):** Filters responses that are likely or certainly irrelevant. Lower-confidence relevance issues are still allowed.
+   - **0.67 - 0.99 (Permissive):** Filters only the most clearly irrelevant responses. Content with low or uncertain relevance issues is allowed.
 
 ---
 
@@ -191,6 +200,37 @@ The Relevance Check guardrail is designed to identify and manage various aspects
 | Context | Ensures responses maintain appropriate context and don't introduce irrelevant information | AI includes unrelated product information when user asks about a specific feature |
 | Misinformation | Detects potential false or misleading information that could spread misinformation | AI provides incorrect product capabilities or false claims about features |
 
+## Understanding Response Quality Issues
+
+The Relevance Check guardrail evaluates responses to ensure they directly address user queries. Here are the key scenarios it detects:
+
+### Relevant Responses
+**What it is:** Responses that directly address the user's specific question and maintain conversation focus.
+
+**Example:**
+```
+- **User Query:** "What are the monthly fees for a checking account?"
+- **Good Response:** "The monthly fee for maintaining a checking account is $10, and there are no fees associated with opening one."
+- **Why it's good:** Directly answers the question about checking account fees.
+```
+
+### Irrelevant Responses
+**What it is:** Responses that don't address the user's specific question or introduce unrelated information.
+
+**Example:**
+```
+- **User Query:** "What are the charges for using a checking account?"
+- **Poor Response:** "The late payment fee for credit cards is 23.99%"
+- **Why it's flagged:** Provides information about credit cards when the user asked about checking accounts.
+```
+
+**Another Example:**
+```
+- **User Query:** "How do I reset my password?"
+- **Poor Response:** "Our customer service hours are Monday to Friday, 9 AM to 5 PM."
+- **Why it's flagged:** Provides customer service hours instead of password reset instructions.
+```
+
 Each category is monitored with configurable sensitivity, allowing organisations to maintain appropriate quality standards while ensuring smooth user interactions. The guardrail helps create a reliable AI environment while preserving the intended functionality and trustworthiness of your automated workflows.
 
 ## Best Practices for Relevance Checking
@@ -200,9 +240,10 @@ Each category is monitored with configurable sensitivity, allowing organisations
 When configuring the Relevance Check guardrail, consider these best practices for optimal performance:
 
 **Threshold Selection:**
-- Start with **Medium** sensitivity and adjust based on testing results
-- **Low** threshold for broad topic coverage with fewer false positives
-- **High** threshold for strict quality control and accuracy requirements
+- The guardrail generates confidence scores for both relevance and accuracy
+- Higher thresholds increase the likelihood of blocking poor-quality content
+- Lower thresholds allow more content through but may include lower-quality responses
+- Configure thresholds between 0 and 0.99 for optimal filtering
 
 **Application Scope:**
 - Apply to **Output** for most use cases to ensure response quality
@@ -213,3 +254,9 @@ When configuring the Relevance Check guardrail, consider these best practices fo
 - Monitor guardrail performance through the dashboard
 - Review blocked responses to identify false positives
 - Update configuration based on new use cases or quality requirements
+
+**Content Evaluation:**
+- The guardrail evaluates three key components: available information sources, user queries, and AI responses
+- Ensure your information sources are comprehensive and up-to-date for accurate evaluation
+- Consider the relationship between user questions and available information when configuring thresholds
+- Monitor for patterns in blocked responses to identify potential improvements in information sources or AI training
