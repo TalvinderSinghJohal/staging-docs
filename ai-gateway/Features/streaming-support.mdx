@@ -143,7 +143,7 @@ Streaming Response:
 - **Reduced Cognitive Load**: Process information incrementally
 - **Enhanced Control**: Interrupt or redirect based on partial output
 
-### Performance Optimization
+### Performance Optimisation
 
 #### Latency Reduction
 - **95% Reduction in Perceived Latency**: From 5s to 200ms perceived wait
@@ -171,8 +171,8 @@ Concurrent Users      100           500            5x
 - **Reduced Buffer Requirements**: No need to store complete responses
 - **Scalable Architecture**: Support more concurrent connections
 
-#### Network Optimization
-- **Continuous Data Flow**: Optimal bandwidth utilization
+#### Network Optimisation
+- **Continuous Data Flow**: Optimal bandwidth utilisation
 - **Reduced Timeout Risk**: Connection stays active with data flow
 - **Lower Peak Bandwidth**: Spread data transfer over time
 - **HTTP/2 Multiplexing**: Efficient connection reuse
@@ -457,25 +457,25 @@ interface StreamingMetrics {
 | Stream Success Rate | 99.9% | >99.99% | >99% | <99% |
 | Chunk Latency | <10ms | <5ms | <20ms | >50ms |
 
-### Optimization Strategies
+### Optimisation Strategies
 
-#### Client-Side Optimization
+#### Client-Side Optimisation
 1. **Buffer Management**: Optimal chunk size for rendering
 2. **Progressive Rendering**: Update UI incrementally
 3. **Connection Pooling**: Reuse HTTP connections
 4. **Error Recovery**: Automatic reconnection logic
 
-#### Server-Side Optimization
+#### Server-Side Optimisation
 1. **Stream Buffering**: Balance latency vs efficiency
 2. **Compression**: Optional gzip for large streams
 3. **Connection Management**: Efficient resource allocation
 4. **Load Balancing**: Distribute streaming connections
 
-#### Network Optimization
+#### Network Optimisation
 1. **HTTP/2 Multiplexing**: Multiple streams per connection
 2. **Keep-Alive Tuning**: Optimal timeout settings
 3. **CDN Integration**: Edge streaming capabilities
-4. **QoS Policies**: Prioritize streaming traffic
+4. **QoS Policies**: Prioritise streaming traffic
 
 ---
 
@@ -596,7 +596,7 @@ streaming:
 
 #### Slow Time to First Token
 - **Cause**: Provider latency or network issues
-- **Solution**: Check provider status, optimize routing
+- **Solution**: Check provider status, optimise routing
 - **Prevention**: Use geographic load balancing
 
 #### Stream Interruptions
@@ -644,7 +644,7 @@ function onChunk(chunk) {
 }
 ```
 
-### Optimization Checklist
+### Optimisation Checklist
 
 - [ ] Enable HTTP/2 for multiplexing
 - [ ] Configure appropriate buffer sizes

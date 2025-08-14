@@ -7,7 +7,7 @@ Enable advanced multi-step reasoning for more accurate and context-aware AI resp
 
 ### Example: Complex Reasoning with Thinking Mode (Anthropic via AI Gateway)
 
-Claude models support **thinking mode**, which enables the model to internally reason through complex problems before responding. This is ideal for use cases like optimization, planning, and multi-step logic.
+Claude models support **thinking mode**, which enables the model to internally reason through complex problems before responding. This is ideal for use cases like optimisation, planning, and multi-step logic.
 
 The following example shows how to invoke thinking mode through the AI Gateway using the OpenAI SDK-compatible client.
 
@@ -29,8 +29,8 @@ response = client.chat.completions.create(
         {
             "role": "user",
             "content": (
-                "I have a complex problem: I need to optimize a supply chain for a company with 5 warehouses, "
-                "20 suppliers, and 100 retail locations. What's the best approach to tackle this optimization problem?"
+                "I have a complex problem: I need to optimise a supply chain for a company with 5 warehouses, "
+"20 suppliers, and 100 retail locations. What's the best approach to tackle this optimisation problem?"
             )
         }
     ],
