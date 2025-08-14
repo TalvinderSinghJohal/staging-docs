@@ -128,40 +128,7 @@ curl -X POST https://gateway.altrum.ai/v1/chat/completions \
   }'
 ```
 
-### Step 4: Test Streaming (Optional)
-
-Try a streaming request to see real-time responses:
-
-```bash Streaming Request lines icon="bash"
-curl -X POST https://gateway.altrum.ai/v1/chat/completions \
-  -H "Content-Type: application/json" \
-  -H "Accept: text/event-stream" \
-  -H "x-provider-name: openai" \
-  -H "x-altrumai-key: your-ai-system-api-key-from-altrumai" \
-  -d '{
-    "model": "gpt-4o-mini",
-    "messages": [
-      {
-        "role": "user",
-        "content": "Write a short story about a robot learning to paint."
-      }
-    ],
-    "stream": true,
-    "max_tokens": 200
-  }'
-```
-
-You should see the response streaming in real-time with chunks like:
-
-```json Streaming Response lines icon="json"
-data: {"id":"chatcmpl-123","object":"chat.completion.chunk","created":1677652288,"model":"gpt-4o-mini","choices":[{"index":0,"delta":{"content":"Once"},"finish_reason":null}]}
-
-data: {"id":"chatcmpl-123","object":"chat.completion.chunk","created":1677652288,"model":"gpt-4o-mini","choices":[{"index":0,"delta":{"content":" upon"},"finish_reason":null}]}
-
-data: [DONE]
-```
-
-### Step 5: Verify Multi-Model Support
+### Step 4: Verify Multi-Model Support
 
 Test that you can switch between different models seamlessly:
 
@@ -254,7 +221,7 @@ Congratulations! Your AI Gateway is working. Now you can:
 <Card
   title="Explore Advanced Features"
   icon="rocket"
-  href="/ai-gateway/Features/tool-calling"
+  href="/ai-gateway/Features/unified-api"
   arrow="true"
   cta="Discover Features"
 >
