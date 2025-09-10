@@ -30,6 +30,7 @@ The Data Protection Filter applies advanced content analysis to:
 
 - **Monitor** – Lets you review input or output content without taking any action—used for observation and diagnostics.
 - **Block** – Automatically stops content from being processed if it violates the selected guardrail rules.
+- **Mask** – Replaces detected sensitive information with anonymised placeholders while allowing content to proceed.
 
 #### Detection Categories
 
@@ -102,8 +103,8 @@ The organisation must ensure that:
    - Applied to both **Input** and **Output** for full bidirectional protection
 
 2. **Appropriate Enforcement**  
-   - Set to **Block** behaviour to actively prevent PII exposure
-   - Provides clear, professional fallback responses when sensitive data is detected
+   - Set to **Mask** behaviour to anonymise PII while maintaining workflow continuity
+   - Replaces detected PII with appropriate placeholders (e.g., {NAME}, {EMAIL}, {PHONE_NUMBER})
 
 3. **Optimised Configuration**  
    - Used **Medium** sensitivity threshold for balanced accuracy
@@ -158,6 +159,7 @@ The organisation must ensure that:
 1. Under **Select Guardrail Behaviour**, choose how the system should respond to detected PII:
    - **Monitor** – Lets you review input or output content without taking any action—used for observation and diagnostics.
    - **Block** – Automatically stops content from being processed if it violates the selected guardrail rules.
+   - **Mask** – Replaces detected sensitive information with anonymised placeholders while allowing content to proceed.
 
 ---
 

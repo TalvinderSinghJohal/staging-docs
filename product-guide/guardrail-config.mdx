@@ -32,6 +32,10 @@ Each guardrail has its own set of configuration options. Common configuration st
 - Choose an **Enforcement Mode**:
   - **Input** – Applies the selected behaviour to what users send to the model.
   - **Output** – Applies the selected behaviour to what the model returns as a response.
+- Select a **Guardrail Behaviour**:
+  - **Monitor** – Lets you review input or output content without taking any action—used for observation and diagnostics.
+  - **Block** – Automatically stops content from being processed if it violates the selected guardrail rules.
+  - **Mask** – Replaces detected sensitive information with anonymised placeholders while allowing content to proceed (available for Data Protection and Custom Data Protection guardrails only).
 - Adjust **Thresholds** (if applicable).
 - Select and Configure relevant **Topics, Entities, Categories, or Words & Phrases** (depending on the guardrail type).
 

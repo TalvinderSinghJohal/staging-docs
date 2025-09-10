@@ -30,6 +30,7 @@ The Custom Data Protection Filter applies deterministic pattern matching to:
 
 - **Monitor** – Lets you review input or output content without taking any action—used for observation and diagnostics.
 - **Block** – Automatically stops content from being processed if it violates the selected guardrail rules.
+- **Mask** – Replaces detected sensitive information with anonymised placeholders while allowing content to proceed.
 
 #### Detection Approach
 
@@ -114,8 +115,8 @@ The organisation must ensure that:
    - Applied to both **Input** and **Output** for comprehensive protection
 
 2. **Deterministic Enforcement**  
-   - Set to **Block** behaviour for immediate protection
-   - Provides clear error messages when custom patterns are detected
+   - Set to **Mask** behaviour to anonymise sensitive data while maintaining workflow continuity
+   - Replaces detected patterns with appropriate placeholders (e.g., {ACCOUNT_NUMBER}, {REFERENCE_CODE})
 
 3. **Complementary Setup**  
    - Used alongside standard Data Protection Filter for comprehensive coverage
@@ -167,6 +168,7 @@ The organisation must ensure that:
 1. Under **Select Guardrail Behaviour**, choose how the system should respond to detected patterns:
    - **Monitor** – Lets you review input or output content without taking any action—used for observation and diagnostics.
    - **Block** – Automatically stops content from being processed if it violates the selected guardrail rules.
+   - **Mask** – Replaces detected sensitive information with anonymised placeholders while allowing content to proceed.
 
 ---
 
@@ -208,22 +210,6 @@ Description: Internal reference code format
 Pattern: SN-\d{2}[A-Z]\d{3}-\d{4}
 Matches: SN-12A345-6789
 Description: Product serial number format
-```
-
-### Advanced Pattern Examples
-
-#### Multi-format Detection
-```
-Pattern: (?:ACC|REF|EMP)-\d{4}-\d{4}-\d{4}
-Matches: ACC-1234-5678-9012, REF-9876-5432-1098, EMP-1111-2222-3333
-Description: Multiple prefix formats with same number pattern
-```
-
-#### Conditional Patterns
-```
-Pattern: (?:UK|US|CA)-\d{2}[A-Z]{2}\d{4}
-Matches: UK-12AB3456, US-34CD7890, CA-56EF1234
-Description: Country-specific identifier format
 ```
 
 ## Best Practices for Regex Patterns
