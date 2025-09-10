@@ -1,0 +1,307 @@
+---
+title: Custom Data Protection Filter
+description: "Customisable data protection that allows users to configure regex patterns to detect and safeguard sensitive entities across all AI interactions."
+sidebarTitle: Custom Data Protection Filter
+---
+
+## Overview
+
+The **Custom Data Protection Filter** provides flexible, pattern-based detection for sensitive information using customisable regex patterns. Unlike the standard Data Protection Filter that uses machine learning models, this guardrail uses deterministic regex matching to identify specific data patterns, making it ideal for organisations with unique data formats or specific compliance requirements.
+
+---
+
+## What the Guardrail Does
+
+### Purpose
+
+The primary goal of the Custom Data Protection Filter is to provide precise, pattern-based detection of sensitive information using custom regex patterns. This deterministic approach offers predictable results and allows organisations to define exactly what constitutes sensitive data in their specific context, complementing the ML-based Data Protection Filter for comprehensive coverage.
+
+### Scope
+
+#### Regex-Based Pattern Detection
+
+The Custom Data Protection Filter applies deterministic pattern matching to:
+
+- **Input** – Applies the selected behaviour to what users send to the model.
+- **Output** – Applies the selected behaviour to what the model returns as a response.
+- **Both** – Full bidirectional coverage
+
+#### Operational Modes
+
+- **Monitor** – Lets you review input or output content without taking any action—used for observation and diagnostics.
+- **Block** – Automatically stops content from being processed if it violates the selected guardrail rules.
+
+#### Detection Approach
+
+The guardrail uses regex patterns to identify sensitive data:
+
+- **Deterministic Matching**: Exact pattern matching based on defined regex rules
+- **Custom Patterns**: User-defined regex patterns for specific data formats
+- **Predictable Results**: Consistent detection based on pattern matching rules
+- **High Precision**: Low false positive rates when patterns are well-defined
+
+### Key Features
+
+<Columns cols={2}>
+  <Card title="Custom Regex Patterns">
+    Define specific regex patterns to match your organisation's unique data formats and requirements.
+  </Card>
+  <Card title="Deterministic Detection">
+    Predictable, rule-based detection that provides consistent results across all interactions.
+  </Card>
+  <Card title="High Precision Control">
+    Exact pattern matching with minimal false positives when patterns are properly configured.
+  </Card>
+  <Card title="Flexible Configuration">
+    Create multiple custom patterns for different types of sensitive data or compliance requirements.
+  </Card>
+  <Card title="Performance Optimised">
+    Fast regex-based processing with minimal computational overhead compared to ML models.
+  </Card>
+  <Card title="Compliance Ready">
+    Supports specific regulatory requirements with custom pattern definitions for unique identifiers.
+  </Card>
+</Columns>
+
+---
+
+## Why Use This Guardrail?
+
+### Benefits
+
+- **Precise Control**: Define exactly what patterns should be detected using regex
+- **Predictable Results**: Deterministic matching ensures consistent behaviour
+- **Custom Compliance**: Support for organisation-specific or industry-specific data formats
+- **Performance**: Fast processing with minimal computational overhead
+- **Complementary Protection**: Works alongside ML-based filters for comprehensive coverage
+
+### When to Use Custom Data Protection vs. Standard Data Protection
+
+**Use Custom Data Protection Filter when:**
+- You have specific data formats that require exact pattern matching
+- You need predictable, deterministic detection results
+- You have unique identifiers or codes specific to your organisation
+- You want to complement ML-based detection with rule-based patterns
+- You need to meet specific compliance requirements with custom patterns
+
+**Use Standard Data Protection Filter when:**
+- You need intelligent detection of varied PII formats
+- You want context-aware detection that understands data patterns
+- You need to detect PII across multiple languages and formats
+- You want ML-powered detection that adapts to new patterns
+
+---
+
+## Use Case: Financial Services with Custom Account Numbers
+
+### Scenario
+
+A financial services company uses custom account number formats that are specific to their internal systems. These account numbers follow a unique pattern (e.g., "ACC-XXXX-YYYY-ZZZZ" where X, Y, Z are specific digit patterns) that standard PII detection cannot identify.
+
+### Challenge
+
+The organisation must ensure that:
+- Custom account number formats are detected and protected
+- Internal reference codes are not exposed in AI responses
+- Specific compliance patterns are matched exactly
+- Detection is predictable and consistent across all interactions
+
+### Solution: Implementing Custom Data Protection Filter
+
+1. **Custom Pattern Definition**  
+   - Created regex pattern: `ACC-\d{4}-\d{4}-\d{4}` for account numbers
+   - Added pattern for internal reference codes: `REF-[A-Z]{2}\d{6}`
+   - Applied to both **Input** and **Output** for comprehensive protection
+
+2. **Deterministic Enforcement**  
+   - Set to **Block** behaviour for immediate protection
+   - Provides clear error messages when custom patterns are detected
+
+3. **Complementary Setup**  
+   - Used alongside standard Data Protection Filter for comprehensive coverage
+   - Custom patterns handle organisation-specific formats
+   - ML-based filter handles standard PII types
+
+---
+
+## How to Use the Guardrail
+
+> **Note:** The steps below guide you through configuring the Custom Data Protection Filter using the Guardrail Setup.
+
+### Step 1: Navigate to the Guardrail Setup
+
+1. From the **Home Page**, open the **AI System Dashboard** by selecting **View** to open your AI system from the **AI System Table**.
+2. In the **guardrails** section of the AI System Overview, click **Edit Guardrails** to launch the guardrail configuration workflow.
+
+---
+
+### Step 2: Select and Enable the Custom Data Protection Filter
+
+1. In the **Configure Guardrails** page, a list of available guardrails will be displayed.
+2. Click on **Custom Data Protection** to open its configuration options on the right-hand side of the screen.
+3. Toggle the **Enable Policy** switch to **ON** to begin configuration.
+
+---
+
+### Step 3: Create Custom Regex Patterns
+
+1. In the **Custom Patterns** section, click **Add Pattern** to create a new regex pattern.
+2. Enter a **Pattern Name** (e.g., "Internal Account Numbers", "Employee IDs").
+3. Enter the **Regex Pattern** using standard regex syntax (e.g., `ACC-\d{4}-\d{4}-\d{4}`).
+4. Add an optional **Description** to explain what this pattern detects.
+5. Click **Save Pattern** to add it to your configuration.
+
+---
+
+### Step 4: Set Application Scope
+
+1. Under the **Apply Guardrail To** section, select where you want the guardrail enforced:
+   - **Input** – Applies the selected behaviour to what users send to the model.
+   - **Output** – Applies the selected behaviour to what the model returns as a response.
+   - **Both** – Full bidirectional coverage
+
+---
+
+### Step 5: Configure Enforcement Behaviour
+
+1. Under **Select Guardrail Behaviour**, choose how the system should respond to detected patterns:
+   - **Monitor** – Lets you review input or output content without taking any action—used for observation and diagnostics.
+   - **Block** – Automatically stops content from being processed if it violates the selected guardrail rules.
+
+---
+
+### Step 6: Save, Test, and Apply the Guardrail
+
+1. Click **Save & Continue** to store your custom patterns and configuration.
+2. Go to the **Test Guardrails** step to evaluate how the guardrail behaves with your custom patterns.
+3. After saving, you can proceed to the **Summary** section to review your configuration, save all changes, and view your AI System overview.
+
+---
+
+## Regex Pattern Examples
+
+### Common Pattern Types
+
+#### Account Numbers
+```
+Pattern: ACC-\d{4}-\d{4}-\d{4}
+Matches: ACC-1234-5678-9012
+Description: Internal account number format
+```
+
+#### Employee IDs
+```
+Pattern: EMP-[A-Z]{2}\d{6}
+Matches: EMP-AB123456
+Description: Employee identification format
+```
+
+#### Internal Reference Codes
+```
+Pattern: REF-\d{3}[A-Z]{2}\d{4}
+Matches: REF-123AB5678
+Description: Internal reference code format
+```
+
+#### Custom Serial Numbers
+```
+Pattern: SN-\d{2}[A-Z]\d{3}-\d{4}
+Matches: SN-12A345-6789
+Description: Product serial number format
+```
+
+### Advanced Pattern Examples
+
+#### Multi-format Detection
+```
+Pattern: (?:ACC|REF|EMP)-\d{4}-\d{4}-\d{4}
+Matches: ACC-1234-5678-9012, REF-9876-5432-1098, EMP-1111-2222-3333
+Description: Multiple prefix formats with same number pattern
+```
+
+#### Conditional Patterns
+```
+Pattern: (?:UK|US|CA)-\d{2}[A-Z]{2}\d{4}
+Matches: UK-12AB3456, US-34CD7890, CA-56EF1234
+Description: Country-specific identifier format
+```
+
+## Best Practices for Regex Patterns
+
+### Pattern Design Guidelines
+
+When creating custom regex patterns, follow these best practices for optimal performance and accuracy:
+
+#### 1. **Be Specific and Precise**
+- Use exact patterns that match only your intended data formats
+- Avoid overly broad patterns that might create false positives
+- Test patterns thoroughly before deployment
+
+#### 2. **Consider Edge Cases**
+- Account for variations in formatting (spaces, dashes, case sensitivity)
+- Test with real data samples to ensure accuracy
+- Consider international formats if applicable
+
+#### 3. **Performance Optimisation**
+- Use efficient regex patterns to minimise processing time
+- Avoid overly complex patterns that might impact performance
+- Consider using anchors (^ and $) for exact matches when appropriate
+
+#### 4. **Documentation and Maintenance**
+- Provide clear descriptions for each pattern
+- Document the expected format and use cases
+- Regularly review and update patterns as requirements change
+
+### Example Pattern Configurations
+
+#### Financial Services
+```
+Pattern Name: Customer Account Numbers
+Regex: CUST-\d{8}
+Description: 8-digit customer account numbers with CUST prefix
+Test Cases: CUST-12345678, CUST-87654321
+```
+
+#### Healthcare
+```
+Pattern Name: Patient Record IDs
+Regex: PAT-\d{3}[A-Z]{2}\d{4}
+Description: Patient record identifier format
+Test Cases: PAT-123AB5678, PAT-456CD9012
+```
+
+#### Government
+```
+Pattern Name: Case Reference Numbers
+Regex: CASE-\d{4}-\d{4}-\d{4}
+Description: Government case reference format
+Test Cases: CASE-1234-5678-9012, CASE-9876-5432-1098
+```
+
+## Performance Considerations
+
+### Regex vs. ML-Based Detection
+
+**Custom Data Protection Filter (Regex-based):**
+- **Speed**: Very fast pattern matching
+- **Predictability**: Deterministic results
+- **Resource Usage**: Low computational overhead
+- **Accuracy**: High precision for well-defined patterns
+- **Flexibility**: Limited to predefined patterns
+
+**Standard Data Protection Filter (ML-based):**
+- **Speed**: Moderate processing time
+- **Predictability**: Context-dependent results
+- **Resource Usage**: Higher computational requirements
+- **Accuracy**: High recall across varied formats
+- **Flexibility**: Adapts to new patterns and contexts
+
+### Optimisation Tips
+
+1. **Use Anchors**: Start patterns with `^` and end with `$` for exact matches
+2. **Avoid Greedy Quantifiers**: Use `*?` instead of `*` when appropriate
+3. **Group Efficiently**: Use non-capturing groups `(?:...)` when you don't need to capture
+4. **Test Performance**: Validate pattern performance with large datasets
+5. **Monitor Usage**: Track pattern match rates and adjust as needed
+
+The **Custom Data Protection Filter** provides precise, pattern-based protection that complements ML-based detection, offering organisations the flexibility to define exactly what constitutes sensitive data in their specific context while maintaining high performance and predictable results.
