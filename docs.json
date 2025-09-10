@@ -70,6 +70,7 @@
                 "icon": "shield-halved",
                 "pages": [
                   "guardrails/data-protection-filter",
+                  "guardrails/custom-data-protection",
                   "guardrails/harmful-content",
                   "guardrails/restricted-topic-filter",
                   "guardrails/words-phrases-filter",
