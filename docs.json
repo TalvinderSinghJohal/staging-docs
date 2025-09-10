@@ -32,7 +32,8 @@
                   {
                     "group": "Reporting",
                     "pages": [
-                      "product-guide/system-reporting"
+                      "product-guide/system-reporting",
+                      "product-guide/org-reporting"
                     ]
                   },
                   {
