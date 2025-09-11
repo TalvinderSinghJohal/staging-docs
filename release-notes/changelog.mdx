@@ -1,0 +1,44 @@
+---
+title: "Changelog"
+description: "Product updates and announcements"
+---
+<Update label="v1.2.0" description="Latest Release">
+  ## New Features
+
+  ### Custom Data Protection Guardrail
+  - Introduced a new **Custom Data Protection Filter** that allows organisations to define custom regex patterns for detecting sensitive information
+  - Provides deterministic, pattern-based detection for organisation-specific data formats and compliance requirements
+  - Complements the existing ML-based Data Protection Filter with precise, rule-based matching
+  - Supports custom patterns for account numbers, employee IDs, reference codes, and other unique identifiers
+
+  ### Enhanced Data Protection with Masking
+  - Added **Mask** behaviour option to both Data Protection and Custom Data Protection guardrails
+  - Replaces detected sensitive information with anonymised placeholders while allowing content to proceed
+  - Maintains workflow continuity while ensuring data privacy and compliance
+  - Provides three enforcement options: Monitor, Block, and Mask
+
+  ### Enhanced Reporting Capabilities
+  - Improved AI System Reporting with comprehensive filtering and analytics
+  - Enhanced Organisation Reporting for executive-level insights across all AI systems
+  - Added detailed metrics and performance trend analysis
+  - Streamlined navigation and user experience for better governance oversight
+
+  ## Improvements
+  - Updated guardrail configuration workflow to include behaviour selection
+  - Enhanced documentation with comprehensive examples and best practices
+  - Improved user interface for better accessibility and usability
+</Update>
+
+<Update label="v1.1.0" description="Previous Release">
+  ## New Features
+
+  ### Organisation Reporting
+  - Introduced comprehensive **Organisation Reporting** dashboard for executive-level insights
+  - Provides aggregated view of all AI systems across the organisation
+  - Enables organisation-wide compliance monitoring and performance tracking
+  - Perfect for leadership teams and governance oversight
+
+  ## Improvements
+  - Enhanced reporting navigation and user experience
+  - Improved data visualisation and trend analysis capabilities
+</Update>
