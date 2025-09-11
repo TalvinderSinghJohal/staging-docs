@@ -84,9 +84,8 @@
           },
           {
             "group": "Release Notes",
-            "hidden": true,
             "pages": [
-              "release-notes/june-2025-release"
+              "release-notes/changelog"
             ]
           }
         ]
