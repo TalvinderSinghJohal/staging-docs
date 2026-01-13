@@ -41,6 +41,138 @@ By adopting the Unified API, organisations can focus on building innovative AI a
 | **Google AI** | Integrate Google Gemini models available in Google AI API |
 | **Google Vertex AI** | Access custom deployed Vertex AI models available in Google Vertex Model Garden |
 
+## Request Metadata
+
+The Unified API supports an optional `metadata` field in requests to enrich request context with user, team, and tenant information. This metadata enables enhanced tracking, reporting, and governance by associating requests with organisational context.
+
+### Metadata Structure
+
+The metadata object supports the following structure:
+
+```json
+{
+  "metadata": {
+    "user": {
+      "user_id": "string (max 64)",
+      "user_name": "string (max 128)",
+      "user_email": "string (valid email)",
+      "user_role": "string (max 64)",
+      "user_type": "internal | external"
+    },
+    "team": {
+      "team_id": "string (max 64)",
+      "team_name": "string (max 128)"
+    },
+    "tenant": {
+      "tenant_id": "string (max 64)",
+      "tenant_name": "string (max 128)",
+      "tenant_user": {
+        "tenant_user_id": "string (max 64)",
+        "tenant_user_name": "string (max 128)",
+        "tenant_user_email": "string (valid email)",
+        "tenant_user_role": "string (max 64)"
+      }
+    }
+  }
+}
+```
+
+### Using Metadata in Requests
+
+Metadata can be included in any API request. Here's an example:
+
+<CodeGroup dropdown>
+
+```python metadata_example.py
+from openai import OpenAI
+
+client = OpenAI(
+    api_key="YOUR_OPENAI_API_KEY",
+    base_url="https://gateway.altrum.ai/v1",
+    default_headers={
+        "x-provider-name": "openai",
+        "x-altrumai-key": "YOUR_ALTRUMAI_API_KEY"
+    }
+)
+
+response = client.chat.completions.create(
+    model="gpt-4o-mini",
+    messages=[
+        {"role": "user", "content": "What is the capital of France?"}
+    ],
+    metadata={
+        "user": {
+            "user_id": "user_123",
+            "user_name": "John Doe",
+            "user_email": "john.doe@example.com",
+            "user_role": "developer",
+            "user_type": "internal"
+        },
+        "team": {
+            "team_id": "team_456",
+            "team_name": "Engineering"
+        },
+        "tenant": {
+            "tenant_id": "tenant_789",
+            "tenant_name": "Acme Corp",
+            "tenant_user": {
+                "tenant_user_id": "tenant_user_123",
+                "tenant_user_name": "John Doe",
+                "tenant_user_email": "john.doe@acme.com",
+                "tenant_user_role": "admin"
+            }
+        }
+    }
+)
+
+print(response.choices[0].message.content)
+```
+
+```bash metadata_curl.sh
+curl -X POST "https://gateway.altrum.ai/v1/chat/completions" \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer YOUR_OPENAI_API_KEY" \
+  -H "x-provider-name: openai" \
+  -H "x-altrumai-key: YOUR_ALTRUMAI_API_KEY" \
+  -d '{
+    "model": "gpt-4o-mini",
+    "messages": [
+      {
+        "role": "user",
+        "content": "What is the capital of France?"
+      }
+    ],
+    "metadata": {
+      "user": {
+        "user_id": "user_123",
+        "user_name": "John Doe",
+        "user_email": "john.doe@example.com",
+        "user_role": "developer",
+        "user_type": "internal"
+      },
+      "team": {
+        "team_id": "team_456",
+        "team_name": "Engineering"
+      },
+      "tenant": {
+        "tenant_id": "tenant_789",
+        "tenant_name": "Acme Corp",
+        "tenant_user": {
+          "tenant_user_id": "tenant_user_123",
+          "tenant_user_name": "John Doe",
+          "tenant_user_email": "john.doe@acme.com",
+          "tenant_user_role": "admin"
+        }
+      }
+    }
+  }'
+```
+
+</CodeGroup>
+
+<Note>
+All metadata fields are optional. You can include only the metadata fields relevant to your use case. The metadata field works with all supported providers.
+</Note>
 
 ## Implementation Examples (for Each Provider)
 
